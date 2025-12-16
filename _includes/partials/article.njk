@@ -1,0 +1,24 @@
+<article>
+  <h1 class="article-title">{{ article.title }}</h1>
+  <div class="article-body">
+    {{ article.body | safe }}
+  </div>
+  <div class="article-gallery">
+    {%- for media in article.media -%}
+      {%- if media.type == "Photo" and media.featured == false -%}
+        <div class="article-gallery--media">
+          <div
+            class="responsive-image"
+            role="img"
+            style="
+              --img-mobile: url('https://lmjstatic.deliriumcoder.com{{ media.image_urls.mobile }}');
+              --img-tablet: url('https://lmjstatic.deliriumcoder.com{{ media.image_urls.tablet }}');
+              --img-desktop: url('https://lmjstatic.deliriumcoder.com{{ media.image_urls.desktop }}');
+              --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com{{ media.image_urls.desktop_hd }}');
+            "
+          ></div>
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</article>

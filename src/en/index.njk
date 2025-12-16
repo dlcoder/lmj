@@ -1,0 +1,10 @@
+---
+layout: layouts/main.njk
+title: Mythical Places of Jaén
+permalink: /en/
+---
+
+{% set articles = collections.articlesEn | limit(10) %}
+{% set locale = "en" %}
+{% set readMoreText = "Read more »" %}
+{% include "partials/article-teaser-list.njk" %}

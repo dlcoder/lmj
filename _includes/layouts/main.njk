@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div class="header">
+    <div class="header-logo">
+      <h1 class="header-logo--title">
+        <a href="/">Lugares míticos de Jaén</a>
+      </h1>
+    </div>
+    <nav class="header-nav">
+      <a href="/">Inicio</a>
+    </nav>
+  </div>
+
+  <div class="main-container">
+    {{ content | safe }}
+  </div>
+</body>
+</html>
