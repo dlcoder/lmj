@@ -14,18 +14,27 @@ A bilingual (Spanish/English) static website about mythical and legendary places
 
 ```
 ├── .eleventy.js      # Eleventy configuration
-├── data/             # JSON data files
-│   ├── articles-en.json
-│   ├── articles-es.json
-│   ├── categories-en.json
-│   ├── categories-es.json
+├── _data/            # Global data files (Eleventy auto-loads)
+│   ├── en_articles.json
+│   ├── es_articles.json
+│   ├── en_categories.json
+│   ├── es_categories.json
 │   └── localities.json
 ├── src/              # Source pages
 │   ├── index.njk     # Root (language redirect)
-│   └── es/           # Spanish pages
+│   ├── es/           # Spanish pages
+│   │   ├── index.njk
+│   │   └── article.njk
+│   └── en/           # English pages
+│       ├── index.njk
+│       └── article.njk
 ├── _includes/        # Templates and partials
-│   └── layouts/
-│       └── main.njk
+│   ├── layouts/
+│   │   └── main.njk
+│   └── partials/
+│       ├── article.njk
+│       └── article-teaser-list.njk
+├── content/          # Content files - tradition articles (currently ignored)
 └── _site/            # Build output (gitignored)
 ```
 
@@ -39,9 +48,17 @@ npm run serve    # Start dev server with hot reload
 ## Key Configuration
 
 - **Static assets host:** `https://lmjstatic.deliriumcoder.com`
-- **Collections:** `articlesEn`, `articlesEs` (loaded from JSON, reversed order)
+- **Global data:** `en_articles`, `es_articles`, `en_categories`, `es_categories`, `localities` (auto-loaded from `_data/`)
 - **Filters:** `limit` - limits array items
 - **Shortcodes:** `featured_image` - generates image URLs from article media
+- **Ignored paths:** `CLAUDE.md`, `README.md`, `content`
+
+## Page Generation
+
+Article pages are generated using Eleventy pagination:
+- Data source: `es_articles` / `en_articles` global data
+- URLs: `/es/articles/{slug}.html` and `/en/articles/{slug}.html`
+- Templates: `src/es/article.njk` and `src/en/article.njk`
 
 ## Data Structure
 

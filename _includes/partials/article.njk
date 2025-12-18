@@ -1,7 +1,15 @@
 <article>
   <h1 class="article-title">{{ article.title }}</h1>
   <div class="article-body">
-    {{ article.body | safe }}
+    {% if article.content_in_separate_page %}
+      {% include "content/" + locale + "_" + article.slug + ".html" %}
+    {% else %}
+      <ul>
+      {%- for sentence in article.sentences -%}
+        <li>{{ sentence | safe }}</li>
+      {%- endfor -%}
+      </ul>
+    {% endif %}
   </div>
   <div class="article-gallery">
     {%- for media in article.media -%}

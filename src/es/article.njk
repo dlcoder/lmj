@@ -1,12 +1,14 @@
 ---
 layout: layouts/main.njk
 pagination:
-  data: collections.articlesEs
+  data: es_articles
   size: 1
   alias: article
 eleventyComputed:
   title: "{{ article.title }} – Lugares míticos de Jaén"
 permalink: /es/articles/{{ article.slug }}.html
+
+locale: "es"
 ---
 
 {% include "partials/article.njk" %}

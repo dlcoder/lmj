@@ -19,14 +19,6 @@ export default function(eleventyConfig) {
     ELEVENTY_ENV: process.env.ELEVENTY_ENV || "development"
   });
 
-  eleventyConfig.addCollection("articlesEn", function() {
-    return loadData("articles-en.json").reverse();
-  });
-
-  eleventyConfig.addCollection("articlesEs", function() {
-    return loadData("articles-es.json").reverse();
-  });
-
   eleventyConfig.addFilter("limit", (content, n) => {
     return content.slice(0, n);
   });
@@ -42,6 +34,7 @@ export default function(eleventyConfig) {
 
   eleventyConfig.ignores.add("CLAUDE.md");
   eleventyConfig.ignores.add("README.md");
+  eleventyConfig.ignores.add("content");
 
   eleventyConfig.addPassthroughCopy("css");
 

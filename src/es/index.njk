@@ -4,7 +4,7 @@ title: Lugares míticos de Jaén
 permalink: /es/
 ---
 
-{% set articles = collections.articlesEs | limit(10) %}
+{% set articles = es_articles | reverse | limit(10) %}
 {% set locale = "es" %}
 {% set readMoreText = "Ver el reportarje completo »" %}
 {% include "partials/article-teaser-list.njk" %}
