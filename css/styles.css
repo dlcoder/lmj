@@ -102,15 +102,17 @@ a:hover {
   left: 0;
   right: 0;
   z-index: 1000;
-  transition: background-color 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 
 .header.header--faded {
-  background-color: color-mix(in srgb, var(--color-primary) 30%, transparent);
+  background-color: var(--color-primary);
+  opacity: 0;
 }
 
 .header.header--faded:hover {
   background-color: var(--color-primary);
+  opacity: 1;
 }
 
 .header-container {
