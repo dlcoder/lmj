@@ -19,6 +19,8 @@ export default function(eleventyConfig) {
     ELEVENTY_ENV: process.env.ELEVENTY_ENV || "development"
   });
 
+  eleventyConfig.addGlobalData("timestamp", Date.now());
+
   eleventyConfig.addFilter("limit", (content, n) => {
     return content.slice(0, n);
   });
