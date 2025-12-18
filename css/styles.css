@@ -102,15 +102,17 @@ a:hover {
   left: 0;
   right: 0;
   z-index: 1000;
-  transition: background-color 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 
 .header.header--faded {
-  background-color: color-mix(in srgb, var(--color-primary) 30%, transparent);
+  background-color: var(--color-primary);
+  opacity: 0;
 }
 
 .header.header--faded:hover {
   background-color: var(--color-primary);
+  opacity: 1;
 }
 
 .header-container {
@@ -167,9 +169,35 @@ a:hover {
 
 /* Article Page */
 
+.article-header {
+  border-bottom: 1px solid #eee;
+  margin-bottom: 2rem;
+  padding-bottom: 0.5rem;
+}
+
 .article-title {
   font-size: 3rem;
   font-weight: bold;
+  margin-bottom: 0;
+  text-transform: uppercase;
+}
+
+.article-date {
+  display: inline-block;
+  font-size: 0.95rem;
+  color: #999;
+  font-style: italic;
+}
+
+.article-location {
+  color: #999;
+  display: inline-block;
+  font-size: 0.95rem;
+}
+
+.article-location:before {
+  content: " · ";
+  margin: 0 0.25rem;
 }
 
 .article-body {
