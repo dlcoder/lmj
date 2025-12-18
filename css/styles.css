@@ -47,7 +47,13 @@ table {
 	border-spacing: 0;
 }
 
-/* Custom Styles */
+/* Variables */
+
+:root {
+  --color-primary: rgba(66, 55, 128, 1);
+}
+
+/* Global Styles */
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -86,23 +92,25 @@ a:hover {
   text-decoration: underline;
 }
 
+/* Header */
+
 .header {
-  background-color: rgba(66, 55, 128, 1);
+  background-color: var(--color-primary);
   padding: 1rem 2rem;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-  transition: opacity 0.3s ease;
+  transition: background-color 0.3s ease;
 }
 
 .header.header--faded {
-  opacity: 0.3;
+  background-color: color-mix(in srgb, var(--color-primary) 30%, transparent);
 }
 
 .header.header--faded:hover {
-  opacity: 1;
+  background-color: var(--color-primary);
 }
 
 .header-container {
@@ -128,12 +136,16 @@ a:hover {
   color: #ffffff;
 }
 
+/* Main Container */
+
 .main-container {
   margin: 0 auto;
   max-width: 1920px;
   padding: 2rem;
   padding-top: 6rem;
 }
+
+/* Article Teasers */
 
 .article-teaser {
   margin-bottom: 3rem;
@@ -153,6 +165,8 @@ a:hover {
   font-style: italic;
 }
 
+/* Article Page */
+
 .article-title {
   font-size: 3rem;
   font-weight: bold;
@@ -171,6 +185,8 @@ a:hover {
 .article-gallery--media {
   margin-bottom: 2rem;
 }
+
+/* Responsive Images */
 
 .responsive-image {
   background-size: cover;
@@ -206,7 +222,43 @@ a:hover {
     background-size: contain;
     padding-top: 95vh;
   }
+
   .responsive-image {
     background-image: var(--img-desktop-hd);
   }
+}
+
+/* Pagination */
+
+.pagination {
+  margin: 3rem 0;
+  padding: 2rem 0;
+  border-top: 1px solid #eee;
+}
+
+.pagination-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.pagination-link {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--color-primary);
+  color: #fff;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.pagination-link:hover {
+  background-color: color-mix(in srgb, var(--color-primary) 80%, transparent);
+  text-decoration: none;
+}
+
+.pagination-info {
+  color: #666;
+  font-size: 0.9rem;
 }

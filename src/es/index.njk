@@ -1,10 +1,16 @@
 ---
 layout: layouts/main.njk
 title: Lugares míticos de Jaén
-permalink: /es/
+pagination:
+  data: es_articles
+  size: 10
+  reverse: true
+  alias: articles
+permalink: "/es/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumber + 1 }}/{% endif %}"
 ---
 
-{% set articles = es_articles | reverse | limit(10) %}
 {% set locale = "es" %}
 {% set readMoreText = "Ver el reportarje completo »" %}
+{% set paginationPrevText = "« Más recientes" %}
+{% set paginationNextText = "Más antiguos »" %}
 {% include "partials/article-teaser-list.njk" %}

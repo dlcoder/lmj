@@ -1,5 +1,4 @@
 {%- for article in articles -%}
-
   <article class="article-teaser">
     <a href="/{{ locale }}/articles/{{ article.slug }}">
       <div
@@ -20,5 +19,22 @@
       <a class="article-teaser--read-more" href="/{{ locale }}/articles/{{ article.slug }}">{{ readMoreText }}</a>
     </p>
   </article>
-
 {%- endfor -%}
+
+{% if pagination %}
+<nav class="pagination" aria-label="Pagination">
+  <div class="pagination-links">
+    {% if pagination.href.previous %}
+      <a href="{{ pagination.href.previous }}" class="pagination-link pagination-link--prev">{{ paginationPrevText }}</a>
+    {% endif %}
+
+    <span class="pagination-info">
+      {{ pagination.pageNumber + 1 }} / {{ pagination.pages | length }}
+    </span>
+
+    {% if pagination.href.next %}
+      <a href="{{ pagination.href.next }}" class="pagination-link pagination-link--next">{{ paginationNextText }}</a>
+    {% endif %}
+  </div>
+</nav>
+{% endif %}
