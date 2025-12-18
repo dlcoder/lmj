@@ -1,0 +1,16 @@
+{% if article.localities and article.localities.length > 0 %}
+  {%- set articleRegions = [] -%}
+  {%- for localityName in article.localities -%}
+    {%- for loc in localities -%}
+      {%- if loc.name == localityName and not (loc.region in articleRegions) -%}
+        {%- set articleRegions = (articleRegions.push(loc.region), articleRegions) -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endfor -%}
+  <div class="article-location">
+    {{ article.localities | join(", ") }}
+    {% if articleRegions.length > 0 %}
+        / {{ articleRegions | join(", ") }}
+    {% endif %}
+  </div>
+{% endif %}

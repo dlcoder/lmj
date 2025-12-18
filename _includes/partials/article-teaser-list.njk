@@ -14,7 +14,8 @@
       ></div>
     </a>
     <h2 class="article-teaser--title"><a href="/{{ locale }}/articles/{{ article.slug }}">{{ article.title }}</a></h2>
-    <time class="article-teaser--date" datetime="{{ article.published_at }}">{% if locale == 'es' %}Publicado el{% else %}Published on{% endif %} {{ article.published_at | formatDate }}</time>
+    {% include "partials/article-date.njk" %}
+    {% include "partials/article-location.njk" %}
     <p>
       <span class="article-teaser--summary">{{ article.summary | safe }}</span>
       <a class="article-teaser--read-more" href="/{{ locale }}/articles/{{ article.slug }}">{{ readMoreText }}</a>

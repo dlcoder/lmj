@@ -159,13 +159,6 @@ a:hover {
   text-transform: uppercase;
 }
 
-.article-teaser--date {
-  display: block;
-  font-size: 0.85rem;
-  color: #999;
-  font-style: italic;
-}
-
 .article-teaser--summary {
   color: #666;
 }
@@ -190,10 +183,21 @@ a:hover {
 }
 
 .article-date {
-  display: block;
+  display: inline-block;
   font-size: 0.95rem;
   color: #999;
   font-style: italic;
+}
+
+.article-location {
+  color: #999;
+  display: inline-block;
+  font-size: 0.95rem;
+}
+
+.article-location:before {
+  content: " · ";
+  margin: 0 0.25rem;
 }
 
 .article-body {
