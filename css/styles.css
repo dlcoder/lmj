@@ -159,6 +159,13 @@ a:hover {
   text-transform: uppercase;
 }
 
+.article-teaser--date {
+  display: block;
+  font-size: 0.85rem;
+  color: #999;
+  font-style: italic;
+}
+
 .article-teaser--summary {
   color: #666;
 }
@@ -169,9 +176,24 @@ a:hover {
 
 /* Article Page */
 
+.article-header {
+  border-bottom: 1px solid #eee;
+  margin-bottom: 2rem;
+  padding-bottom: 0.5rem;
+}
+
 .article-title {
   font-size: 3rem;
   font-weight: bold;
+  margin-bottom: 0;
+  text-transform: uppercase;
+}
+
+.article-date {
+  display: block;
+  font-size: 0.95rem;
+  color: #999;
+  font-style: italic;
 }
 
 .article-body {

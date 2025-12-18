@@ -23,6 +23,14 @@ export default function(eleventyConfig) {
     return content.slice(0, n);
   });
 
+  eleventyConfig.addFilter("formatDate", (dateString) => {
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  });
+
   eleventyConfig.addShortcode("featured_image", function(article, size) {
     const featuredMedia = article.media?.find(m => m.featured && m.type === "Photo");
     if (!featuredMedia || !featuredMedia.image_urls) {

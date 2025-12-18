@@ -1,5 +1,8 @@
 <article>
-  <h1 class="article-title">{{ article.title }}</h1>
+  <div class="article-header">
+    <h1 class="article-title">{{ article.title }}</h1>
+    <time class="article-date" datetime="{{ article.published_at }}">{% if locale == 'es' %}Publicado el{% else %}Published on{% endif %} {{ article.published_at | formatDate }}</time>
+  </div>
   <div class="article-body">
     {% if article.content_in_separate_page %}
       {% include "content/" + locale + "_" + article.slug + ".html" %}
