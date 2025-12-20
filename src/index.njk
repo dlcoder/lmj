@@ -1,24 +1,15 @@
 ---
-permalink: /
+layout: layouts/main.njk
+pagination:
+  data: all_pages.all_indices
+  size: 1
+  alias: indexPage
+eleventyComputed:
+  title: "{{ i18n[indexPage.locale].siteTitle }}"
+  permalink: "{{ indexPage.locale }}/{% if indexPage.pagination.pageNumber > 0 %}page/{{ indexPage.pagination.pageNumber + 1 }}/{% endif %}/"
+  locale: "{{ indexPage.locale }}"
 ---
 
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>Redirecting...</title>
-  <script>
-    (function() {
-      var userLang = navigator.language || navigator.userLanguage;
-      var lang = userLang.toLowerCase().startsWith('es') ? 'es' : 'en';
-      window.location.replace('/' + lang + '/');
-    })();
-  </script>
-</head>
-<body>
-  <p>Redirecting...</p>
-  <noscript>
-    <p><a href="/en/">English</a> | <a href="/es/">Español</a></p>
-  </noscript>
-</body>
-</html>
+{% set articles = indexPage.articles %}
+{% set pagination = indexPage.pagination %}
+{% include "partials/index-of-articles.njk" %}

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,16 +8,17 @@
   <link rel="stylesheet" href="/css/styles.css?v={{ timestamp }}">
   <script src="/js/main.js?v={{ timestamp }}" defer></script>
 </head>
+
 <body>
   <div class="header">
     <div class="header-container">
       <div class="header-logo">
         <h1 class="header-logo--title">
-          <a href="/">Lugares míticos de Jaén</a>
+          <a href="/">{{ i18n[locale].siteTitle }}</a>
         </h1>
       </div>
       <nav class="header-nav">
-        <a href="/">Inicio</a>
+        <a href="/">{{ i18n[locale].nav.home }}</a>
       </nav>
     </div>
   </div>
@@ -25,4 +27,5 @@
     {{ content | safe }}
   </div>
 </body>
+
 </html>

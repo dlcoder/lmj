@@ -1,0 +1,19 @@
+---
+layout: layouts/main.njk
+pagination:
+  data: all_pages.all_categories
+  size: 1
+  alias: categoryPage
+eleventyComputed:
+  title: "{{ categoryPage.category.name }} – {{ i18n[categoryPage.locale].siteTitle }}"
+  permalink: "{{ categoryPage.locale }}/categories/{{ categoryPage.category.slug }}{% if categoryPage.pagination.pageNumber > 0 %}/page/{{ categoryPage.pagination.pageNumber + 1 }}{% endif %}/"
+  locale: "{{ categoryPage.locale }}"
+---
+
+<div class="category-header">
+  <h1 class="category-title">{{ categoryPage.category.name }}</h1>
+</div>
+
+{% set articles = categoryPage.articles %}
+{% set pagination = categoryPage.pagination %}
+{% include "partials/index-of-articles.njk" %}

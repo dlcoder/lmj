@@ -1,12 +1,10 @@
-{%- set articleLocalities = article.localities | getLocalities(localities) -%}
-{% if articleLocalities.length > 0 %}
+{% if article.enrichedLocalities.length > 0 %}
   <div class="article-location">
-    {%- for loc in articleLocalities -%}
-      {%- set region = loc.region | getRegion(regions) -%}
+    {%- for loc in article.enrichedLocalities -%}
       <a href="/{{ locale }}/localities/{{ loc.slug }}">
         {{ loc.name }}
       </a>
-      (<a href="/{{ locale }}/regions/{{ region.slug }}">{{ region.name }}</a>)
+      (<a href="/{{ locale }}/regions/{{ loc.region.slug }}">{{ loc.region.name }}</a>)
 
       {% if not loop.last %}, {% endif %}
     {%- endfor -%}

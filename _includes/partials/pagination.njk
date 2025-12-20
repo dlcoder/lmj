@@ -2,7 +2,9 @@
 <nav class="pagination" aria-label="Pagination">
   <div class="pagination-links">
     {% if paginationPrevHref %}
-      <a href="{{ paginationPrevHref }}" class="pagination-link pagination-link--prev">{{ paginationPrevText }}</a>
+      <a href="{{ paginationPrevHref }}" class="pagination-link pagination-link--prev">
+        {{ i18n[locale].paginationPrev }}
+      </a>
     {% endif %}
 
     <span class="pagination-info">
@@ -10,7 +12,9 @@
     </span>
 
     {% if paginationNextHref %}
-      <a href="{{ paginationNextHref }}" class="pagination-link pagination-link--next">{{ paginationNextText }}</a>
+      <a href="{{ paginationNextHref }}" class="pagination-link pagination-link--next">
+        {{ i18n[locale].paginationNext }}
+      </a>
     {% endif %}
   </div>
 </nav>

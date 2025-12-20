@@ -1,9 +1,4 @@
 <time class="article-date" datetime="{{ article.published_at }}">
-  {% if locale == 'es' %}
-    Publicado el
-  {% else %}
-    Published on
-  {% endif %}
-
+  {{ i18n[locale].publishedOn }}
   {{ article.published_at | formatDate }}
 </time>

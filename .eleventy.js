@@ -14,16 +14,12 @@ function loadData(filename) {
   return data.articles;
 }
 
-export default function(eleventyConfig) {
+export default function (eleventyConfig) {
   eleventyConfig.addGlobalData("env", {
     ELEVENTY_ENV: process.env.ELEVENTY_ENV || "development"
   });
 
   eleventyConfig.addGlobalData("timestamp", Date.now());
-
-  eleventyConfig.addFilter("limit", (content, n) => {
-    return content.slice(0, n);
-  });
 
   eleventyConfig.addFilter("formatDate", (dateString) => {
     const date = new Date(dateString);
@@ -33,28 +29,7 @@ export default function(eleventyConfig) {
     return `${day}/${month}/${year}`;
   });
 
-  eleventyConfig.addFilter("getLocalities", (localityNames, allLocalities) => {
-    if (!localityNames || !allLocalities) return [];
-    const localityMap = new Map(allLocalities.map(loc => [loc.name, loc]));
-    return localityNames
-      .map(name => localityMap.get(name))
-      .filter(Boolean);
-  });
-
-  eleventyConfig.addFilter("getRegion", (regionName, allRegions) => {
-    if (!regionName || !allRegions) return null;
-    return allRegions.find(r => r.name === regionName);
-  });
-
-  eleventyConfig.addFilter("getCategories", (categoryNames, allCategories) => {
-    if (!categoryNames || !allCategories) return [];
-    const categoryMap = new Map(allCategories.map(cat => [cat.name, cat]));
-    return categoryNames
-      .map(name => categoryMap.get(name))
-      .filter(Boolean);
-  });
-
-  eleventyConfig.addShortcode("featured_image", function(article, size) {
+  eleventyConfig.addShortcode("featured_image", function (article, size) {
     const featuredMedia = article.media?.find(m => m.featured && m.type === "Photo");
     if (!featuredMedia || !featuredMedia.image_urls) {
       return "";
@@ -63,6 +38,11 @@ export default function(eleventyConfig) {
     return imagePath ? `${STATICS_HOST}${imagePath}` : "";
   });
 
+  eleventyConfig.addShortcode("static_image", function (imagePath) {
+    return imagePath ? `${STATICS_HOST}${imagePath}` : "";
+  });
+
+  eleventyConfig.ignores.add("AGENTS.md");
   eleventyConfig.ignores.add("CLAUDE.md");
   eleventyConfig.ignores.add("README.md");
   eleventyConfig.ignores.add("content");

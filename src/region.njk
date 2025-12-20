@@ -1,0 +1,19 @@
+---
+layout: layouts/main.njk
+pagination:
+  data: all_pages.all_regions
+  size: 1
+  alias: regionPage
+eleventyComputed:
+  title: "{{ regionPage.region.name }} – {{ i18n[regionPage.locale].siteTitle }}"
+  permalink: "{{ regionPage.locale }}/regions/{{ regionPage.region.slug }}{% if regionPage.pagination.pageNumber > 0 %}/page/{{ regionPage.pagination.pageNumber + 1 }}{% endif %}/"
+  locale: "{{ regionPage.locale }}"
+---
+
+<div class="region-page-header">
+  <h1 class="region-title">{{ regionPage.region.name }}</h1>
+</div>
+
+{% set articles = regionPage.articles %}
+{% set pagination = regionPage.pagination %}
+{% include "partials/index-of-articles.njk" %}

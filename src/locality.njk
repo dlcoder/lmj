@@ -1,0 +1,19 @@
+---
+layout: layouts/main.njk
+pagination:
+  data: all_pages.all_localities
+  size: 1
+  alias: localityPage
+eleventyComputed:
+  title: "{{ localityPage.locality.name }} – {{ i18n[localityPage.locale].siteTitle }}"
+  permalink: "{{ localityPage.locale }}/localities/{{ localityPage.locality.slug }}{% if localityPage.pagination.pageNumber > 0 %}/page/{{ localityPage.pagination.pageNumber + 1 }}{% endif %}/"
+  locale: "{{ localityPage.locality.locale if localityPage.locality.locale else localityPage.locale }}"
+---
+
+<div class="locality-header">
+  <h1 class="locality-title">{{ localityPage.locality.name }} ({{ localityPage.locality.region.name }})</h1>
+</div>
+
+{% set articles = localityPage.articles %}
+{% set pagination = localityPage.pagination %}
+{% include "partials/index-of-articles.njk" %}

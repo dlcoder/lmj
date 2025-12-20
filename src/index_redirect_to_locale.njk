@@ -1,0 +1,24 @@
+---
+permalink: /
+---
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+  <script>
+    (function() {
+      var userLang = navigator.language || navigator.userLanguage;
+      var lang = userLang.toLowerCase().startsWith('es') ? 'es' : 'en';
+      window.location.replace('/' + lang + '/');
+    })();
+  </script>
+</head>
+<body>
+  <p>Redirecting...</p>
+  <noscript>
+    <p><a href="/en/">English</a> | <a href="/es/">Español</a></p>
+  </noscript>
+</body>
+</html>

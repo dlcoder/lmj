@@ -1,0 +1,444 @@
+[
+  {
+    "name": "Área metropolitana de Jaén",
+    "slug": "area-metropolitana-de-jaen",
+    "localities": [
+      {
+        "name": "Fuensanta de Martos",
+        "slug": "fuensanta-de-martos"
+      },
+      {
+        "name": "Fuerte del Rey",
+        "slug": "fuerte-del-rey"
+      },
+      {
+        "name": "Higuera de Calatrava",
+        "slug": "higuera-de-calatrava"
+      },
+      {
+        "name": "Jaén",
+        "slug": "jaen"
+      },
+      {
+        "name": "Jamilena",
+        "slug": "jamilena"
+      },
+      {
+        "name": "La Guardia de Jaén",
+        "slug": "la-guardia-de-jaen"
+      },
+      {
+        "name": "Los Villares",
+        "slug": "los-villares"
+      },
+      {
+        "name": "Mancha Real",
+        "slug": "mancha-real"
+      },
+      {
+        "name": "Martos",
+        "slug": "martos"
+      },
+      {
+        "name": "Mengíbar",
+        "slug": "mengibar"
+      },
+      {
+        "name": "Porcuna",
+        "slug": "porcuna"
+      },
+      {
+        "name": "Santiago de Calatrava",
+        "slug": "santiago-de-calatrava"
+      },
+      {
+        "name": "Torre del Campo",
+        "slug": "torre-del-campo"
+      },
+      {
+        "name": "Torreblascopedro",
+        "slug": "torreblascopedro"
+      },
+      {
+        "name": "Torredonjimeno",
+        "slug": "torredonjimeno"
+      },
+      {
+        "name": "Villardompardo",
+        "slug": "villardompardo"
+      },
+      {
+        "name": "Villatorres",
+        "slug": "villatorres"
+      }
+    ]
+  },
+  {
+    "name": "Alto Guadalquivir",
+    "slug": "alto-guadalquivir",
+    "localities": [
+      {
+        "name": "Cazorla",
+        "slug": "cazorla"
+      },
+      {
+        "name": "Chilluévar",
+        "slug": "chilluevar"
+      },
+      {
+        "name": "Hinojares",
+        "slug": "hinojares"
+      },
+      {
+        "name": "Huesa",
+        "slug": "huesa"
+      },
+      {
+        "name": "La Iruela",
+        "slug": "la-iruela"
+      },
+      {
+        "name": "Peal de Becerro",
+        "slug": "peal-de-becerro"
+      },
+      {
+        "name": "Pozo Alcón",
+        "slug": "pozo-alcon"
+      },
+      {
+        "name": "Quesada",
+        "slug": "quesada"
+      },
+      {
+        "name": "Santo Tomé",
+        "slug": "santo-tome"
+      }
+    ]
+  },
+  {
+    "name": "Campiña",
+    "slug": "campina",
+    "localities": [
+      {
+        "name": "Andújar",
+        "slug": "andujar"
+      },
+      {
+        "name": "Arjona",
+        "slug": "arjona"
+      },
+      {
+        "name": "Arjonilla",
+        "slug": "arjonilla"
+      },
+      {
+        "name": "Cazalilla",
+        "slug": "cazalilla"
+      },
+      {
+        "name": "Escañuela",
+        "slug": "escanuela"
+      },
+      {
+        "name": "Espelúy",
+        "slug": "espeluy"
+      },
+      {
+        "name": "Lahiguera",
+        "slug": "lahiguera"
+      },
+      {
+        "name": "Lopera",
+        "slug": "lopera"
+      },
+      {
+        "name": "Marmolejo",
+        "slug": "marmolejo"
+      },
+      {
+        "name": "Villanueva de la Reina",
+        "slug": "villanueva-de-la-reina"
+      }
+    ]
+  },
+  {
+    "name": "El Condado",
+    "slug": "el-condado",
+    "localities": [
+      {
+        "name": "Arquillos",
+        "slug": "arquillos"
+      },
+      {
+        "name": "Castellar",
+        "slug": "castellar"
+      },
+      {
+        "name": "Chiclana de Segura",
+        "slug": "chiclana-de-segura"
+      },
+      {
+        "name": "Montizón",
+        "slug": "montizon"
+      },
+      {
+        "name": "Navas de San Juan",
+        "slug": "navas-de-san-juan"
+      },
+      {
+        "name": "Santisteban del Puerto",
+        "slug": "santisteban-del-puerto"
+      },
+      {
+        "name": "Vilches",
+        "slug": "vilches"
+      }
+    ]
+  },
+  {
+    "name": "La Loma y Las Villas",
+    "slug": "la-loma-y-las-villas",
+    "localities": [
+      {
+        "name": "Úbeda",
+        "slug": "ubeda"
+      },
+      {
+        "name": "Baeza",
+        "slug": "baeza"
+      },
+      {
+        "name": "Begíjar",
+        "slug": "begijar"
+      },
+      {
+        "name": "Canena",
+        "slug": "canena"
+      },
+      {
+        "name": "Ibros",
+        "slug": "ibros"
+      },
+      {
+        "name": "Iznatoraf",
+        "slug": "iznatoraf"
+      },
+      {
+        "name": "Lupión",
+        "slug": "lupion"
+      },
+      {
+        "name": "Rus",
+        "slug": "rus"
+      },
+      {
+        "name": "Sabiote",
+        "slug": "sabiote"
+      },
+      {
+        "name": "Sorihuela del Guadalimar",
+        "slug": "sorihuela-del-guadalimar"
+      },
+      {
+        "name": "Torreperogil",
+        "slug": "torreperogil"
+      },
+      {
+        "name": "Villacarrillo",
+        "slug": "villacarrillo"
+      },
+      {
+        "name": "Villanueva del Arzobispo",
+        "slug": "villanueva-del-arzobispo"
+      }
+    ]
+  },
+  {
+    "name": "Sierra De Segura",
+    "slug": "sierra-de-segura",
+    "localities": [
+      {
+        "name": "Arroyo del Ojanco",
+        "slug": "arroyo-del-ojanco"
+      },
+      {
+        "name": "Beas de Segura",
+        "slug": "beas-de-segura"
+      },
+      {
+        "name": "Benatae",
+        "slug": "benatae"
+      },
+      {
+        "name": "Génave",
+        "slug": "genave"
+      },
+      {
+        "name": "Hornos",
+        "slug": "hornos"
+      },
+      {
+        "name": "La Puerta de Segura",
+        "slug": "la-puerta-de-segura"
+      },
+      {
+        "name": "Orcera",
+        "slug": "orcera"
+      },
+      {
+        "name": "Puente de Génave",
+        "slug": "puente-de-genave"
+      },
+      {
+        "name": "Santiago-Pontones",
+        "slug": "santiago-pontones"
+      },
+      {
+        "name": "Segura de la Sierra",
+        "slug": "segura-de-la-sierra"
+      },
+      {
+        "name": "Siles",
+        "slug": "siles"
+      },
+      {
+        "name": "Torres de Albánchez",
+        "slug": "torres-de-albanchez"
+      },
+      {
+        "name": "Villarrodrigo",
+        "slug": "villarrodrigo"
+      }
+    ]
+  },
+  {
+    "name": "Sierra Magina",
+    "slug": "sierra-magina",
+    "localities": [
+      {
+        "name": "Albanchez de Mágina",
+        "slug": "albanchez-de-magina"
+      },
+      {
+        "name": "Bélmez de la Moraleda",
+        "slug": "belmez-de-la-moraleda"
+      },
+      {
+        "name": "Bedmar y Garcíez",
+        "slug": "bedmar-y-garciez"
+      },
+      {
+        "name": "Cárcheles",
+        "slug": "carcheles"
+      },
+      {
+        "name": "Cabra del Santo Cristo",
+        "slug": "cabra-del-santo-cristo"
+      },
+      {
+        "name": "Cambil",
+        "slug": "cambil"
+      },
+      {
+        "name": "Campillo de Arenas",
+        "slug": "campillo-de-arenas"
+      },
+      {
+        "name": "Huelma",
+        "slug": "huelma"
+      },
+      {
+        "name": "Jódar",
+        "slug": "jodar"
+      },
+      {
+        "name": "Jimena",
+        "slug": "jimena"
+      },
+      {
+        "name": "Larva",
+        "slug": "larva"
+      },
+      {
+        "name": "Noalejo",
+        "slug": "noalejo"
+      },
+      {
+        "name": "Pegalajar",
+        "slug": "pegalajar"
+      },
+      {
+        "name": "Torres",
+        "slug": "torres"
+      }
+    ]
+  },
+  {
+    "name": "Sierra Norte",
+    "slug": "sierra-norte",
+    "localities": [
+      {
+        "name": "Aldeaquemada",
+        "slug": "aldeaquemada"
+      },
+      {
+        "name": "Baños de la Encina",
+        "slug": "banos-de-la-encina"
+      },
+      {
+        "name": "Bailén",
+        "slug": "bailen"
+      },
+      {
+        "name": "Carboneros",
+        "slug": "carboneros"
+      },
+      {
+        "name": "Guarromán",
+        "slug": "guarroman"
+      },
+      {
+        "name": "Jabalquinto",
+        "slug": "jabalquinto"
+      },
+      {
+        "name": "La Carolina",
+        "slug": "la-carolina"
+      },
+      {
+        "name": "Linares",
+        "slug": "linares"
+      },
+      {
+        "name": "Santa Elena",
+        "slug": "santa-elena"
+      }
+    ]
+  },
+  {
+    "name": "Sierra Sur",
+    "slug": "sierra-sur",
+    "localities": [
+      {
+        "name": "Alcalá la Real",
+        "slug": "alcala-la-real"
+      },
+      {
+        "name": "Alcaudete",
+        "slug": "alcaudete"
+      },
+      {
+        "name": "Castillo de Locubín",
+        "slug": "castillo-de-locubin"
+      },
+      {
+        "name": "Frailes",
+        "slug": "frailes"
+      },
+      {
+        "name": "Valdepeñas de Jaén",
+        "slug": "valdepenas-de-jaen"
+      }
+    ]
+  }
+]
