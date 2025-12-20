@@ -41,6 +41,11 @@ export default function(eleventyConfig) {
       .filter(Boolean);
   });
 
+  eleventyConfig.addFilter("getRegion", (regionName, allRegions) => {
+    if (!regionName || !allRegions) return null;
+    return allRegions.find(r => r.name === regionName);
+  });
+
   eleventyConfig.addShortcode("featured_image", function(article, size) {
     const featuredMedia = article.media?.find(m => m.featured && m.type === "Photo");
     if (!featuredMedia || !featuredMedia.image_urls) {

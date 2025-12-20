@@ -22,18 +22,23 @@ A bilingual (Spanish/English) static website about mythical and legendary places
 │   ├── en_categories.json
 │   ├── es_categories.json
 │   ├── localities.json
+│   ├── regions.json
 │   ├── en_locality_pages.js  # Generated locality page data (EN)
-│   └── es_locality_pages.js  # Generated locality page data (ES)
+│   ├── es_locality_pages.js  # Generated locality page data (ES)
+│   ├── en_region_pages.js    # Generated region page data (EN)
+│   └── es_region_pages.js    # Generated region page data (ES)
 ├── src/              # Source pages
 │   ├── index.njk     # Root (language redirect)
 │   ├── es/           # Spanish pages
 │   │   ├── index.njk
 │   │   ├── article.njk
-│   │   └── locality.njk
+│   │   ├── locality.njk
+│   │   └── region.njk
 │   └── en/           # English pages
 │       ├── index.njk
 │       ├── article.njk
-│       └── locality.njk
+│       ├── locality.njk
+│       └── region.njk
 ├── _includes/        # Templates and partials
 │   ├── layouts/
 │   │   └── main.njk
@@ -57,11 +62,12 @@ npm run serve    # Start dev server with hot reload
 ## Key Configuration
 
 - **Static assets host:** `https://lmjstatic.deliriumcoder.com`
-- **Global data:** `en_articles`, `es_articles`, `en_categories`, `es_categories`, `localities`, `en_locality_pages`, `es_locality_pages` (auto-loaded from `_data/`)
+- **Global data:** `en_articles`, `es_articles`, `en_categories`, `es_categories`, `localities`, `regions`, `en_locality_pages`, `es_locality_pages`, `en_region_pages`, `es_region_pages` (auto-loaded from `_data/`)
 - **Filters:**
   - `limit` - limits array items
   - `formatDate` - formats date strings as DD/MM/YYYY
   - `getLocalities` - maps locality names to locality objects
+  - `getRegion` - gets a region object by name
 - **Shortcodes:** `featured_image` - generates image URLs from article media
 - **Ignored paths:** `CLAUDE.md`, `README.md`, `content`
 
@@ -76,6 +82,12 @@ npm run serve    # Start dev server with hot reload
 - Data source: `es_locality_pages` / `en_locality_pages` (JS files that filter and paginate articles by locality)
 - URLs: `/es/localities/{slug}/` and `/en/localities/{slug}/`
 - Templates: `src/es/locality.njk` and `src/en/locality.njk`
+- Articles are sorted by `published_at` in descending order (newest first)
+
+**Region pages** are generated using custom data files:
+- Data source: `es_region_pages` / `en_region_pages` (JS files that filter articles by region through localities)
+- URLs: `/es/regions/{slug}/` and `/en/regions/{slug}/`
+- Templates: `src/es/region.njk` and `src/en/region.njk`
 - Articles are sorted by `published_at` in descending order (newest first)
 
 ## Data Structure

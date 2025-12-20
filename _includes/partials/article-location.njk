@@ -2,7 +2,13 @@
 {% if articleLocalities.length > 0 %}
   <div class="article-location">
     {%- for loc in articleLocalities -%}
-      <a href="/{{ locale }}/localities/{{ loc.slug }}">{{ loc.name }}</a> ({{ loc.region }}){% if not loop.last %}, {% endif %}
+      {%- set region = loc.region | getRegion(regions) -%}
+      <a href="/{{ locale }}/localities/{{ loc.slug }}">
+        {{ loc.name }}
+      </a>
+      (<a href="/{{ locale }}/regions/{{ region.slug }}">{{ region.name }}</a>)
+
+      {% if not loop.last %}, {% endif %}
     {%- endfor -%}
   </div>
 {% endif %}

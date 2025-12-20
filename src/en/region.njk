@@ -1,0 +1,25 @@
+---
+layout: layouts/main.njk
+pagination:
+  data: en_region_pages
+  size: 1
+  alias: regionPage
+eleventyComputed:
+  title: "{{ regionPage.region.name }} – Mythical Places of Jaén"
+permalink: /en/regions/{{ regionPage.region.slug }}{% if regionPage.pagination.pageNumber > 0 %}/page/{{ regionPage.pagination.pageNumber + 1 }}{% endif %}/
+
+locale: "en"
+paginationPrevText: "« Newer"
+paginationNextText: "Older »"
+---
+
+{% set readMoreText = "Read full article »" %}
+{% set region = regionPage.region %}
+{% set articles = regionPage.articles %}
+{% set pagination = regionPage.pagination %}
+
+<div class="region-header">
+  <h1 class="region-title">{{ region.name }}</h1>
+</div>
+
+{% include "partials/index-of-articles.njk" %}
