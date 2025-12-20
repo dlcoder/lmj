@@ -1,0 +1,29 @@
+<div class="article-grid">
+  {%- for article in articles -%}
+    <article class="article-card">
+      <a href="/{{ locale }}/articles/{{ article.slug }}" class="article-card--link">
+        <div class="article-card--image responsive-image" role="img" aria-label="{{ article.title }}" style="
+          --img-mobile: url('{% featured_image article, 'teaser_mobile' %}');
+          --img-tablet: url('{% featured_image article, 'teaser_tablet' %}');
+          --img-desktop: url('{% featured_image article, 'teaser_desktop' %}');
+          --img-desktop-hd: url('{% featured_image article, 'teaser_desktop_hd' %}');
+        "></div>
+        <div class="article-card--content">
+          <h2 class="article-card--title">{{ article.title }}</h2>
+          <div class="article-card--location">{{ article.localities | join(', ') }}</div>
+          <time class="article-card--date" datetime="{{ article.published_at }}">
+            {{ article.published_at | formatDate }}
+          </time>
+        </div>
+      </a>
+    </article>
+  {%- endfor -%}
+</div>
+
+{% if pagination %}
+  {%- set paginationPrevHref = pagination.href.previous -%}
+  {%- set paginationNextHref = pagination.href.next -%}
+  {%- set paginationCurrentPage = pagination.pageNumber + 1 -%}
+  {%- set paginationTotalPages = pagination.pages | length -%}
+  {% include "partials/pagination.njk" %}
+{% endif %}

@@ -1,9 +1,11 @@
 export default {
   en: {
+    all_articles: "All articles",
     categoriesLabel: "Categories",
     localitiesLabel: "Localities",
     nav: {
-      home: "Home"
+      home: "Home",
+      articles: "Articles"
     },
     paginationNext: "Older »",
     paginationPrev: "« Newer",
@@ -13,10 +15,12 @@ export default {
     tagsLabel: "Tags"
   },
   es: {
+    all_articles: "Todos los artículos",
     categoriesLabel: "Categorías",
     localitiesLabel: "Localidades",
     nav: {
-      home: "Inicio"
+      home: "Inicio",
+      articles: "Artículos"
     },
     paginationNext: "Más antiguos »",
     paginationPrev: "« Más recientes",

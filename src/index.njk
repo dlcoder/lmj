@@ -1,15 +1,11 @@
 ---
 layout: layouts/main.njk
 pagination:
-  data: all_pages.all_indices
+  data: all_pages.all_home_pages
   size: 1
   alias: indexPage
 eleventyComputed:
   title: "{{ i18n[indexPage.locale].siteTitle }}"
-  permalink: "{{ indexPage.locale }}/{% if indexPage.pagination.pageNumber > 0 %}page/{{ indexPage.pagination.pageNumber + 1 }}/{% endif %}/"
+  permalink: "{{ indexPage.locale }}/index.html"
   locale: "{{ indexPage.locale }}"
 ---
-
-{% set articles = indexPage.articles %}
-{% set pagination = indexPage.pagination %}
-{% include "partials/index-of-articles.njk" %}

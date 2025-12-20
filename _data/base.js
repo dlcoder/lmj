@@ -2,7 +2,7 @@ import regions from './raw/regions.json' with { type: 'json' };
 import en_categories_raw from './raw/en_categories.json' with { type: 'json' };
 import es_categories_raw from './raw/es_categories.json' with { type: 'json' };
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 12;
 
 // Shared Maps for fast lookup
 export const localityMap = new Map(

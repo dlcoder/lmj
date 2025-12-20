@@ -1,0 +1,15 @@
+---
+layout: layouts/main.njk
+pagination:
+  data: all_pages.all_indices
+  size: 1
+  alias: indexPage
+eleventyComputed:
+  title: "{{ i18n[indexPage.locale].all_articles }} – {{ i18n[indexPage.locale].siteTitle }}"
+  permalink: "{{ indexPage.locale }}/articles/{% if indexPage.pagination.pageNumber > 0 %}page/{{ indexPage.pagination.pageNumber + 1 }}/{% endif %}/"
+  locale: "{{ indexPage.locale }}"
+---
+
+{% set articles = indexPage.articles %}
+{% set pagination = indexPage.pagination %}
+{% include "partials/article-grid.njk" %}

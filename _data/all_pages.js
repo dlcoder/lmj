@@ -48,4 +48,5 @@ export const all_localities = [
 ];
 
 export const all_indices = index_pages();
+export const all_home_pages = all_indices.filter(p => p.pagination.pageNumber === 0);
 export const all_articles = articles.default;

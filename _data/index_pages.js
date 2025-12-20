@@ -7,14 +7,14 @@ export default function () {
       entities: [{}],
       articles: articles.en,
       filterFn: () => true,
-      pathPrefix: '',
+      pathPrefix: 'articles',
       locale: 'en'
     }),
     ...generatePaginatedPages({
       entities: [{}],
       articles: articles.es,
       filterFn: () => true,
-      pathPrefix: '',
+      pathPrefix: 'articles',
       locale: 'es'
     })
   ];

@@ -14,11 +14,12 @@
     <div class="header-container">
       <div class="header-logo">
         <h1 class="header-logo--title">
-          <a href="/">{{ i18n[locale].siteTitle }}</a>
+          <a href="/{{ locale }}/">{{ i18n[locale].siteTitle }}</a>
         </h1>
       </div>
       <nav class="header-nav">
-        <a href="/">{{ i18n[locale].nav.home }}</a>
+        <a href="/{{ locale }}/">{{ i18n[locale].nav.home }}</a>
+        <a href="/{{ locale }}/articles/">{{ i18n[locale].nav.articles }}</a>
       </nav>
     </div>
   </div>
