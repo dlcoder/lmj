@@ -17,32 +17,24 @@ A bilingual (Spanish/English) static website about mythical and legendary places
 ```
 ├── .eleventy.js      # Eleventy configuration
 ├── _data/            # Global data files (Eleventy auto-loads)
-│   ├── en_articles.json
-│   ├── es_articles.json
-│   ├── en_categories.json
-│   ├── es_categories.json
-│   ├── localities.json
-│   ├── regions.json
-│   ├── en_locality_pages.js  # Generated locality page data (EN)
-│   ├── es_locality_pages.js  # Generated locality page data (ES)
-│   ├── en_region_pages.js    # Generated region page data (EN)
-│   ├── es_region_pages.js    # Generated region page data (ES)
-│   ├── en_category_pages.js  # Generated category page data (EN)
-│   └── es_category_pages.js  # Generated category page data (ES)
-├── src/              # Source pages
+│   ├── raw/          # Raw JSON data
+│   │   ├── en_articles.json
+│   │   ├── es_articles.json
+│   │   ├── en_categories.json
+│   │   ├── es_categories.json
+│   │   └── regions.json      # Regions with nested localities
+│   ├── base.js       # Shared utilities and generatePaginatedPages()
+│   ├── articles.js   # Hydrated articles with enriched data
+│   ├── all_pages.js  # All page collections (categories, regions, localities)
+│   ├── index_pages.js # Index page generation
+│   └── i18n.js       # Translation strings
+├── src/              # Source pages (locale-aware templates)
 │   ├── index.njk     # Root (language redirect)
-│   ├── es/           # Spanish pages
-│   │   ├── index.njk
-│   │   ├── article.njk
-│   │   ├── category.njk
-│   │   ├── locality.njk
-│   │   └── region.njk
-│   └── en/           # English pages
-│       ├── index.njk
-│       ├── article.njk
-│       ├── category.njk
-│       ├── locality.njk
-│       └── region.njk
+│   ├── index_redirect_to_locale.njk
+│   ├── article.njk   # Article template (uses locale variable)
+│   ├── category.njk  # Category index template
+│   ├── locality.njk  # Locality index template
+│   └── region.njk    # Region index template
 ├── _includes/        # Templates and partials
 │   ├── layouts/
 │   │   └── main.njk
@@ -67,47 +59,89 @@ npm run serve    # Start dev server with hot reload
 ## Key Configuration
 
 - **Static assets host:** `https://lmjstatic.deliriumcoder.com`
-- **Global data:** `en_articles`, `es_articles`, `en_categories`, `es_categories`, `localities`, `regions`, `en_locality_pages`, `es_locality_pages`, `en_region_pages`, `es_region_pages`, `en_category_pages`, `es_category_pages` (auto-loaded from `_data/`)
+- **Global data:** Auto-loaded from `_data/` - includes `all_articles`, `all_categories`, `all_regions`, `all_localities`, `all_indices`, `i18n`
 - **Filters:**
-  - `limit` - limits array items
   - `formatDate` - formats date strings as DD/MM/YYYY
-  - `getLocalities` - maps locality names to locality objects
-  - `getRegion` - gets a region object by name
-  - `getCategories` - maps category names to category objects
-- **Shortcodes:** `featured_image` - generates image URLs from article media
-- **Ignored paths:** `CLAUDE.md`, `README.md`, `content`
+- **Shortcodes:**
+  - `featured_image` - generates image URLs from article media
+  - `static_image` - generates static asset URLs
+- **Ignored paths:** `AGENTS.md`, `CLAUDE.md`, `README.md`, `content`
+
+## Data Architecture
+
+### Raw Data (`_data/raw/`)
+- `en_articles.json` / `es_articles.json` - Article content per locale
+- `en_categories.json` / `es_categories.json` - Category definitions per locale
+- `regions.json` - Regions with nested localities array
+
+### Data Processing (`_data/`)
+- **base.js** - Exports shared utilities:
+  - `localityMap` - Fast lookup for localities by name
+  - `enCategoryMap` / `esCategoryMap` - Fast lookup for categories
+  - `generatePaginatedPages()` - Generic pagination function for any entity type
+- **articles.js** - Hydrates raw articles with:
+  - `enrichedLocalities` - Full locality objects with region info
+  - `enrichedCategories` - Full category objects
+- **all_pages.js** - Exports page collections:
+  - `all_categories` - Paginated category pages (both locales)
+  - `all_regions` - Paginated region pages (both locales)
+  - `all_localities` - Paginated locality pages (both locales)
+  - `all_indices` - Index pages (both locales)
+  - `all_articles` - All articles with locale property
+- **i18n.js** - Translation strings keyed by locale (`en`, `es`)
 
 ## Page Generation
 
-**Article pages** are generated using Eleventy pagination:
-- Data source: `es_articles` / `en_articles` global data
-- URLs: `/es/articles/{slug}.html` and `/en/articles/{slug}.html`
-- Templates: `src/es/article.njk` and `src/en/article.njk`
+All pages use unified locale-aware templates with a `locale` variable.
 
-**Locality pages** are generated using custom data files:
-- Data source: `es_locality_pages` / `en_locality_pages` (JS files that filter and paginate articles by locality)
-- URLs: `/es/localities/{slug}/` and `/en/localities/{slug}/`
-- Templates: `src/es/locality.njk` and `src/en/locality.njk`
-- Articles are sorted by `published_at` in descending order (newest first)
+**Article pages:**
+- Data source: `all_articles` (from `articles.js`)
+- URLs: `/{locale}/articles/{slug}.html`
+- Template: `src/article.njk`
 
-**Region pages** are generated using custom data files:
-- Data source: `es_region_pages` / `en_region_pages` (JS files that filter articles by region through localities)
-- URLs: `/es/regions/{slug}/` and `/en/regions/{slug}/`
-- Templates: `src/es/region.njk` and `src/en/region.njk`
-- Articles are sorted by `published_at` in descending order (newest first)
+**Index pages:**
+- Data source: `all_indices` (from `all_pages.js`)
+- URLs: `/{locale}/` and `/{locale}/page/{n}/`
+- Template: `src/index.njk`
 
-**Category pages** are generated using custom data files:
-- Data source: `es_category_pages` / `en_category_pages` (JS files that filter articles by category)
-- URLs: `/es/categories/{slug}/` and `/en/categories/{slug}/`
-- Templates: `src/es/category.njk` and `src/en/category.njk`
-- Articles are sorted by `published_at` in descending order (newest first)
+**Category pages:**
+- Data source: `all_categories` (from `all_pages.js`)
+- URLs: `/{locale}/categories/{slug}/` and `/{locale}/categories/{slug}/page/{n}/`
+- Template: `src/category.njk`
+
+**Region pages:**
+- Data source: `all_regions` (from `all_pages.js`)
+- URLs: `/{locale}/regions/{slug}/` and `/{locale}/regions/{slug}/page/{n}/`
+- Template: `src/region.njk`
+
+**Locality pages:**
+- Data source: `all_localities` (from `all_pages.js`)
+- URLs: `/{locale}/localities/{slug}/` and `/{locale}/localities/{slug}/page/{n}/`
+- Template: `src/locality.njk`
+
+All article lists are sorted by `published_at` in descending order (newest first).
 
 ## Data Structure
 
-Articles contain:
+### Articles
 - Content and metadata
 - `media` array with images (look for `featured: true` and `type: "Photo"`)
+- `enrichedLocalities` - Pre-hydrated locality objects with region info
+- `enrichedCategories` - Pre-hydrated category objects
 - Image URLs available in multiple sizes via `image_urls` object
+
+### Regions (`regions.json`)
+Each region contains a `localities` array with nested locality objects:
+```json
+{
+  "name": "Sierra de Cazorla",
+  "slug": "sierra-de-cazorla",
+  "localities": [
+    { "name": "Cazorla", "slug": "cazorla" },
+    { "name": "Quesada", "slug": "quesada" }
+  ]
+}
+```
 
 ### Image Sizes
 
