@@ -24,19 +24,9 @@
 {%- endfor -%}
 
 {% if pagination %}
-<nav class="pagination" aria-label="Pagination">
-  <div class="pagination-links">
-    {% if pagination.href.previous %}
-      <a href="{{ pagination.href.previous }}" class="pagination-link pagination-link--prev">{{ paginationPrevText }}</a>
-    {% endif %}
-
-    <span class="pagination-info">
-      {{ pagination.pageNumber + 1 }} / {{ pagination.pages | length }}
-    </span>
-
-    {% if pagination.href.next %}
-      <a href="{{ pagination.href.next }}" class="pagination-link pagination-link--next">{{ paginationNextText }}</a>
-    {% endif %}
-  </div>
-</nav>
+  {%- set paginationPrevHref = pagination.href.previous -%}
+  {%- set paginationNextHref = pagination.href.next -%}
+  {%- set paginationCurrentPage = pagination.pageNumber + 1 -%}
+  {%- set paginationTotalPages = pagination.pages | length -%}
+  {% include "partials/pagination.njk" %}
 {% endif %}

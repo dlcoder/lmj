@@ -1,16 +1,8 @@
-{% if article.localities and article.localities.length > 0 %}
-  {%- set articleRegions = [] -%}
-  {%- for localityName in article.localities -%}
-    {%- for loc in localities -%}
-      {%- if loc.name == localityName and not (loc.region in articleRegions) -%}
-        {%- set articleRegions = (articleRegions.push(loc.region), articleRegions) -%}
-      {%- endif -%}
-    {%- endfor -%}
-  {%- endfor -%}
+{%- set articleLocalities = article.localities | getLocalities(localities) -%}
+{% if articleLocalities.length > 0 %}
   <div class="article-location">
-    {{ article.localities | join(", ") }}
-    {% if articleRegions.length > 0 %}
-        / {{ articleRegions | join(", ") }}
-    {% endif %}
+    {%- for loc in articleLocalities -%}
+      <a href="/{{ locale }}/localities/{{ loc.slug }}">{{ loc.name }}</a> ({{ loc.region }}){% if not loop.last %}, {% endif %}
+    {%- endfor -%}
   </div>
 {% endif %}

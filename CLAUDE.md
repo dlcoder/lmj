@@ -2,6 +2,8 @@
 
 A bilingual (Spanish/English) static website about mythical and legendary places in Jaén, Spain.
 
+> **Note:** Keep this file updated when making structural changes (new files, filters, shortcodes, etc.).
+
 **Live site:** https://www.lugaresmiticosdejaen.com/
 
 ## Tech Stack
@@ -19,21 +21,28 @@ A bilingual (Spanish/English) static website about mythical and legendary places
 │   ├── es_articles.json
 │   ├── en_categories.json
 │   ├── es_categories.json
-│   └── localities.json
+│   ├── localities.json
+│   ├── en_locality_pages.js  # Generated locality page data (EN)
+│   └── es_locality_pages.js  # Generated locality page data (ES)
 ├── src/              # Source pages
 │   ├── index.njk     # Root (language redirect)
 │   ├── es/           # Spanish pages
 │   │   ├── index.njk
-│   │   └── article.njk
+│   │   ├── article.njk
+│   │   └── locality.njk
 │   └── en/           # English pages
 │       ├── index.njk
-│       └── article.njk
+│       ├── article.njk
+│       └── locality.njk
 ├── _includes/        # Templates and partials
 │   ├── layouts/
 │   │   └── main.njk
 │   └── partials/
 │       ├── article.njk
-│       └── article-teaser-list.njk
+│       ├── article-date.njk
+│       ├── article-location.njk
+│       ├── index-of-articles.njk
+│       └── pagination.njk
 ├── content/          # Content files - tradition articles (currently ignored)
 └── _site/            # Build output (gitignored)
 ```
@@ -48,17 +57,26 @@ npm run serve    # Start dev server with hot reload
 ## Key Configuration
 
 - **Static assets host:** `https://lmjstatic.deliriumcoder.com`
-- **Global data:** `en_articles`, `es_articles`, `en_categories`, `es_categories`, `localities` (auto-loaded from `_data/`)
-- **Filters:** `limit` - limits array items
+- **Global data:** `en_articles`, `es_articles`, `en_categories`, `es_categories`, `localities`, `en_locality_pages`, `es_locality_pages` (auto-loaded from `_data/`)
+- **Filters:**
+  - `limit` - limits array items
+  - `formatDate` - formats date strings as DD/MM/YYYY
+  - `getLocalities` - maps locality names to locality objects
 - **Shortcodes:** `featured_image` - generates image URLs from article media
 - **Ignored paths:** `CLAUDE.md`, `README.md`, `content`
 
 ## Page Generation
 
-Article pages are generated using Eleventy pagination:
+**Article pages** are generated using Eleventy pagination:
 - Data source: `es_articles` / `en_articles` global data
 - URLs: `/es/articles/{slug}.html` and `/en/articles/{slug}.html`
 - Templates: `src/es/article.njk` and `src/en/article.njk`
+
+**Locality pages** are generated using custom data files:
+- Data source: `es_locality_pages` / `en_locality_pages` (JS files that filter and paginate articles by locality)
+- URLs: `/es/localities/{slug}/` and `/en/localities/{slug}/`
+- Templates: `src/es/locality.njk` and `src/en/locality.njk`
+- Articles are sorted by `published_at` in descending order (newest first)
 
 ## Data Structure
 

@@ -1,0 +1,17 @@
+{% if paginationTotalPages > 1 %}
+<nav class="pagination" aria-label="Pagination">
+  <div class="pagination-links">
+    {% if paginationPrevHref %}
+      <a href="{{ paginationPrevHref }}" class="pagination-link pagination-link--prev">{{ paginationPrevText }}</a>
+    {% endif %}
+
+    <span class="pagination-info">
+      {{ paginationCurrentPage }} / {{ paginationTotalPages }}
+    </span>
+
+    {% if paginationNextHref %}
+      <a href="{{ paginationNextHref }}" class="pagination-link pagination-link--next">{{ paginationNextText }}</a>
+    {% endif %}
+  </div>
+</nav>
+{% endif %}

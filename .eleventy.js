@@ -33,6 +33,14 @@ export default function(eleventyConfig) {
     return `${day}/${month}/${year}`;
   });
 
+  eleventyConfig.addFilter("getLocalities", (localityNames, allLocalities) => {
+    if (!localityNames || !allLocalities) return [];
+    const localityMap = new Map(allLocalities.map(loc => [loc.name, loc]));
+    return localityNames
+      .map(name => localityMap.get(name))
+      .filter(Boolean);
+  });
+
   eleventyConfig.addShortcode("featured_image", function(article, size) {
     const featuredMedia = article.media?.find(m => m.featured && m.type === "Photo");
     if (!featuredMedia || !featuredMedia.image_urls) {
