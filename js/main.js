@@ -6,11 +6,11 @@
   window.addEventListener('scroll', function () {
     const currentScrollY = window.scrollY;
 
-    if (currentScrollY > lastScrollY) {
-      // Scrolling down
+    if (currentScrollY <= 60) {
+      header.classList.remove('header--faded');
+    } else if (currentScrollY > lastScrollY) {
       header.classList.add('header--faded');
     } else if (lastScrollY - currentScrollY >= 10) {
-      // Scrolling up by at least 10px
       header.classList.remove('header--faded');
     }
 
