@@ -1,17 +1,28 @@
 (function () {
-  const header = document.querySelector('.header');
+  // Scroll effects
+  const header = document.getElementById('header');
+  const articleIntro = document.getElementById('article-intro');
+  const fadeEffectThreshold = 60;
+  const headerBackThreshold = 10;
   let lastScrollY = window.scrollY;
 
-  // Header Scroll
   window.addEventListener('scroll', function () {
     const currentScrollY = window.scrollY;
 
-    if (currentScrollY <= 60) {
+    if (currentScrollY <= fadeEffectThreshold) {
       header.classList.remove('header--faded');
     } else if (currentScrollY > lastScrollY) {
       header.classList.add('header--faded');
-    } else if (lastScrollY - currentScrollY >= 10) {
+    } else if (lastScrollY - currentScrollY >= headerBackThreshold) {
       header.classList.remove('header--faded');
+    }
+
+    if (articleIntro && window.innerWidth >= 1280) {
+      if (currentScrollY > fadeEffectThreshold) {
+        articleIntro.classList.add('article-intro--hidden');
+      } else {
+        articleIntro.classList.remove('article-intro--hidden');
+      }
     }
 
     lastScrollY = currentScrollY;

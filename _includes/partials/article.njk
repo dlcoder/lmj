@@ -1,21 +1,25 @@
-<article>
-  <div class="article-header">
-    <h1 class="article-title">{{ article.title }}</h1>
-    {% include "partials/article-date.njk" %}
-    {% include "partials/article-location.njk" %}
-    {% include "partials/article-category.njk" %}
+<article class="article">
+  <div id="article-intro" class="article-intro">
+    <div class="article-header">
+      <h1 class="article-title">{{ article.title }}</h1>
+      {% include "partials/article-date.njk" %}
+      {% include "partials/article-location.njk" %}
+      {% include "partials/article-category.njk" %}
+    </div>
+
+    <div class="article-body">
+      {% if article.content_in_separate_page %}
+        {% include "content/" + locale + "_" + article.slug + ".html" %}
+      {% else %}
+      <ul>
+        {%- for sentence in article.sentences -%}
+          <li>{{ sentence | safe }}</li>
+        {%- endfor -%}
+      </ul>
+      {% endif %}
+    </div>
   </div>
-  <div class="article-body">
-    {% if article.content_in_separate_page %}
-      {% include "content/" + locale + "_" + article.slug + ".html" %}
-    {% else %}
-    <ul>
-      {%- for sentence in article.sentences -%}
-        <li>{{ sentence | safe }}</li>
-      {%- endfor -%}
-    </ul>
-    {% endif %}
-  </div>
+
   <div class="article-gallery">
     {%- for media in article.media -%}
       {%- if media.type == "Photo" and media.featured == false -%}
