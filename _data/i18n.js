@@ -3,6 +3,9 @@ export default {
     all_articles: "All articles",
     categoriesLabel: "Categories",
     localitiesLabel: "Localities",
+    home: {
+      discover: "Discover the province of Jaén"
+    },
     nav: {
       home: "Home",
       articles: "Articles"
@@ -18,6 +21,9 @@ export default {
     all_articles: "Todos los artículos",
     categoriesLabel: "Categorías",
     localitiesLabel: "Localidades",
+    home: {
+      discover: "Descubre la provincia de Jaén"
+    },
     nav: {
       home: "Inicio",
       articles: "Artículos"

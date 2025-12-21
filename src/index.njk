@@ -9,3 +9,25 @@ eleventyComputed:
   permalink: "{{ indexPage.locale }}/index.html"
   locale: "{{ indexPage.locale }}"
 ---
+
+
+<div class="home-section">
+  <h2 class="home-section-title">{{ i18n[indexPage.locale].home.discover }}</h2>
+
+  <div class="article-grid">
+    {%- for category in categories_list[indexPage.locale] -%}
+      <article class="article-card">
+        <a href="/{{ locale }}/categories/{{ category.slug }}" class="article-card--link">
+          <div class="article-card--image" role="img" aria-label="{{ category.name }}" style="
+            background-image: url('{% static_image '/files/categories/' + category.imageSlug + '.jpg' %}');
+          "></div>
+          <div class="article-card--content">
+            <h2 class="article-card--title">{{ category.name }}</h2>
+          </div>
+        </a>
+      </article>
+    {%- endfor -%}
+  </div>
+
+  <div class="home-section-separator"></div>
+</div>

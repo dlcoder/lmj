@@ -138,6 +138,7 @@ table {
 
 :root {
   --color-primary: rgba(66, 55, 128, 1);
+  --color-primary-75: rgba(66, 55, 128, 0.75);
 }
 
 /* Global Styles */
@@ -300,6 +301,26 @@ a:hover {
   padding-top: 6rem;
 }
 
+/* Home Page */
+
+.home-section {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.home-section-title {
+  color: var(--color-primary);
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.home-section-separator {
+  height: 1px;
+  background-image: linear-gradient(to right, #fff, var(--color-primary-75), #fff);
+  margin: 2rem 0;
+}
+
 /* Pages */
 
 .page-header {
@@ -447,6 +468,9 @@ a:hover {
 .article-card--image {
   aspect-ratio: 4 / 3;
   padding-top: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .article-card--content {
