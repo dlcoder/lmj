@@ -335,23 +335,20 @@ a:hover {
 /* Article Page */
 
 @media (min-width: 1280px) {
+  body.article-page {
+    background-color: #000;
+    overflow: hidden;
+  }
+
+  body.article-page .main-container {
+    padding: 0;
+    max-width: none;
+  }
+}
+
+@media (min-width: 1280px) {
   .article {
     position: relative;
-  }
-
-  .article-intro {
-    position: absolute;
-    top: 12rem;
-    left: 12rem;
-    right: 12rem;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    z-index: 1;
-  }
-
-  .article-intro--hidden {
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(-20px);
   }
 }
 
@@ -359,6 +356,7 @@ a:hover {
   border-bottom: 1px solid #eee;
   margin-bottom: 2rem;
   padding-bottom: 0.5rem;
+  width: 100%;
 }
 
 .article-title {
@@ -403,32 +401,136 @@ a:hover {
   }
 }
 
+.article-body {
+  width: 100%;
+}
+
 .article-body li {
   margin-bottom: 1.5rem;
 }
 
-.article-gallery--media {
-  margin-bottom: 2rem;
-}
-
 @media (min-width: 1280px) {
-  .article-gallery--media:first-child {
-    filter: brightness(0.2);
-    transition: filter 0.3s ease;
+  .slides--container {
+    display: grid;
+    grid-template-columns: 1fr;
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 
-  .article-gallery--media:first-child .responsive-image {
-    background-size: cover;
+  .slides--container::-webkit-scrollbar {
+    display: none;
   }
 
-  .article-intro--hidden+.article-gallery .article-gallery--media:first-child {
-    filter: brightness(1);
+  .slides--slide {
+    grid-column: 1;
+    height: 100vh;
+    scroll-snap-align: start;
+    width: 100%;
   }
 
-  .article-intro--hidden+.article-gallery .article-gallery--media:first-child .responsive-image {
+  .slides--slide:nth-child(1),
+  .slides--slide:nth-child(2) {
+    grid-row: 1;
+  }
+
+  .slides--slide:nth-child(1) {
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .slides--slide:nth-child(1)>* {
+    pointer-events: auto;
+  }
+
+  /* Subsequent slides will naturally start from row 2 because the 1st/2nd occupy row 1 */
+
+  .article-gallery {
+    height: 100%;
+    width: 100%;
+  }
+
+  .article-gallery--intro {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.75);
+    padding: 0 15rem;
+    box-sizing: border-box;
+    max-width: 1920px;
+    margin: 0 auto;
+    transition: opacity 0.3s ease;
+  }
+
+  .article-gallery--media {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .article-gallery--media .responsive-image {
+    height: 90vh;
+    padding-top: 0;
+    width: 100%;
+    max-width: 1920px;
     background-size: contain;
   }
+
+  .article-header {
+    border-bottom: none;
+    margin-bottom: 2rem;
+    color: #fff;
+  }
+
+  .article-title {
+    color: #fff !important;
+    font-size: 4rem;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .article-body {
+    color: #fff !important;
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  }
+
+  .slides-nav {
+    position: fixed;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .slides-nav-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+  }
+
+  .slides-nav-dot:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+    transform: scale(1.2);
+  }
+
+  .slides-nav-dot.active {
+    background-color: #6366f1;
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.3);
+  }
 }
+
 
 /* Responsive Images */
 
@@ -453,16 +555,6 @@ a:hover {
 }
 
 @media (min-width: 1120px) {
-  .article-gallery--media {
-    max-height: 95vh;
-  }
-
-  .article-gallery--media .responsive-image {
-    background-color: #000000;
-    background-size: contain;
-    padding-top: 95vh;
-  }
-
   .responsive-image {
     background-image: var(--img-desktop-hd);
   }
