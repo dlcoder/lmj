@@ -1,14 +1,11 @@
 (function () {
   // Scroll effects
   const header = document.getElementById('header');
-  const articleIntro = document.getElementById('article-intro');
   const fadeEffectThreshold = 60;
   const headerBackThreshold = 10;
   let lastScrollY = window.scrollY;
 
-  window.addEventListener('scroll', function () {
-    const currentScrollY = window.scrollY;
-
+  const handleScroll = (currentScrollY) => {
     if (currentScrollY <= fadeEffectThreshold) {
       header.classList.remove('header--faded');
     } else if (currentScrollY > lastScrollY) {
@@ -16,17 +13,10 @@
     } else if (lastScrollY - currentScrollY >= headerBackThreshold) {
       header.classList.remove('header--faded');
     }
-
-    if (articleIntro && window.innerWidth >= 1280) {
-      if (currentScrollY > fadeEffectThreshold) {
-        articleIntro.classList.add('article-intro--hidden');
-      } else {
-        articleIntro.classList.remove('article-intro--hidden');
-      }
-    }
-
     lastScrollY = currentScrollY;
-  });
+  };
+
+  window.addEventListener('scroll', () => handleScroll(window.scrollY));
 
   // Hamburger Menu
   const hamburger = document.getElementById('hamburger-menu');
@@ -45,5 +35,121 @@
         nav.classList.remove('is-open');
       });
     });
+  }
+
+  // Slides Snappy Scroll
+  const slidesContainer = document.querySelector('.slides--container');
+  if (slidesContainer) {
+    // Header fade on scroll for article pages
+    slidesContainer.addEventListener('scroll', () => {
+      if (window.innerWidth >= 1280) {
+        handleScroll(slidesContainer.scrollTop);
+      }
+    });
+
+    // Slide Navigation Dots
+    const navContainer = document.getElementById('slides-nav');
+    if (navContainer && window.innerWidth >= 1280) {
+      const slides = slidesContainer.querySelectorAll('.slides--slide');
+      const intro = document.querySelector('.article-gallery--intro');
+      const totalDots = slides.length; // First slide has 2 states (intro/no intro), rest are 1 each
+
+      // Helper: Navigate to a specific dot
+      const navigateToDot = (dotIndex) => {
+        if (dotIndex === 0) {
+          // Dot 0: Show intro overlay
+          slidesContainer.scrollTo({ top: 0, behavior: 'smooth' });
+          if (intro) intro.style.opacity = '1';
+        } else if (dotIndex === 1) {
+          // Dot 1: Hide intro overlay, stay on first slide
+          slidesContainer.scrollTo({ top: 0, behavior: 'smooth' });
+          if (intro) intro.style.opacity = '0';
+        } else {
+          // Dots 2+: Navigate to slides
+          slidesContainer.scrollTo({
+            top: (dotIndex - 1) * window.innerHeight,
+            behavior: 'smooth'
+          });
+        }
+      };
+
+      // Helper: Get active dot index
+      const getActiveDotIndex = () => {
+        const currentSlide = Math.round(slidesContainer.scrollTop / window.innerHeight);
+        const introVisible = intro && intro.style.opacity !== '0';
+
+        if (currentSlide === 0) {
+          return introVisible ? 0 : 1; // First slide: intro or no intro
+        }
+        return currentSlide + 1; // Other slides: offset by 1
+      };
+
+      // Helper: Update active dot visual state
+      const updateActiveDot = () => {
+        if (window.innerWidth < 1280) return;
+
+        const activeDotIndex = getActiveDotIndex();
+        const dots = navContainer.querySelectorAll('.slides-nav-dot');
+
+        dots.forEach((dot, index) => {
+          dot.classList.toggle('active', index === activeDotIndex);
+        });
+      };
+
+      // Create dots
+      for (let i = 0; i < totalDots; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'slides-nav-dot';
+        if (i === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => navigateToDot(i));
+        navContainer.appendChild(dot);
+      }
+
+      // Listen for scroll and intro changes
+      slidesContainer.addEventListener('scroll', updateActiveDot);
+      if (intro) {
+        new MutationObserver(updateActiveDot).observe(intro, {
+          attributes: true,
+          attributeFilter: ['style']
+        });
+      }
+    }
+
+    let isScrolling = false;
+    let currentSlide = 0;
+
+    slidesContainer.addEventListener('wheel', e => {
+      if (window.innerWidth < 1280) return;
+
+      e.preventDefault();
+      if (isScrolling) return;
+      isScrolling = true;
+
+      const intro = document.querySelector('.article-gallery--intro');
+      const isOnFirstSlide = slidesContainer.scrollTop < window.innerHeight * 0.5;
+
+      // If on first slide and scrolling down, just fade intro instead of changing slides
+      if (isOnFirstSlide && e.deltaY > 0 && intro && intro.style.opacity !== '0') {
+        intro.style.opacity = '0';
+        isScrolling = false;
+        return;
+      }
+
+      // If intro is hidden and scrolling up on first slide, show intro instead of changing slides
+      if (isOnFirstSlide && e.deltaY < 0 && intro && intro.style.opacity === '0') {
+        intro.style.opacity = '1';
+        isScrolling = false;
+        return;
+      }
+
+      // Normal slide navigation
+      if (e.deltaY > 0) {
+        slidesContainer.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
+      } else {
+        slidesContainer.scrollBy({ top: -window.innerHeight, behavior: 'smooth' });
+      }
+
+      setTimeout(() => { isScrolling = false; }, 500);
+    }, { passive: false });
   }
 })();
