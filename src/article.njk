@@ -8,6 +8,7 @@ eleventyComputed:
   title: "{{ article.title }} – {{ i18n[article.locale].siteTitle }}"
   permalink: "{{ article.locale }}/articles/{{ article.slug }}.html"
   locale: "{{ article.locale }}"
+bodyClass: article-page
 ---
 
 {% include "partials/article.njk" %}

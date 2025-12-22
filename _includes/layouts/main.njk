@@ -9,7 +9,7 @@
   <script src="/js/main.js?v={{ timestamp }}" defer></script>
 </head>
 
-<body>
+<body class="{% if bodyClass %}{{ bodyClass }}{% endif %}">
   <div id="header" class="header">
     <div class="header-container">
       <div class="header-logo">
