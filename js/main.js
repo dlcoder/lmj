@@ -52,7 +52,7 @@
     if (navContainer && window.innerWidth >= 1280) {
       const slides = slidesContainer.querySelectorAll('.slides--slide');
       const intro = document.querySelector('.article-gallery--intro');
-      const totalDots = slides.length; // First slide has 2 states (intro/no intro), rest are 1 each
+      const totalDots = slides.length;
 
       // Helper: Navigate to a specific dot
       const navigateToDot = (dotIndex) => {
@@ -114,14 +114,32 @@
         });
       }
 
-      // Auto-hide dots: show when cursor is near right side or on dots
+      // Auto-hide dots: always visible on first slide, auto-hide on others
       let hideTimeout;
       const showDots = () => {
         navContainer.classList.add('visible');
         clearTimeout(hideTimeout);
-        hideTimeout = setTimeout(() => {
-          navContainer.classList.remove('visible');
-        }, 2000);
+
+        // Only auto-hide if not on first slide
+        const currentSlide = Math.round(slidesContainer.scrollTop / window.innerHeight);
+        if (currentSlide !== 0) {
+          hideTimeout = setTimeout(() => {
+            navContainer.classList.remove('visible');
+          }, 2000);
+        }
+      };
+
+      // Update visibility based on scroll position
+      const updateDotsVisibility = () => {
+        const currentSlide = Math.round(slidesContainer.scrollTop / window.innerHeight);
+        if (currentSlide === 0) {
+          // On first slide: always visible
+          navContainer.classList.add('visible');
+          clearTimeout(hideTimeout);
+        } else {
+          // Left first slide: trigger auto-hide
+          showDots();
+        }
       };
 
       document.addEventListener('mousemove', (e) => {
@@ -132,6 +150,10 @@
       });
 
       navContainer.addEventListener('mouseenter', showDots);
+      slidesContainer.addEventListener('scroll', updateDotsVisibility);
+
+      // Show dots initially (on first slide)
+      updateDotsVisibility();
     }
 
     let isScrolling = false;
