@@ -1,0 +1,23 @@
+---
+layout: layouts/main.njk
+pagination:
+  data: legal_pages.copyright
+  size: 1
+  alias: pageData
+eleventyComputed:
+  title: "{{ i18n[pageData.locale].footer.copyright }} — {{ i18n[pageData.locale].siteTitle }}"
+  permalink: "{{ pageData.locale }}/copyright/index.html"
+  locale: "{{ pageData.locale }}"
+---
+
+<div class="page-header">
+  <h1 class="page-title">{{ i18n[pageData.locale].footer.copyright }}</h1>
+</div>
+
+<div class="page-content">
+  {%- if pageData.locale == "en" -%}
+    <p>Coming soon...</p>
+  {%- else -%}
+    <p>Próximamente...</p>
+  {%- endif -%}
+</div>

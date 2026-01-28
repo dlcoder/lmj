@@ -1,0 +1,23 @@
+---
+layout: layouts/main.njk
+pagination:
+  data: legal_pages.cookies
+  size: 1
+  alias: pageData
+eleventyComputed:
+  title: "{{ i18n[pageData.locale].footer.cookies }} — {{ i18n[pageData.locale].siteTitle }}"
+  permalink: "{{ pageData.locale }}/cookies/index.html"
+  locale: "{{ pageData.locale }}"
+---
+
+<div class="page-header">
+  <h1 class="page-title">{{ i18n[pageData.locale].footer.cookies }}</h1>
+</div>
+
+<div class="page-content">
+  {%- if pageData.locale == "en" -%}
+    <p>Coming soon...</p>
+  {%- else -%}
+    <p>Próximamente...</p>
+  {%- endif -%}
+</div>

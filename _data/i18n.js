@@ -11,6 +11,19 @@ export default {
       home: "Home",
       articles: "Articles"
     },
+    footer: {
+      navigation: "Navigation",
+      legal: "Legal",
+      cookies: "Cookies Policy",
+      copyright: "Copyright",
+      about: "About Us",
+      team: "The Team",
+      credits: "Built and maintained by Delirium Coder",
+      languageSwitcher: {
+        en: "EN",
+        es: "ES"
+      }
+    },
     paginationNext: "Older »",
     paginationPrev: "« Newer",
     publishedOn: "Published on",
@@ -29,6 +42,19 @@ export default {
     nav: {
       home: "Inicio",
       articles: "Artículos"
+    },
+    footer: {
+      navigation: "Navegación",
+      legal: "Legal",
+      cookies: "Política de Cookies",
+      copyright: "Derechos de autor",
+      about: "Sobre nosotros",
+      team: "El equipo",
+      credits: "Construido y mantenido por Delirium Coder",
+      languageSwitcher: {
+        en: "EN",
+        es: "ES"
+      }
     },
     paginationNext: "Más antiguos »",
     paginationPrev: "« Más recientes",

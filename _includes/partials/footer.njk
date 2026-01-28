@@ -1,0 +1,58 @@
+{# 
+  Footer component
+  Expects: locale, i18n variables from parent template
+#}
+{%- set otherLocale = "es" if locale == "en" else "en" -%}
+
+{# Smart language switcher: try to find equivalent page in other locale #}
+{%- set switcherUrl = "/" + otherLocale + "/" -%}
+{%- if page.url -%}
+  {# Replace the current locale in the URL with the other locale #}
+  {%- set currentUrl = page.url -%}
+  {%- if currentUrl.startsWith("/" + locale + "/") -%}
+    {%- set switcherUrl = currentUrl.replace("/" + locale + "/", "/" + otherLocale + "/") -%}
+  {%- endif -%}
+{%- endif -%}
+
+<footer class="main-footer">
+  <div class="footer-content">
+    <div class="footer-sections">
+      <div class="footer-section footer-navigation">
+        <h3 class="footer-section-title">{{ i18n[locale].footer.navigation }}</h3>
+        <ul class="footer-links">
+          <li><a href="/{{ locale }}/">{{ i18n[locale].nav.home }}</a></li>
+          <li><a href="/{{ locale }}/articles/">{{ i18n[locale].nav.articles }}</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section footer-legal">
+        <h3 class="footer-section-title">{{ i18n[locale].footer.legal }}</h3>
+        <ul class="footer-links">
+          <li><a href="/{{ locale }}/cookies/">{{ i18n[locale].footer.cookies }}</a></li>
+          <li><a href="/{{ locale }}/copyright/">{{ i18n[locale].footer.copyright }}</a></li>
+          <li><a href="/{{ locale }}/about/">{{ i18n[locale].footer.about }}</a></li>
+          <li><a href="/{{ locale }}/team/">{{ i18n[locale].footer.team }}</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section footer-language">
+        <h3 class="footer-section-title">Language</h3>
+        <div class="footer-language-switcher">
+          {%- if locale == "en" -%}
+            <span class="language-current">{{ i18n[locale].footer.languageSwitcher.en }}</span>
+            <span class="language-separator">|</span>
+            <a href="{{ switcherUrl }}" class="language-link">{{ i18n[locale].footer.languageSwitcher.es }}</a>
+          {%- else -%}
+            <a href="{{ switcherUrl }}" class="language-link">{{ i18n[locale].footer.languageSwitcher.en }}</a>
+            <span class="language-separator">|</span>
+            <span class="language-current">{{ i18n[locale].footer.languageSwitcher.es }}</span>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-credits">
+      <p>{{ i18n[locale].footer.credits }}</p>
+    </div>
+  </div>
+</footer>
