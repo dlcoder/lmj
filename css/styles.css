@@ -481,6 +481,8 @@ body.article-page .main-container {
     grid-column: 1;
     height: 100vh;
     scroll-snap-align: start;
+    /* Stop at every photo: a hard flick should not fly past several. */
+    scroll-snap-stop: always;
     width: 100%;
     margin-top: 0;
   }
@@ -489,25 +491,15 @@ body.article-page .main-container {
     border-radius: 0;
   }
 
-  .slides--slide:nth-child(1),
-  .slides--slide:nth-child(2) {
-    grid-row: 1;
-  }
-
-  .slides--slide:nth-child(1) {
-    z-index: 10;
-    pointer-events: none;
-  }
-
-  .slides--slide:nth-child(1)>* {
-    pointer-events: auto;
-  }
-
-  /* Subsequent slides will naturally start from row 2 because the 1st/2nd occupy row 1 */
-
+  /* The intro is a slide of its own, over the article's featured photo, so
+     every slide is a real scroll-snap stop and the browser can do the
+     scrolling itself. */
   .article-gallery {
     height: 100%;
     width: 100%;
+    background-image: var(--intro-desktop-hd);
+    background-size: cover;
+    background-position: center center;
   }
 
   .article-gallery--intro {
@@ -522,6 +514,17 @@ body.article-page .main-container {
     max-width: 1920px;
     margin: 0 auto;
     transition: opacity 0.3s ease;
+  }
+
+  .article-gallery--intro a {
+    color: #fff;
+    text-decoration: underline;
+    text-decoration-color: rgba(255, 255, 255, 0.5);
+    text-underline-offset: 2px;
+  }
+
+  .article-gallery--intro a:hover {
+    text-decoration-color: #fff;
   }
 
   .article-gallery--media {

@@ -1,7 +1,12 @@
 <article class="article">
   <div class="slides--container">
     <div class="slides--slide">
-      <div class="article-gallery">
+      <div class="article-gallery" style="
+        --intro-mobile: url('{% featured_image article, "big_teaser_mobile" %}');
+        --intro-tablet: url('{% featured_image article, "big_teaser_tablet" %}');
+        --intro-desktop: url('{% featured_image article, "big_teaser_desktop" %}');
+        --intro-desktop-hd: url('{% featured_image article, "big_teaser_desktop_hd" %}');
+      ">
         <div class="article-gallery--intro">
           <div class="article-header">
             <h1 class="article-title">{{ article.title }}</h1>
