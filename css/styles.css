@@ -363,11 +363,27 @@ body.home-page {
 }
 
 .page-title {
-  font-size: 3rem;
+  font-size: clamp(2.125rem, 6vw, 3rem);
   font-weight: bold;
 }
 
 /* Article Page */
+
+/* Below the slide-deck breakpoint the article is an ordinary stacked page:
+   a readable column for the text and the gallery photos one after another,
+   with room to breathe. Everything here is overridden from 1280px up. */
+
+body.article-page .main-container {
+  max-width: 60rem;
+}
+
+.slides--slide + .slides--slide {
+  margin-top: 1.5rem;
+}
+
+.article-gallery--media .responsive-image {
+  border-radius: 4px;
+}
 
 @media (min-width: 1280px) {
   body.article-page {
@@ -460,11 +476,17 @@ body.home-page {
     display: none;
   }
 
-  .slides--slide {
+  .slides--slide,
+  .slides--slide + .slides--slide {
     grid-column: 1;
     height: 100vh;
     scroll-snap-align: start;
     width: 100%;
+    margin-top: 0;
+  }
+
+  .article-gallery--media .responsive-image {
+    border-radius: 0;
   }
 
   .slides--slide:nth-child(1),
@@ -557,11 +579,18 @@ body.home-page {
   .slides-nav-dot {
     width: 10px;
     height: 10px;
+    padding: 0;
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.4);
     cursor: pointer;
     transition: all 0.3s ease;
     border: 2px solid transparent;
+    appearance: none;
+  }
+
+  .slides-nav-dot:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
   }
 
   .slides-nav-dot:hover {
@@ -801,13 +830,26 @@ body.home-page {
 /* Static Pages */
 
 .static-page .main-container {
-  max-width: 1120px;
+  max-width: 52rem;
 }
 
+/* The title shares the measure of the text below it: one column, one edge. */
 .page-prose,
 .page-section {
-  max-width: 48rem;
-  margin: 0 auto 3rem;
+  margin: 0 0 3rem;
+}
+
+.page-prose a,
+.page-section a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-decoration-color: var(--color-primary-60);
+  text-underline-offset: 2px;
+}
+
+.page-prose a:hover,
+.page-section a:hover {
+  text-decoration-color: var(--color-primary);
 }
 
 .page-lead {
@@ -845,6 +887,8 @@ body.home-page {
   display: block;
   width: 100%;
   height: auto;
+  max-height: 24rem;
+  object-fit: cover;
   border-radius: 4px;
   margin: 1rem 0 1.5rem;
 }
@@ -967,14 +1011,16 @@ body.home-page {
 
 .backers--names {
   columns: 2;
-  column-gap: 2rem;
-  font-size: 0.875rem;
+  column-gap: 1.5rem;
+  font-size: 0.8125rem;
+  line-height: 1.45;
   color: #777;
 }
 
 .backers--names li {
   break-inside: avoid;
-  padding: 0.125rem 0;
+  padding: 0.0625rem 0;
+  hyphens: none;
 }
 
 /* Footer */
@@ -1010,7 +1056,7 @@ body.home-page {
   font-size: 0.8125rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.75);
   margin: 0 0 0.75rem;
 }
 
@@ -1034,7 +1080,7 @@ body.home-page {
 }
 
 .footer-languages--item__current span {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.65);
 }
 
 .footer-social {
@@ -1070,11 +1116,11 @@ body.home-page {
 
 .footer-credits {
   font-size: 0.8125rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.78);
 }
 
 .footer-credits--byline {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.78);
   margin-bottom: 0.5rem;
 }
 
