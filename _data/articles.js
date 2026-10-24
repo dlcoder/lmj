@@ -54,6 +54,7 @@ function traditionBody(article, locale) {
 function hydrate(articles, categoryMap, locale) {
   return articles.map(article => ({
     ...article,
+    featuredPhoto: article.media?.find(m => m.featured && m.type === 'Photo') ?? null,
     enrichedLocalities: (article.localities || [])
       .map(name => localityMap.get(name))
       .filter(Boolean),

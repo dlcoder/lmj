@@ -71,8 +71,7 @@ npm run check-links  # build and validate internal links with linkinator
 ├── css/styles.css                    # Passthrough-copied to _site/css/
 ├── js/                               # Passthrough-copied to _site/js/
 │   ├── hamburger-menu.js
-│   ├── slide-scroll.js
-│   ├── slide-navigation.js
+│   ├── article-slides.js             # Keyboard and dots for the article deck
 │   └── localities-map.js             # Leaflet map on the home page
 ├── scripts/                          # Dev utilities (not part of the build)
 │   ├── validate-data.mjs             # Raw data integrity checks (runs in CI)
@@ -213,6 +212,12 @@ The most relevant items when touching templates:
 - The article gallery paints photos with `background-image` and per-breakpoint custom
   properties: no `srcset`, no lazy loading. Moving to `<picture>`/`<img>` is the biggest
   pending performance win (−92% traffic).
+- From 1280px up the article is a scroll-snap deck: the intro over the featured photo,
+  the featured photo on its own, then the gallery. The scrolling is the browser's; the
+  script only adds arrow keys and the navigation dots. Below that width it is an ordinary
+  stacked page.
+- Some photos have black letterbox bands baked into the file. Nothing in the CSS adds
+  them.
 - 107 of 164 articles have `translated: false` and are published in EN anyway.
 - Articles are written as `{slug}.html` but linked without the extension
   (`/es/articles/{slug}`). This works because GitHub Pages resolves `.html` automatically,

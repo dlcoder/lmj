@@ -30,6 +30,21 @@
       </div>
     </div>
 
+    {%- if article.featuredPhoto -%}
+      {#- The featured photo on its own, as it appears once the intro is out
+          of the way, before the gallery starts. -#}
+      <div class="slides--slide">
+        <div class="article-gallery--media article-gallery--media__featured">
+          <div class="responsive-image" role="img" style="
+            --img-mobile: url('{% static_image article.featuredPhoto.image_urls.big_teaser_mobile %}');
+            --img-tablet: url('{% static_image article.featuredPhoto.image_urls.big_teaser_tablet %}');
+            --img-desktop: url('{% static_image article.featuredPhoto.image_urls.big_teaser_desktop %}');
+            --img-desktop-hd: url('{% static_image article.featuredPhoto.image_urls.big_teaser_desktop_hd %}');
+          "></div>
+        </div>
+      </div>
+    {%- endif -%}
+
     {%- for media in article.media -%}
       {%- if media.type == "Photo" and media.featured == false and not article.body -%}
         <div class="slides--slide">
