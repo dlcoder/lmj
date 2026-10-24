@@ -24,8 +24,10 @@ export default function (eleventyConfig) {
     return imagePath ? `${STATICS_HOST}${imagePath}` : "";
   });
 
+  // Some files on the bucket have spaces in their name, so the path has to be
+  // encoded or the browser will not request them.
   eleventyConfig.addShortcode("static_image", function (imagePath) {
-    return imagePath ? `${STATICS_HOST}${imagePath}` : "";
+    return imagePath ? `${STATICS_HOST}${imagePath.replace(/ /g, "%20")}` : "";
   });
 
   eleventyConfig.ignores.add("AGENTS.md");

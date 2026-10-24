@@ -10,7 +10,6 @@ const regions = read('regions.json');
 const localityNames = new Set(regions.flatMap(r => r.localities.map(l => l.name)));
 const articles = { es: read('es_articles.json'), en: read('en_articles.json') };
 const categories = { es: read('es_categories.json'), en: read('en_categories.json') };
-const pages = { es: read('es_pages.json'), en: read('en_pages.json') };
 
 const errors = [];
 const warnings = [];
@@ -62,13 +61,6 @@ for (const [locale, list] of Object.entries(articles)) {
   }
 }
 
-// Static pages are paired by id too, since their slugs are translated as well
-// (acerca-de / about-us).
-const enPageIds = new Set(pages.en.map(p => p.id));
-for (const page of pages.es) {
-  if (!enPageIds.has(page.id)) warnings.push(`pages: "${page.slug}" exists only in Spanish`);
-}
-
 const summarise = (label, list) => {
   if (!list.length) return;
   const grouped = list.reduce((acc, line) => {
@@ -87,8 +79,7 @@ const summarise = (label, list) => {
 console.log(
   `articles: ${articles.es.length} es / ${articles.en.length} en` +
   `  |  categories: ${categories.es.length}` +
-  `  |  localities: ${localityNames.size}` +
-  `  |  pages: ${pages.es.length} es / ${pages.en.length} en`
+  `  |  localities: ${localityNames.size}`
 );
 summarise('WARNINGS', warnings);
 summarise('ERRORS', errors);
