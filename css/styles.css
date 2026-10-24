@@ -872,6 +872,14 @@ body.home-page {
   background-color: var(--color-primary);
 }
 
+.timeline--item__last::before {
+  width: 14px;
+  height: 14px;
+  left: calc(-1.5rem - 8px);
+  background-color: #fff;
+  border: 3px solid var(--color-primary);
+}
+
 .timeline--date {
   font-size: 0.8125rem;
   text-transform: uppercase;

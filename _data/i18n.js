@@ -21,7 +21,8 @@ export default {
       cookies: "Cookie policy",
       copyright: "Copyright",
       language: "Language",
-      followUs: "Follow us on",
+      social: "Social media",
+      socialNote: "No longer updated",
       writeToUs: "Write to us",
       credits: "Lugares Míticos de Jaén is a project by"
     },
@@ -54,7 +55,8 @@ export default {
       cookies: "Política de cookies",
       copyright: "Copyright",
       language: "Idioma",
-      followUs: "Síguenos en",
+      social: "Redes sociales",
+      socialNote: "Sin actividad",
       writeToUs: "Escríbenos",
       credits: "Lugares Míticos de Jaén es un proyecto de"
     },
