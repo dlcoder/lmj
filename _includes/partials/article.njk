@@ -11,8 +11,8 @@
           </div>
 
           <div class="article-body">
-            {% if article.content_in_separate_page %}
-              {% include "content/" + locale + "_" + article.slug + ".html" %}
+            {% if article.body %}
+              {{ article.body | safe }}
             {% else %}
             <ul>
               {%- for sentence in article.sentences -%}
@@ -26,7 +26,7 @@
     </div>
 
     {%- for media in article.media -%}
-      {%- if media.type == "Photo" and media.featured == false -%}
+      {%- if media.type == "Photo" and media.featured == false and not article.body -%}
         <div class="slides--slide">
           <div class="article-gallery--media">
             <div class="responsive-image" role="img" style="

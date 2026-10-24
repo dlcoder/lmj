@@ -4,6 +4,10 @@ import es_categories_raw from './raw/es_categories.json' with { type: 'json' };
 
 const PAGE_SIZE = 12;
 
+// Host for the pre-generated image variants. Kept here so both .eleventy.js
+// and the data layer read it from one place.
+export const STATICS_HOST = process.env.STATICS_HOST || "https://lmjstatic.deliriumcoder.com";
+
 // Shared Maps for fast lookup
 export const localityMap = new Map(
   regions.flatMap(region =>

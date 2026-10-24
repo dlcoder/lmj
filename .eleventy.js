@@ -1,4 +1,4 @@
-const STATICS_HOST = "https://lmjstatic.deliriumcoder.com";
+import { STATICS_HOST } from "./_data/base.js";
 
 export default function (eleventyConfig) {
   eleventyConfig.addGlobalData("env", {
