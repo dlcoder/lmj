@@ -24,18 +24,31 @@
   const SETTLE_MS = 450;
 
   // A trackpad flick keeps firing wheel events through its momentum, for well
-  // over a second. Rate-limiting inside the gesture made one flick advance
-  // several slides, so instead a gesture is considered over once the events
-  // stop, and each gesture moves exactly one slide.
+  // over a second, so one flick must not advance several slides. But waiting
+  // for the events to stop blocks fast swiping, because the momentum of one
+  // flick overlaps the start of the next.
+  //
+  // Momentum only ever decays, so the deck watches the smallest delta seen
+  // since the last move: a delta rising well above that floor is a fresh
+  // push and unlocks the next one. Comparing against the previous delta
+  // instead would miss it, because a new push ramps up gradually.
+  //
+  // A mouse wheel gives steady deltas that never rise, so input that is still
+  // strong well after the animation ended also unlocks. Momentum has decayed
+  // to a trickle by then, which is what keeps one flick to one slide.
   const GESTURE_IDLE_MS = 140;
   const WHEEL_THRESHOLD = 24;
+  const RENEWED_PUSH = 2;
+  const SUSTAINED_MS = 700;
 
   let target = 0;
   let animating = false;
   let settleTimer;
-  let gestureHandled = false;
+  let wheelLocked = false;
   let gestureTimer;
   let wheelDelta = 0;
+  let minMagnitudeSinceStep = Infinity;
+  let lastStepAt = 0;
   let hideTimer;
   let introObserver;
 
@@ -84,8 +97,9 @@
   };
 
   const endGesture = () => {
-    gestureHandled = false;
+    wheelLocked = false;
     wheelDelta = 0;
+    minMagnitudeSinceStep = Infinity;
   };
 
   const onWheel = (event) => {
@@ -94,13 +108,27 @@
     clearTimeout(gestureTimer);
     gestureTimer = setTimeout(endGesture, GESTURE_IDLE_MS);
 
-    // Everything after the first move belongs to the same flick, momentum included.
-    if (gestureHandled) return;
+    const magnitude = Math.abs(event.deltaY);
+
+    if (wheelLocked) {
+      const pushedAgain = magnitude >= WHEEL_THRESHOLD
+        && magnitude > minMagnitudeSinceStep * RENEWED_PUSH + WHEEL_THRESHOLD / 2;
+      const stillScrolling = magnitude >= WHEEL_THRESHOLD
+        && Date.now() - lastStepAt > SUSTAINED_MS;
+
+      minMagnitudeSinceStep = Math.min(minMagnitudeSinceStep, magnitude);
+      if (!pushedAgain && !stillScrolling) return;
+
+      wheelLocked = false;
+      wheelDelta = 0;
+    }
 
     wheelDelta += event.deltaY;
     if (Math.abs(wheelDelta) < WHEEL_THRESHOLD) return;
 
-    gestureHandled = true;
+    wheelLocked = true;
+    minMagnitudeSinceStep = Infinity;
+    lastStepAt = Date.now();
     step(wheelDelta > 0 ? 1 : -1);
     wheelDelta = 0;
   };
