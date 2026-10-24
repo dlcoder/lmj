@@ -11,6 +11,20 @@ export default {
       home: "Home",
       articles: "Articles"
     },
+    footer: {
+      discover: "Discover Jaén",
+      regions: "Regions",
+      project: "The project",
+      about: "The project",
+      books: "The books",
+      allArticles: "All articles",
+      cookies: "Cookie policy",
+      copyright: "Copyright",
+      language: "Language",
+      followUs: "Follow us on",
+      writeToUs: "Write to us",
+      credits: "Lugares Míticos de Jaén is a project by"
+    },
     paginationNext: "Older »",
     paginationPrev: "« Newer",
     publishedOn: "Published on",
@@ -29,6 +43,20 @@ export default {
     nav: {
       home: "Inicio",
       articles: "Artículos"
+    },
+    footer: {
+      discover: "Descubre Jaén",
+      regions: "Comarcas",
+      project: "El proyecto",
+      about: "El proyecto",
+      books: "Los libros",
+      allArticles: "Todos los artículos",
+      cookies: "Política de cookies",
+      copyright: "Copyright",
+      language: "Idioma",
+      followUs: "Síguenos en",
+      writeToUs: "Escríbenos",
+      credits: "Lugares Míticos de Jaén es un proyecto de"
     },
     paginationNext: "Más antiguos »",
     paginationPrev: "« Más recientes",
