@@ -928,6 +928,12 @@ body.home-page {
   color: #555;
 }
 
+.press-list--archived {
+  font-size: 0.8125rem;
+  color: #999;
+  white-space: nowrap;
+}
+
 .press-list--date {
   display: inline-block;
   min-width: 6.5rem;
