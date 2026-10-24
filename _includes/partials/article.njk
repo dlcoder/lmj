@@ -2,10 +2,10 @@
   <div class="slides--container">
     <div class="slides--slide">
       <div class="article-gallery" style="
-        --intro-mobile: url('{% featured_image article, "big_teaser_mobile" %}');
-        --intro-tablet: url('{% featured_image article, "big_teaser_tablet" %}');
-        --intro-desktop: url('{% featured_image article, "big_teaser_desktop" %}');
-        --intro-desktop-hd: url('{% featured_image article, "big_teaser_desktop_hd" %}');
+        --intro-mobile: url('{% featured_image article, "teaser_mobile" %}');
+        --intro-tablet: url('{% featured_image article, "teaser_desktop_hd" %}');
+        --intro-desktop: url('{% featured_image article, "teaser_desktop_hd" %}');
+        --intro-desktop-hd: url('{% featured_image article, "original" %}');
       ">
         <div class="article-gallery--intro">
           <div class="article-header">
@@ -34,12 +34,14 @@
       {#- The featured photo on its own, as it appears once the intro is out
           of the way, before the gallery starts. -#}
       <div class="slides--slide">
-        <div class="article-gallery--media article-gallery--media__featured">
+        <div class="article-gallery--media">
+          {#- The proportional variants, so this photo has the same shape and
+              the same size on screen as the gallery ones. -#}
           <div class="responsive-image" role="img" style="
-            --img-mobile: url('{% static_image article.featuredPhoto.image_urls.big_teaser_mobile %}');
-            --img-tablet: url('{% static_image article.featuredPhoto.image_urls.big_teaser_tablet %}');
-            --img-desktop: url('{% static_image article.featuredPhoto.image_urls.big_teaser_desktop %}');
-            --img-desktop-hd: url('{% static_image article.featuredPhoto.image_urls.big_teaser_desktop_hd %}');
+            --img-mobile: url('{% static_image article.featuredPhoto.image_urls.teaser_mobile %}');
+            --img-tablet: url('{% static_image article.featuredPhoto.image_urls.teaser_desktop_hd %}');
+            --img-desktop: url('{% static_image article.featuredPhoto.image_urls.teaser_desktop_hd %}');
+            --img-desktop-hd: url('{% static_image article.featuredPhoto.image_urls.original %}');
           "></div>
         </div>
       </div>

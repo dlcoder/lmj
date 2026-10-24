@@ -502,6 +502,7 @@ body.article-page .main-container {
     background-position: center center;
   }
 
+
   .article-gallery--intro {
     height: 100%;
     display: flex;
@@ -542,18 +543,6 @@ body.article-page .main-container {
     background-size: contain;
   }
 
-  /* The featured photo only exists as a wide crop, so showing it whole would
-     letterbox it. It fills the screen instead, with the same framing it has
-     behind the intro, so nothing jumps when the text goes away. */
-  .article-gallery--media__featured {
-    max-width: none;
-  }
-
-  .article-gallery--media__featured .responsive-image {
-    height: 100vh;
-    max-width: none;
-    background-size: cover;
-  }
 
   .article-header {
     border-bottom: none;
