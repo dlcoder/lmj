@@ -9,6 +9,25 @@ import { localityMap, enCategoryMap, esCategoryMap, STATICS_HOST } from './base.
 // featured image and the rest are named 1.jpg, 2.jpg and so on.
 const IMAGE_PLACEHOLDER = /\[img::(\d+)\]/g;
 
+// Summaries and sentences come out of the old database with HTML entities
+// (&#8220; and friends) but no markup at all, so decoding them here keeps the
+// data as plain text and lets the templates escape it normally.
+const NAMED_ENTITIES = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: '\u00a0' };
+
+function decodeEntities(value) {
+  if (typeof value !== 'string') return value;
+
+  return value.replace(/&(#\d+|#x[0-9a-f]+|[a-z]+);/gi, (match, code) => {
+    if (code[0] === '#') {
+      const point = code[1].toLowerCase() === 'x'
+        ? parseInt(code.slice(2), 16)
+        : Number(code.slice(1));
+      return Number.isNaN(point) ? match : String.fromCodePoint(point);
+    }
+    return NAMED_ENTITIES[code.toLowerCase()] ?? match;
+  });
+}
+
 function responsiveImage(media) {
   if (!media?.image_urls) return '';
 
@@ -41,6 +60,8 @@ function hydrate(articles, categoryMap, locale) {
     enrichedCategories: (article.categories || [])
       .map(name => categoryMap.get(name))
       .filter(Boolean),
+    summary: decodeEntities(article.summary),
+    sentences: (article.sentences || []).map(decodeEntities),
     body: article.type === 'Tradition' ? traditionBody(article, locale) : null
   }));
 }

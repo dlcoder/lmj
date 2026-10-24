@@ -25,6 +25,7 @@ npm ci               # install dependencies (honours package-lock.json)
 npm run build        # build the site into _site/
 npm run serve        # dev server with hot reload
 npm run clean        # remove _site/ and .cache/
+npm run validate     # check _data/raw/ for broken references and gaps
 npm run check-links  # build and validate internal links with linkinator
 ```
 
@@ -38,6 +39,8 @@ npm run check-links  # build and validate internal links with linkinator
 │   ├── raw/                          # Raw JSON, exported from Rails
 │   │   ├── es_articles.json          # 164 articles
 │   │   ├── en_articles.json          # 164 articles
+│   │   ├── es_pages.json             # 10 static pages
+│   │   ├── en_pages.json             # 8 static pages
 │   │   ├── es_categories.json        # 11 categories
 │   │   ├── en_categories.json        # 11 categories
 │   │   └── regions.json              # 9 regions → 97 nested localities
@@ -72,6 +75,7 @@ npm run check-links  # build and validate internal links with linkinator
 │   ├── slide-navigation.js
 │   └── localities-map.js             # Leaflet map on the home page
 ├── scripts/                          # Dev utilities (not part of the build)
+│   ├── validate-data.mjs             # Raw data integrity checks (runs in CI)
 │   ├── serve-site.mjs                # Static server mimicking GitHub Pages
 │   └── check-links.mjs               # Internal link validation
 ├── content/                          # HTML for the 3 `Tradition` articles (ES+EN); ignored today
@@ -141,8 +145,14 @@ All article lists are sorted by `published_at` in descending order (newest first
 ## Data Structure
 
 ### Articles
+- `id` — stable across locales, and the **only** way to pair an article with its
+  translation: 16 articles have a different slug in each language, and the 107 untranslated
+  ones reuse the Spanish slug
 - Content and metadata (`title`, `summary`, `sentences`, `published_at`, `hashtag`, `type`,
   `translated`, `related_articles`, geolocation)
+- `summary` and `sentences` are plain text, HTML entities already decoded during hydration
+- `body` — only for `Tradition` articles: the HTML from `content/`, with its `[img::N]`
+  placeholders resolved to real images
 - `type`: `Place` (161) or `Tradition` (3; the body lives in `content/`)
 - `media[]`: 2,068 photos + 4 videos. Look for `featured: true` and `type: "Photo"` for the featured one
 - `image_urls`: relative paths per size, to be concatenated with `STATICS_HOST`
@@ -203,8 +213,6 @@ The most relevant items when touching templates:
 - The article gallery paints photos with `background-image` and per-breakpoint custom
   properties: no `srcset`, no lazy loading. Moving to `<picture>`/`<img>` is the biggest
   pending performance win (−92% traffic).
-- The 3 `Tradition` articles render with an empty body: `partials/article.njk` checks
-  `content_in_separate_page`, a flag that does not exist in the JSON.
 - 107 of 164 articles have `translated: false` and are published in EN anyway.
 - Articles are written as `{slug}.html` but linked without the extension
   (`/es/articles/{slug}`). This works because GitHub Pages resolves `.html` automatically,

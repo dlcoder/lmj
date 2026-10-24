@@ -16,7 +16,7 @@
             {% else %}
             <ul>
               {%- for sentence in article.sentences -%}
-                <li>{{ sentence | safe }}</li>
+                <li>{{ sentence }}</li>
               {%- endfor -%}
             </ul>
             {% endif %}

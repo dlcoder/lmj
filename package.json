@@ -12,6 +12,7 @@
     "build": "eleventy",
     "serve": "eleventy --serve",
     "clean": "rm -rf _site .cache",
+    "validate": "node scripts/validate-data.mjs",
     "check-links": "npm run build && node scripts/check-links.mjs"
   },
   "dependencies": {
