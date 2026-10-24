@@ -1,137 +1,181 @@
 # Lugares Míticos de Jaén
 
 A bilingual (Spanish/English) static website about mythical and legendary places in Jaén, Spain.
+Migrated from a previous Rails app.
 
-> **Note:** Keep this file updated when making structural changes (new files, filters, shortcodes, etc.).
+> **Single source of truth.** `CLAUDE.md` is a symlink to this file. Keep it up to date when making
+> structural changes (new templates, filters, shortcodes, data files).
 
-**Live site:** https://www.lugaresmiticosdejaen.com/
+**Live site:** https://www.lugaresmiticosdejaen.com/ (still served by the original Rails app)
 
 ## Tech Stack
 
-- **Static Site Generator:** Eleventy 3.x (11ty)
-- **Templating:** Nunjucks (.njk)
-- **Language:** ES Modules (type: module)
-
-## Project Structure
-
-```
-├── .eleventy.js      # Eleventy configuration
-├── _data/            # Global data files (Eleventy auto-loads)
-│   ├── raw/          # Raw JSON data
-│   │   ├── en_articles.json
-│   │   ├── es_articles.json
-│   │   ├── en_categories.json
-│   │   ├── es_categories.json
-│   │   └── regions.json      # Regions with nested localities
-│   ├── base.js       # Shared utilities and generatePaginatedPages()
-│   ├── articles.js   # Hydrated articles with enriched data
-│   ├── all_pages.js  # All page collections (categories, regions, localities)
-│   ├── index_pages.js # Index page generation
-│   └── i18n.js       # Translation strings
-├── src/              # Source pages (locale-aware templates)
-│   ├── index.njk     # Root (language redirect)
-│   ├── index_redirect_to_locale.njk
-│   ├── article.njk   # Article template (uses locale variable)
-│   ├── category.njk  # Category index template
-│   ├── locality.njk  # Locality index template
-│   └── region.njk    # Region index template
-├── _includes/        # Templates and partials
-│   ├── layouts/
-│   │   └── main.njk
-│   └── partials/
-│       ├── article.njk
-│       ├── article-category.njk
-│       ├── article-date.njk
-│       ├── article-location.njk
-│       ├── index-of-articles.njk
-│       └── pagination.njk
-├── content/          # Content files - tradition articles (currently ignored)
-└── _site/            # Build output (gitignored)
-```
+| | |
+|---|---|
+| Static Site Generator | Eleventy 3.1.7 (version pinned exactly) |
+| Templating | Nunjucks (`.njk`) |
+| Language | ES Modules (`"type": "module"`) |
+| Node | defined in `.nvmrc` (v26.12.1); the workflow reads it from there |
+| Deployment | GitHub Actions → GitHub Pages |
 
 ## Commands
 
 ```bash
-npm run build    # Build the site
-npm run serve    # Start dev server with hot reload
+npm ci               # install dependencies (honours package-lock.json)
+npm run build        # build the site into _site/
+npm run serve        # dev server with hot reload
+npm run clean        # remove _site/ and .cache/
+npm run check-links  # build and validate internal links with linkinator
 ```
 
-## Key Configuration
+## Project Structure
 
-- **Static assets host:** `https://lmjstatic.deliriumcoder.com`
-- **Global data:** Auto-loaded from `_data/` - includes `all_articles`, `all_categories`, `all_regions`, `all_localities`, `all_indices`, `i18n`
-- **Filters:**
-  - `formatDate` - formats date strings as DD/MM/YYYY
+```
+├── .eleventy.js                      # Eleventy configuration
+├── .nvmrc                            # Node version (single source)
+├── CNAME                             # GitHub Pages domain
+├── _data/                            # Global data (Eleventy auto-loads)
+│   ├── raw/                          # Raw JSON, exported from Rails
+│   │   ├── es_articles.json          # 164 articles
+│   │   ├── en_articles.json          # 164 articles
+│   │   ├── es_categories.json        # 11 categories
+│   │   ├── en_categories.json        # 11 categories
+│   │   └── regions.json              # 9 regions → 97 nested localities
+│   ├── base.js                       # Lookup maps + generatePaginatedPages()
+│   ├── articles.js                   # Hydrated articles per locale
+│   ├── index_pages.js                # Main index pages
+│   ├── all_pages.js                  # All page collections
+│   ├── categories_list.js            # Categories for the home page
+│   ├── localities_list.js            # Localities with article counts
+│   └── i18n.js                       # Translation strings
+├── src/                              # Page templates (locale-aware)
+│   ├── index_redirect_to_locale.njk  # `/` → JS language redirect
+│   ├── index.njk                     # Home page per locale
+│   ├── articles.njk                  # All-articles index
+│   ├── article.njk                   # Article
+│   ├── category.njk                  # Category index
+│   ├── region.njk                    # Region index
+│   └── locality.njk                  # Locality index
+├── _includes/
+│   ├── layouts/main.njk              # Single layout
+│   └── partials/
+│       ├── article.njk               # Article body (slides + gallery)
+│       ├── article-grid.njk          # Card grid + pagination
+│       ├── article-category.njk
+│       ├── article-date.njk
+│       ├── article-location.njk
+│       └── pagination.njk
+├── css/styles.css                    # Passthrough-copied to _site/css/
+├── js/                               # Passthrough-copied to _site/js/
+│   ├── hamburger-menu.js
+│   ├── slide-scroll.js
+│   ├── slide-navigation.js
+│   └── localities-map.js             # Leaflet map on the home page
+├── scripts/                          # Dev utilities (not part of the build)
+│   ├── serve-site.mjs                # Static server mimicking GitHub Pages
+│   └── check-links.mjs               # Internal link validation
+├── content/                          # HTML for the 3 `Tradition` articles (ES+EN); ignored today
+└── _site/                            # Build output (gitignored)
+```
+
+## Key Configuration (`.eleventy.js`)
+
+- **Static assets host:** `https://lmjstatic.deliriumcoder.com` (`STATICS_HOST` constant)
+- **Global data:** `env`, `timestamp` (CSS/JS cache busting)
+- **Filters:** `formatDate` → `DD/MM/YYYY`
 - **Shortcodes:**
-  - `featured_image` - generates image URLs from article media
-  - `static_image` - generates static asset URLs
-- **Ignored paths:** `AGENTS.md`, `CLAUDE.md`, `README.md`, `content`
+  - `featured_image(article, size)` — URL of the featured photo (`featured: true` and `type: "Photo"`)
+  - `static_image(path)` — absolute URL of a bucket asset
+- **Passthrough copy:** `css`, `js`
+- **Ignored paths:** `AGENTS.md`, `CLAUDE.md`, `README.md`, `content`. Anything in `.gitignore`
+  (`node_modules`, `_site`) is ignored by Eleventy on its own — no need to repeat it
 
 ## Data Architecture
 
-### Raw Data (`_data/raw/`)
-- `en_articles.json` / `es_articles.json` - Article content per locale
-- `en_categories.json` / `es_categories.json` - Category definitions per locale
-- `regions.json` - Regions with nested localities array
+### `base.js`
+- `localityMap` — `Map` of locality name → object including its region
+- `enCategoryMap` / `esCategoryMap` — `Map` of category name → object
+- `generatePaginatedPages({ entities, articles, filterFn, entityKey, pathPrefix, locale, includeEmpty })`
+  — generates paginated pages for any entity type. **`PAGE_SIZE = 12`.** Sorts by `published_at`
+  descending and returns objects with `articles`, `locale`, `pagination` and the entity itself.
+  With `includeEmpty: true` it also generates pages with no articles (used by localities).
 
-### Data Processing (`_data/`)
-- **base.js** - Exports shared utilities:
-  - `localityMap` - Fast lookup for localities by name
-  - `enCategoryMap` / `esCategoryMap` - Fast lookup for categories
-  - `generatePaginatedPages()` - Generic pagination function for any entity type
-- **articles.js** - Hydrates raw articles with:
-  - `enrichedLocalities` - Full locality objects with region info
-  - `enrichedCategories` - Full category objects
-- **all_pages.js** - Exports page collections:
-  - `all_categories` - Paginated category pages (both locales)
-  - `all_regions` - Paginated region pages (both locales)
-  - `all_localities` - Paginated locality pages (both locales)
-  - `all_indices` - Index pages (both locales)
-  - `all_articles` - All articles with locale property
-- **i18n.js** - Translation strings keyed by locale (`en`, `es`)
+### `articles.js`
+Hydrates the raw JSON, adding to each article:
+- `enrichedLocalities` — full locality objects, including their region
+- `enrichedCategories` — full category objects
+
+Exports `en`, `es` and, as default, the union of both with a `locale` property.
+
+### `all_pages.js`
+| Export | Contents |
+|---|---|
+| `all_articles` | every article from both locales |
+| `all_indices` | main index pages (both locales) |
+| `all_home_pages` | only the first page of each index → the home page |
+| `all_categories` | paginated category pages |
+| `all_regions` | paginated region pages |
+| `all_localities` | paginated locality pages (empty ones included) |
+
+### `categories_list.js` / `localities_list.js`
+Lists for the home page blocks. `categories_list` maps each category to its `imageSlug` (the
+**English** slug, because that is how the bucket files are named). `localities_list` adds
+`articleCount` and sorts alphabetically with `localeCompare('es')`.
 
 ## Page Generation
 
-All pages use unified locale-aware templates with a `locale` variable.
+All templates are unified and receive the language in the `locale` variable.
 
-**Article pages:**
-- Data source: `all_articles` (from `articles.js`)
-- URLs: `/{locale}/articles/{slug}.html`
-- Template: `src/article.njk`
-
-**Index pages:**
-- Data source: `all_indices` (from `all_pages.js`)
-- URLs: `/{locale}/` and `/{locale}/page/{n}/`
-- Template: `src/index.njk`
-
-**Category pages:**
-- Data source: `all_categories` (from `all_pages.js`)
-- URLs: `/{locale}/categories/{slug}/` and `/{locale}/categories/{slug}/page/{n}/`
-- Template: `src/category.njk`
-
-**Region pages:**
-- Data source: `all_regions` (from `all_pages.js`)
-- URLs: `/{locale}/regions/{slug}/` and `/{locale}/regions/{slug}/page/{n}/`
-- Template: `src/region.njk`
-
-**Locality pages:**
-- Data source: `all_localities` (from `all_pages.js`)
-- URLs: `/{locale}/localities/{slug}/` and `/{locale}/localities/{slug}/page/{n}/`
-- Template: `src/locality.njk`
+| Page | Data source | URL | Template |
+|---|---|---|---|
+| Root redirect | — | `/` | `src/index_redirect_to_locale.njk` |
+| Home | `all_home_pages` | `/{locale}/` | `src/index.njk` |
+| All articles | `all_indices` | `/{locale}/articles/`, `/{locale}/articles/page/{n}/` | `src/articles.njk` |
+| Article | `all_articles` | `/{locale}/articles/{slug}.html` | `src/article.njk` |
+| Category | `all_categories` | `/{locale}/categories/{slug}/`, `…/page/{n}/` | `src/category.njk` |
+| Region | `all_regions` | `/{locale}/regions/{slug}/`, `…/page/{n}/` | `src/region.njk` |
+| Locality | `all_localities` | `/{locale}/localities/{slug}/`, `…/page/{n}/` | `src/locality.njk` |
 
 All article lists are sorted by `published_at` in descending order (newest first).
 
 ## Data Structure
 
 ### Articles
-- Content and metadata
-- `media` array with images (look for `featured: true` and `type: "Photo"`)
-- `enrichedLocalities` - Pre-hydrated locality objects with region info
-- `enrichedCategories` - Pre-hydrated category objects
-- Image URLs available in multiple sizes via `image_urls` object
+- Content and metadata (`title`, `summary`, `sentences`, `published_at`, `hashtag`, `type`,
+  `translated`, `related_articles`, geolocation)
+- `type`: `Place` (161) or `Tradition` (3; the body lives in `content/`)
+- `media[]`: 2,068 photos + 4 videos. Look for `featured: true` and `type: "Photo"` for the featured one
+- `image_urls`: relative paths per size, to be concatenated with `STATICS_HOST`
+
+### Image Sizes
+
+**Featured images** (`featured: true`)
+
+| Key | Dimensions | Notes |
+|---|---|---|
+| `big_teaser_desktop_hd` | 1920x768 | Cropped |
+| `big_teaser_desktop` | 1120x448 | Cropped |
+| `big_teaser_tablet` | 640x256 | Cropped |
+| `big_teaser_mobile` | 480x192 | Cropped |
+| `teaser_desktop_hd` | 640w | Proportional |
+| `teaser_desktop` | 375w | Proportional |
+| `teaser_tablet` | 320w | Proportional |
+| `teaser_mobile` | 480w | Proportional |
+| `facebook` | 1200x630 | Cropped (Open Graph) |
+
+**Non-featured images** (`featured: false`)
+
+| Key | Dimensions | Notes |
+|---|---|---|
+| `desktop_hd` | 1920w | Proportional |
+| `desktop` | 1120w | Proportional |
+| `tablet` | 640w | Proportional |
+| `mobile` | 480w | Proportional |
+
+All images also have an `original` size available.
 
 ### Regions (`regions.json`)
-Each region contains a `localities` array with nested locality objects:
+
 ```json
 {
   "name": "Sierra de Cazorla",
@@ -143,31 +187,29 @@ Each region contains a `localities` array with nested locality objects:
 }
 ```
 
-### Image Sizes
-
-**Featured images** (`featured: true`):
-| Key | Dimensions | Notes |
-|-----|------------|-------|
-| `big_teaser_desktop_hd` | 1920x768 | Cropped |
-| `big_teaser_desktop` | 1120x448 | Cropped |
-| `big_teaser_tablet` | 640x256 | Cropped |
-| `big_teaser_mobile` | 480x192 | Cropped |
-| `teaser_desktop_hd` | 640w | Proportional |
-| `teaser_desktop` | 375w | Proportional |
-| `teaser_tablet` | 320w | Proportional |
-| `teaser_mobile` | 480w | Proportional |
-| `facebook` | 1200x630 | Cropped |
-
-**Non-featured images** (`featured: false`):
-| Key | Dimensions | Notes |
-|-----|------------|-------|
-| `desktop_hd` | 1920w | Proportional |
-| `desktop` | 1120w | Proportional |
-| `tablet` | 640w | Proportional |
-| `mobile` | 480w | Proportional |
-
-All images also have an `original` size available.
-
 ## Deployment
 
-Deployed via GitHub Actions to GitHub Pages.
+`.github/workflows/deploy-to-ghpages.yml`: on every push to `main` it builds with
+`ELEVENTY_ENV=production` and publishes `_site/` to the GitHub Pages branch via
+`peaceiris/actions-gh-pages`, setting the domain from the `CNAME` file. Pull requests build
+but do not publish.
+
+## Known Debt
+
+The most relevant items when touching templates:
+
+- `main.njk` has a hardcoded `<html lang="en">`, and there is no Open Graph, `hreflang`,
+  `canonical`, `sitemap.xml`, `robots.txt` or 404 page.
+- The article gallery paints photos with `background-image` and per-breakpoint custom
+  properties: no `srcset`, no lazy loading. Moving to `<picture>`/`<img>` is the biggest
+  pending performance win (−92% traffic).
+- The 3 `Tradition` articles render with an empty body: `partials/article.njk` checks
+  `content_in_separate_page`, a flag that does not exist in the JSON.
+- 107 of 164 articles have `translated: false` and are published in EN anyway.
+- Articles are written as `{slug}.html` but linked without the extension
+  (`/es/articles/{slug}`). This works because GitHub Pages resolves `.html` automatically,
+  but it ties the site to hosts with that convention. `npm run check-links` reproduces that
+  behaviour locally via `scripts/serve-site.mjs`.
+- Leaflet is loaded from unpkg.
+- Missing: the Rails static pages (`about-us`, `the-team`, `press`, books, `cookies`…),
+  the footer, the language switcher and the explorer map with filters.

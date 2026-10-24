@@ -1,17 +1,20 @@
 {
   "name": "lugares-miticos-de-jaen",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "build": "npx @11ty/eleventy",
-    "serve": "npx @11ty/eleventy --serve"
-  },
-  "keywords": [],
-  "author": "",
+  "description": "Bilingual (Spanish/English) static website about mythical and legendary places in Jaen, Spain",
+  "homepage": "https://www.lugaresmiticosdejaen.com/",
   "license": "ISC",
   "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "build": "eleventy",
+    "serve": "eleventy --serve",
+    "clean": "rm -rf _site .cache",
+    "check-links": "npm run build && node scripts/check-links.mjs"
+  },
   "dependencies": {
-    "@11ty/eleventy": "^3.1.2"
+    "@11ty/eleventy": "3.1.7"
   }
 }
