@@ -573,6 +573,15 @@ body.article-page .main-container {
   object-position: center;
 }
 
+.article-gallery--video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 4px;
+  background-color: #000;
+}
+
 @media (min-width: 1280px) {
   body.article-page {
     background-color: #000;
@@ -744,6 +753,12 @@ body.article-page .main-container {
     max-width: 1920px;
     aspect-ratio: auto;
     object-fit: contain;
+  }
+
+  /* As large as the slide allows while staying 16:9. */
+  .article-gallery--media .article-gallery--video {
+    width: min(100%, 1920px, 90vh * 16 / 9);
+    border-radius: 0;
   }
 
 

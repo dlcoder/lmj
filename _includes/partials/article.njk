@@ -47,9 +47,21 @@
       </div>
     </div>
 
-    {%- for media in article.galleryPhotos -%}
+    {%- for media in article.galleryMedia -%}
         <div class="slides--slide">
           <div class="article-gallery--media">
+            {%- if media.type == "Video" %}
+            {#- Four articles carry a video, always a YouTube code. The
+                no-cookie host keeps the cookie policy true, and the frame
+                waits to be scrolled to like the photos do. -#}
+            <iframe class="article-gallery--video"
+                    src="https://www.youtube-nocookie.com/embed/{{ media.youtube_code }}"
+                    title="{{ article.title }} (YouTube)"
+                    loading="lazy"
+                    allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                    allowfullscreen
+                    referrerpolicy="strict-origin-when-cross-origin"></iframe>
+            {%- else %}
             {#- A gallery runs to eleven photos on the median article and
                 twenty on the longest, and the deck shows one at a time, so
                 they wait until they are scrolled to. Unlike the carousel's,
@@ -68,6 +80,7 @@
                  alt=""
                  loading="lazy"
                  decoding="async">
+            {%- endif %}
           </div>
         </div>
     {%- endfor -%}

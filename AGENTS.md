@@ -193,7 +193,9 @@ All article lists are sorted by `published_at` in descending order (newest first
 - `body` — only for `Tradition` articles: the HTML from `content/`, with its `[img::N]`
   placeholders resolved to real images
 - `type`: `Place` (161) or `Tradition` (3; the body lives in `content/`)
-- `media[]`: 2,068 photos + 4 videos. Look for `featured: true` and `type: "Photo"` for the featured one
+- `media[]`: 2,068 photos + 4 videos. Look for `featured: true` and `type: "Photo"` for the featured one.
+  A video carries only its `youtube_code`; hydration adds `galleryMedia` (everything but the
+  featured item, videos in place) for the deck, and `galleryPhotos` (photos only)
 - `image_urls`: relative paths per size, to be concatenated with `STATICS_HOST`
 
 ### Image Sizes

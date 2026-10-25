@@ -36,6 +36,8 @@ const pages = [
   // broken index-based assumptions before.
   { name: 'place-last-featured', url: '/es/articles/hoya-del-salobral' },
   { name: 'place-en',  url: '/en/articles/el-posito' },
+  // One of the four articles with a YouTube video among its photos.
+  { name: 'place-video', url: '/es/articles/castillo-de-sabiote-i' },
   { name: 'tradition', url: '/es/articles/la-forja' }
 ];
 
@@ -73,6 +75,8 @@ async function measure(page) {
       introBackground: document.querySelector('.article-gallery')
         ? getComputedStyle(document.querySelector('.article-gallery')).backgroundImage : null,
       galleryImages: document.querySelectorAll('.article-gallery--photo').length,
+      galleryVideos: [...document.querySelectorAll('.article-gallery--video')]
+        .map(el => Math.round(el.getBoundingClientRect().height)),
       traditionIntro: box('.article-tradition__intro'),
       traditionSections: [...document.querySelectorAll('.article-tradition__full-image-with-text, .article-tradition__closing')]
         .map(el => Math.round(el.getBoundingClientRect().height)),
@@ -118,6 +122,11 @@ function check(name, width, m, consoleErrors) {
       if (m.dots !== 0) fail(where, `${m.dots} dots outside the deck`);
       if (m.startButton !== 'none') fail(where, `the start button shows at ${width}px`);
     }
+  }
+
+  if (name === 'place-video') {
+    if (m.galleryVideos.length !== 1) fail(where, `${m.galleryVideos.length} videos in the gallery, expected 1`);
+    else if (m.galleryVideos[0] < 150) fail(where, `the video collapsed to ${m.galleryVideos[0]}px`);
   }
 
   if (name === 'tradition') {

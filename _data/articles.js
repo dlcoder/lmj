@@ -65,6 +65,9 @@ function hydrate(articles, categoryMap, locale) {
     return {
     ...article,
     galleryPhotos: galleryMedia.filter(m => m.type === 'Photo'),
+    // The deck's slides: the photos and, in their place among them, the four
+    // YouTube videos, which the old app rendered in the same slide.
+    galleryMedia,
     enrichedLocalities: (article.localities || [])
       .map(name => localityMap.get(name))
       .filter(Boolean),
