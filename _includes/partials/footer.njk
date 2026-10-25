@@ -1,9 +1,6 @@
 {%- set t = i18n[locale].footer -%}
 {%- set other = "en" if locale == "es" else "es" -%}
-{%- set pageSlugs = {
-  es: { about: "acerca-de", books: "los-libros", cookies: "cookies", copyright: "copyright" },
-  en: { about: "about-us", books: "the-books", cookies: "cookies", copyright: "copyright" }
-} -%}
+{%- set slugs = i18n[locale].pages -%}
 
 <footer class="footer">
   <div class="footer-container">
@@ -31,8 +28,8 @@
         <h2 class="footer-sitemap--title">{{ t.project }}</h2>
         <ul class="footer-sitemap--list">
           <li><a href="/{{ locale }}/">{{ i18n[locale].nav.home }}</a></li>
-          <li><a href="/{{ locale }}/{{ pageSlugs[locale].about }}">{{ t.about }}</a></li>
-          <li><a href="/{{ locale }}/{{ pageSlugs[locale].books }}">{{ t.books }}</a></li>
+          <li><a href="/{{ locale }}/{{ slugs.project }}">{{ i18n[locale].nav.project }}</a></li>
+          <li><a href="/{{ locale }}/{{ slugs.books }}">{{ i18n[locale].nav.books }}</a></li>
         </ul>
       </div>
     </nav>
@@ -79,8 +76,8 @@
           <a href="http://www.studiojosetorres.com/" rel="noopener">Studio José Torres</a>
         </p>
         <ul class="footer-credits--legal">
-          <li><a href="/{{ locale }}/{{ pageSlugs[locale].cookies }}">{{ t.cookies }}</a></li>
-          <li><a href="/{{ locale }}/{{ pageSlugs[locale].copyright }}">{{ t.copyright }}</a></li>
+          <li><a href="/{{ locale }}/{{ slugs.cookies }}">{{ t.cookies }}</a></li>
+          <li><a href="/{{ locale }}/{{ slugs.copyright }}">{{ t.copyright }}</a></li>
         </ul>
       </div>
     </div>

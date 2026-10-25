@@ -16,14 +16,22 @@ export default {
     },
     nav: {
       home: "Home",
-      articles: "Articles"
+      articles: "Articles",
+      project: "The project",
+      books: "The books"
+    },
+    // Slugs differ per language, so the header and the footer read them from
+    // here rather than each keeping its own copy.
+    pages: {
+      project: "about-us",
+      books: "the-books",
+      cookies: "cookies",
+      copyright: "copyright"
     },
     footer: {
       discover: "Discover Jaén",
       regions: "Regions",
       project: "The project",
-      about: "The project",
-      books: "The books",
       allArticles: "All articles",
       cookies: "Cookie policy",
       copyright: "Copyright",
@@ -57,14 +65,20 @@ export default {
     },
     nav: {
       home: "Inicio",
-      articles: "Artículos"
+      articles: "Artículos",
+      project: "El proyecto",
+      books: "Los libros"
+    },
+    pages: {
+      project: "acerca-de",
+      books: "los-libros",
+      cookies: "cookies",
+      copyright: "copyright"
     },
     footer: {
       discover: "Descubre Jaén",
       regions: "Comarcas",
       project: "El proyecto",
-      about: "El proyecto",
-      books: "Los libros",
       allArticles: "Todos los artículos",
       cookies: "Política de cookies",
       copyright: "Copyright",
