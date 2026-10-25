@@ -9,6 +9,13 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   {%- endif -%}
+  {#- Only the maps that plot articles need the clusters: 43 of them land on
+      Jaén alone, most inside the old town. It is what the original used. -#}
+  {%- if includeMarkerCluster -%}
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" integrity="sha256-YU3qCpj/P06tdPBJGPax0bm6Q1wltfwjsho5TR4+TYc=" crossorigin="">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" integrity="sha256-YSWCMtmNZNwqex4CEw1nQhvFub2lmU7vcCKP+XVwwXA=" crossorigin="">
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" integrity="sha256-Hk4dIpcqOSb0hZjgyvFOP+cEmDXUKKNE/tT542ZbNQg=" crossorigin=""></script>
+  {%- endif -%}
   <link rel="stylesheet" href="/css/styles.css?v={{ timestamp }}">
   <script src="/js/hamburger-menu.js?v={{ timestamp }}" defer></script>
   <script src="/js/article-slides.js?v={{ timestamp }}" defer></script>
@@ -17,6 +24,9 @@
   {%- endif -%}
   {%- if includeLatestArticles -%}
   <script src="/js/latest-articles.js?v={{ timestamp }}" defer></script>
+  {%- endif -%}
+  {%- if includeLocalityMap -%}
+  <script src="/js/locality-map.js?v={{ timestamp }}" defer></script>
   {%- endif -%}
   {%- if includeArticleMap -%}
   <script src="/js/article-map.js?v={{ timestamp }}" defer></script>

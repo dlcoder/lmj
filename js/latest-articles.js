@@ -41,19 +41,19 @@
     return pool.slice(0, count);
   }
 
-  function imageUrl(host, article, variant) {
-    return `${host}/system/medium/photos/images/${article.p}/${variant}/${article.f}`;
+  function imageUrl(base, article, variant) {
+    return `${base}/${article.p}/${variant}/${article.f}`;
   }
 
-  function paint(slide, article, host, locale) {
+  function paint(slide, article, base, locale) {
     slide.href = `/${locale}/articles/${article.s}`;
 
     const image = slide.querySelector('.latest-article--image');
     image.setAttribute('aria-label', article.t);
-    image.style.setProperty('--img-mobile', `url('${imageUrl(host, article, 'big_teaser_mobile')}')`);
-    image.style.setProperty('--img-tablet', `url('${imageUrl(host, article, 'big_teaser_tablet')}')`);
-    image.style.setProperty('--img-desktop', `url('${imageUrl(host, article, 'big_teaser_desktop')}')`);
-    image.style.setProperty('--img-desktop-hd', `url('${imageUrl(host, article, 'big_teaser_desktop_hd')}')`);
+    image.style.setProperty('--img-mobile', `url('${imageUrl(base, article, 'big_teaser_mobile')}')`);
+    image.style.setProperty('--img-tablet', `url('${imageUrl(base, article, 'big_teaser_tablet')}')`);
+    image.style.setProperty('--img-desktop', `url('${imageUrl(base, article, 'big_teaser_desktop')}')`);
+    image.style.setProperty('--img-desktop-hd', `url('${imageUrl(base, article, 'big_teaser_desktop_hd')}')`);
 
     slide.querySelector('.latest-article--title').textContent = article.t;
     slide.querySelector('.latest-article--location').textContent = article.l;
@@ -63,13 +63,13 @@
   const index = document.getElementById('latest-articles-index');
   if (index) {
     try {
-      const { host, articles } = JSON.parse(index.textContent);
+      const { host, imageBase, articles } = JSON.parse(index.textContent);
       // The path is the reliable source: <html lang> is still hardcoded.
       const locale = location.pathname.split('/')[1] || 'es';
       // Repainting the slides the server rendered, rather than building new
       // ones, keeps the no-JavaScript markup as the fallback.
       pickForToday(articles, slides.length)
-        .forEach((article, i) => paint(slides[i], article, host, locale));
+        .forEach((article, i) => paint(slides[i], article, host + imageBase, locale));
     } catch (error) {
       // A broken index is no reason to lose the carousel: the slides the
       // server rendered are already there and perfectly good.

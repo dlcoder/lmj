@@ -74,3 +74,23 @@ export function generatePaginatedPages({
 
   return pages;
 }
+
+// Every variant of a photo lives under the same directory but for the size
+// segment:
+//   /system/medium/photos/images/000/000/001/<variant>/01.jpg
+// so the JSON indexes carry only the directory and the file name and let the
+// client build whichever sizes it needs. Over 164 articles that is the
+// difference between an index of ~80 KB and one of ~20 KB.
+export const IMAGE_BASE = '/system/medium/photos/images';
+
+const IMAGE_PATH = new RegExp(`^${IMAGE_BASE}/(.+)/[^/]+/([^/]+)$`);
+
+/**
+ * The directory and file name of an article's featured photo, or null when it
+ * has none or its path is not the one the bucket uses.
+ */
+export function featuredImageParts(article) {
+  const featured = article.media?.find(m => m.featured && m.type === 'Photo');
+  const match = featured?.image_urls?.teaser_tablet?.match(IMAGE_PATH);
+  return match ? { dir: match[1], file: match[2] } : null;
+}

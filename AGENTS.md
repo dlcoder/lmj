@@ -51,6 +51,8 @@ npm run check-pages  # render the built pages in a browser and assert the layout
 │   ├── all_pages.js                  # All page collections
 │   ├── categories_list.js            # Categories for the home page
 │   ├── localities_list.js            # Localities with article counts
+│   ├── carousel_articles.js          # Compact index for the home carousel
+│   ├── articles_index.js             # GeoJSON index of geolocated articles
 │   └── i18n.js                       # Translation strings
 ├── src/                              # Page templates (locale-aware)
 │   ├── index_redirect_to_locale.njk  # `/` → JS language redirect
@@ -60,6 +62,7 @@ npm run check-pages  # render the built pages in a browser and assert the layout
 │   ├── category.njk                  # Category index
 │   ├── region.njk                    # Region index
 │   ├── locality.njk                  # Locality index
+│   ├── articles_index.njk            # Writes `/{locale}/articles.json`
 │   └── pages/                        # Hand-written static pages (one per locale)
 ├── _includes/
 │   ├── layouts/main.njk              # Single layout
@@ -80,6 +83,7 @@ npm run check-pages  # render the built pages in a browser and assert the layout
 │   ├── article-slides.js             # Keyboard and dots for the article deck
 │   ├── article-map.js                # Leaflet map in the article closing block
 │   ├── latest-articles.js            # Home carousel
+│   ├── locality-map.js               # Leaflet map on the locality page
 │   └── localities-map.js             # Leaflet map on the home page
 ├── scripts/                          # Dev utilities (not part of the build)
 │   ├── validate-data.mjs             # Raw data integrity checks (runs in CI)
@@ -92,6 +96,9 @@ npm run check-pages  # render the built pages in a browser and assert the layout
 
 ## Key Configuration (`.eleventy.js`)
 
+- **Leaflet** comes from unpkg, and only on the pages that need it (`includeLeaflet`);
+  `leaflet.markercluster` is a second flag (`includeMarkerCluster`), for the maps that plot
+  articles — Jaén alone has 43 of them
 - **Static assets host:** `https://lmjstatic.deliriumcoder.com` (`STATICS_HOST` constant)
 - **Global data:** `env`, `timestamp` (CSS/JS cache busting)
 - **Filters:** `formatDate` → `DD/MM/YYYY`
@@ -107,6 +114,9 @@ npm run check-pages  # render the built pages in a browser and assert the layout
 ### `base.js`
 - `localityMap` — `Map` of locality name → object including its region
 - `enCategoryMap` / `esCategoryMap` — `Map` of category name → object
+- `IMAGE_BASE` + `featuredImageParts(article)` — the directory and file name of an article's
+  featured photo. Every size of a photo shares its path but for the variant segment, so the
+  JSON indexes carry only those two halves and the client builds the URLs it needs
 - `generatePaginatedPages({ entities, articles, filterFn, entityKey, pathPrefix, locale, includeEmpty })`
   — generates paginated pages for any entity type. **`PAGE_SIZE = 12`.** Sorts by `published_at`
   descending and returns objects with `articles`, `locale`, `pagination` and the entity itself.
@@ -129,6 +139,17 @@ Exports `en`, `es` and, as default, the union of both with a `locale` property.
 | `all_regions` | paginated region pages |
 | `all_localities` | paginated locality pages (empty ones included) |
 
+### `articles_index.js`
+The **one** index of geolocated articles, one per locale, written to `/{locale}/articles.json`
+by `src/articles_index.njk`. A GeoJSON `FeatureCollection` in the same shape the Rails app
+served from `/articulos.json`, so Leaflet eats it as it comes: 159 `Point` features — the five
+articles without geolocation are left out — each carrying `title`, `path`, `localities` (ids,
+which is what names the outline files on the bucket), `categories` (slugs) and `image`
+(`{ dir, file }`). ~46 KB, **6,7 KB gzip**.
+
+Everything that needs articles on a map or in a list reads this one file: the locality map
+today, the explorer map and the search later.
+
 ### `categories_list.js` / `localities_list.js`
 Lists for the home page blocks. `categories_list` maps each category to its `imageSlug` (the
 **English** slug, because that is how the bucket files are named). `localities_list` adds
@@ -147,6 +168,7 @@ All templates are unified and receive the language in the `locale` variable.
 | Category | `all_categories` | `/{locale}/categories/{slug}/`, `…/page/{n}/` | `src/category.njk` |
 | Region | `all_regions` | `/{locale}/regions/{slug}/`, `…/page/{n}/` | `src/region.njk` |
 | Locality | `all_localities` | `/{locale}/localities/{slug}/`, `…/page/{n}/` | `src/locality.njk` |
+| Articles index | `articles_index` | `/{locale}/articles.json` | `src/articles_index.njk` |
 
 All article lists are sorted by `published_at` in descending order (newest first).
 
@@ -232,7 +254,7 @@ The most relevant items when touching templates:
   (`/es/articles/{slug}`). This works because GitHub Pages resolves `.html` automatically,
   but it ties the site to hosts with that convention. `npm run check-links` reproduces that
   behaviour locally via `scripts/serve-site.mjs`.
-- Leaflet is loaded from unpkg.
+- Leaflet and `leaflet.markercluster` are loaded from unpkg.
 - The home map reads municipality outlines from the assets host with `fetch()`, so CORS
   applies. That host answers with an allowlist of origins: the deployed domains are on it,
   local development is not unless the origin is added. `npm run check-pages` reports this

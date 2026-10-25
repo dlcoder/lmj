@@ -1802,3 +1802,57 @@ body.article-page .main-container {
   background: rgba(255, 255, 255, 0.8);
   font-size: 0.6875rem;
 }
+
+/* Locality pages
+   The map runs edge to edge, as it did in the original, where it sat outside
+   the wrapper. So the container drops its padding and its cap — a cap would
+   stop the map at 1920px and leave strips of page either side on a wider
+   screen — and the blocks around the map carry their own measure, the same
+   way the home page is built. */
+
+body.locality-page .main-container {
+  --container-padding: 0px;
+  max-width: none;
+  padding: 0;
+  /* Still clear of the fixed header. */
+  padding-top: 6rem;
+}
+
+.locality-wrapper {
+  margin: 0 auto;
+  max-width: 1920px;
+  padding: 0 2rem;
+}
+
+.locality-map {
+  /* The 500px of the original, which is a lot of phone, so it gives way
+     below the first breakpoint. */
+  height: 31.25rem;
+  margin: 2rem 0;
+  background-color: #eee;
+}
+
+@media (max-width: 768px) {
+  .locality-map {
+    height: 20rem;
+  }
+}
+
+/* The marker popups: the teaser photo with the title under it, the whole
+   thing a link. */
+
+.leaflet-popup-content a {
+  display: block;
+  color: #333;
+}
+
+.leaflet-popup-content img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.leaflet-popup-content h2 {
+  font-size: 1rem;
+  margin: 0.5rem 0 0;
+}

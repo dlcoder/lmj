@@ -72,6 +72,7 @@ async function measure(page) {
       traditionIntro: box('.article-tradition__intro'),
       traditionSections: [...document.querySelectorAll('.article-tradition__full-image-with-text, .article-tradition__closing')]
         .map(el => Math.round(el.getBoundingClientRect().height)),
+      localityMap: box('.locality-map'),
       pageTitle: box('.page-title'),
       pageProse: box('.page-prose')
     };
@@ -122,6 +123,16 @@ function check(name, width, m, consoleErrors) {
     }
     for (const height of m.traditionSections) {
       if (height < 300) fail(where, `a full-width section collapsed to ${height}px`);
+    }
+  }
+
+  // The map runs edge to edge, as it did in the original. The container it
+  // lives in is what used to stop it, so this is the thing to watch.
+  if (name === 'locality') {
+    if (!m.localityMap) {
+      fail(where, 'the locality map is missing');
+    } else if (m.localityMap.left !== 0 || m.localityMap.right !== m.viewport) {
+      fail(where, `the map does not reach the edges: ${m.localityMap.left}..${m.localityMap.right} of ${m.viewport}`);
     }
   }
 
@@ -275,6 +286,44 @@ for (const spec of pages) {
 
         if (before < 1) fail('home map', 'the province outline never loaded');
         else if (after <= before) fail('home map', 'pointing at a municipality draws nothing');
+      }
+    }
+
+    // A locality page opens with a map carrying a marker per article in the
+    // municipality, read from /{locale}/articles.json. That index is
+    // same-origin, so unlike the outline behind it — same CORS caveat as the
+    // home map — the markers can be held to account from anywhere.
+    //
+    // Baeza is the page under test rather than Jaén: with a single article
+    // there is no cluster in the way, so the marker itself can be clicked and
+    // its popup read. Jaén, with 43, is what the clustering is there for.
+    if (spec.name === 'locality' && width === WIDE) {
+      await page.goto(`${BASE}/es/localities/baeza/`, { waitUntil: 'networkidle' });
+      await page.waitForTimeout(800);
+      const markers = await page.evaluate(() =>
+        document.querySelectorAll('#locality-map .leaflet-marker-icon').length);
+
+      if (markers !== 1) {
+        fail('locality map', `${markers} markers for the one article in Baeza`);
+      } else {
+        // force: the marker sits under the fixed header once Playwright
+        // scrolls it into view, and the click is about the popup, not about
+        // whether the header is in the way.
+        await page.locator('#locality-map .leaflet-marker-icon').click({ force: true });
+        await page.waitForTimeout(300);
+        const popup = await page.evaluate(() => {
+          const link = document.querySelector('.leaflet-popup-content a');
+          return link && {
+            href: link.getAttribute('href'),
+            title: link.querySelector('h2')?.textContent,
+            image: !!link.querySelector('img')
+          };
+        });
+
+        if (!popup) fail('locality map', 'the marker opens no popup');
+        else if (!/^\/es\/articles\/./.test(popup.href) || !popup.title || !popup.image) {
+          fail('locality map', `the popup is incomplete: ${JSON.stringify(popup)}`);
+        }
       }
     }
 
