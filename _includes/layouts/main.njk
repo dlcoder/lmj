@@ -72,6 +72,9 @@
   {%- if includeLatestArticles -%}
   <script src="/js/latest-articles.js?v={{ timestamp }}" defer></script>
   {%- endif -%}
+  {%- if includeSearch -%}
+  <script src="/js/home-search.js?v={{ timestamp }}" defer></script>
+  {%- endif -%}
   {%- if includeLocalityMap -%}
   <script src="/js/locality-map.js?v={{ timestamp }}" defer></script>
   {%- endif -%}

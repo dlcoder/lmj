@@ -53,6 +53,7 @@ npm run build-icons  # re-render the icons in img/ after changing img/favicon.sv
 │   ├── regions_list.js               # Regions with their localities and counts
 │   ├── carousel_articles.js          # Compact index for the home carousel
 │   ├── articles_index.js             # GeoJSON index of geolocated articles
+│   ├── search_index.js               # Full-text index for the home search
 │   └── i18n.js                       # Translation strings
 ├── src/                              # Page templates (locale-aware)
 │   ├── index_redirect_to_locale.njk  # `/` → JS language redirect
@@ -66,6 +67,7 @@ npm run build-icons  # re-render the icons in img/ after changing img/favicon.sv
 │   ├── regions.njk                   # Index of the 9 regions
 │   ├── explorer.njk                  # Map of every article, filtered by locality and category
 │   ├── articles_index.njk            # Writes `/{locale}/articles.json`
+│   ├── search_index.njk              # Writes `/{locale}/search.json`
 │   └── pages/                        # Hand-written static pages (one per locale)
 ├── _includes/
 │   ├── layouts/main.njk              # Single layout
@@ -89,6 +91,7 @@ npm run build-icons  # re-render the icons in img/ after changing img/favicon.sv
 │   ├── article-slides.js             # Keyboard and dots for the article deck
 │   ├── article-map.js                # Leaflet map in the article closing block
 │   ├── latest-articles.js            # Home carousel
+│   ├── home-search.js                # Home search: loads search.json on first use
 │   ├── locality-map.js               # Leaflet map on the locality page
 │   ├── explorer-map.js               # Explorer map and its two filters
 │   └── localities-map.js             # Leaflet map on the home page and the localities index
@@ -166,6 +169,14 @@ Everything that needs articles on a map or in a list reads this one file: the lo
 and the explorer map today, the search later. The explorer keeps its filters in the query
 string (`?locality={id}&category={slug}`).
 
+### `search_index.js`
+The search on the home page, one file per locale at `/{locale}/search.json`: title, places,
+categories, summary and sentences of every article, newest first. ~240 KB, **~75 KB gzip**, so
+`js/home-search.js` fetches it the first time the field is used. It folds case and accents on both
+sides and needs every word of the query; titles weigh most, then places and categories, then text.
+Its results replace the category tiles under the "Discover" heading, and the query stays in `?q=`.
+There is no search page: the field only lives on the home page, by decision.
+
 ### `categories_list.js` / `localities_list.js`
 Lists for the home page blocks. `categories_list` maps each category to its `imageSlug` (the
 **English** slug, because that is how the bucket files are named). `localities_list` adds
@@ -188,6 +199,7 @@ All templates are unified and receive the language in the `locale` variable.
 | Regions index | `i18n` (one per locale) | `/{locale}/regions/` | `src/regions.njk` |
 | Explorer map | `i18n` (one per locale) | `/{locale}/localities/map/` | `src/explorer.njk` |
 | Articles index | `articles_index` | `/{locale}/articles.json` | `src/articles_index.njk` |
+| Search index | `search_index` | `/{locale}/search.json` | `src/search_index.njk` |
 | Sitemap | `collections.all` | `/sitemap.xml` | `src/sitemap.njk` |
 | Robots | — | `/robots.txt` | `src/robots.njk` |
 | Not found | — | `/404.html` (bilingual, `noindex`) | `src/404.njk` |
@@ -290,4 +302,3 @@ The most relevant items when touching templates:
   as a note rather than a failure, since it is configuration outside the repo. The origins
   used here are `http://localhost:8099` (`scripts/serve-site.mjs`) and `http://localhost:8123`
   (`scripts/check-pages.mjs`).
-- Missing: the article search, which the Rails app never had either.

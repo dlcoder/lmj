@@ -1,0 +1,11 @@
+---
+# The search index, one file per locale. No layout: the output is the JSON
+# itself, read with fetch() by the search field on the home page.
+pagination:
+  data: search_index
+  size: 1
+  alias: indexLocale
+eleventyComputed:
+  permalink: "{{ indexLocale }}/search.json"
+---
+{{- search_index[indexLocale] | dump | safe -}}

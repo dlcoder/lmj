@@ -43,6 +43,13 @@ export default {
       firstBookCover: "The first Lugares Míticos de Jaén book",
       secondBookCover: "The second Lugares Míticos de Jaén book"
     },
+    search: {
+      label: "Search the articles",
+      placeholder: "Search for a place, a town, a castle…",
+      countOne: "1 place for “%{query}”",
+      countMany: "%{count} places for “%{query}”",
+      countNone: "No place matches “%{query}”"
+    },
     menu: {
       discover: "Discover Jaén",
       discoverSlogan: "Here you can find several ways to discover the province of Jaén.",
@@ -132,6 +139,13 @@ export default {
       secondBook: "El segundo libro (2017)",
       firstBookCover: "El primer libro de Lugares Míticos de Jaén",
       secondBookCover: "El segundo libro de Lugares Míticos de Jaén"
+    },
+    search: {
+      label: "Buscar en los reportajes",
+      placeholder: "Busca un lugar, un pueblo, un castillo…",
+      countOne: "1 lugar para «%{query}»",
+      countMany: "%{count} lugares para «%{query}»",
+      countNone: "Ningún lugar coincide con «%{query}»"
     },
     menu: {
       discover: "Descubre Jaén",

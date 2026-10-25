@@ -144,6 +144,25 @@ table {
 
 /* Global Styles */
 
+/* The attribute has to win over any display a component sets, or a grid
+   asked to hide stays on screen. */
+[hidden] {
+  display: none !important;
+}
+
+/* For labels a screen reader needs and the design already implies. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
@@ -509,6 +528,42 @@ body.home-page {
   font-size: 2.5rem;
   font-weight: bold;
   margin-bottom: 2rem;
+}
+
+/* The search on the home page, under the categories heading. Its results
+   replace the tiles, as ordinary article cards. */
+
+.home-search {
+  max-width: 36rem;
+  margin: 0 auto 1rem;
+}
+
+.home-search--input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.85rem 1rem 0.85rem 3rem;
+  font: inherit;
+  font-size: 1.1rem;
+  color: #333;
+  border: 2px solid var(--color-primary-60);
+  border-radius: 2rem;
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23423780' stroke-width='2.5' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='6.5'/%3E%3Cpath d='M15.5 15.5 21 21'/%3E%3C/svg%3E") no-repeat 1.1rem center / 1.25rem;
+}
+
+.home-search--input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-60);
+}
+
+.home-search--status {
+  min-height: 1.6em;
+  margin: 0 0 2rem;
+  color: #666;
+}
+
+.home-search--results {
+  text-align: left;
 }
 
 /* Pages */

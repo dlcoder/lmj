@@ -367,6 +367,30 @@ for (const spec of pages) {
       }
     }
 
+    // The search under the categories heading fetches its index on first use
+    // and puts its results where the category tiles were. Accents fold, so
+    // "jaen" has to find articles in Jaén; emptying the field brings the
+    // tiles back.
+    if (spec.name === 'home' && width === WIDE) {
+      const state = () => page.evaluate(() => ({
+        cards: document.querySelectorAll('#home-search-results .article-card').length,
+        categoriesHidden: document.getElementById('home-categories').hidden,
+        status: document.getElementById('home-search-status').textContent,
+        query: new URL(location.href).searchParams.get('q')
+      }));
+      await page.locator('#home-search-input').fill('jaen');
+      await page.waitForTimeout(800);
+      const found = await state();
+      await page.locator('#home-search-input').fill('');
+      await page.waitForTimeout(400);
+      const cleared = await state();
+
+      if (!found.cards) fail('home search', `"jaen" finds nothing (${found.status})`);
+      else if (!found.categoriesHidden) fail('home search', 'the category tiles stay under the results');
+      else if (found.query !== 'jaen') fail('home search', `the query is not in the address: ${found.query}`);
+      if (cleared.categoriesHidden || cleared.cards) fail('home search', 'emptying the field does not bring the categories back');
+    }
+
     // The home map outlines a municipality when you point at it, reading
     // GeoJSON from the assets host with fetch(). That is subject to CORS and
     // the host answers with an allowlist of origins, so this can only be held
