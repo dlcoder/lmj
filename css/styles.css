@@ -322,6 +322,22 @@ a:hover {
 .header-logo--title a,
 .header-logo--title a:visited {
   color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.header-logo--mark {
+  /* The original sat the pin at 20px next to the name, 35px from desktop up. */
+  width: 1.25rem;
+  height: auto;
+  flex: none;
+}
+
+@media (min-width: 768px) {
+  .header-logo--mark {
+    width: 1.6rem;
+  }
 }
 
 /* Main Container */
@@ -506,7 +522,11 @@ body.article-page .main-container {
   .article-gallery {
     height: 100%;
     width: 100%;
-    background-image: var(--intro-desktop-hd);
+    /* The scrim rides on the photo so both reach the edges. Putting it on
+       the intro instead left the sides unshaded on screens wider than the
+       1920px the intro is capped at. */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
+      var(--intro-desktop-hd);
     background-size: cover;
     background-position: center center;
   }
@@ -518,7 +538,6 @@ body.article-page .main-container {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: rgba(0, 0, 0, 0.75);
     padding: 0 15rem;
     box-sizing: border-box;
     max-width: 1920px;
@@ -770,6 +789,243 @@ body.article-page .main-container {
 .pagination-info {
   color: #666;
   font-size: 0.9rem;
+}
+
+/* Latest Articles (home carousel) */
+
+.latest-articles {
+  position: relative;
+}
+
+.latest-article {
+  display: block;
+  position: relative;
+  color: inherit;
+  text-decoration: none;
+}
+
+.latest-article:hover {
+  text-decoration: none;
+}
+
+.latest-article--image {
+  /* The ratio replaces the padding-top `.responsive-image` uses to hold its
+     shape. On a phone the 2.5:1 crop of the source is too thin to carry a
+     caption, so the box is taller and the photo gets cropped sideways. */
+  aspect-ratio: 3 / 2;
+  padding-top: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.latest-article--caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2.5rem 1.25rem 1.25rem;
+  color: #fff;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+}
+
+.latest-article--title {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 0 0 0.25rem 0;
+}
+
+.latest-article--location,
+.latest-article--date {
+  display: block;
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+/* Arrows only steer the carousel, so they stay hidden until it exists. */
+.latest-articles--arrows {
+  display: none;
+}
+
+.latest-articles.is-carousel .latest-articles--arrows {
+  display: block;
+}
+
+.latest-articles.is-carousel .latest-articles--track {
+  position: relative;
+  aspect-ratio: 3 / 2;
+}
+
+.latest-articles.is-carousel .latest-article {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s linear;
+}
+
+.latest-articles.is-carousel .latest-article.is-current {
+  opacity: 1;
+  visibility: visible;
+}
+
+.latest-articles--arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3rem;
+  height: 3rem;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.latest-articles--arrow::before {
+  content: "";
+  display: block;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin: 0 auto;
+  border-top: 3px solid #fff;
+  border-right: 3px solid #fff;
+}
+
+.latest-articles--arrow__prev {
+  left: 0.5rem;
+}
+
+.latest-articles--arrow__prev::before {
+  transform: rotate(-135deg);
+}
+
+.latest-articles--arrow__next {
+  right: 0.5rem;
+}
+
+.latest-articles--arrow__next::before {
+  transform: rotate(45deg);
+}
+
+.latest-articles--arrow:focus-visible {
+  outline: 2px solid #fff;
+}
+
+@media (min-width: 768px) {
+  .latest-article--image,
+  .latest-articles.is-carousel .latest-articles--track {
+    /* Wide enough now for the source crop, 2.5:1, to be shown whole. */
+    aspect-ratio: 2.5 / 1;
+  }
+
+  .latest-article--caption {
+    padding: 6rem 4rem 3rem;
+  }
+
+  .latest-article--title {
+    font-size: 2rem;
+  }
+
+  .latest-articles--arrow {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .latest-articles--arrow__prev {
+    left: 1.5rem;
+  }
+
+  .latest-articles--arrow__next {
+    right: 1.5rem;
+  }
+}
+
+/* Books block (home) */
+
+.home-books {
+  margin: 4rem auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.home-books--container {
+  margin: 0 auto;
+  max-width: 900px;
+}
+
+.home-books--title {
+  color: var(--color-primary);
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.home-books--lead {
+  margin: 0 auto 2rem;
+  max-width: 44rem;
+  color: #666;
+}
+
+.home-books--list {
+  display: grid;
+  gap: 2.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.home-books--item a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.home-books--cover {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.home-books--caption {
+  display: block;
+  margin-top: 0.75rem;
+  font-weight: bold;
+  color: var(--color-primary);
+}
+
+/* Books index page */
+
+.books-index {
+  display: grid;
+  gap: 3rem;
+  list-style: none;
+  margin: 3rem 0;
+  padding: 0;
+}
+
+.books-index--item a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.books-index--banner {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.books-index--title {
+  color: var(--color-primary);
+  font-size: 1.5rem;
+  margin: 1rem 0 0.5rem;
+}
+
+.books-index--summary {
+  margin: 0;
+  color: #666;
 }
 
 /* Localities Section */
@@ -1033,17 +1289,29 @@ body.article-page .main-container {
 }
 
 .backers--names {
-  columns: 2;
-  column-gap: 1.5rem;
+  /* Sized by column width, not by count: 219 names in narrow columns wrap
+     constantly, and a wrapped line is what gets mistaken for a new backer. */
+  columns: 16rem;
+  column-gap: 2rem;
   font-size: 0.8125rem;
-  line-height: 1.45;
+  line-height: 1.35;
   color: #777;
 }
 
 .backers--names li {
   break-inside: avoid;
-  padding: 0.0625rem 0;
+  /* A name that still wraps needs to read as one entry: the marker sits in
+     the margin and the second line lines up under the first, so only a
+     bullet starts a backer. */
+  list-style: disc outside;
+  margin: 0 0 0.5rem 1rem;
+  padding-left: 0.25rem;
   hyphens: none;
+}
+
+.backers--names li::marker {
+  color: #c4c4c4;
+  font-size: 0.7em;
 }
 
 /* Footer */
@@ -1157,10 +1425,6 @@ body.article-page .main-container {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .backers--names {
-    columns: 3;
-  }
-
   .footer-sitemap {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1197,9 +1461,6 @@ body.article-page .main-container {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .backers--names {
-    columns: 4;
-  }
 }
 
 /* The footer sits inside the deck's last slide, which scrolls on its own, so
@@ -1513,6 +1774,14 @@ body.article-page .main-container {
     min-height: 100vh;
     overflow-y: auto;
     background-color: #fff;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Articles with no geolocation have a short closing block, which left the
+     footer stranded mid-screen with white below it. */
+  .slides--slide__extra .footer {
+    margin-top: auto;
   }
 
   .article-extra--wrapper {

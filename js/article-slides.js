@@ -41,8 +41,17 @@
 
   const revealDots = () => {
     if (!nav) return;
-    nav.classList.add('visible');
     clearTimeout(hideTimer);
+
+    // The closing slide is a reading page over white and then over the
+    // footer, where white dots are either invisible or in the way, and there
+    // is nothing further down to jump to. Scrolling back up still works.
+    if (currentIndex() === slides.length - 1) {
+      nav.classList.remove('visible');
+      return;
+    }
+
+    nav.classList.add('visible');
 
     // Always visible on the first slide, auto-hide anywhere else.
     if (currentIndex() !== 0) {
