@@ -13,9 +13,13 @@
     "serve": "eleventy --serve",
     "clean": "rm -rf _site .cache",
     "validate": "node scripts/validate-data.mjs",
-    "check-links": "npm run build && node scripts/check-links.mjs"
+    "check-links": "npm run build && node scripts/check-links.mjs",
+    "check-pages": "npm run build && node scripts/check-pages.mjs"
   },
   "dependencies": {
     "@11ty/eleventy": "3.1.7"
+  },
+  "devDependencies": {
+    "playwright": "^1.64.1"
   }
 }

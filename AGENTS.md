@@ -27,6 +27,7 @@ npm run serve        # dev server with hot reload
 npm run clean        # remove _site/ and .cache/
 npm run validate     # check _data/raw/ for broken references and gaps
 npm run check-links  # build and validate internal links with linkinator
+npm run check-pages  # render the built pages in a browser and assert the layout
 ```
 
 ## Project Structure
@@ -75,6 +76,7 @@ npm run check-links  # build and validate internal links with linkinator
 │   └── localities-map.js             # Leaflet map on the home page
 ├── scripts/                          # Dev utilities (not part of the build)
 │   ├── validate-data.mjs             # Raw data integrity checks (runs in CI)
+│   ├── check-pages.mjs               # Browser layout checks (runs in CI)
 │   ├── serve-site.mjs                # Static server mimicking GitHub Pages
 │   └── check-links.mjs               # Internal link validation
 ├── content/                          # HTML for the 3 `Tradition` articles (ES+EN); ignored today

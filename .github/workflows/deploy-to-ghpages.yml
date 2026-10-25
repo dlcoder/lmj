@@ -26,6 +26,11 @@ jobs:
 
       - run: npm run validate
 
+      - name: Install the browser the page checks need
+        run: npx playwright install --with-deps chromium
+
+      - run: npm run check-pages
+
       - run: npm run build
         env:
           ELEVENTY_ENV: production
