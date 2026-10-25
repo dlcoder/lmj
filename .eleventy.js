@@ -51,6 +51,9 @@ export default function (eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy("css");
   eleventyConfig.addPassthroughCopy("js");
+  eleventyConfig.addPassthroughCopy("img");
+  // Browsers ask for it at the root whether or not a page links it.
+  eleventyConfig.addPassthroughCopy({ "img/favicon.ico": "favicon.ico" });
 
   return {
     dir: {

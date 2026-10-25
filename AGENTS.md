@@ -28,6 +28,7 @@ npm run clean        # remove _site/ and .cache/
 npm run validate     # check _data/raw/ for broken references and gaps
 npm run check-links  # build and validate internal links with linkinator
 npm run check-pages  # render the built pages in a browser and assert the layout
+npm run build-icons  # re-render the icons in img/ after changing img/favicon.svg
 ```
 
 ## Project Structure
@@ -81,6 +82,7 @@ npm run check-pages  # render the built pages in a browser and assert the layout
 │       ├── footer.njk                # Colophon and site map
 │       └── pagination.njk
 ├── css/styles.css                    # Passthrough-copied to _site/css/
+├── img/                              # Icons; favicon.svg is the source, the rest is rendered
 ├── js/                               # Passthrough-copied to _site/js/
 │   ├── hamburger-menu.js
 │   ├── header-menu.js                # The Discover Jaén dropdown (click, Escape, mobile accordion)
@@ -93,6 +95,7 @@ npm run check-pages  # render the built pages in a browser and assert the layout
 ├── scripts/                          # Dev utilities (not part of the build)
 │   ├── validate-data.mjs             # Raw data integrity checks (runs in CI)
 │   ├── check-pages.mjs               # Browser layout checks (runs in CI)
+│   ├── build-icons.mjs               # Renders the PNG icons and favicon.ico from img/favicon.svg
 │   ├── serve-site.mjs                # Static server mimicking GitHub Pages
 │   └── check-links.mjs               # Internal link validation
 ├── content/                          # HTML for the 3 `Tradition` articles (ES+EN); ignored today
@@ -111,7 +114,7 @@ npm run check-pages  # render the built pages in a browser and assert the layout
 - **Shortcodes:**
   - `featured_image(article, size)` — URL of the featured photo (`featured: true` and `type: "Photo"`)
   - `static_image(path)` — absolute URL of a bucket asset
-- **Passthrough copy:** `css`, `js`
+- **Passthrough copy:** `css`, `js`, `img`, and `img/favicon.ico` to the root
 - **Ignored paths:** every `*.md` at the root (the site has no Markdown pages), `content`. Anything in `.gitignore`
   (`node_modules`, `_site`) is ignored by Eleventy on its own — no need to repeat it
 
@@ -188,6 +191,7 @@ All templates are unified and receive the language in the `locale` variable.
 | Sitemap | `collections.all` | `/sitemap.xml` | `src/sitemap.njk` |
 | Robots | — | `/robots.txt` | `src/robots.njk` |
 | Not found | — | `/404.html` (bilingual, `noindex`) | `src/404.njk` |
+| Web manifest | — | `/site.webmanifest` | `src/webmanifest.njk` |
 
 All article lists are sorted by `published_at` in descending order (newest first).
 

@@ -9,6 +9,12 @@
       them carrying the host written in by hand. -#}
   <meta name="statics-host" content="{{ staticsHost }}">
   <title>{{ title }}</title>
+  {#- Drawn from img/favicon.svg; `npm run build-icons` renders the rest. -#}
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#423780">
   {#- The page as search engines and link previews should know it. The
       domain is whatever CNAME publishes the site under, and the translation
       is paired by alternateFor() in _data/base.js. An English article that

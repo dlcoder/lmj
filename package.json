@@ -14,7 +14,8 @@
     "clean": "rm -rf _site .cache",
     "validate": "node scripts/validate-data.mjs",
     "check-links": "npm run build && node scripts/check-links.mjs",
-    "check-pages": "npm run build && node scripts/check-pages.mjs"
+    "check-pages": "npm run build && node scripts/check-pages.mjs",
+    "build-icons": "node scripts/build-icons.mjs"
   },
   "dependencies": {
     "@11ty/eleventy": "3.1.7"
