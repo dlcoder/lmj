@@ -113,6 +113,8 @@ npm run build-icons  # re-render the icons in img/ after changing img/favicon.sv
   articles — Jaén alone has 43 of them
 - **Static assets host:** `https://lmjstatic.deliriumcoder.com` (`STATICS_HOST` constant)
 - **Global data:** `env`, `timestamp` (CSS/JS cache busting), `staticsHost`, `siteUrl`
+- **Structured data:** articles carry a JSON-LD `Article` about a `TouristAttraction`, with
+  `GeoCoordinates` only where the article publishes them (`setGeo` filter); each home page a `WebSite`
 - **Filters:** `formatDate` → `DD/MM/YYYY`; `cleanUrl` (drops `.html`); `alternate` (the same page
   in the other locale, see `alternateFor()`); `excerpt(length)` (meta descriptions, cut at a word)
 - **Shortcodes:**

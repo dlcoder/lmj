@@ -160,7 +160,7 @@ function check(name, width, m, consoleErrors) {
 
 // Not a browser check, but one over the built pages that nothing else holds
 // to account: every canonical and hreflang URL has to be a page that exists,
-// and every hreflang pair has to point back. A slug paired wrongly would
+// every hreflang pair has to point back, and the structured data has to parse. A slug paired wrongly would
 // otherwise only show up in Search Console.
 function checkAlternates() {
   const isPage = path => [path, `${path}.html`, join(path, 'index.html')]
@@ -175,6 +175,9 @@ function checkAlternates() {
       if (!path.endsWith('.html')) continue;
 
       const html = readFileSync(path, 'utf8');
+      for (const [, json] of html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)) {
+        try { JSON.parse(json); } catch { fail(path, 'its structured data is not valid JSON'); }
+      }
       const canonical = html.match(/<link rel="canonical" href="([^"]+)"/)?.[1];
       if (!canonical) continue;
       if (!isPage(local(canonical))) fail(path, `canonical ${canonical} is not a page`);

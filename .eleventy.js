@@ -16,6 +16,16 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("cleanUrl", cleanUrl);
   eleventyConfig.addFilter("alternate", alternateFor);
 
+  // The coordinates of a place, for its structured data. Nunjucks cannot
+  // assign into a nested object, so the filter returns a copy that has them.
+  eleventyConfig.addFilter("setGeo", (data, { latitude, longitude } = {}) => {
+    if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) return data;
+    return {
+      ...data,
+      about: { ...data.about, geo: { "@type": "GeoCoordinates", latitude, longitude } }
+    };
+  });
+
   // A description for the meta tags: the text cut at a word, never mid-way.
   eleventyConfig.addFilter("excerpt", (text, length = 160) => {
     if (!text) return "";

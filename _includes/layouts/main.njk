@@ -51,6 +51,36 @@
   {%- else %}
   <meta property="og:type" content="website">
   {%- endif %}
+  {#- Structured data: the article, and the place it is about, with its
+      coordinates where they are published. -#}
+  {%- if article %}
+  {%- set structured = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": article.title,
+    "datePublished": article.published_at,
+    "inLanguage": "es" if (locale == "en" and not article.translated) else locale,
+    "url": url,
+    "image": ogImage,
+    "publisher": { "@type": "Organization", "name": i18n[locale].siteTitle, "url": siteUrl + "/" + locale + "/" },
+    "about": {
+      "@type": "TouristAttraction",
+      "name": article.title,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": article.localities | join(", "),
+        "addressRegion": "Jaén",
+        "addressCountry": "ES"
+      }
+    }
+  } %}
+  {%- if article.geolocation %}
+  {%- set structured = structured | setGeo(article.geolocation) %}
+  {%- endif %}
+  <script type="application/ld+json">{{ structured | dump | safe }}</script>
+  {%- elif page.url == "/" + locale + "/" %}
+  <script type="application/ld+json">{{ { "@context": "https://schema.org", "@type": "WebSite", "name": i18n[locale].siteTitle, "url": url, "inLanguage": locale } | dump | safe }}</script>
+  {%- endif %}
   {#- Leaflet and its cluster plugin are served from this site, copied out of
       node_modules at build time, so the maps depend on no third party. The
       files are byte for byte the ones unpkg served before. -#}
