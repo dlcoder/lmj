@@ -281,5 +281,4 @@ The most relevant items when touching templates:
   as a note rather than a failure, since it is configuration outside the repo. The origins
   used here are `http://localhost:8099` (`scripts/serve-site.mjs`) and `http://localhost:8123`
   (`scripts/check-pages.mjs`).
-- Missing: the Rails static pages (`about-us`, `the-team`, `press`, books, `cookies`…),
-  the footer, the language switcher and the explorer map with filters.
+- Missing: the article search, which the Rails app never had either.

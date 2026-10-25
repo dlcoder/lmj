@@ -1,6 +1,9 @@
 {%- set t = i18n[locale].footer -%}
 {%- set other = "en" if locale == "es" else "es" -%}
 {%- set slugs = i18n[locale].pages -%}
+{#- The same page in the other language where there is one, the home page
+    where there is not. -#}
+{%- set otherPage = page.url | alternate -%}
 
 <footer class="footer">
   <div class="footer-container">
@@ -45,7 +48,7 @@
           <span>{{ "Español" if locale == "es" else "English" }}</span>
         </li>
         <li class="footer-languages--item">
-          <a href="/{{ other }}/">{{ "English" if locale == "es" else "Español" }}</a>
+          <a href="{{ otherPage.path if otherPage else '/' + other + '/' }}" hreflang="{{ other }}" lang="{{ other }}">{{ "English" if locale == "es" else "Español" }}</a>
         </li>
       </ul>
 
