@@ -12,8 +12,11 @@
   <link rel="stylesheet" href="/css/styles.css?v={{ timestamp }}">
   <script src="/js/hamburger-menu.js?v={{ timestamp }}" defer></script>
   <script src="/js/article-slides.js?v={{ timestamp }}" defer></script>
-  {%- if includeLeaflet -%}
+  {%- if includeLocalitiesMap -%}
   <script src="/js/localities-map.js?v={{ timestamp }}" defer></script>
+  {%- endif -%}
+  {%- if includeArticleMap -%}
+  <script src="/js/article-map.js?v={{ timestamp }}" defer></script>
   {%- endif -%}
 </head>
 

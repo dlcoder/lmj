@@ -1192,3 +1192,314 @@ body.article-page .main-container {
     display: none;
   }
 }
+
+/* Tradition articles
+   Long-form reading pages, not the slide deck the place articles use. The
+   body HTML comes from the old site and carries its own title, metadata and
+   a twelve column grid, so the grid classes it expects are rebuilt here with
+   CSS Grid rather than the float system the original used. */
+
+.tradition-page .main-container {
+  max-width: 1920px;
+  padding: 0;
+}
+
+.wrapper,
+.wrapper-full {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 2rem;
+}
+
+.wrapper {
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.wrapper-full {
+  column-gap: 0;
+}
+
+.span-12 { grid-column: span 12; }
+
+@media (min-width: 640px) {
+  .span-tablet-4 { grid-column: span 4; }
+  .span-tablet-5 { grid-column: span 5; }
+  .span-tablet-6 { grid-column: span 6; }
+  .span-tablet-7 { grid-column: span 7; }
+  .span-tablet-8 { grid-column: span 8; }
+}
+
+/* The intro is pulled up over the opening photo, fading into it. */
+.article-tradition__intro {
+  background-color: #000;
+  color: #fff;
+  padding: 1rem 0;
+}
+
+.article-tradition__title {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 1.8rem;
+  margin-bottom: 0;
+}
+
+.article-tradition__metadata {
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.article-tradition__intro p {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.article-tradition__body {
+  color: #555;
+  font-weight: 300;
+  margin-top: 2rem;
+}
+
+.article-tradition__body .responsive-image {
+  margin-bottom: 1rem;
+}
+
+.article-tradition__gallery .responsive-image {
+  margin-bottom: 0;
+}
+
+.article-tradition__highlight {
+  font-style: italic;
+  text-align: center;
+  font-weight: 300;
+}
+
+.article-tradition__quote {
+  font-size: 1.2rem;
+  font-style: italic;
+  text-align: center;
+  font-weight: 300;
+  margin: 3rem 0;
+}
+
+.article-tradition__quote::before {
+  content: "«";
+  color: #ccc;
+}
+
+.article-tradition__quote::after {
+  content: "»";
+  color: #ccc;
+}
+
+.article-tradition__question {
+  font-style: italic;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.article-tradition__border {
+  border-top: 1px solid #efefef;
+  border-bottom: 1px solid #ddd;
+}
+
+.article-tradition__separator {
+  margin: 1rem 0;
+}
+
+.article-tradition__full-image-with-text,
+.article-tradition__closing {
+  position: relative;
+}
+
+.article-tradition__closing-text {
+  background-color: #333;
+  color: #fff;
+  padding-top: 1rem;
+}
+
+.article-tradition__closing .responsive-image {
+  margin-bottom: 0;
+}
+
+@media (min-width: 640px) {
+  .article-tradition__intro {
+    background: linear-gradient(to bottom, transparent 0%, transparent 10%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 1) 100%);
+    margin-top: -25rem;
+    /* Matching the pull-up makes the intro end exactly where the opening
+       photo does. The original computed this in JavaScript. */
+    min-height: 25rem;
+    padding: 0 0 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .article-tradition__title {
+    font-size: 3rem;
+  }
+
+  .article-tradition__metadata {
+    font-size: 1rem;
+  }
+
+  .article-tradition__body {
+    margin-top: 4rem;
+  }
+
+  .article-tradition__highlight,
+  .article-tradition__quote {
+    font-size: 1.3rem;
+  }
+
+  .article-tradition__separator {
+    margin: 4rem 0;
+  }
+
+  .article-tradition__full-image-with-text-text {
+    background: linear-gradient(to bottom, rgba(17, 17, 17, 1) 0%, rgba(17, 17, 17, 1) 50%, rgba(17, 17, 17, 0.6) 80%, transparent 100%);
+    color: #fff;
+    padding-top: 4rem;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+  }
+
+  .article-tradition__full-image-with-text-image {
+    padding-top: 10rem;
+  }
+
+  .article-tradition__closing-text {
+    background-color: rgba(0, 0, 0, 0.5);
+    bottom: 0;
+    font-size: 1.5rem;
+    padding-top: 10rem;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}
+
+@media (min-width: 1120px) {
+  .article-tradition__intro {
+    margin-top: -40rem;
+    min-height: 40rem;
+  }
+
+  .article-tradition__title {
+    font-size: 5rem;
+  }
+
+  .article-tradition__metadata {
+    font-size: 1.5rem;
+  }
+
+  .article-tradition__body .responsive-image {
+    margin-bottom: 2rem;
+  }
+
+  .article-tradition__quote {
+    font-size: 2.5rem;
+    margin: 6rem 0;
+  }
+
+  .article-tradition__highlight {
+    font-size: 1.5rem;
+  }
+
+  .article-tradition__closing-text {
+    padding-top: 15rem;
+  }
+}
+
+/* Closing block of an article */
+
+.article-extra {
+  background-color: #fff;
+  width: 100%;
+}
+
+.article-extra--wrapper {
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+}
+
+.extra-block {
+  margin-bottom: 2.5rem;
+}
+
+.extra-block--title {
+  color: var(--color-primary);
+  text-transform: uppercase;
+  font-size: 1.125rem;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.75rem;
+}
+
+.extra-block--notice {
+  background-color: #f6f6f9;
+  border-left: 3px solid var(--color-primary-60);
+  padding: 1rem 1.25rem;
+}
+
+.extra-map {
+  height: 20rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  background-color: #eee;
+}
+
+.button {
+  display: inline-block;
+  background-color: var(--color-primary);
+  color: #fff;
+  padding: 0.5rem 1.125rem;
+  border-radius: 4px;
+  font-size: 0.9375rem;
+}
+
+.button:hover {
+  background-color: var(--color-primary-75);
+  color: #fff;
+  text-decoration: none;
+}
+
+.extra-share {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.extra-share--link {
+  display: inline-block;
+  border: 1px solid var(--color-primary-60);
+  color: var(--color-primary);
+  padding: 0.4375rem 1rem;
+  border-radius: 4px;
+  font-size: 0.9375rem;
+}
+
+.extra-share--link:hover {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+  text-decoration: none;
+}
+
+@media (min-width: 1280px) {
+  /* The closing block is taller than a screen, so it is the one slide that
+     scrolls inside itself instead of snapping. */
+  .slides--slide__extra {
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+    background-color: #fff;
+  }
+
+  .article-extra--wrapper {
+    padding: 3rem 2rem 4rem;
+  }
+}

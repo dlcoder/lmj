@@ -1,4 +1,4 @@
-import { STATICS_HOST } from "./_data/base.js";
+import { STATICS_HOST, SITE_URL } from "./_data/base.js";
 
 export default function (eleventyConfig) {
   eleventyConfig.addGlobalData("env", {
@@ -6,6 +6,8 @@ export default function (eleventyConfig) {
   });
 
   eleventyConfig.addGlobalData("timestamp", Date.now());
+
+  eleventyConfig.addGlobalData("siteUrl", SITE_URL);
 
   eleventyConfig.addFilter("formatDate", (dateString) => {
     const date = new Date(dateString);

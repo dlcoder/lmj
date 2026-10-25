@@ -1,11 +1,23 @@
+{#- Tradition articles are long-form reading pages with their own layout,
+    not the slide deck the place articles use. Their body already carries its
+    own title and metadata. -#}
+{% if article.body %}
+
+<article class="article-tradition">
+  {{ article.body | safe }}
+</article>
+
+{% else %}
+
 <article class="article">
   <div class="slides--container">
     <div class="slides--slide">
+      {%- set opening = article.galleryPhotos[0] -%}
       <div class="article-gallery" style="
-        --intro-mobile: url('{% featured_image article, "teaser_mobile" %}');
-        --intro-tablet: url('{% featured_image article, "teaser_desktop_hd" %}');
-        --intro-desktop: url('{% featured_image article, "teaser_desktop_hd" %}');
-        --intro-desktop-hd: url('{% featured_image article, "original" %}');
+        --intro-mobile: url('{% static_image opening.image_urls.mobile %}');
+        --intro-tablet: url('{% static_image opening.image_urls.tablet %}');
+        --intro-desktop: url('{% static_image opening.image_urls.desktop %}');
+        --intro-desktop-hd: url('{% static_image opening.image_urls.desktop_hd %}');
       ">
         <div class="article-gallery--intro">
           <div class="article-header">
@@ -30,25 +42,7 @@
       </div>
     </div>
 
-    {%- if article.featuredPhoto -%}
-      {#- The featured photo on its own, as it appears once the intro is out
-          of the way, before the gallery starts. -#}
-      <div class="slides--slide">
-        <div class="article-gallery--media">
-          {#- The proportional variants, so this photo has the same shape and
-              the same size on screen as the gallery ones. -#}
-          <div class="responsive-image" role="img" style="
-            --img-mobile: url('{% static_image article.featuredPhoto.image_urls.teaser_mobile %}');
-            --img-tablet: url('{% static_image article.featuredPhoto.image_urls.teaser_desktop_hd %}');
-            --img-desktop: url('{% static_image article.featuredPhoto.image_urls.teaser_desktop_hd %}');
-            --img-desktop-hd: url('{% static_image article.featuredPhoto.image_urls.original %}');
-          "></div>
-        </div>
-      </div>
-    {%- endif -%}
-
-    {%- for media in article.media -%}
-      {%- if media.type == "Photo" and media.featured == false and not article.body -%}
+    {%- for media in article.galleryPhotos -%}
         <div class="slides--slide">
           <div class="article-gallery--media">
             <div class="responsive-image" role="img" style="
@@ -59,10 +53,15 @@
             "></div>
           </div>
         </div>
-      {%- endif -%}
     {%- endfor -%}
+
+    <div class="slides--slide slides--slide__extra">
+      {% include "partials/article-extra.njk" %}
+    </div>
   </div>
 
   <!-- Slide navigation dots (large screens only) -->
   <div class="slides-nav" id="slides-nav"></div>
 </article>
+
+{% endif %}

@@ -8,7 +8,9 @@ eleventyComputed:
   title: "{{ article.title }} – {{ i18n[article.locale].siteTitle }}"
   permalink: "{{ article.locale }}/articles/{{ article.slug }}.html"
   locale: "{{ article.locale }}"
-bodyClass: article-page
+  bodyClass: "{{ 'tradition-page' if article.body else 'article-page' }}"
+  includeLeaflet: "{{ true if article.geolocation else '' }}"
+  includeArticleMap: "{{ true if article.geolocation else '' }}"
 ---
 
 {% include "partials/article.njk" %}
