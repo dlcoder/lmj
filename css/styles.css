@@ -158,6 +158,18 @@ table {
   --color-grey-300: #ddd;
   --color-grey-200: #eee;
   --color-grey-100: #f6f6f9;
+
+  /* One type scale, fluid between a phone (360px) and a laptop (1440px):
+     each step grows with the viewport and stops at its desktop size, so a
+     heading never needs a size per breakpoint. -1 and 0 stay fixed. */
+  --step--1: 0.875rem;
+  --step-0: 1rem;
+  --step-1: clamp(1.0625rem, 1rem + 0.25vw, 1.25rem);
+  --step-2: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  --step-3: clamp(1.5rem, 1.25rem + 1.1vw, 2rem);
+  --step-4: clamp(1.75rem, 1.35rem + 1.8vw, 2.5rem);
+  --step-5: clamp(2rem, 1.4rem + 2.8vw, 3.5rem);
+  --step-6: clamp(2.25rem, 1.2rem + 4.5vw, 5rem);
 }
 
 /* Global Styles */
@@ -197,12 +209,12 @@ h3 {
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: var(--step-4);
   margin-bottom: 1rem;
 }
 
 h2 {
-  font-size: 1.5rem;
+  font-size: var(--step-2);
   margin: 1rem 0 0.5rem;
 }
 
@@ -377,7 +389,7 @@ a:hover {
   .header-menu--slogan {
     margin: 0;
     color: var(--color-white);
-    font-size: 1.35rem;
+    font-size: var(--step-2);
     line-height: 1.4;
   }
 
@@ -498,7 +510,7 @@ a:hover {
 }
 
 .header-logo--title {
-  font-size: 1.5rem;
+  font-size: clamp(1.125rem, 0.95rem + 0.8vw, 1.5rem);
   color: var(--color-white);
   margin: 0
 }
@@ -558,7 +570,7 @@ body.home-page {
 
 .categories-section-title {
   color: var(--color-primary);
-  font-size: 2.5rem;
+  font-size: var(--step-4);
   font-weight: bold;
   margin-bottom: 2rem;
 }
@@ -606,7 +618,7 @@ body.home-page {
 }
 
 .page-title {
-  font-size: clamp(2.125rem, 6vw, 3rem);
+  font-size: var(--step-4);
   font-weight: bold;
 }
 
@@ -679,7 +691,7 @@ body.article-page .main-container {
 }
 
 .article-title {
-  font-size: 3rem;
+  font-size: var(--step-5);
   font-weight: bold;
   margin-bottom: 0;
   text-transform: uppercase;
@@ -711,7 +723,7 @@ body.article-page .main-container {
 
 .article-body {
   margin-bottom: 4rem;
-  font-size: 1.1rem;
+  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
 }
 
 @media (min-width: 1280px) {
@@ -774,7 +786,6 @@ body.article-page .main-container {
     background-position: center center;
   }
 
-
   .article-gallery--intro {
     height: 100%;
     display: flex;
@@ -830,7 +841,6 @@ body.article-page .main-container {
     width: min(100%, 1920px, 90vh * 16 / 9);
     border-radius: 0;
   }
-
 
   .article-header {
     border-bottom: none;
@@ -897,7 +907,6 @@ body.article-page .main-container {
     transform: scale(1.3);
   }
 }
-
 
 /* Responsive Images */
 
@@ -1130,7 +1139,7 @@ body.article-page .main-container {
 
 .latest-article--title {
   color: var(--color-white);
-  font-size: 1.2rem;
+  font-size: clamp(1.125rem, 0.9rem + 1.2vw, 2rem);
   font-weight: bold;
   text-transform: uppercase;
   margin: 0 0 0.25rem 0;
@@ -1244,10 +1253,6 @@ body.article-page .main-container {
     padding: 6rem 4rem 3rem;
   }
 
-  .latest-article--title {
-    font-size: 2rem;
-  }
-
   .latest-articles--arrow {
     width: 4rem;
     height: 4rem;
@@ -1277,7 +1282,7 @@ body.article-page .main-container {
 
 .home-books--title {
   color: var(--color-primary);
-  font-size: 2.5rem;
+  font-size: var(--step-4);
   font-weight: bold;
   margin-bottom: 1rem;
 }
@@ -1339,7 +1344,7 @@ body.article-page .main-container {
 
 .books-index--title {
   color: var(--color-primary);
-  font-size: 1.5rem;
+  font-size: var(--step-2);
   margin: 1rem 0 0.5rem;
 }
 
@@ -1374,7 +1379,7 @@ body.article-page .main-container {
 
 .localities-title {
   color: var(--color-white);
-  font-size: 2rem;
+  font-size: var(--step-4);
   font-weight: bold;
   margin-bottom: 2rem;
   text-align: center;
@@ -1462,20 +1467,20 @@ body.article-page .main-container {
 }
 
 .page-lead {
-  font-size: 1.25rem;
+  font-size: var(--step-1);
   line-height: 1.5;
   color: var(--color-grey-800);
 }
 
 .page-section--title {
-  font-size: 1.75rem;
+  font-size: var(--step-3);
   margin: 3rem 0 1.5rem;
   padding-bottom: 0.5rem;
   border-bottom: 2px solid var(--color-primary);
 }
 
 .page-subsection--title {
-  font-size: 1.25rem;
+  font-size: var(--step-1);
   margin: 2.5rem 0 1rem;
   color: var(--color-primary);
 }
@@ -1542,7 +1547,7 @@ body.article-page .main-container {
 }
 
 .timeline--title {
-  font-size: 1.25rem;
+  font-size: var(--step-1);
   margin-bottom: 0.5rem;
 }
 
@@ -1866,7 +1871,7 @@ body.article-page .main-container {
 .article-tradition__title {
   color: var(--color-white);
   text-transform: uppercase;
-  font-size: 1.8rem;
+  font-size: var(--step-6);
   margin-bottom: 0;
 }
 
@@ -1896,13 +1901,14 @@ body.article-page .main-container {
 }
 
 .article-tradition__highlight {
+  font-size: clamp(1.0625rem, 0.9rem + 0.7vw, 1.5rem);
   font-style: italic;
   text-align: center;
   font-weight: 300;
 }
 
 .article-tradition__quote {
-  font-size: 1.2rem;
+  font-size: clamp(1.25rem, 0.9rem + 1.6vw, 2.5rem);
   font-style: italic;
   text-align: center;
   font-weight: 300;
@@ -1972,21 +1978,12 @@ body.article-page .main-container {
     justify-content: flex-end;
   }
 
-  .article-tradition__title {
-    font-size: 3rem;
-  }
-
   .article-tradition__metadata {
     font-size: 1rem;
   }
 
   .article-tradition__body {
     margin-top: 4rem;
-  }
-
-  .article-tradition__highlight,
-  .article-tradition__quote {
-    font-size: 1.3rem;
   }
 
   .article-tradition__separator {
@@ -2024,10 +2021,6 @@ body.article-page .main-container {
     min-height: 40rem;
   }
 
-  .article-tradition__title {
-    font-size: 5rem;
-  }
-
   .article-tradition__metadata {
     font-size: 1.5rem;
   }
@@ -2037,12 +2030,7 @@ body.article-page .main-container {
   }
 
   .article-tradition__quote {
-    font-size: 2.5rem;
     margin: 6rem 0;
-  }
-
-  .article-tradition__highlight {
-    font-size: 1.5rem;
   }
 
   .article-tradition__closing-text {
@@ -2222,7 +2210,7 @@ body.locality-page .main-container {
 
 .regions-index--title {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: var(--step-2);
 }
 
 .regions-index--title a {
