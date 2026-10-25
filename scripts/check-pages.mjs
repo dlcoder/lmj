@@ -206,14 +206,21 @@ function checkSitemap() {
   const locs = [...readFileSync('_site/sitemap.xml', 'utf8').matchAll(/<loc>([^<]+)<\/loc>/g)]
     .map(match => match[1]);
   let pages = 0;
+  let redirects = 0;
   const walk = dir => {
     for (const name of readdirSync(dir)) {
       const path = join(dir, name);
       if (statSync(path).isDirectory()) walk(path);
-      else if (path.endsWith('.html') && path !== join('_site', 'index.html') && path !== join('_site', '404.html')) pages++;
+      else if (path.endsWith('.html') && path !== join('_site', 'index.html') && path !== join('_site', '404.html')) {
+        // The old Rails addresses are pages too, but only to send the reader
+        // on; their targets are checked with the canonicals.
+        if (readFileSync(path, 'utf8').includes('http-equiv="refresh"')) redirects++;
+        else pages++;
+      }
     }
   };
   walk('_site');
+  if (redirects < 700) fail('redirects', `only ${redirects} old Rails URLs are redirected`);
 
   if (new Set(locs).size !== locs.length) fail('sitemap', 'lists some pages twice');
   if (locs.length !== pages) fail('sitemap', `${locs.length} URLs for ${pages} pages`);

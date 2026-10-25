@@ -1,0 +1,26 @@
+---
+# One page per old Rails URL, from _data/redirects.js. Written as `{from}.html`
+# so GitHub Pages serves it at the old address as it was, with no slash added.
+# Search engines read an immediate meta refresh as a permanent redirect, and
+# the canonical points the same way.
+pagination:
+  data: redirects
+  size: 1
+  alias: redirect
+  addAllPagesToCollections: false
+eleventyExcludeFromCollections: true
+eleventyComputed:
+  permalink: "{{ redirect.from }}.html"
+---
+<!DOCTYPE html>
+<html lang="{{ redirect.locale }}">
+<head>
+  <meta charset="UTF-8">
+  <title>Lugares Míticos de Jaén</title>
+  <link rel="canonical" href="{{ siteUrl }}{{ redirect.to }}">
+  <meta http-equiv="refresh" content="0; url={{ redirect.to }}">
+</head>
+<body>
+  <p><a href="{{ redirect.to }}">{{ siteUrl }}{{ redirect.to }}</a></p>
+</body>
+</html>

@@ -54,6 +54,7 @@ npm run build-icons  # re-render the icons in img/ after changing img/favicon.sv
 │   ├── carousel_articles.js          # Compact index for the home carousel
 │   ├── articles_index.js             # GeoJSON index of geolocated articles
 │   ├── search_index.js               # Full-text index for the home search
+│   ├── redirects.js                  # Old Rails URLs → their new address
 │   └── i18n.js                       # Translation strings
 ├── src/                              # Page templates (locale-aware)
 │   ├── index_redirect_to_locale.njk  # `/` → JS language redirect
@@ -68,6 +69,7 @@ npm run build-icons  # re-render the icons in img/ after changing img/favicon.sv
 │   ├── explorer.njk                  # Map of every article, filtered by locality and category
 │   ├── articles_index.njk            # Writes `/{locale}/articles.json`
 │   ├── search_index.njk              # Writes `/{locale}/search.json`
+│   ├── redirect.njk                  # One meta-refresh page per old Rails URL
 │   └── pages/                        # Hand-written static pages (one per locale)
 ├── _includes/
 │   ├── layouts/main.njk              # Single layout
@@ -181,6 +183,15 @@ sides and needs every word of the query; titles weigh most, then places and cate
 Its results replace the category tiles under the "Discover" heading, and the query stays in `?q=`.
 There is no search page: the field only lives on the home page, by decision.
 
+### `redirects.js`
+Every URL of the Rails app that lives somewhere else now, derived from the same data as the site:
+the final slugs never changed, only the prefixes (`/es/articulos/lugares/{slug}`,
+`/en/cities/{slug}`, `/es/categorias/{slug}`…), plus the renamed static pages and the two `/libro2`
+shortcuts. Each becomes a page at `{old path}.html` with an immediate meta refresh and a canonical
+to the new address. The 51 municipalities with no article go to the localities index. Old query
+strings (`?page=N`) cannot reach a static page and are lost. Paths the two sites share, such as
+`/en/articles/{slug}`, need no entry.
+
 ### `categories_list.js` / `localities_list.js`
 Lists for the home page blocks. `categories_list` maps each category to its `imageSlug` (the
 **English** slug, because that is how the bucket files are named). `localities_list` adds
@@ -208,6 +219,7 @@ All templates are unified and receive the language in the `locale` variable.
 | Robots | — | `/robots.txt` | `src/robots.njk` |
 | Not found | — | `/404.html` (bilingual, `noindex`) | `src/404.njk` |
 | Web manifest | — | `/site.webmanifest` | `src/webmanifest.njk` |
+| Old Rails URLs | `redirects` | `{old path}.html`, ~716 of them | `src/redirect.njk` |
 
 All article lists are sorted by `published_at` in descending order (newest first).
 
