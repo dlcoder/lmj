@@ -3,12 +3,15 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Úbeda – Mythical Places of Jaén</title><link rel="stylesheet" href="/css/styles.css?v=1792893744680">
-  <script src="/js/hamburger-menu.js?v=1792893744680" defer></script>
-  <script src="/js/article-slides.js?v=1792893744680" defer></script></head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="statics-host" content="https://lmjstatic.deliriumcoder.com">
+  <title>Úbeda – Mythical Places of Jaén</title><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script><link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" integrity="sha256-YU3qCpj/P06tdPBJGPax0bm6Q1wltfwjsho5TR4+TYc=" crossorigin="">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" integrity="sha256-YSWCMtmNZNwqex4CEw1nQhvFub2lmU7vcCKP+XVwwXA=" crossorigin="">
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" integrity="sha256-Hk4dIpcqOSb0hZjgyvFOP+cEmDXUKKNE/tT542ZbNQg=" crossorigin=""></script><link rel="stylesheet" href="/css/styles.css?v=1792957777012">
+  <script src="/js/hamburger-menu.js?v=1792957777012" defer></script>
+  <script src="/js/article-slides.js?v=1792957777012" defer></script><script src="/js/locality-map.js?v=1792957777012" defer></script></head>
 
-<body class="">
+<body class="locality-page">
   <div id="header" class="header">
     <div class="header-container">
       <div class="header-logo">
@@ -37,20 +40,30 @@
 
   <div class="main-container">
     
-<div class="locality-header">
-  <h1 class="locality-title">Úbeda (La Loma y Las Villas)</h1>
-</div>
+<div class="locality-wrapper">
+  <div class="locality-header">
+    <h1 class="locality-title">Úbeda (La Loma y Las Villas)</h1>
+  </div>
+</div><div class="locality-map" id="locality-map"
+     data-locality-id="44"
+     data-locale="en"></div>
 
-
-
-<div class="article-grid"><article class="article-card">
-      <a href="/en/articles/huertas-de-la-redonda-de-miradores" class="article-card--link">
-        <div class="article-card--image responsive-image" role="img" aria-label="Huertas de la Redonda de Miradores" style="
-          --img-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/002/004/teaser_mobile/6.jpg');
-          --img-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/002/004/teaser_tablet/6.jpg');
-          --img-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/002/004/teaser_desktop/6.jpg');
-          --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/002/004/teaser_desktop_hd/6.jpg');
-        "></div>
+<div class="locality-wrapper">
+  
+  
+  <div class="article-grid"><article class="article-card">
+      <a href="/en/articles/huertas-de-la-redonda-de-miradores" class="article-card--link"><img class="article-card--image"
+             src="https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/002/004/teaser_desktop/6.jpg"
+             srcset="https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/002/004/teaser_tablet/6.jpg 320w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/002/004/teaser_desktop/6.jpg 375w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/002/004/teaser_mobile/6.jpg 480w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/002/004/teaser_desktop_hd/6.jpg 640w"
+             sizes="(min-width: 1120px) 25vw, (min-width: 640px) 33vw, (min-width: 480px) 50vw, 100vw"
+             width="640" height="480"
+             alt="Huertas de la Redonda de Miradores"
+             loading="lazy"
+             fetchpriority="high"
+             decoding="async">
         <div class="article-card--content">
           <h2 class="article-card--title">Huertas de la Redonda de Miradores</h2>
           <div class="article-card--location">Úbeda</div>
@@ -60,13 +73,18 @@
         </div>
       </a>
     </article><article class="article-card">
-      <a href="/en/articles/la-sinagoga-del-agua" class="article-card--link">
-        <div class="article-card--image responsive-image" role="img" aria-label="La Sinagoga del Agua" style="
-          --img-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/821/teaser_mobile/10.jpg');
-          --img-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/821/teaser_tablet/10.jpg');
-          --img-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/821/teaser_desktop/10.jpg');
-          --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/821/teaser_desktop_hd/10.jpg');
-        "></div>
+      <a href="/en/articles/la-sinagoga-del-agua" class="article-card--link"><img class="article-card--image"
+             src="https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/821/teaser_desktop/10.jpg"
+             srcset="https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/821/teaser_tablet/10.jpg 320w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/821/teaser_desktop/10.jpg 375w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/821/teaser_mobile/10.jpg 480w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/821/teaser_desktop_hd/10.jpg 640w"
+             sizes="(min-width: 1120px) 25vw, (min-width: 640px) 33vw, (min-width: 480px) 50vw, 100vw"
+             width="640" height="480"
+             alt="La Sinagoga del Agua"
+             loading="lazy"
+             
+             decoding="async">
         <div class="article-card--content">
           <h2 class="article-card--title">La Sinagoga del Agua</h2>
           <div class="article-card--location">Úbeda</div>
@@ -76,13 +94,18 @@
         </div>
       </a>
     </article><article class="article-card">
-      <a href="/en/articles/la-forja" class="article-card--link">
-        <div class="article-card--image responsive-image" role="img" aria-label="La forja" style="
-          --img-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/702/teaser_mobile/5.jpg');
-          --img-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/702/teaser_tablet/5.jpg');
-          --img-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/702/teaser_desktop/5.jpg');
-          --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/702/teaser_desktop_hd/5.jpg');
-        "></div>
+      <a href="/en/articles/la-forja" class="article-card--link"><img class="article-card--image"
+             src="https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/702/teaser_desktop/5.jpg"
+             srcset="https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/702/teaser_tablet/5.jpg 320w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/702/teaser_desktop/5.jpg 375w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/702/teaser_mobile/5.jpg 480w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/702/teaser_desktop_hd/5.jpg 640w"
+             sizes="(min-width: 1120px) 25vw, (min-width: 640px) 33vw, (min-width: 480px) 50vw, 100vw"
+             width="640" height="480"
+             alt="La forja"
+             loading="lazy"
+             
+             decoding="async">
         <div class="article-card--content">
           <h2 class="article-card--title">La forja</h2>
           <div class="article-card--location">Úbeda</div>
@@ -92,13 +115,18 @@
         </div>
       </a>
     </article><article class="article-card">
-      <a href="/en/articles/puente-de-ariza" class="article-card--link">
-        <div class="article-card--image responsive-image" role="img" aria-label="Puente de Ariza" style="
-          --img-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/264/teaser_mobile/2.jpg');
-          --img-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/264/teaser_tablet/2.jpg');
-          --img-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/264/teaser_desktop/2.jpg');
-          --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/264/teaser_desktop_hd/2.jpg');
-        "></div>
+      <a href="/en/articles/puente-de-ariza" class="article-card--link"><img class="article-card--image"
+             src="https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/264/teaser_desktop/2.jpg"
+             srcset="https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/264/teaser_tablet/2.jpg 320w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/264/teaser_desktop/2.jpg 375w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/264/teaser_mobile/2.jpg 480w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/264/teaser_desktop_hd/2.jpg 640w"
+             sizes="(min-width: 1120px) 25vw, (min-width: 640px) 33vw, (min-width: 480px) 50vw, 100vw"
+             width="640" height="480"
+             alt="Puente de Ariza"
+             loading="lazy"
+             
+             decoding="async">
         <div class="article-card--content">
           <h2 class="article-card--title">Puente de Ariza</h2>
           <div class="article-card--location">Úbeda</div>
@@ -108,13 +136,18 @@
         </div>
       </a>
     </article><article class="article-card">
-      <a href="/en/articles/st-lorenzo-s-church" class="article-card--link">
-        <div class="article-card--image responsive-image" role="img" aria-label="St Lorenzo’s Church" style="
-          --img-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/139/teaser_mobile/01.jpg');
-          --img-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/139/teaser_tablet/01.jpg');
-          --img-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/139/teaser_desktop/01.jpg');
-          --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/139/teaser_desktop_hd/01.jpg');
-        "></div>
+      <a href="/en/articles/st-lorenzo-s-church" class="article-card--link"><img class="article-card--image"
+             src="https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/139/teaser_desktop/01.jpg"
+             srcset="https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/139/teaser_tablet/01.jpg 320w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/139/teaser_desktop/01.jpg 375w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/139/teaser_mobile/01.jpg 480w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/139/teaser_desktop_hd/01.jpg 640w"
+             sizes="(min-width: 1120px) 25vw, (min-width: 640px) 33vw, (min-width: 480px) 50vw, 100vw"
+             width="640" height="480"
+             alt="St Lorenzo’s Church"
+             loading="lazy"
+             
+             decoding="async">
         <div class="article-card--content">
           <h2 class="article-card--title">St Lorenzo’s Church</h2>
           <div class="article-card--location">Úbeda</div>
@@ -129,6 +162,7 @@
 
 
 
+</div>
 
   </div>
   <footer class="footer">

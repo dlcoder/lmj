@@ -41,19 +41,37 @@
     return pool.slice(0, count);
   }
 
-  function imageUrl(host, article, variant) {
-    return `${host}/system/medium/photos/images/${article.p}/${variant}/${article.f}`;
+  function imageUrl(base, article, variant) {
+    return `${base}/${article.p}/${variant}/${article.f}`;
   }
 
-  function paint(slide, article, host, locale) {
+  function paint(slide, article, base, locale) {
     slide.href = `/${locale}/articles/${article.s}`;
 
     const image = slide.querySelector('.latest-article--image');
-    image.setAttribute('aria-label', article.t);
-    image.style.setProperty('--img-mobile', `url('${imageUrl(host, article, 'big_teaser_mobile')}')`);
-    image.style.setProperty('--img-tablet', `url('${imageUrl(host, article, 'big_teaser_tablet')}')`);
-    image.style.setProperty('--img-desktop', `url('${imageUrl(host, article, 'big_teaser_desktop')}')`);
-    image.style.setProperty('--img-desktop-hd', `url('${imageUrl(host, article, 'big_teaser_desktop_hd')}')`);
+    image.alt = article.t;
+
+    const srcset = [
+      `${imageUrl(base, article, 'big_teaser_mobile')} 480w`,
+      `${imageUrl(base, article, 'big_teaser_tablet')} 640w`,
+      `${imageUrl(base, article, 'big_teaser_desktop')} 1120w`,
+      `${imageUrl(base, article, 'big_teaser_desktop_hd')} 1920w`
+    ].join(', ');
+    const src = imageUrl(base, article, 'big_teaser_desktop');
+
+    // The first slide carries a real src from the server and is already on
+    // its way; the rest wait in data attributes until they are shown. The
+    // blurred backdrop asks for the same file, so it costs nothing.
+    for (const element of [image, slide.querySelector('.latest-article--backdrop')]) {
+      if (!element) continue;
+      if (element.src) {
+        element.srcset = srcset;
+        element.src = src;
+      } else {
+        element.dataset.srcset = srcset;
+        element.dataset.src = src;
+      }
+    }
 
     slide.querySelector('.latest-article--title').textContent = article.t;
     slide.querySelector('.latest-article--location').textContent = article.l;
@@ -63,13 +81,13 @@
   const index = document.getElementById('latest-articles-index');
   if (index) {
     try {
-      const { host, articles } = JSON.parse(index.textContent);
+      const { host, imageBase, articles } = JSON.parse(index.textContent);
       // The path is the reliable source: <html lang> is still hardcoded.
       const locale = location.pathname.split('/')[1] || 'es';
       // Repainting the slides the server rendered, rather than building new
       // ones, keeps the no-JavaScript markup as the fallback.
       pickForToday(articles, slides.length)
-        .forEach((article, i) => paint(slides[i], article, host, locale));
+        .forEach((article, i) => paint(slides[i], article, host + imageBase, locale));
     } catch (error) {
       // A broken index is no reason to lose the carousel: the slides the
       // server rendered are already there and perfectly good.
@@ -81,10 +99,21 @@
 
   let current = 0;
 
+  // A slide's photo is only worth its bytes once the slide is on screen.
+  function load(slide) {
+    for (const image of slide.querySelectorAll('[data-src]')) {
+      image.srcset = image.dataset.srcset;
+      image.src = image.dataset.src;
+      delete image.dataset.srcset;
+      delete image.dataset.src;
+    }
+  }
+
   function show(index) {
     current = (index + slides.length) % slides.length;
     slides.forEach((slide, i) => {
       const isCurrent = i === current;
+      if (isCurrent) load(slide);
       slide.classList.toggle('is-current', isCurrent);
       // Keyboard and screen readers should only reach the visible slide.
       slide.setAttribute('aria-hidden', isCurrent ? 'false' : 'true');

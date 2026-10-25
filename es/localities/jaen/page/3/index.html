@@ -3,12 +3,15 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jaén – Lugares míticos de Jaén</title><link rel="stylesheet" href="/css/styles.css?v=1792893744680">
-  <script src="/js/hamburger-menu.js?v=1792893744680" defer></script>
-  <script src="/js/article-slides.js?v=1792893744680" defer></script></head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="statics-host" content="https://lmjstatic.deliriumcoder.com">
+  <title>Jaén – Lugares míticos de Jaén</title><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script><link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" integrity="sha256-YU3qCpj/P06tdPBJGPax0bm6Q1wltfwjsho5TR4+TYc=" crossorigin="">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" integrity="sha256-YSWCMtmNZNwqex4CEw1nQhvFub2lmU7vcCKP+XVwwXA=" crossorigin="">
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" integrity="sha256-Hk4dIpcqOSb0hZjgyvFOP+cEmDXUKKNE/tT542ZbNQg=" crossorigin=""></script><link rel="stylesheet" href="/css/styles.css?v=1792957777012">
+  <script src="/js/hamburger-menu.js?v=1792957777012" defer></script>
+  <script src="/js/article-slides.js?v=1792957777012" defer></script><script src="/js/locality-map.js?v=1792957777012" defer></script></head>
 
-<body class="">
+<body class="locality-page">
   <div id="header" class="header">
     <div class="header-container">
       <div class="header-logo">
@@ -37,20 +40,30 @@
 
   <div class="main-container">
     
-<div class="locality-header">
-  <h1 class="locality-title">Jaén (Área metropolitana de Jaén)</h1>
-</div>
+<div class="locality-wrapper">
+  <div class="locality-header">
+    <h1 class="locality-title">Jaén (Área metropolitana de Jaén)</h1>
+  </div>
+</div><div class="locality-map" id="locality-map"
+     data-locality-id="4"
+     data-locale="es"></div>
 
-
-
-<div class="article-grid"><article class="article-card">
-      <a href="/es/articles/fuente-de-la-pena" class="article-card--link">
-        <div class="article-card--image responsive-image" role="img" aria-label="La Fuente de la Peña" style="
-          --img-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/328/teaser_mobile/01.jpg');
-          --img-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/328/teaser_tablet/01.jpg');
-          --img-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/328/teaser_desktop/01.jpg');
-          --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/328/teaser_desktop_hd/01.jpg');
-        "></div>
+<div class="locality-wrapper">
+  
+  
+  <div class="article-grid"><article class="article-card">
+      <a href="/es/articles/fuente-de-la-pena" class="article-card--link"><img class="article-card--image"
+             src="https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/328/teaser_desktop/01.jpg"
+             srcset="https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/328/teaser_tablet/01.jpg 320w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/328/teaser_desktop/01.jpg 375w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/328/teaser_mobile/01.jpg 480w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/328/teaser_desktop_hd/01.jpg 640w"
+             sizes="(min-width: 1120px) 25vw, (min-width: 640px) 33vw, (min-width: 480px) 50vw, 100vw"
+             width="640" height="480"
+             alt="La Fuente de la Peña"
+             loading="lazy"
+             fetchpriority="high"
+             decoding="async">
         <div class="article-card--content">
           <h2 class="article-card--title">La Fuente de la Peña</h2>
           <div class="article-card--location">Jaén</div>
@@ -60,13 +73,18 @@
         </div>
       </a>
     </article><article class="article-card">
-      <a href="/es/articles/oppidum-iberico" class="article-card--link">
-        <div class="article-card--image responsive-image" role="img" aria-label="El Oppidum Ibérico" style="
-          --img-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/314/teaser_mobile/01.jpg');
-          --img-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/314/teaser_tablet/01.jpg');
-          --img-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/314/teaser_desktop/01.jpg');
-          --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/314/teaser_desktop_hd/01.jpg');
-        "></div>
+      <a href="/es/articles/oppidum-iberico" class="article-card--link"><img class="article-card--image"
+             src="https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/314/teaser_desktop/01.jpg"
+             srcset="https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/314/teaser_tablet/01.jpg 320w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/314/teaser_desktop/01.jpg 375w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/314/teaser_mobile/01.jpg 480w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/314/teaser_desktop_hd/01.jpg 640w"
+             sizes="(min-width: 1120px) 25vw, (min-width: 640px) 33vw, (min-width: 480px) 50vw, 100vw"
+             width="640" height="480"
+             alt="El Oppidum Ibérico"
+             loading="lazy"
+             
+             decoding="async">
         <div class="article-card--content">
           <h2 class="article-card--title">El Oppidum Ibérico</h2>
           <div class="article-card--location">Jaén</div>
@@ -76,13 +94,18 @@
         </div>
       </a>
     </article><article class="article-card">
-      <a href="/es/articles/refugio-antiaereo" class="article-card--link">
-        <div class="article-card--image responsive-image" role="img" aria-label="Refugio Antiaéreo" style="
-          --img-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/301/teaser_mobile/01.jpg');
-          --img-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/301/teaser_tablet/01.jpg');
-          --img-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/301/teaser_desktop/01.jpg');
-          --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/301/teaser_desktop_hd/01.jpg');
-        "></div>
+      <a href="/es/articles/refugio-antiaereo" class="article-card--link"><img class="article-card--image"
+             src="https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/301/teaser_desktop/01.jpg"
+             srcset="https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/301/teaser_tablet/01.jpg 320w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/301/teaser_desktop/01.jpg 375w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/301/teaser_mobile/01.jpg 480w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/301/teaser_desktop_hd/01.jpg 640w"
+             sizes="(min-width: 1120px) 25vw, (min-width: 640px) 33vw, (min-width: 480px) 50vw, 100vw"
+             width="640" height="480"
+             alt="Refugio Antiaéreo"
+             loading="lazy"
+             
+             decoding="async">
         <div class="article-card--content">
           <h2 class="article-card--title">Refugio Antiaéreo</h2>
           <div class="article-card--location">Jaén</div>
@@ -92,13 +115,18 @@
         </div>
       </a>
     </article><article class="article-card">
-      <a href="/es/articles/el-bodegon" class="article-card--link">
-        <div class="article-card--image responsive-image" role="img" aria-label="El Bodegón" style="
-          --img-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/243/teaser_mobile/01.jpg');
-          --img-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/243/teaser_tablet/01.jpg');
-          --img-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/243/teaser_desktop/01.jpg');
-          --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/243/teaser_desktop_hd/01.jpg');
-        "></div>
+      <a href="/es/articles/el-bodegon" class="article-card--link"><img class="article-card--image"
+             src="https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/243/teaser_desktop/01.jpg"
+             srcset="https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/243/teaser_tablet/01.jpg 320w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/243/teaser_desktop/01.jpg 375w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/243/teaser_mobile/01.jpg 480w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/243/teaser_desktop_hd/01.jpg 640w"
+             sizes="(min-width: 1120px) 25vw, (min-width: 640px) 33vw, (min-width: 480px) 50vw, 100vw"
+             width="640" height="480"
+             alt="El Bodegón"
+             loading="lazy"
+             
+             decoding="async">
         <div class="article-card--content">
           <h2 class="article-card--title">El Bodegón</h2>
           <div class="article-card--location">Jaén</div>
@@ -108,13 +136,18 @@
         </div>
       </a>
     </article><article class="article-card">
-      <a href="/es/articles/mercado-de-abastos" class="article-card--link">
-        <div class="article-card--image responsive-image" role="img" aria-label="El Mercado de Abastos" style="
-          --img-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/229/teaser_mobile/01.jpg');
-          --img-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/229/teaser_tablet/01.jpg');
-          --img-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/229/teaser_desktop/01.jpg');
-          --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/229/teaser_desktop_hd/01.jpg');
-        "></div>
+      <a href="/es/articles/mercado-de-abastos" class="article-card--link"><img class="article-card--image"
+             src="https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/229/teaser_desktop/01.jpg"
+             srcset="https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/229/teaser_tablet/01.jpg 320w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/229/teaser_desktop/01.jpg 375w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/229/teaser_mobile/01.jpg 480w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/229/teaser_desktop_hd/01.jpg 640w"
+             sizes="(min-width: 1120px) 25vw, (min-width: 640px) 33vw, (min-width: 480px) 50vw, 100vw"
+             width="640" height="480"
+             alt="El Mercado de Abastos"
+             loading="lazy"
+             
+             decoding="async">
         <div class="article-card--content">
           <h2 class="article-card--title">El Mercado de Abastos</h2>
           <div class="article-card--location">Jaén</div>
@@ -124,13 +157,18 @@
         </div>
       </a>
     </article><article class="article-card">
-      <a href="/es/articles/el-cementerio-viejo" class="article-card--link">
-        <div class="article-card--image responsive-image" role="img" aria-label="El Cementerio Viejo" style="
-          --img-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/227/teaser_mobile/01.jpg');
-          --img-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/227/teaser_tablet/01.jpg');
-          --img-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/227/teaser_desktop/01.jpg');
-          --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/227/teaser_desktop_hd/01.jpg');
-        "></div>
+      <a href="/es/articles/el-cementerio-viejo" class="article-card--link"><img class="article-card--image"
+             src="https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/227/teaser_desktop/01.jpg"
+             srcset="https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/227/teaser_tablet/01.jpg 320w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/227/teaser_desktop/01.jpg 375w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/227/teaser_mobile/01.jpg 480w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/227/teaser_desktop_hd/01.jpg 640w"
+             sizes="(min-width: 1120px) 25vw, (min-width: 640px) 33vw, (min-width: 480px) 50vw, 100vw"
+             width="640" height="480"
+             alt="El Cementerio Viejo"
+             loading="lazy"
+             
+             decoding="async">
         <div class="article-card--content">
           <h2 class="article-card--title">El Cementerio Viejo</h2>
           <div class="article-card--location">Jaén</div>
@@ -140,13 +178,18 @@
         </div>
       </a>
     </article><article class="article-card">
-      <a href="/es/articles/los-banios-arabes" class="article-card--link">
-        <div class="article-card--image responsive-image" role="img" aria-label="Los Baños Árabes" style="
-          --img-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/215/teaser_mobile/01.jpg');
-          --img-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/215/teaser_tablet/01.jpg');
-          --img-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/215/teaser_desktop/01.jpg');
-          --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/215/teaser_desktop_hd/01.jpg');
-        "></div>
+      <a href="/es/articles/los-banios-arabes" class="article-card--link"><img class="article-card--image"
+             src="https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/215/teaser_desktop/01.jpg"
+             srcset="https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/215/teaser_tablet/01.jpg 320w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/215/teaser_desktop/01.jpg 375w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/215/teaser_mobile/01.jpg 480w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/215/teaser_desktop_hd/01.jpg 640w"
+             sizes="(min-width: 1120px) 25vw, (min-width: 640px) 33vw, (min-width: 480px) 50vw, 100vw"
+             width="640" height="480"
+             alt="Los Baños Árabes"
+             loading="lazy"
+             
+             decoding="async">
         <div class="article-card--content">
           <h2 class="article-card--title">Los Baños Árabes</h2>
           <div class="article-card--location">Jaén</div>
@@ -156,13 +199,18 @@
         </div>
       </a>
     </article><article class="article-card">
-      <a href="/es/articles/hospital-san-juan-de-dios" class="article-card--link">
-        <div class="article-card--image responsive-image" role="img" aria-label="Hospital San Juan de Dios" style="
-          --img-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/187/teaser_mobile/01.jpg');
-          --img-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/187/teaser_tablet/01.jpg');
-          --img-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/187/teaser_desktop/01.jpg');
-          --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/187/teaser_desktop_hd/01.jpg');
-        "></div>
+      <a href="/es/articles/hospital-san-juan-de-dios" class="article-card--link"><img class="article-card--image"
+             src="https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/187/teaser_desktop/01.jpg"
+             srcset="https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/187/teaser_tablet/01.jpg 320w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/187/teaser_desktop/01.jpg 375w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/187/teaser_mobile/01.jpg 480w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/187/teaser_desktop_hd/01.jpg 640w"
+             sizes="(min-width: 1120px) 25vw, (min-width: 640px) 33vw, (min-width: 480px) 50vw, 100vw"
+             width="640" height="480"
+             alt="Hospital San Juan de Dios"
+             loading="lazy"
+             
+             decoding="async">
         <div class="article-card--content">
           <h2 class="article-card--title">Hospital San Juan de Dios</h2>
           <div class="article-card--location">Jaén</div>
@@ -172,13 +220,18 @@
         </div>
       </a>
     </article><article class="article-card">
-      <a href="/es/articles/parque-del-seminario" class="article-card--link">
-        <div class="article-card--image responsive-image" role="img" aria-label="Parque del Seminario" style="
-          --img-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/173/teaser_mobile/01.jpg');
-          --img-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/173/teaser_tablet/01.jpg');
-          --img-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/173/teaser_desktop/01.jpg');
-          --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/173/teaser_desktop_hd/01.jpg');
-        "></div>
+      <a href="/es/articles/parque-del-seminario" class="article-card--link"><img class="article-card--image"
+             src="https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/173/teaser_desktop/01.jpg"
+             srcset="https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/173/teaser_tablet/01.jpg 320w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/173/teaser_desktop/01.jpg 375w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/173/teaser_mobile/01.jpg 480w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/173/teaser_desktop_hd/01.jpg 640w"
+             sizes="(min-width: 1120px) 25vw, (min-width: 640px) 33vw, (min-width: 480px) 50vw, 100vw"
+             width="640" height="480"
+             alt="Parque del Seminario"
+             loading="lazy"
+             
+             decoding="async">
         <div class="article-card--content">
           <h2 class="article-card--title">Parque del Seminario</h2>
           <div class="article-card--location">Jaén</div>
@@ -188,13 +241,18 @@
         </div>
       </a>
     </article><article class="article-card">
-      <a href="/es/articles/escuela-de-arte" class="article-card--link">
-        <div class="article-card--image responsive-image" role="img" aria-label="Escuela de Arte" style="
-          --img-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/156/teaser_mobile/01.jpg');
-          --img-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/156/teaser_tablet/01.jpg');
-          --img-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/156/teaser_desktop/01.jpg');
-          --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/156/teaser_desktop_hd/01.jpg');
-        "></div>
+      <a href="/es/articles/escuela-de-arte" class="article-card--link"><img class="article-card--image"
+             src="https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/156/teaser_desktop/01.jpg"
+             srcset="https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/156/teaser_tablet/01.jpg 320w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/156/teaser_desktop/01.jpg 375w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/156/teaser_mobile/01.jpg 480w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/156/teaser_desktop_hd/01.jpg 640w"
+             sizes="(min-width: 1120px) 25vw, (min-width: 640px) 33vw, (min-width: 480px) 50vw, 100vw"
+             width="640" height="480"
+             alt="Escuela de Arte"
+             loading="lazy"
+             
+             decoding="async">
         <div class="article-card--content">
           <h2 class="article-card--title">Escuela de Arte</h2>
           <div class="article-card--location">Jaén</div>
@@ -204,13 +262,18 @@
         </div>
       </a>
     </article><article class="article-card">
-      <a href="/es/articles/la-barra" class="article-card--link">
-        <div class="article-card--image responsive-image" role="img" aria-label="La Barra" style="
-          --img-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/126/teaser_mobile/01.jpg');
-          --img-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/126/teaser_tablet/01.jpg');
-          --img-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/126/teaser_desktop/01.jpg');
-          --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/126/teaser_desktop_hd/01.jpg');
-        "></div>
+      <a href="/es/articles/la-barra" class="article-card--link"><img class="article-card--image"
+             src="https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/126/teaser_desktop/01.jpg"
+             srcset="https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/126/teaser_tablet/01.jpg 320w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/126/teaser_desktop/01.jpg 375w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/126/teaser_mobile/01.jpg 480w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/126/teaser_desktop_hd/01.jpg 640w"
+             sizes="(min-width: 1120px) 25vw, (min-width: 640px) 33vw, (min-width: 480px) 50vw, 100vw"
+             width="640" height="480"
+             alt="La Barra"
+             loading="lazy"
+             
+             decoding="async">
         <div class="article-card--content">
           <h2 class="article-card--title">La Barra</h2>
           <div class="article-card--location">Jaén</div>
@@ -220,13 +283,18 @@
         </div>
       </a>
     </article><article class="article-card">
-      <a href="/es/articles/colas-del-quiebrajano" class="article-card--link">
-        <div class="article-card--image responsive-image" role="img" aria-label="Colas del Quiebrajano" style="
-          --img-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/102/teaser_mobile/01.jpg');
-          --img-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/102/teaser_tablet/01.jpg');
-          --img-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/102/teaser_desktop/01.jpg');
-          --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/102/teaser_desktop_hd/01.jpg');
-        "></div>
+      <a href="/es/articles/colas-del-quiebrajano" class="article-card--link"><img class="article-card--image"
+             src="https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/102/teaser_desktop/01.jpg"
+             srcset="https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/102/teaser_tablet/01.jpg 320w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/102/teaser_desktop/01.jpg 375w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/102/teaser_mobile/01.jpg 480w,
+                     https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/102/teaser_desktop_hd/01.jpg 640w"
+             sizes="(min-width: 1120px) 25vw, (min-width: 640px) 33vw, (min-width: 480px) 50vw, 100vw"
+             width="640" height="480"
+             alt="Colas del Quiebrajano"
+             loading="lazy"
+             
+             decoding="async">
         <div class="article-card--content">
           <h2 class="article-card--title">Colas del Quiebrajano</h2>
           <div class="article-card--location">Jaén, Valdepeñas de Jaén</div>
@@ -261,6 +329,7 @@
 
 
 
+</div>
 
   </div>
   <footer class="footer">

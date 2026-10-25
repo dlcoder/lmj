@@ -726,10 +726,12 @@ body.article-page .main-container {
 
 .article-card--image {
   aspect-ratio: 4 / 3;
-  padding-top: 0;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  display: block;
+  width: 100%;
+  /* Or the height attribute pins the card to the photo's own height. */
+  height: auto;
+  object-fit: cover;
+  object-position: center;
 }
 
 .article-card--content {
@@ -795,6 +797,8 @@ body.article-page .main-container {
 
 .latest-articles {
   position: relative;
+  /* The band runs edge to edge; the photo inside it does not. */
+  overflow: hidden;
 }
 
 .latest-article {
@@ -809,14 +813,51 @@ body.article-page .main-container {
 }
 
 .latest-article--image {
-  /* The ratio replaces the padding-top `.responsive-image` uses to hold its
-     shape. On a phone the 2.5:1 crop of the source is too thin to carry a
-     caption, so the box is taller and the photo gets cropped sideways. */
+  /* The ratio overrides the photo's own: on a phone the 2.5:1 crop of the
+     source is too thin to carry a caption, so the box is taller and
+     `object-fit` crops the photo sideways instead. */
   aspect-ratio: 3 / 2;
-  padding-top: 0;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  display: block;
+  width: 100%;
+  /* No photo in the archive is wider than 1920px — the originals included —
+     so past that the carousel would be stretching one: 1,33x on a 2560px
+     screen, which is what makes it look soft. The original capped its whole
+     body at this width (descubrejaen, basics/wrappers.scss). Here only the
+     photo stops, and the backdrop fills what is left. */
+  max-width: 1920px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  /* The width and height attributes would otherwise pin the height to the
+     photo's own 768px and leave the ratio above with nothing to do. */
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* A slide still waiting for its photo holds no space: without JavaScript the
+   <noscript> copy is the one that shows, and two boxes would stack. */
+.latest-article--image[data-src] {
+  display: none;
+}
+
+/* Past 1920px the photo leaves a strip either side. Rather than a flat
+   colour, it is the same photo blown up and blurred, which is the same file
+   the browser has already fetched — no extra bytes. Scaled up a touch so the
+   blur has something to bleed from and no soft edge shows. */
+.latest-article--backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(2rem) brightness(0.8);
+  transform: scale(1.15);
+  z-index: 0;
+}
+
+.latest-article--backdrop[data-src] {
+  display: none;
 }
 
 .latest-article--caption {
@@ -824,6 +865,13 @@ body.article-page .main-container {
   bottom: 0;
   left: 0;
   right: 0;
+  /* Lines up with the photo, not with the blurred strip beside it. The
+     padding has to count towards the cap, or the text starts 4rem to the
+     left of the photo's edge. */
+  box-sizing: border-box;
+  max-width: 1920px;
+  margin: 0 auto;
+  z-index: 2;
   padding: 2.5rem 1.25rem 1.25rem;
   color: #fff;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
@@ -851,11 +899,28 @@ body.article-page .main-container {
 
 .latest-articles.is-carousel .latest-articles--arrows {
   display: block;
+  /* Same, so they sit on the photo's edges and not the viewport's. */
+  max-width: 1920px;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.latest-articles.is-carousel .latest-articles--arrow {
+  pointer-events: auto;
 }
 
 .latest-articles.is-carousel .latest-articles--track {
   position: relative;
   aspect-ratio: 3 / 2;
+  /* Stated, so that the max-height further down trims the band's height
+     without the ratio pulling its width in with it — the blurred strip
+     needs the full width. */
+  width: 100%;
 }
 
 .latest-articles.is-carousel .latest-article {
@@ -918,6 +983,10 @@ body.article-page .main-container {
   .latest-articles.is-carousel .latest-articles--track {
     /* Wide enough now for the source crop, 2.5:1, to be shown whole. */
     aspect-ratio: 2.5 / 1;
+    /* What that ratio gives a photo at its 1920px cap. Past that width the
+       ratio alone would keep making the band taller than the photo in it,
+       leaving the caption adrift over the blurred strip. */
+    max-height: 768px;
   }
 
   .latest-article--caption {
@@ -1801,4 +1870,58 @@ body.article-page .main-container {
 .leaflet-container .leaflet-control-attribution {
   background: rgba(255, 255, 255, 0.8);
   font-size: 0.6875rem;
+}
+
+/* Locality pages
+   The map runs edge to edge, as it did in the original, where it sat outside
+   the wrapper. So the container drops its padding and its cap — a cap would
+   stop the map at 1920px and leave strips of page either side on a wider
+   screen — and the blocks around the map carry their own measure, the same
+   way the home page is built. */
+
+body.locality-page .main-container {
+  --container-padding: 0px;
+  max-width: none;
+  padding: 0;
+  /* Still clear of the fixed header. */
+  padding-top: 6rem;
+}
+
+.locality-wrapper {
+  margin: 0 auto;
+  max-width: 1920px;
+  padding: 0 2rem;
+}
+
+.locality-map {
+  /* The 500px of the original, which is a lot of phone, so it gives way
+     below the first breakpoint. */
+  height: 31.25rem;
+  margin: 2rem 0;
+  background-color: #eee;
+}
+
+@media (max-width: 768px) {
+  .locality-map {
+    height: 20rem;
+  }
+}
+
+/* The marker popups: the teaser photo with the title under it, the whole
+   thing a link. */
+
+.leaflet-popup-content a {
+  display: block;
+  color: #333;
+}
+
+.leaflet-popup-content img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.leaflet-popup-content h2 {
+  font-size: 1rem;
+  margin: 0.5rem 0 0;
 }
