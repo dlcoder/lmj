@@ -1,6 +1,8 @@
 import { STATICS_HOST } from "./_data/base.js";
 
 export default function (eleventyConfig) {
+  eleventyConfig.addGlobalData("staticsHost", STATICS_HOST);
+
   eleventyConfig.addGlobalData("env", {
     ELEVENTY_ENV: process.env.ELEVENTY_ENV || "development"
   });

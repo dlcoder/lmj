@@ -6,10 +6,11 @@ import { spawn } from 'node:child_process';
 import { once } from 'node:events';
 import { existsSync, readFileSync } from 'node:fs';
 import { extname } from 'node:path';
+import { STATICS_HOST } from '../_data/base.js';
 
 const PORT = 8123;
 const BASE = `http://localhost:${PORT}`;
-const ASSETS = 'https://lmjstatic.deliriumcoder.com';
+const ASSETS = STATICS_HOST;
 const CACHE = '/tmp/lmjimg';
 
 const WIDE = 1440;

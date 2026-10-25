@@ -10,7 +10,9 @@
   const container = document.getElementById('locality-map');
   if (!container || typeof L === 'undefined') return;
 
-  const GEOJSON = 'https://lmjstatic.deliriumcoder.com/files/geojson';
+  const STATICS_HOST = document.querySelector('meta[name="statics-host"]')?.content
+    ?? 'https://lmjstatic.deliriumcoder.com';
+  const GEOJSON = `${STATICS_HOST}/files/geojson`;
   const JAEN_CENTER = [37.9556459, -3.361515];
   const JAEN_ZOOM = 12;
 

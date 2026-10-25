@@ -3,7 +3,9 @@
   // browser applies CORS to them. The bucket answers with an allowlist of
   // origins, which has to include wherever the site is being served from —
   // including localhost while developing.
-  const GEOJSON = 'https://lmjstatic.deliriumcoder.com/files/geojson';
+  const STATICS_HOST = document.querySelector('meta[name="statics-host"]')?.content
+    ?? 'https://lmjstatic.deliriumcoder.com';
+  const GEOJSON = `${STATICS_HOST}/files/geojson`;
   const JAEN_CENTER = [37.9556459, -3.361515];
   const JAEN_ZOOM = 9;
 
