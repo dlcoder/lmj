@@ -11,8 +11,8 @@ eleventyComputed:
   locale: "{{ categoryPage.locale }}"
 ---
 
-<div class="category-header">
-  <h1 class="category-title">{{ categoryPage.category.name }}</h1>
+<div class="page-header">
+  <h1 class="page-title">{{ categoryPage.category.name }}</h1>
 </div>
 
 {% set articles = categoryPage.articles %}

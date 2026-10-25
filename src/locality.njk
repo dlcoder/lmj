@@ -16,8 +16,11 @@ bodyClass: "locality-page"
 ---
 
 <div class="locality-wrapper">
-  <div class="locality-header">
-    <h1 class="locality-title">{{ localityPage.locality.name }} ({{ localityPage.locality.region.name }})</h1>
+  <div class="page-header">
+    <h1 class="page-title">{{ localityPage.locality.name }}</h1>
+    <p class="page-title--context">
+      <a href="/{{ locale }}/regions/{{ localityPage.locality.region.slug }}/">{{ localityPage.locality.region.name }}</a>
+    </p>
   </div>
 </div>
 

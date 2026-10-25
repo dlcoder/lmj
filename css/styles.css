@@ -622,6 +622,12 @@ body.home-page {
   font-weight: bold;
 }
 
+/* What the title belongs to: the region of a municipality. */
+.page-title--context {
+  margin: -0.5rem 0 0;
+  font-size: var(--step-1);
+}
+
 /* Article Page */
 
 /* The call to action only makes sense where the deck is: on narrower screens
