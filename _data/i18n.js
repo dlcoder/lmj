@@ -45,7 +45,7 @@ export default {
     },
     search: {
       label: "Search the articles",
-      placeholder: "Search for a place, a town, a castle…",
+      placeholder: "Search for a place or a town…",
       countOne: "1 place for “%{query}”",
       countMany: "%{count} places for “%{query}”",
       countNone: "No place matches “%{query}”"
@@ -142,7 +142,7 @@ export default {
     },
     search: {
       label: "Buscar en los reportajes",
-      placeholder: "Busca un lugar, un pueblo, un castillo…",
+      placeholder: "Busca un lugar o un pueblo…",
       countOne: "1 lugar para «%{query}»",
       countMany: "%{count} lugares para «%{query}»",
       countNone: "Ningún lugar coincide con «%{query}»"
