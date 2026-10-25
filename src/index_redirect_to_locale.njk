@@ -1,24 +1,31 @@
 ---
 permalink: /
+eleventyExcludeFromCollections: true
 ---
-
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Redirecting...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lugares Míticos de Jaén</title>
+  {#- GitHub Pages cannot negotiate the language on the server, so the
+      browser picks it. For crawlers, which do not run the script or share
+      the reader's language, the two home pages are declared as the
+      alternatives of this one, and linked below. -#}
+  <link rel="alternate" hreflang="es" href="{{ siteUrl }}/es/">
+  <link rel="alternate" hreflang="en" href="{{ siteUrl }}/en/">
+  <link rel="alternate" hreflang="x-default" href="{{ siteUrl }}/">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
   <script>
     (function() {
-      var userLang = navigator.language || navigator.userLanguage;
+      var userLang = navigator.language || navigator.userLanguage || '';
       var lang = userLang.toLowerCase().startsWith('es') ? 'es' : 'en';
       window.location.replace('/' + lang + '/');
     })();
   </script>
 </head>
 <body>
-  <p>Redirecting...</p>
-  <noscript>
-    <p><a href="/en/">English</a> | <a href="/es/">Español</a></p>
-  </noscript>
+  <p><a href="/es/" hreflang="es">Español</a> · <a href="/en/" hreflang="en" lang="en">English</a></p>
 </body>
 </html>

@@ -32,6 +32,10 @@
   {%- if alternate and alternate.translated %}
   <link rel="alternate" hreflang="{{ locale }}" href="{{ url }}">
   <link rel="alternate" hreflang="{{ "en" if locale == "es" else "es" }}" href="{{ siteUrl }}{{ alternate.path }}">
+  {%- if page.url == "/" + locale + "/" %}
+  {#- The root picks the language for whoever has not chosen one yet. -#}
+  <link rel="alternate" hreflang="x-default" href="{{ siteUrl }}/">
+  {%- endif %}
   {%- endif %}
   <meta property="og:site_name" content="{{ i18n[locale].siteTitle }}">
   <meta property="og:locale" content="{{ "es_ES" if locale == "es" else "en_GB" }}">
