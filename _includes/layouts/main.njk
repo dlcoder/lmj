@@ -18,7 +18,11 @@
   {%- set alternate = page.url | alternate %}
   {%- set description = (article.summary or (article.sentences | join(" ")) if article else pageDescription) or i18n[locale].siteDescription %}
   <meta name="description" content="{{ description | excerpt }}">
+  {%- if noIndex %}
+  <meta name="robots" content="noindex">
+  {%- else %}
   <link rel="canonical" href="{{ url }}">
+  {%- endif %}
   {%- if alternate and alternate.translated %}
   <link rel="alternate" hreflang="{{ locale }}" href="{{ url }}">
   <link rel="alternate" hreflang="{{ "en" if locale == "es" else "es" }}" href="{{ siteUrl }}{{ alternate.path }}">

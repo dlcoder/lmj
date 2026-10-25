@@ -1,5 +1,6 @@
 // Minimal static server over _site/ that mimics GitHub Pages: resolves
-// `/path` as `/path.html` and `/dir/` as `/dir/index.html`.
+// `/path` as `/path.html` and `/dir/` as `/dir/index.html`, and serves
+// 404.html for anything else.
 // Meant for `npm run check-links`; for development use `npm run serve`.
 import { createServer } from "node:http";
 import { stat, readFile } from "node:fs/promises";
@@ -40,8 +41,14 @@ const server = createServer(async (req, res) => {
   const { pathname } = new URL(req.url, `http://localhost:${PORT}`);
   const file = await resolvePath(pathname);
 
+  // GitHub Pages answers a path it cannot resolve with the site's 404.html.
   if (!file) {
-    res.writeHead(404, { "content-type": "text/plain" }).end("Not found");
+    const notFound = join(ROOT, "404.html");
+    if (await isFile(notFound)) {
+      res.writeHead(404, { "content-type": MIME[".html"] }).end(await readFile(notFound));
+    } else {
+      res.writeHead(404, { "content-type": "text/plain" }).end("Not found");
+    }
     return;
   }
 

@@ -31,6 +31,8 @@ const pages = [
   { name: 'region',    url: '/es/regions/sierra-sur/' },
   { name: 'regions',   url: '/es/regions/' },
   { name: 'static',    url: '/es/acerca-de' },
+  // Served by the host for any path it cannot resolve.
+  { name: 'not-found', url: '/es/no-such-page' },
   { name: 'place',     url: '/es/articles/el-posito' },
   // The featured photo is the last medium here, not the first, which has
   // broken index-based assumptions before.
@@ -272,7 +274,9 @@ for (const spec of pages) {
       const text = message.text();
       // Noise from the aborted third parties above, and from outlines the
       // assets host may not serve to this origin.
-      const expected = /ERR_FAILED|ERR_ABORTED|CORS policy|province boundary|locality GeoJSON/i.test(text);
+      const expected = /ERR_FAILED|ERR_ABORTED|CORS policy|province boundary|locality GeoJSON/i.test(text) ||
+        // The not-found page is, rightly, served with a 404 status.
+        (spec.name === 'not-found' && /status of 404/.test(text));
       if (message.type() === 'error' && !expected) consoleErrors.push(text);
     });
     page.on('pageerror', error => consoleErrors.push(error.message));

@@ -187,6 +187,7 @@ All templates are unified and receive the language in the `locale` variable.
 | Articles index | `articles_index` | `/{locale}/articles.json` | `src/articles_index.njk` |
 | Sitemap | `collections.all` | `/sitemap.xml` | `src/sitemap.njk` |
 | Robots | — | `/robots.txt` | `src/robots.njk` |
+| Not found | — | `/404.html` (bilingual, `noindex`) | `src/404.njk` |
 
 All article lists are sorted by `published_at` in descending order (newest first).
 
@@ -261,7 +262,6 @@ but do not publish.
 
 The most relevant items when touching templates:
 
-- There is no 404 page.
 - Photos are `<img srcset loading="lazy">` everywhere now — carousel, card grids, category
   tiles, article gallery. What is left on `background-image` is the photo behind the
   article intro, which carries a gradient scrim over it, and the dead
