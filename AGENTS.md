@@ -305,7 +305,8 @@ The most relevant items when touching templates:
   tiles, article gallery. What is left on `background-image` is the photo behind the
   article intro, which carries a gradient scrim over it, and the dead
   `.article-tradition__* .responsive-image` rules, whose markup no longer exists.
-  **WebP/AVIF is the remaining win**, and it needs a CDN that negotiates on `Accept`.
+  **WebP/AVIF is the remaining win**, and it needs a CDN that negotiates on `Accept`. Re-encoding a sample of 50 gallery photos gave WebP (q80) at
+  ~67 % of the JPEG and AVIF (CRF 35) at ~47 %.
 - From 1280px up the article is a scroll-snap deck: the intro over the featured photo,
   the featured photo on its own, then the gallery. The scrolling is the browser's; the
   script only adds arrow keys and the navigation dots. Below that width it is an ordinary
