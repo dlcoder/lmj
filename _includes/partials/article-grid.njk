@@ -5,7 +5,8 @@
         {#- `sizes` follows the column count the grid takes on at each of its
             breakpoints, so a card 360px wide stops being served the 640px
             variant. The cards below the fold wait their turn; the first one
-            is asked for early because on an index it is the largest paint. -#}
+            is loaded at once and early, because on an index it is the
+            largest paint, and a lazy image is only asked for after layout. -#}
         <img class="article-card--image"
              src="{% featured_image article, 'teaser_desktop' %}"
              srcset="{% featured_image article, 'teaser_tablet' %} 320w,
@@ -15,8 +16,7 @@
              sizes="(min-width: 1120px) 25vw, (min-width: 640px) 33vw, (min-width: 480px) 50vw, 100vw"
              width="640" height="480"
              alt="{{ article.title }}"
-             loading="lazy"
-             {% if loop.first %}fetchpriority="high"{% endif %}
+             {% if loop.first %}fetchpriority="high"{% else %}loading="lazy"{% endif %}
              decoding="async">
         <div class="article-card--content">
           <h2 class="article-card--title">{{ article.title }}</h2>

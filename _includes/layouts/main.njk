@@ -87,17 +87,19 @@
   {%- endif %}
   {#- Leaflet and its cluster plugin are served from this site, copied out of
       node_modules at build time, so the maps depend on no third party. The
-      files are byte for byte the ones unpkg served before. -#}
+      files are byte for byte the ones unpkg served before. Deferred like
+      the map scripts that use them, which come later in the head and so run
+      after them. -#}
   {%- if includeLeaflet -%}
   <link rel="stylesheet" href="/vendor/leaflet/leaflet.css?v={{ vendor.leaflet }}">
-  <script src="/vendor/leaflet/leaflet.js?v={{ vendor.leaflet }}"></script>
+  <script src="/vendor/leaflet/leaflet.js?v={{ vendor.leaflet }}" defer></script>
   {%- endif -%}
   {#- Only the maps that plot articles need the clusters: 43 of them land on
       Jaén alone, most inside the old town. It is what the original used. -#}
   {%- if includeMarkerCluster -%}
   <link rel="stylesheet" href="/vendor/leaflet.markercluster/MarkerCluster.css?v={{ vendor.markercluster }}">
   <link rel="stylesheet" href="/vendor/leaflet.markercluster/MarkerCluster.Default.css?v={{ vendor.markercluster }}">
-  <script src="/vendor/leaflet.markercluster/leaflet.markercluster.js?v={{ vendor.markercluster }}"></script>
+  <script src="/vendor/leaflet.markercluster/leaflet.markercluster.js?v={{ vendor.markercluster }}" defer></script>
   {%- endif -%}
   <link rel="stylesheet" href="/css/styles.css?v={{ timestamp }}">
   <script src="/js/hamburger-menu.js?v={{ timestamp }}" defer></script>

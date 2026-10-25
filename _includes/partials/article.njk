@@ -72,7 +72,9 @@
                 these slides really are below the fold, so the browser's own
                 lazy loading is enough. On the deck the photo is sized by
                 its height — 90vh, letterboxed — which is what `sizes`
-                describes there. -#}
+                describes there. The first one is the exception: stacked, it
+                is the largest paint near the top of the page, and on the
+                deck it is the same file the intro lays its scrim over. -#}
             <img class="article-gallery--photo"
                  src="{% static_image media.image_urls.desktop %}"
                  srcset="{% static_image media.image_urls.mobile %} 480w,
@@ -82,7 +84,7 @@
                  sizes="(min-width: 1280px) min(1920px, 135vh), 100vw"
                  width="1920" height="1278"
                  alt=""
-                 loading="lazy"
+                 {% if loop.first %}fetchpriority="high"{% else %}loading="lazy"{% endif %}
                  decoding="async">
             {%- endif %}
           </div>
