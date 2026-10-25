@@ -8,7 +8,7 @@
     {%- if article.summary %}
     <section class="extra-block">
       <h2 class="extra-block--title">{{ t.summary }}</h2>
-      <p>{{ article.summary }}</p>
+      <p{{ untranslated | safe }}>{{ article.summary }}</p>
     </section>
     {%- endif %}
 

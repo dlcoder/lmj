@@ -1,9 +1,13 @@
 {#- Tradition articles are long-form reading pages with their own layout,
     not the slide deck the place articles use. Their body already carries its
     own title and metadata. -#}
+{#- 107 English articles were never translated and carry the Spanish text,
+    so the text says so, while the page around it stays English. -#}
+{%- set untranslated = ' lang="es"' if locale == "en" and not article.translated else "" -%}
+
 {% if article.body %}
 
-<article class="article-tradition">
+<article class="article-tradition"{{ untranslated | safe }}>
   {{ article.body | safe }}
 </article>
 
@@ -20,13 +24,13 @@
       ">
         <div class="article-gallery--intro">
           <div class="article-header">
-            <h1 class="article-title">{{ article.title }}</h1>
+            <h1 class="article-title"{{ untranslated | safe }}>{{ article.title }}</h1>
             {% include "partials/article-date.njk" %}
             {% include "partials/article-location.njk" %}
             {% include "partials/article-category.njk" %}
           </div>
 
-          <div class="article-body">
+          <div class="article-body"{{ untranslated | safe }}>
             {% if article.body %}
               {{ article.body | safe }}
             {% else %}

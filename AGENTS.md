@@ -249,8 +249,7 @@ but do not publish.
 
 The most relevant items when touching templates:
 
-- `main.njk` has a hardcoded `<html lang="en">`, and there is no Open Graph, `hreflang`,
-  `canonical`, `sitemap.xml`, `robots.txt` or 404 page.
+- There is no Open Graph, `hreflang`, `canonical`, `sitemap.xml`, `robots.txt` or 404 page.
 - Photos are `<img srcset loading="lazy">` everywhere now — carousel, card grids, category
   tiles, article gallery. What is left on `background-image` is the photo behind the
   article intro, which carries a gradient scrim over it, and the dead
@@ -262,7 +261,8 @@ The most relevant items when touching templates:
   stacked page.
 - Some photos have black letterbox bands baked into the file. Nothing in the CSS adds
   them.
-- 107 of 164 articles have `translated: false` and are published in EN anyway.
+- 107 of 164 articles have `translated: false` and are published in EN anyway. Their title, text
+  and summary carry `lang="es"` inside the otherwise English page.
 - Articles are written as `{slug}.html` but linked without the extension
   (`/es/articles/{slug}`). This works because GitHub Pages resolves `.html` automatically,
   but it ties the site to hosts with that convention. `npm run check-links` reproduces that
