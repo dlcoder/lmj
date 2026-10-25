@@ -1,0 +1,22 @@
+# Monthly is enough for a site that no longer changes every day. Minor and
+# patch updates come grouped in one pull request per ecosystem; CI runs the
+# data validation and the browser checks on each, which is most of the
+# review. Eleventy, Leaflet and markercluster are pinned to exact versions on
+# purpose, and Dependabot keeps them exact when it bumps them.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      actions:
+        update-types: [minor, patch]
+
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      dependencies:
+        update-types: [minor, patch]

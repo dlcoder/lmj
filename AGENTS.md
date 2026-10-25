@@ -278,6 +278,9 @@ All images also have an `original` size available.
 `peaceiris/actions-gh-pages`, setting the domain from the `CNAME` file. Pull requests build
 but do not publish.
 
+`.github/dependabot.yml` opens monthly pull requests for the actions and the npm dependencies,
+minor and patch grouped.
+
 ## Known Debt
 
 The most relevant items when touching templates:
