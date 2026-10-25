@@ -105,8 +105,9 @@ npm run check-pages  # render the built pages in a browser and assert the layout
   `leaflet.markercluster` is a second flag (`includeMarkerCluster`), for the maps that plot
   articles — Jaén alone has 43 of them
 - **Static assets host:** `https://lmjstatic.deliriumcoder.com` (`STATICS_HOST` constant)
-- **Global data:** `env`, `timestamp` (CSS/JS cache busting)
-- **Filters:** `formatDate` → `DD/MM/YYYY`
+- **Global data:** `env`, `timestamp` (CSS/JS cache busting), `staticsHost`, `siteUrl`
+- **Filters:** `formatDate` → `DD/MM/YYYY`; `cleanUrl` (drops `.html`); `alternate` (the same page
+  in the other locale, see `alternateFor()`); `excerpt(length)` (meta descriptions, cut at a word)
 - **Shortcodes:**
   - `featured_image(article, size)` — URL of the featured photo (`featured: true` and `type: "Photo"`)
   - `static_image(path)` — absolute URL of a bucket asset
@@ -119,6 +120,12 @@ npm run check-pages  # render the built pages in a browser and assert the layout
 ### `base.js`
 - `localityMap` — `Map` of locality name → object including its region
 - `enCategoryMap` / `esCategoryMap` — `Map` of category name → object
+- `SITE_URL` — the published domain, read from `CNAME` (overridable with `process.env.SITE_URL`).
+  Canonical, `hreflang` and Open Graph URLs are built on it, so moving the site is changing `CNAME`
+- `alternateFor(url)` — the same page in the other locale, as `{ path, translated }`. Articles pair
+  by `id`, categories by position, static pages by their key in `i18n.pages`, everything else by
+  swapping the locale. `translated` is false for the English articles that carry the Spanish text:
+  the layout gives those no `hreflang` pair. `check-pages` asserts every pair exists and points back
 - `IMAGE_BASE` + `featuredImageParts(article)` — the directory and file name of an article's
   featured photo. Every size of a photo shares its path but for the variant segment, so the
   JSON indexes carry only those two halves and the client builds the URLs it needs
@@ -249,7 +256,7 @@ but do not publish.
 
 The most relevant items when touching templates:
 
-- There is no Open Graph, `hreflang`, `canonical`, `sitemap.xml`, `robots.txt` or 404 page.
+- There is no `sitemap.xml`, `robots.txt` or 404 page.
 - Photos are `<img srcset loading="lazy">` everywhere now — carousel, card grids, category
   tiles, article gallery. What is left on `background-image` is the photo behind the
   article intro, which carries a gradient scrim over it, and the dead

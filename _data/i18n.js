@@ -86,6 +86,7 @@ export default {
     publishedOn: "Published on",
     readMore: "Read full article »",
     siteTitle: "Mythical Places of Jaén",
+    siteDescription: "An archive of 164 articles on the legendary places and the heritage of the province of Jaén, published between 2013 and 2018.",
     tagsLabel: "Tags"
   },
   es: {
@@ -173,6 +174,7 @@ export default {
     publishedOn: "Publicado el",
     readMore: "Ver el reportaje completo »",
     siteTitle: "Lugares míticos de Jaén",
+    siteDescription: "Archivo de 164 reportajes sobre los lugares míticos y el patrimonio de la provincia de Jaén, publicados entre 2013 y 2018.",
     tagsLabel: "Etiquetas"
   }
 };

@@ -1,7 +1,19 @@
-import { STATICS_HOST } from "./_data/base.js";
+import { STATICS_HOST, SITE_URL, cleanUrl, alternateFor } from "./_data/base.js";
 
 export default function (eleventyConfig) {
   eleventyConfig.addGlobalData("staticsHost", STATICS_HOST);
+  eleventyConfig.addGlobalData("siteUrl", SITE_URL);
+
+  eleventyConfig.addFilter("cleanUrl", cleanUrl);
+  eleventyConfig.addFilter("alternate", alternateFor);
+
+  // A description for the meta tags: the text cut at a word, never mid-way.
+  eleventyConfig.addFilter("excerpt", (text, length = 160) => {
+    if (!text) return "";
+    const flat = String(text).replace(/\s+/g, " ").trim();
+    if (flat.length <= length) return flat;
+    return flat.slice(0, flat.lastIndexOf(" ", length - 1)).replace(/[,;:.]$/, "") + "…";
+  });
 
   eleventyConfig.addGlobalData("env", {
     ELEVENTY_ENV: process.env.ELEVENTY_ENV || "development"

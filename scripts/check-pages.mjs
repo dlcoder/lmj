@@ -4,9 +4,9 @@
 // the slide deck losing its dots. Run with `npm run check-pages`.
 import { spawn } from 'node:child_process';
 import { once } from 'node:events';
-import { existsSync, readFileSync } from 'node:fs';
-import { extname } from 'node:path';
-import { STATICS_HOST } from '../_data/base.js';
+import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
+import { extname, join } from 'node:path';
+import { STATICS_HOST, SITE_URL } from '../_data/base.js';
 
 const PORT = 8123;
 const BASE = `http://localhost:${PORT}`;
@@ -155,6 +155,46 @@ function check(name, width, m, consoleErrors) {
     }
   }
 }
+
+// Not a browser check, but one over the built pages that nothing else holds
+// to account: every canonical and hreflang URL has to be a page that exists,
+// and every hreflang pair has to point back. A slug paired wrongly would
+// otherwise only show up in Search Console.
+function checkAlternates() {
+  const isPage = path => [path, `${path}.html`, join(path, 'index.html')]
+    .some(file => existsSync(file) && statSync(file).isFile());
+  const local = url => join('_site', url.slice(SITE_URL.length));
+  const pairs = new Map();
+
+  const walk = dir => {
+    for (const name of readdirSync(dir)) {
+      const path = join(dir, name);
+      if (statSync(path).isDirectory()) { walk(path); continue; }
+      if (!path.endsWith('.html')) continue;
+
+      const html = readFileSync(path, 'utf8');
+      const canonical = html.match(/<link rel="canonical" href="([^"]+)"/)?.[1];
+      if (!canonical) continue;
+      if (!isPage(local(canonical))) fail(path, `canonical ${canonical} is not a page`);
+
+      const alternates = [...html.matchAll(/<link rel="alternate" hreflang="\w+" href="([^"]+)"/g)]
+        .map(match => match[1])
+        .filter(url => url !== canonical);
+      for (const url of alternates) {
+        if (!isPage(local(url))) fail(path, `hreflang ${url} is not a page`);
+        pairs.set(canonical, url);
+      }
+    }
+  };
+
+  walk('_site');
+  for (const [from, to] of pairs) {
+    if (pairs.get(to) !== from) fail(from, `hreflang points to ${to}, which does not point back`);
+  }
+  if (pairs.size < 100) fail('hreflang', `only ${pairs.size} pages carry a translation pair`);
+}
+
+checkAlternates();
 
 let chromium;
 try {
