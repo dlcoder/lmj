@@ -40,8 +40,6 @@ npm run check-pages  # render the built pages in a browser and assert the layout
 │   ├── raw/                          # Raw JSON, exported from Rails
 │   │   ├── es_articles.json          # 164 articles
 │   │   ├── en_articles.json          # 164 articles
-│   │   ├── es_pages.json             # 10 static pages
-│   │   ├── en_pages.json             # 8 static pages
 │   │   ├── es_categories.json        # 11 categories
 │   │   ├── en_categories.json        # 11 categories
 │   │   └── regions.json              # 9 regions → 97 nested localities
@@ -51,6 +49,7 @@ npm run check-pages  # render the built pages in a browser and assert the layout
 │   ├── all_pages.js                  # All page collections
 │   ├── categories_list.js            # Categories for the home page
 │   ├── localities_list.js            # Localities with article counts
+│   ├── regions_list.js               # Regions for the footer
 │   ├── carousel_articles.js          # Compact index for the home carousel
 │   ├── articles_index.js             # GeoJSON index of geolocated articles
 │   └── i18n.js                       # Translation strings
@@ -137,7 +136,7 @@ Exports `en`, `es` and, as default, the union of both with a `locale` property.
 | `all_home_pages` | only the first page of each index → the home page |
 | `all_categories` | paginated category pages |
 | `all_regions` | paginated region pages |
-| `all_localities` | paginated locality pages (empty ones included) |
+| `all_localities` | paginated locality pages (only the 46 with articles) |
 
 ### `articles_index.js`
 The **one** index of geolocated articles, one per locale, written to `/{locale}/articles.json`
@@ -240,9 +239,10 @@ The most relevant items when touching templates:
 
 - `main.njk` has a hardcoded `<html lang="en">`, and there is no Open Graph, `hreflang`,
   `canonical`, `sitemap.xml`, `robots.txt` or 404 page.
-- The article gallery paints photos with `background-image` and per-breakpoint custom
-  properties: no `srcset`, no lazy loading. Moving to `<picture>`/`<img>` is the biggest
-  pending performance win (−92% traffic).
+- The article gallery and the card grids still paint photos with `background-image` and
+  per-breakpoint custom properties: no `srcset`, no lazy loading. The home carousel has
+  moved to `<img srcset>` already; doing the same to the rest is the biggest pending
+  performance win.
 - From 1280px up the article is a scroll-snap deck: the intro over the featured photo,
   the featured photo on its own, then the gallery. The scrolling is the browser's; the
   script only adds arrow keys and the navigation dots. Below that width it is an ordinary

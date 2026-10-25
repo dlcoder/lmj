@@ -49,11 +49,25 @@
     slide.href = `/${locale}/articles/${article.s}`;
 
     const image = slide.querySelector('.latest-article--image');
-    image.setAttribute('aria-label', article.t);
-    image.style.setProperty('--img-mobile', `url('${imageUrl(base, article, 'big_teaser_mobile')}')`);
-    image.style.setProperty('--img-tablet', `url('${imageUrl(base, article, 'big_teaser_tablet')}')`);
-    image.style.setProperty('--img-desktop', `url('${imageUrl(base, article, 'big_teaser_desktop')}')`);
-    image.style.setProperty('--img-desktop-hd', `url('${imageUrl(base, article, 'big_teaser_desktop_hd')}')`);
+    image.alt = article.t;
+
+    const srcset = [
+      `${imageUrl(base, article, 'big_teaser_mobile')} 480w`,
+      `${imageUrl(base, article, 'big_teaser_tablet')} 640w`,
+      `${imageUrl(base, article, 'big_teaser_desktop')} 1120w`,
+      `${imageUrl(base, article, 'big_teaser_desktop_hd')} 1920w`
+    ].join(', ');
+    const src = imageUrl(base, article, 'big_teaser_desktop');
+
+    // The first slide carries a real src from the server and is already on
+    // its way; the rest wait in data attributes until they are shown.
+    if (image.src) {
+      image.srcset = srcset;
+      image.src = src;
+    } else {
+      image.dataset.srcset = srcset;
+      image.dataset.src = src;
+    }
 
     slide.querySelector('.latest-article--title').textContent = article.t;
     slide.querySelector('.latest-article--location').textContent = article.l;
@@ -81,10 +95,21 @@
 
   let current = 0;
 
+  // A slide's photo is only worth its bytes once the slide is on screen.
+  function load(slide) {
+    const image = slide.querySelector('.latest-article--image');
+    if (!image || !image.dataset.src) return;
+    image.srcset = image.dataset.srcset;
+    image.src = image.dataset.src;
+    delete image.dataset.srcset;
+    delete image.dataset.src;
+  }
+
   function show(index) {
     current = (index + slides.length) % slides.length;
     slides.forEach((slide, i) => {
       const isCurrent = i === current;
+      if (isCurrent) load(slide);
       slide.classList.toggle('is-current', isCurrent);
       // Keyboard and screen readers should only reach the visible slide.
       slide.setAttribute('aria-hidden', isCurrent ? 'false' : 'true');

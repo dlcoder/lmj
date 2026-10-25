@@ -7,12 +7,52 @@
   <div class="latest-articles--track">
     {%- for article in latestArticles -%}
       <a class="latest-article" href="/{{ locale }}/articles/{{ article.slug }}">
-        <div class="latest-article--image responsive-image" role="img" aria-label="{{ article.title }}" style="
-          --img-mobile: url('{% featured_image article, 'big_teaser_mobile' %}');
-          --img-tablet: url('{% featured_image article, 'big_teaser_tablet' %}');
-          --img-desktop: url('{% featured_image article, 'big_teaser_desktop' %}');
-          --img-desktop-hd: url('{% featured_image article, 'big_teaser_desktop_hd' %}');
-        "></div>
+        {%- if loop.first -%}
+        {#- The opening slide is the page's largest paint, so it is asked for
+            as early as the parser can. -#}
+        <img class="latest-article--image"
+             src="{% featured_image article, 'big_teaser_desktop' %}"
+             srcset="{% featured_image article, 'big_teaser_mobile' %} 480w,
+                     {% featured_image article, 'big_teaser_tablet' %} 640w,
+                     {% featured_image article, 'big_teaser_desktop' %} 1120w,
+                     {% featured_image article, 'big_teaser_desktop_hd' %} 1920w"
+             sizes="100vw"
+             width="1920" height="768"
+             alt="{{ article.title }}"
+             fetchpriority="high"
+             decoding="async">
+        {%- else -%}
+        {#- The slides behind it are stacked inside the viewport rather than
+            below it, so `loading="lazy"` would not hold them back: the
+            browser sees a box on screen and fetches. Hence the handover to
+            the script, which loads each one the first time it is shown. The
+            carousel shows one photo at a time, so paying for five up front
+            was paying four times over. Without JavaScript there is no
+            carousel and no script, and <noscript> serves the real thing. -#}
+        <img class="latest-article--image"
+             data-src="{% featured_image article, 'big_teaser_desktop' %}"
+             data-srcset="{% featured_image article, 'big_teaser_mobile' %} 480w,
+                          {% featured_image article, 'big_teaser_tablet' %} 640w,
+                          {% featured_image article, 'big_teaser_desktop' %} 1120w,
+                          {% featured_image article, 'big_teaser_desktop_hd' %} 1920w"
+             sizes="100vw"
+             width="1920" height="768"
+             alt="{{ article.title }}"
+             decoding="async">
+        <noscript>
+          <img class="latest-article--image"
+               src="{% featured_image article, 'big_teaser_desktop' %}"
+               srcset="{% featured_image article, 'big_teaser_mobile' %} 480w,
+                       {% featured_image article, 'big_teaser_tablet' %} 640w,
+                       {% featured_image article, 'big_teaser_desktop' %} 1120w,
+                       {% featured_image article, 'big_teaser_desktop_hd' %} 1920w"
+               sizes="100vw"
+               width="1920" height="768"
+               alt="{{ article.title }}"
+               loading="lazy"
+               decoding="async">
+        </noscript>
+        {%- endif -%}
         <div class="latest-article--caption">
           <h2 class="latest-article--title">{{ article.title }}</h2>
           <div class="latest-article--location">{{ article.localities | join(', ') }}</div>
