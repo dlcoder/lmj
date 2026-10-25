@@ -44,9 +44,9 @@ export default function (eleventyConfig) {
     return imagePath ? `${STATICS_HOST}${imagePath.replace(/ /g, "%20")}` : "";
   });
 
-  eleventyConfig.ignores.add("AGENTS.md");
-  eleventyConfig.ignores.add("CLAUDE.md");
-  eleventyConfig.ignores.add("README.md");
+  // The site has no Markdown pages: any .md at the root is documentation,
+  // including notes kept locally and never committed.
+  eleventyConfig.ignores.add("*.md");
   eleventyConfig.ignores.add("content");
 
   eleventyConfig.addPassthroughCopy("css");

@@ -112,7 +112,7 @@ npm run check-pages  # render the built pages in a browser and assert the layout
   - `featured_image(article, size)` — URL of the featured photo (`featured: true` and `type: "Photo"`)
   - `static_image(path)` — absolute URL of a bucket asset
 - **Passthrough copy:** `css`, `js`
-- **Ignored paths:** `AGENTS.md`, `CLAUDE.md`, `README.md`, `content`. Anything in `.gitignore`
+- **Ignored paths:** every `*.md` at the root (the site has no Markdown pages), `content`. Anything in `.gitignore`
   (`node_modules`, `_site`) is ignored by Eleventy on its own — no need to repeat it
 
 ## Data Architecture
