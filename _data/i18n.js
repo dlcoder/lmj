@@ -2,6 +2,7 @@ export default {
   en: {
     all_articles: "All articles",
     article: {
+      start: "Start",
       summary: "More about this place…",
       howToArrive: "How to arrive",
       viewLargerMap: "View larger map",
@@ -42,6 +43,7 @@ export default {
   es: {
     all_articles: "Todos los artículos",
     article: {
+      start: "Comenzar",
       summary: "Algo más sobre este lugar…",
       howToArrive: "Cómo llegar",
       viewLargerMap: "Ampliar mapa",

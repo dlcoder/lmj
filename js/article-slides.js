@@ -10,6 +10,7 @@
   // move exactly one slide, and the navigation dots.
   const container = document.querySelector('.slides--container');
   const nav = document.getElementById('slides-nav');
+  const start = document.getElementById('article-start');
   if (!container) return;
 
   const wide = window.matchMedia('(min-width: 1280px)');
@@ -76,6 +77,8 @@
     if (window.innerWidth - event.clientX < 150) revealDots();
   };
 
+  const onStart = () => goTo(currentIndex() + 1);
+
   const activate = () => {
     slides.forEach((_, index) => {
       const dot = document.createElement('button');
@@ -90,6 +93,7 @@
     document.addEventListener('keydown', onKeyDown);
     document.addEventListener('mousemove', onMouseMove);
     nav?.addEventListener('mouseenter', revealDots);
+    start?.addEventListener('click', onStart);
 
     target = currentIndex();
     updateDots();
@@ -103,6 +107,7 @@
     document.removeEventListener('keydown', onKeyDown);
     document.removeEventListener('mousemove', onMouseMove);
     nav?.removeEventListener('mouseenter', revealDots);
+    start?.removeEventListener('click', onStart);
     nav?.classList.remove('visible');
     nav?.replaceChildren();
   };

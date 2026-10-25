@@ -369,6 +369,13 @@ body.home-page {
 
 /* Article Page */
 
+/* The call to action only makes sense where the deck is: on narrower screens
+   the photos already follow the text in reading order. Scoped to the page so
+   it outranks the shared .button rule, whatever the order of the file. */
+body.article-page .article-start {
+  display: none;
+}
+
 /* Below the slide-deck breakpoint the article is an ordinary stacked page:
    a readable column for the text and the gallery photos one after another,
    with room to breathe. Everything here is overridden from 1280px up. */
@@ -515,6 +522,15 @@ body.article-page .main-container {
     max-width: 1920px;
     margin: 0 auto;
     transition: opacity 0.3s ease;
+  }
+
+  body.article-page .article-start {
+    display: inline-block;
+    margin-top: 1.5rem;
+    align-self: flex-start;
+    border: 0;
+    font: inherit;
+    cursor: pointer;
   }
 
   .article-gallery--intro a {

@@ -37,6 +37,12 @@
             </ul>
             {% endif %}
           </div>
+
+          {#- Only on the deck: below that width the photos are already in
+              reading order and there is nothing to jump to. -#}
+          <button type="button" class="button article-start" id="article-start">
+            {{ i18n[locale].article.start }}
+          </button>
         </div>
       </div>
     </div>
