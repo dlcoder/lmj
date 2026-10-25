@@ -506,7 +506,11 @@ body.article-page .main-container {
   .article-gallery {
     height: 100%;
     width: 100%;
-    background-image: var(--intro-desktop-hd);
+    /* The scrim rides on the photo so both reach the edges. Putting it on
+       the intro instead left the sides unshaded on screens wider than the
+       1920px the intro is capped at. */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
+      var(--intro-desktop-hd);
     background-size: cover;
     background-position: center center;
   }
@@ -518,7 +522,6 @@ body.article-page .main-container {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: rgba(0, 0, 0, 0.75);
     padding: 0 15rem;
     box-sizing: border-box;
     max-width: 1920px;
@@ -1755,6 +1758,14 @@ body.article-page .main-container {
     min-height: 100vh;
     overflow-y: auto;
     background-color: #fff;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Articles with no geolocation have a short closing block, which left the
+     footer stranded mid-screen with white below it. */
+  .slides--slide__extra .footer {
+    margin-top: auto;
   }
 
   .article-extra--wrapper {

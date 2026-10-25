@@ -191,6 +191,26 @@ for (const spec of pages) {
 
     check(spec.name, width, await measure(page), consoleErrors);
 
+    // The dots are white, to sit over photos. The closing slide is white
+    // paper and then the purple footer, so they have to get out of the way.
+    if (spec.name.startsWith('place') && width >= 1280) {
+      const dotsOnLastSlide = await page.evaluate(async () => {
+        const deck = document.querySelector('.slides--container');
+        const nav = document.getElementById('slides-nav');
+        deck.scrollTo({ top: deck.scrollHeight, behavior: 'instant' });
+        deck.dispatchEvent(new Event('scroll'));
+        // Long enough for the 0.3s fade to finish, or the reading catches it
+        // mid-transition and reports a visible nav that is on its way out.
+        await new Promise(resolve => setTimeout(resolve, 700));
+        const visible = parseFloat(getComputedStyle(nav).opacity) > 0.05;
+        deck.scrollTo({ top: 0, behavior: 'instant' });
+        deck.dispatchEvent(new Event('scroll'));
+        return visible;
+      });
+
+      if (dotsOnLastSlide) fail(spec.name, 'the dots stay over the closing slide');
+    }
+
     // The five newest articles are a carousel only once their script runs;
     // without it the slides stack and all five stay reachable. What broke
     // here was the slide overflowing its track, which pushed a full-size
