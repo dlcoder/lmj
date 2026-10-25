@@ -63,6 +63,7 @@ npm run check-pages  # render the built pages in a browser and assert the layout
 │   ├── locality.njk                  # Locality index
 │   ├── localities.njk                # Index of the 97 municipalities
 │   ├── regions.njk                   # Index of the 9 regions
+│   ├── explorer.njk                  # Map of every article, filtered by locality and category
 │   ├── articles_index.njk            # Writes `/{locale}/articles.json`
 │   └── pages/                        # Hand-written static pages (one per locale)
 ├── _includes/
@@ -86,6 +87,7 @@ npm run check-pages  # render the built pages in a browser and assert the layout
 │   ├── article-map.js                # Leaflet map in the article closing block
 │   ├── latest-articles.js            # Home carousel
 │   ├── locality-map.js               # Leaflet map on the locality page
+│   ├── explorer-map.js               # Explorer map and its two filters
 │   └── localities-map.js             # Leaflet map on the home page and the localities index
 ├── scripts/                          # Dev utilities (not part of the build)
 │   ├── validate-data.mjs             # Raw data integrity checks (runs in CI)
@@ -150,7 +152,8 @@ which is what names the outline files on the bucket), `categories` (slugs) and `
 (`{ dir, file }`). ~46 KB, **6,7 KB gzip**.
 
 Everything that needs articles on a map or in a list reads this one file: the locality map
-today, the explorer map and the search later.
+and the explorer map today, the search later. The explorer keeps its filters in the query
+string (`?locality={id}&category={slug}`).
 
 ### `categories_list.js` / `localities_list.js`
 Lists for the home page blocks. `categories_list` maps each category to its `imageSlug` (the
@@ -172,6 +175,7 @@ All templates are unified and receive the language in the `locale` variable.
 | Locality | `all_localities` | `/{locale}/localities/{slug}/`, `…/page/{n}/` | `src/locality.njk` |
 | Localities index | `i18n` (one per locale) | `/{locale}/localities/` | `src/localities.njk` |
 | Regions index | `i18n` (one per locale) | `/{locale}/regions/` | `src/regions.njk` |
+| Explorer map | `i18n` (one per locale) | `/{locale}/localities/map/` | `src/explorer.njk` |
 | Articles index | `articles_index` | `/{locale}/articles.json` | `src/articles_index.njk` |
 
 All article lists are sorted by `published_at` in descending order (newest first).

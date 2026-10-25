@@ -10,6 +10,17 @@ export default {
     },
     categoriesLabel: "Categories",
     localitiesLabel: "Localities",
+    explorer: {
+      title: "Map of the province of Jaén",
+      locality: "Municipality",
+      category: "Category",
+      allLocalities: "All municipalities",
+      allCategories: "All categories",
+      countOne: "1 place on the map",
+      countMany: "%{count} places on the map",
+      countNone: "No place matches both filters",
+      noScript: "The map needs JavaScript. You can still browse the places by"
+    },
     regions: {
       title: "Regions of Jaén",
       lead: "The province is divided into nine regions, each with its own landscape and history. These are the places we visited in each of them.",
@@ -55,6 +66,7 @@ export default {
       allArticles: "All articles",
       localities: "Municipalities",
       allRegions: "All regions",
+      map: "Map",
       cookies: "Cookie policy",
       copyright: "Copyright",
       language: "Language",
@@ -81,6 +93,17 @@ export default {
     },
     categoriesLabel: "Categorías",
     localitiesLabel: "Localidades",
+    explorer: {
+      title: "Mapa de la provincia de Jaén",
+      locality: "Municipio",
+      category: "Categoría",
+      allLocalities: "Todos los municipios",
+      allCategories: "Todas las categorías",
+      countOne: "1 lugar en el mapa",
+      countMany: "%{count} lugares en el mapa",
+      countNone: "Ningún lugar cumple los dos filtros",
+      noScript: "El mapa necesita JavaScript. Puedes recorrer los lugares por"
+    },
     regions: {
       title: "Comarcas de Jaén",
       lead: "La provincia se divide en nueve comarcas, cada una con su paisaje y su historia. Estos son los lugares que recorrimos en cada una de ellas.",
@@ -124,6 +147,7 @@ export default {
       allArticles: "Todos los artículos",
       localities: "Municipios",
       allRegions: "Todas las comarcas",
+      map: "Mapa",
       cookies: "Política de cookies",
       copyright: "Copyright",
       language: "Idioma",

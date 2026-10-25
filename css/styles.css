@@ -1990,6 +1990,59 @@ body.locality-page .main-container {
   color: var(--color-primary);
 }
 
+/* The explorer map: two filters over a map that takes most of the screen,
+   as the original's full-height one did. */
+
+.explorer-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1rem 1.5rem;
+}
+
+.explorer-filters--field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1 1 16rem;
+  min-width: 0;
+  max-width: 24rem;
+}
+
+.explorer-filters--field label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.explorer-filters--field select {
+  /* A long category name would otherwise widen the field past the screen. */
+  width: 100%;
+  min-width: 0;
+  font: inherit;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #333;
+}
+
+.explorer-filters--field select:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
+}
+
+.explorer-filters--status {
+  margin: 0 0 0.5rem;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.locality-map.explorer-map {
+  height: 75vh;
+  min-height: 24rem;
+}
+
 /* The marker popups: the teaser photo with the title under it, the whole
    thing a link. */
 

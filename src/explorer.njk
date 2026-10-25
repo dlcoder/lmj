@@ -1,0 +1,64 @@
+---
+layout: layouts/main.njk
+# One page per locale: the keys of i18n are the locales.
+pagination:
+  data: i18n
+  size: 1
+  alias: pageLocale
+eleventyComputed:
+  title: "{{ i18n[pageLocale].explorer.title }} – {{ i18n[pageLocale].siteTitle }}"
+  permalink: "{{ pageLocale }}/localities/map/index.html"
+  locale: "{{ pageLocale }}"
+includeLeaflet: true
+includeMarkerCluster: true
+includeExplorerMap: true
+bodyClass: "locality-page explorer-page"
+---
+
+{%- set t = i18n[locale].explorer -%}
+
+{#- The original's /es/municipios/mapa: every article on one map, narrowed by
+    municipality and by category. There the filters queried the server; here
+    the whole index is read once and filtered in the browser. Only the 46
+    municipalities with articles are offered, since the others would always
+    come back empty. -#}
+<div class="locality-wrapper">
+  <div class="page-header">
+    <h1 class="page-title">{{ t.title }}</h1>
+  </div>
+
+  <form class="explorer-filters" id="explorer-filters">
+    <div class="explorer-filters--field">
+      <label for="explorer-locality">{{ t.locality }}</label>
+      <select id="explorer-locality" name="locality">
+        <option value="">{{ t.allLocalities }}</option>
+        {%- for locality in localities_list %}
+        {%- if locality.articleCount %}
+        <option value="{{ locality.id }}">{{ locality.name }}</option>
+        {%- endif %}
+        {%- endfor %}
+      </select>
+    </div>
+    <div class="explorer-filters--field">
+      <label for="explorer-category">{{ t.category }}</label>
+      <select id="explorer-category" name="category">
+        <option value="">{{ t.allCategories }}</option>
+        {%- for category in categories_list[locale] %}
+        <option value="{{ category.slug }}">{{ category.name }}</option>
+        {%- endfor %}
+      </select>
+    </div>
+    <p class="explorer-filters--status" id="explorer-status" role="status"
+       data-one="{{ t.countOne }}" data-many="{{ t.countMany }}" data-none="{{ t.countNone }}"></p>
+  </form>
+
+  <noscript>
+    <p class="page-lead">{{ t.noScript }}
+      <a href="/{{ locale }}/localities/">{{ i18n[locale].footer.localities }}</a> ·
+      <a href="/{{ locale }}/regions/">{{ i18n[locale].footer.allRegions }}</a> ·
+      <a href="/{{ locale }}/articles/">{{ i18n[locale].footer.allArticles }}</a>
+    </p>
+  </noscript>
+</div>
+
+<div class="locality-map explorer-map" id="explorer-map" data-locale="{{ locale }}"></div>

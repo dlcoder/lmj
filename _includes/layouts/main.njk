@@ -32,6 +32,9 @@
   {%- if includeLocalityMap -%}
   <script src="/js/locality-map.js?v={{ timestamp }}" defer></script>
   {%- endif -%}
+  {%- if includeExplorerMap -%}
+  <script src="/js/explorer-map.js?v={{ timestamp }}" defer></script>
+  {%- endif -%}
   {%- if includeArticleMap -%}
   <script src="/js/article-map.js?v={{ timestamp }}" defer></script>
   {%- endif -%}

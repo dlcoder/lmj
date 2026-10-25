@@ -27,6 +27,7 @@ const pages = [
   { name: 'category',  url: '/es/categories/naturaleza/' },
   { name: 'locality',  url: '/es/localities/jaen/' },
   { name: 'localities', url: '/es/localities/' },
+  { name: 'explorer',  url: '/es/localities/map/' },
   { name: 'region',    url: '/es/regions/sierra-sur/' },
   { name: 'regions',   url: '/es/regions/' },
   { name: 'static',    url: '/es/acerca-de' },
@@ -131,7 +132,7 @@ function check(name, width, m, consoleErrors) {
 
   // The map runs edge to edge, as it did in the original. The container it
   // lives in is what used to stop it, so this is the thing to watch.
-  if (name === 'locality' || name === 'localities') {
+  if (name === 'locality' || name === 'localities' || name === 'explorer') {
     if (!m.localityMap) {
       fail(where, 'the locality map is missing');
     } else if (m.localityMap.left !== 0 || m.localityMap.right !== m.viewport) {
@@ -327,6 +328,34 @@ for (const spec of pages) {
         else if (!/^\/es\/articles\/./.test(popup.href) || !popup.title || !popup.image) {
           fail('locality map', `the popup is incomplete: ${JSON.stringify(popup)}`);
         }
+      }
+    }
+
+    // The explorer plots every geolocated article from the same-origin index
+    // and narrows them in the browser. The status line counts what is on the
+    // map, so a filter has to bring that number down and clearing it put it
+    // back, whatever happens to the outline behind.
+    if (spec.name === 'explorer' && width === WIDE) {
+      const count = () => page.evaluate(() =>
+        Number(document.getElementById('explorer-status').textContent.match(/\d+/)?.[0] ?? NaN));
+      const all = await count();
+      const plotted = await page.evaluate(() =>
+        document.querySelectorAll('#explorer-map .leaflet-marker-icon').length);
+
+      if (!(all > 100)) fail('explorer', `the status reports ${all} places with no filter`);
+      else if (!plotted) fail('explorer', 'nothing is plotted on the map');
+      else {
+        await page.selectOption('#explorer-category', 'naturaleza');
+        await page.waitForTimeout(500);
+        const filtered = await count();
+        const query = new URL(page.url()).search;
+        await page.selectOption('#explorer-category', '');
+        await page.waitForTimeout(500);
+        const cleared = await count();
+
+        if (!(filtered > 0 && filtered < all)) fail('explorer', `a category leaves ${filtered} of ${all} places`);
+        if (query !== '?category=naturaleza') fail('explorer', `the filter is not in the address: "${query}"`);
+        if (cleared !== all) fail('explorer', `clearing the filter leaves ${cleared} of ${all} places`);
       }
     }
 
