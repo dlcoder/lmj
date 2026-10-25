@@ -194,7 +194,34 @@ function checkAlternates() {
   if (pairs.size < 100) fail('hreflang', `only ${pairs.size} pages carry a translation pair`);
 }
 
+// The sitemap lists every page but the root redirect, each one once and
+// each one a page that exists. Pagination is the easy thing to lose: by
+// default only the first page of a paginated template reaches a collection.
+function checkSitemap() {
+  const locs = [...readFileSync('_site/sitemap.xml', 'utf8').matchAll(/<loc>([^<]+)<\/loc>/g)]
+    .map(match => match[1]);
+  let pages = 0;
+  const walk = dir => {
+    for (const name of readdirSync(dir)) {
+      const path = join(dir, name);
+      if (statSync(path).isDirectory()) walk(path);
+      else if (path.endsWith('.html') && path !== join('_site', 'index.html') && path !== join('_site', '404.html')) pages++;
+    }
+  };
+  walk('_site');
+
+  if (new Set(locs).size !== locs.length) fail('sitemap', 'lists some pages twice');
+  if (locs.length !== pages) fail('sitemap', `${locs.length} URLs for ${pages} pages`);
+  for (const url of locs) {
+    const path = join('_site', url.slice(SITE_URL.length));
+    if (![path, `${path}.html`, join(path, 'index.html')].some(file => existsSync(file) && statSync(file).isFile())) {
+      fail('sitemap', `${url} is not a page`);
+    }
+  }
+}
+
 checkAlternates();
+checkSitemap();
 
 let chromium;
 try {

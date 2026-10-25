@@ -3,6 +3,7 @@ layout: layouts/main.njk
 pagination:
   data: all_pages.all_regions
   size: 1
+  addAllPagesToCollections: true
   alias: regionPage
 eleventyComputed:
   title: "{{ regionPage.region.name }} – {{ i18n[regionPage.locale].siteTitle }}"

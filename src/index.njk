@@ -3,6 +3,7 @@ layout: layouts/main.njk
 pagination:
   data: all_pages.all_home_pages
   size: 1
+  addAllPagesToCollections: true
   alias: indexPage
 eleventyComputed:
   title: "{{ i18n[indexPage.locale].siteTitle }}"

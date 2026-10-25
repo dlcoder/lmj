@@ -1,0 +1,24 @@
+---
+# Every HTML page of both locales, with its translation as an xhtml:link
+# where it has one: the same pairing, and the same exception for untranslated
+# articles, as the hreflang tags in the layout.
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+{%- for item in collections.all %}
+{%- set path = item.url | cleanUrl %}
+{%- if item.outputPath and item.outputPath.endsWith(".html") and path != "/" %}
+{%- set alternate = item.url | alternate %}
+{%- set itemLocale = path.split("/")[1] %}
+  <url>
+    <loc>{{ siteUrl }}{{ path }}</loc>
+    {%- if alternate and alternate.translated %}
+    <xhtml:link rel="alternate" hreflang="{{ itemLocale }}" href="{{ siteUrl }}{{ path }}"/>
+    <xhtml:link rel="alternate" hreflang="{{ "en" if itemLocale == "es" else "es" }}" href="{{ siteUrl }}{{ alternate.path }}"/>
+    {%- endif %}
+  </url>
+{%- endif %}
+{%- endfor %}
+</urlset>

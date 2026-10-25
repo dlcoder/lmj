@@ -185,8 +185,13 @@ All templates are unified and receive the language in the `locale` variable.
 | Regions index | `i18n` (one per locale) | `/{locale}/regions/` | `src/regions.njk` |
 | Explorer map | `i18n` (one per locale) | `/{locale}/localities/map/` | `src/explorer.njk` |
 | Articles index | `articles_index` | `/{locale}/articles.json` | `src/articles_index.njk` |
+| Sitemap | `collections.all` | `/sitemap.xml` | `src/sitemap.njk` |
+| Robots | — | `/robots.txt` | `src/robots.njk` |
 
 All article lists are sorted by `published_at` in descending order (newest first).
+
+Every paginated HTML template sets `addAllPagesToCollections: true`: without it only its first
+page reaches `collections.all`, and the sitemap would miss the rest.
 
 ## Data Structure
 
@@ -256,7 +261,7 @@ but do not publish.
 
 The most relevant items when touching templates:
 
-- There is no `sitemap.xml`, `robots.txt` or 404 page.
+- There is no 404 page.
 - Photos are `<img srcset loading="lazy">` everywhere now — carousel, card grids, category
   tiles, article gallery. What is left on `background-image` is the photo behind the
   article intro, which carries a gradient scrim over it, and the dead

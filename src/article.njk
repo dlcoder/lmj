@@ -3,6 +3,7 @@ layout: layouts/main.njk
 pagination:
   data: all_pages.all_articles
   size: 1
+  addAllPagesToCollections: true
   alias: article
 eleventyComputed:
   title: "{{ article.title }} – {{ i18n[article.locale].siteTitle }}"

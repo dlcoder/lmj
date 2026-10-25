@@ -3,6 +3,7 @@ layout: layouts/main.njk
 pagination:
   data: all_pages.all_localities
   size: 1
+  addAllPagesToCollections: true
   alias: localityPage
 eleventyComputed:
   title: "{{ localityPage.locality.name }} – {{ i18n[localityPage.locale].siteTitle }}"
