@@ -492,10 +492,16 @@ body.home-page {
 }
 
 .categories-section {
-  margin: 4rem auto;
+  margin: 1rem auto 2rem;
   max-width: 1920px;
   padding: 2rem;
   text-align: center;
+}
+
+@media (min-width: 768px) {
+  .categories-section {
+    margin: 4rem auto;
+  }
 }
 
 .categories-section-title {
@@ -1258,9 +1264,17 @@ body.article-page .main-container {
 
 .localities-section {
   background-color: var(--color-primary-60);
-  padding: 3rem 8rem;
+  /* The wide side padding only from the desktop up: on a phone it left the
+     list a column 130px wide. */
+  padding: 3rem 2rem;
   position: relative;
   margin-bottom: 2rem;
+}
+
+@media (min-width: 1280px) {
+  .localities-section {
+    padding: 3rem 8rem;
+  }
 }
 
 .localities-container {
