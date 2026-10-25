@@ -25,9 +25,14 @@ includeLatestArticles: true
     {%- for category in categories_list[indexPage.locale] -%}
       <article class="article-card">
         <a href="/{{ locale }}/categories/{{ category.slug }}" class="article-card--link">
-          <div class="article-card--image" role="img" aria-label="{{ category.name }}" style="
-            background-image: url('{% static_image '/files/categories/' + category.imageSlug + '.jpg' %}');
-          "></div>
+          {#- One file per category, no variants to choose from. Empty alt
+              because the name is right below, in the heading. -#}
+          <img class="article-card--image"
+               src="{% static_image '/files/categories/' + category.imageSlug + '.jpg' %}"
+               width="640" height="480"
+               alt=""
+               loading="lazy"
+               decoding="async">
           <div class="article-card--content">
             <h2 class="article-card--title">{{ category.name }}</h2>
           </div>
