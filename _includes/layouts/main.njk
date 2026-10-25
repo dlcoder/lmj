@@ -28,7 +28,17 @@
     <div class="header-container">
       <div class="header-logo">
         <h1 class="header-logo--title">
-          <a href="/{{ locale }}/">{{ i18n[locale].siteTitle }}</a>
+          <a href="/{{ locale }}/">
+            {#- The pin from the original header, redrawn: the asset there was
+                a 38x50 PNG that went soft on any dense screen. The geometry is
+                fitted to that file's alpha mask, not eyeballed — ring, gap and
+                inner disc all land within a pixel of it. -#}
+            <svg class="header-logo--mark" viewBox="0 0 38 50" aria-hidden="true" focusable="false">
+              <path fill="currentColor" fill-rule="evenodd"
+                    d="M4.109 49.162L0.453 20.871A18.5 18.5 0 1 1 28.448 34.285ZM18.8 3.95a14.55 14.55 0 1 0 0 29.1a14.55 14.55 0 1 0 0-29.1ZM18.8 9.25a9.25 9.25 0 1 0 0 18.5a9.25 9.25 0 1 0 0-18.5Z"/>
+            </svg>
+            <span>{{ i18n[locale].siteTitle }}</span>
+          </a>
         </h1>
       </div>
       <button class="header-hamburger" id="hamburger-menu" aria-label="Toggle navigation">
