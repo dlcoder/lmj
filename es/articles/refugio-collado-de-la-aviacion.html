@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Refugio Collado de la Aviación – Lugares míticos de Jaén</title><link rel="stylesheet" href="/css/styles.css?v=1792883152749">
-  <script src="/js/hamburger-menu.js?v=1792883152749" defer></script>
-  <script src="/js/slide-scroll.js?v=1792883152749" defer></script>
-  <script src="/js/slide-navigation.js?v=1792883152749" defer></script></head>
+  <title>Refugio Collado de la Aviación – Lugares míticos de Jaén</title><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script><link rel="stylesheet" href="/css/styles.css?v=1792889779109">
+  <script src="/js/hamburger-menu.js?v=1792889779109" defer></script>
+  <script src="/js/article-slides.js?v=1792889779109" defer></script><script src="/js/article-map.js?v=1792889779109" defer></script></head>
 
 <body class="article-page">
   <div id="header" class="header">
@@ -25,16 +25,25 @@
       <nav class="header-nav" id="header-nav">
         <a href="/es/">Inicio</a>
         <a href="/es/articles/">Artículos</a>
+        <a href="/es/acerca-de">El proyecto</a>
+        <a href="/es/los-libros">Los libros</a>
       </nav>
     </div>
   </div>
 
   <div class="main-container">
     
+
+
 <article class="article">
   <div class="slides--container">
     <div class="slides--slide">
-      <div class="article-gallery">
+      <div class="article-gallery" style="
+        --intro-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/684/mobile/1.jpg');
+        --intro-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/684/tablet/1.jpg');
+        --intro-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/684/desktop/1.jpg');
+        --intro-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/684/desktop_hd/1.jpg');
+      ">
         <div class="article-gallery--intro">
           <div class="article-header">
             <h1 class="article-title">Refugio Collado de la Aviación</h1>
@@ -62,7 +71,9 @@
             
             <ul><li>Situado en pleno Parque Natural de Despeñaperros, el sendero del Barranco de Valdeazores será el encargado de conducirnos hasta este refugio.</li><li>Al inicio de nuestro camino atravesaremos bosque de repoblación, topándonos con vegetación autóctona –encinas, alcornoques, quejigos o acebos– conforme ganamos altura.</li><li>Tras tomar un cruce, llegaremos al refugio del Collado de la aviación, famoso por servir como punto de avistamiento de los bombarderos franquistas durante la Guerra Civil, usado hoy día como refugio  para los pastores y senderistas que caminan por la zona.</li><li>Nuestra ruta finaliza en el espectacular mirador del Monumento Natural de los Órganos, un conjunto de enormes columnas de roca así nombradas por su similitud con los tubos de un gran órgano.</li><li>Desde este mirador contemplaremos unas espectaculares vistas, que nos hablan de los orígenes de estas tierras, pobladas por el hombre desde la prehistoria.</li></ul>
             
-          </div>
+          </div><button type="button" class="button article-start" id="article-start">
+            Comenzar
+          </button>
         </div>
       </div>
     </div><div class="slides--slide">
@@ -155,16 +166,29 @@
               --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/693/desktop_hd/10.jpg');
             "></div>
           </div>
-        </div></div>
+        </div><div class="slides--slide slides--slide__extra">
+      <div class="article-extra">
+  <div class="article-extra--wrapper">
+    <section class="extra-block">
+      <h2 class="extra-block--title">Algo más sobre este lugar…</h2>
+      <p>Iniciamos el sendero del Barranco de Valdeazores desde la casa forestal que recibe el mismo nombre, a la que accedemos desde la A4 en sentido Cádiz, concretamente en el kilómetro 245. Aquí dejamos nuestro vehículo para comenzar una espectacular caminata que nos conducirá hasta el refugio del Collado de la aviación, para finalizar en el mirador del Monumento Natural de los Órganos, donde disfrutaremos de unas espectaculares vistas del desfiladero de Despeñaperros. Sin duda una de las rutas más espectaculares de este Parque Natural, uno de los más desconocidos y espectaculares de la provincia.</p>
+    </section>
 
-  <!-- Slide navigation dots (large screens only) -->
-  <div class="slides-nav" id="slides-nav"></div>
-</article>
-
+    <section class="extra-block">
+      <h2 class="extra-block--title">Cómo llegar</h2>
+      <div class="extra-map"
+           id="article-map"
+           data-latitude="38.395174"
+           data-longitude="-3.516957"></div>
+      <a class="button"
+         href="https://maps.google.com/maps?q=38.395174,-3.516957&amp;ll=38.395174,-3.516957&amp;z=10"
+         rel="noopener">Ampliar mapa</a>
+    </section>
 
   </div>
+</div>
 
-  <footer class="footer">
+      <footer class="footer">
   <div class="footer-container">
     <nav class="footer-sitemap" aria-label="El proyecto">
       <div class="footer-sitemap--column">
@@ -260,6 +284,17 @@
   </div>
 </footer>
 
+    </div>
+  </div>
+
+  <!-- Slide navigation dots (large screens only) -->
+  <div class="slides-nav" id="slides-nav"></div>
+</article>
+
+
+
+
+  </div>
 </body>
 
 </html>

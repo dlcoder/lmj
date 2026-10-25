@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Embalse del Yeguas – Mythical Places of Jaén</title><link rel="stylesheet" href="/css/styles.css?v=1792883152749">
-  <script src="/js/hamburger-menu.js?v=1792883152749" defer></script>
-  <script src="/js/slide-scroll.js?v=1792883152749" defer></script>
-  <script src="/js/slide-navigation.js?v=1792883152749" defer></script></head>
+  <title>Embalse del Yeguas – Mythical Places of Jaén</title><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script><link rel="stylesheet" href="/css/styles.css?v=1792889779109">
+  <script src="/js/hamburger-menu.js?v=1792889779109" defer></script>
+  <script src="/js/article-slides.js?v=1792889779109" defer></script><script src="/js/article-map.js?v=1792889779109" defer></script></head>
 
 <body class="article-page">
   <div id="header" class="header">
@@ -25,16 +25,25 @@
       <nav class="header-nav" id="header-nav">
         <a href="/en/">Home</a>
         <a href="/en/articles/">Articles</a>
+        <a href="/en/about-us">The project</a>
+        <a href="/en/the-books">The books</a>
       </nav>
     </div>
   </div>
 
   <div class="main-container">
     
+
+
 <article class="article">
   <div class="slides--container">
     <div class="slides--slide">
-      <div class="article-gallery">
+      <div class="article-gallery" style="
+        --intro-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/506/mobile/1.jpg');
+        --intro-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/506/tablet/1.jpg');
+        --intro-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/506/desktop/1.jpg');
+        --intro-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/506/desktop_hd/1.jpg');
+      ">
         <div class="article-gallery--intro">
           <div class="article-header">
             <h1 class="article-title">Embalse del Yeguas</h1>
@@ -62,7 +71,9 @@
             
             <ul><li>It was founded in 1989. Its 948 hectares collects the water from the river Yeguas.</li><li>The river Yeguas, running between Montoro and Marmolejo, and the reservoir split in two the provinces of Cordoba and Jaen.</li><li>The river Yeguas feeds the Guadalquivir river and runs from Ciudad Real till Jaen’s province, where it marks the borders of Cordoba. It also acts as a border between Sierra de Andujar Natural Park and Sierra de Cardena and Montoro</li><li>Yeguas Reservoir belongs to Confederacion Hidrografica del Guadalquivir. It is a reservoir of a medium size and it is mainly used for the production of electricity and irrigation.</li><li>It is also well known for fishing. It holds fishes such as the black bass, the carp and the boga.</li></ul>
             
-          </div>
+          </div><button type="button" class="button article-start" id="article-start">
+            Start
+          </button>
         </div>
       </div>
     </div><div class="slides--slide">
@@ -146,16 +157,29 @@
               --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/514/desktop_hd/9.jpg');
             "></div>
           </div>
-        </div></div>
+        </div><div class="slides--slide slides--slide__extra">
+      <div class="article-extra">
+  <div class="article-extra--wrapper">
+    <section class="extra-block">
+      <h2 class="extra-block--title">More about this place…</h2>
+      <p>Located between the provinces of Jaen and Cordoba, it is formed by the water of the river Yeguas and it belongs to the Confederacion Hidrografica del Guadalquivir. With a surface of 948 hectares and a capacity of 228,7 cubic hectometres, it can be considered as a medium size reservoir. It is well known among recreational fishermen, however it is mainly used for irrigation and provide the nearby towns and villages with water.</p>
+    </section>
 
-  <!-- Slide navigation dots (large screens only) -->
-  <div class="slides-nav" id="slides-nav"></div>
-</article>
-
+    <section class="extra-block">
+      <h2 class="extra-block--title">How to arrive</h2>
+      <div class="extra-map"
+           id="article-map"
+           data-latitude="38.066881"
+           data-longitude="-4.248748"></div>
+      <a class="button"
+         href="https://maps.google.com/maps?q=38.066881,-4.248748&amp;ll=38.066881,-4.248748&amp;z=10"
+         rel="noopener">View larger map</a>
+    </section>
 
   </div>
+</div>
 
-  <footer class="footer">
+      <footer class="footer">
   <div class="footer-container">
     <nav class="footer-sitemap" aria-label="The project">
       <div class="footer-sitemap--column">
@@ -251,6 +275,17 @@
   </div>
 </footer>
 
+    </div>
+  </div>
+
+  <!-- Slide navigation dots (large screens only) -->
+  <div class="slides-nav" id="slides-nav"></div>
+</article>
+
+
+
+
+  </div>
 </body>
 
 </html>

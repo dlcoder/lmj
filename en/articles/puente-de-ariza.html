@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Puente de Ariza – Mythical Places of Jaén</title><link rel="stylesheet" href="/css/styles.css?v=1792883152749">
-  <script src="/js/hamburger-menu.js?v=1792883152749" defer></script>
-  <script src="/js/slide-scroll.js?v=1792883152749" defer></script>
-  <script src="/js/slide-navigation.js?v=1792883152749" defer></script></head>
+  <title>Puente de Ariza – Mythical Places of Jaén</title><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script><link rel="stylesheet" href="/css/styles.css?v=1792889779109">
+  <script src="/js/hamburger-menu.js?v=1792889779109" defer></script>
+  <script src="/js/article-slides.js?v=1792889779109" defer></script><script src="/js/article-map.js?v=1792889779109" defer></script></head>
 
 <body class="article-page">
   <div id="header" class="header">
@@ -25,16 +25,25 @@
       <nav class="header-nav" id="header-nav">
         <a href="/en/">Home</a>
         <a href="/en/articles/">Articles</a>
+        <a href="/en/about-us">The project</a>
+        <a href="/en/the-books">The books</a>
       </nav>
     </div>
   </div>
 
   <div class="main-container">
     
+
+
 <article class="article">
   <div class="slides--container">
     <div class="slides--slide">
-      <div class="article-gallery">
+      <div class="article-gallery" style="
+        --intro-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/265/mobile/1.jpg');
+        --intro-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/265/tablet/1.jpg');
+        --intro-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/265/desktop/1.jpg');
+        --intro-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/265/desktop_hd/1.jpg');
+      ">
         <div class="article-gallery--intro">
           <div class="article-header">
             <h1 class="article-title">Puente de Ariza</h1>
@@ -62,7 +71,9 @@
             
             <ul><li>Ariza’s Bridge was built in the 16th century over the Guadalimar River, and it is one of the most important engineering works by the Renaissance’s master Andres de Vandelvira.</li><li>It was commissioned by Concejo de Ubeda in order to improve communications with Castilla, and sponsored by Diego de los Cobos y Molina, bishop of Jaen.</li><li>The almost 100 meters long bridge is built in sandstone, ‘lomo de asno’ type, because it’s not completely flat, but it is made of two ramps a bit steep.</li><li>It is made up by 5 round arches with different light, the highest is 17 meters just at the top of the central arch.</li><li>At the moment, this beautiful piece of Renaissance engineering can be seen only during drought periods. After being covered by the water of the Giribaile swamp in 2010, its preservation is in danger. It needs to be moved urgently and this is one of the main petition by many groups.</li></ul>
             
-          </div>
+          </div><button type="button" class="button article-start" id="article-start">
+            Start
+          </button>
         </div>
       </div>
     </div><div class="slides--slide">
@@ -191,16 +202,29 @@
               --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/278/desktop_hd/14.jpg');
             "></div>
           </div>
-        </div></div>
+        </div><div class="slides--slide slides--slide__extra">
+      <div class="article-extra">
+  <div class="article-extra--wrapper">
+    <section class="extra-block">
+      <h2 class="extra-block--title">More about this place…</h2>
+      <p>Ariza’s Bridge is one of the most important engineering works by the Renaissance master Andres de Vandelvira. It was built between 1550 and 1560, and went under an important refurbishment during 1868 in which the ground was rectified in order to lower the ramp’s inclination and re-building of the starlings (cutwaters). It is under the water of the Giribaile River since 2010, only to be seen on periods of drought, showing its 100 meters long and its 5 round arches (each of them with a different light). Its preservation is in danger at the moment because it was built in sandstone, and there are many groups asking for its immediate relocation.</p>
+    </section>
 
-  <!-- Slide navigation dots (large screens only) -->
-  <div class="slides-nav" id="slides-nav"></div>
-</article>
-
+    <section class="extra-block">
+      <h2 class="extra-block--title">How to arrive</h2>
+      <div class="extra-map"
+           id="article-map"
+           data-latitude="38.114444"
+           data-longitude="-3.365"></div>
+      <a class="button"
+         href="https://maps.google.com/maps?q=38.114444,-3.365&amp;ll=38.114444,-3.365&amp;z=10"
+         rel="noopener">View larger map</a>
+    </section>
 
   </div>
+</div>
 
-  <footer class="footer">
+      <footer class="footer">
   <div class="footer-container">
     <nav class="footer-sitemap" aria-label="The project">
       <div class="footer-sitemap--column">
@@ -296,6 +320,17 @@
   </div>
 </footer>
 
+    </div>
+  </div>
+
+  <!-- Slide navigation dots (large screens only) -->
+  <div class="slides-nav" id="slides-nav"></div>
+</article>
+
+
+
+
+  </div>
 </body>
 
 </html>

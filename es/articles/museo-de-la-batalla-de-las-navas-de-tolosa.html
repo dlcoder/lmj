@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Museo de la Batalla de las Navas de Tolosa – Lugares míticos de Jaén</title><link rel="stylesheet" href="/css/styles.css?v=1792883152749">
-  <script src="/js/hamburger-menu.js?v=1792883152749" defer></script>
-  <script src="/js/slide-scroll.js?v=1792883152749" defer></script>
-  <script src="/js/slide-navigation.js?v=1792883152749" defer></script></head>
+  <title>Museo de la Batalla de las Navas de Tolosa – Lugares míticos de Jaén</title><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script><link rel="stylesheet" href="/css/styles.css?v=1792889779109">
+  <script src="/js/hamburger-menu.js?v=1792889779109" defer></script>
+  <script src="/js/article-slides.js?v=1792889779109" defer></script><script src="/js/article-map.js?v=1792889779109" defer></script></head>
 
 <body class="article-page">
   <div id="header" class="header">
@@ -25,16 +25,25 @@
       <nav class="header-nav" id="header-nav">
         <a href="/es/">Inicio</a>
         <a href="/es/articles/">Artículos</a>
+        <a href="/es/acerca-de">El proyecto</a>
+        <a href="/es/los-libros">Los libros</a>
       </nav>
     </div>
   </div>
 
   <div class="main-container">
     
+
+
 <article class="article">
   <div class="slides--container">
     <div class="slides--slide">
-      <div class="article-gallery">
+      <div class="article-gallery" style="
+        --intro-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/550/mobile/1.jpg');
+        --intro-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/550/tablet/1.jpg');
+        --intro-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/550/desktop/1.jpg');
+        --intro-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/550/desktop_hd/1.jpg');
+      ">
         <div class="article-gallery--intro">
           <div class="article-header">
             <h1 class="article-title">Museo de la Batalla de las Navas de Tolosa</h1>
@@ -62,7 +71,9 @@
             
             <ul><li>El 16 de Julio de 1.212 se libró en las inmediaciones del municipio de Santa Elena una de las batallas consideradas como claves para la reconquista.</li><li>El ejército de la alianza cristiana derrotó en el campo de batalla a las tropas del califa almohade Muhammad an-Nasir, que prácticamente les duplicaban en número.</li><li>La victoria, pese a la enorme diferencia de efectivos, constituyó un revulsivo, dando inicio al declive musulmán e iniciando la fase final de la reconquista cristiana.</li><li>En el año 2.009 abrió sus puertas el Museo de la Batalla de las Navas de Tolosa, situado sobre el terreno que fue testigo de la épica contienda, en pleno Parque Natural de Despeñaperros.</li></ul>
             
-          </div>
+          </div><button type="button" class="button article-start" id="article-start">
+            Comenzar
+          </button>
         </div>
       </div>
     </div><div class="slides--slide">
@@ -155,16 +166,29 @@
               --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/559/desktop_hd/10.jpg');
             "></div>
           </div>
-        </div></div>
+        </div><div class="slides--slide slides--slide__extra">
+      <div class="article-extra">
+  <div class="article-extra--wrapper">
+    <section class="extra-block">
+      <h2 class="extra-block--title">Algo más sobre este lugar…</h2>
+      <p>Considerada como punto de inflexión en la reconquista cristiana, la de Navas de Tolosa es una de las batallas más épicas y sobre la que más se ha escrito. Con aproximadamente el doble de efectivos, el ejército almohade cayó derrotado a manos de la alianza cristiana a mediados de Julio del año 1.212, logrando el control de importantes zonas como Vilches, Ferral, Baños de la Encina o Tolosa. Pese a la importante victoria, la reconquista no se vería completada hasta más de dos siglos después. El Museo de la Batalla de Navas de Tolosa, abierto en 2.009, ofrece un acercamiento didáctico a los hechos históricos relacionados con la épica contienda.</p>
+    </section>
 
-  <!-- Slide navigation dots (large screens only) -->
-  <div class="slides-nav" id="slides-nav"></div>
-</article>
-
+    <section class="extra-block">
+      <h2 class="extra-block--title">Cómo llegar</h2>
+      <div class="extra-map"
+           id="article-map"
+           data-latitude="38.342782"
+           data-longitude="-3.548933"></div>
+      <a class="button"
+         href="https://maps.google.com/maps?q=38.342782,-3.548933&amp;ll=38.342782,-3.548933&amp;z=10"
+         rel="noopener">Ampliar mapa</a>
+    </section>
 
   </div>
+</div>
 
-  <footer class="footer">
+      <footer class="footer">
   <div class="footer-container">
     <nav class="footer-sitemap" aria-label="El proyecto">
       <div class="footer-sitemap--column">
@@ -260,6 +284,17 @@
   </div>
 </footer>
 
+    </div>
+  </div>
+
+  <!-- Slide navigation dots (large screens only) -->
+  <div class="slides-nav" id="slides-nav"></div>
+</article>
+
+
+
+
+  </div>
 </body>
 
 </html>

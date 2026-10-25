@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>El Castillo (Parador) – Lugares míticos de Jaén</title><link rel="stylesheet" href="/css/styles.css?v=1792883152749">
-  <script src="/js/hamburger-menu.js?v=1792883152749" defer></script>
-  <script src="/js/slide-scroll.js?v=1792883152749" defer></script>
-  <script src="/js/slide-navigation.js?v=1792883152749" defer></script></head>
+  <title>El Castillo (Parador) – Lugares míticos de Jaén</title><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script><link rel="stylesheet" href="/css/styles.css?v=1792889779109">
+  <script src="/js/hamburger-menu.js?v=1792889779109" defer></script>
+  <script src="/js/article-slides.js?v=1792889779109" defer></script><script src="/js/article-map.js?v=1792889779109" defer></script></head>
 
 <body class="article-page">
   <div id="header" class="header">
@@ -25,16 +25,25 @@
       <nav class="header-nav" id="header-nav">
         <a href="/es/">Inicio</a>
         <a href="/es/articles/">Artículos</a>
+        <a href="/es/acerca-de">El proyecto</a>
+        <a href="/es/los-libros">Los libros</a>
       </nav>
     </div>
   </div>
 
   <div class="main-container">
     
+
+
 <article class="article">
   <div class="slides--container">
     <div class="slides--slide">
-      <div class="article-gallery">
+      <div class="article-gallery" style="
+        --intro-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/576/mobile/01.jpg');
+        --intro-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/576/tablet/01.jpg');
+        --intro-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/576/desktop/01.jpg');
+        --intro-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/576/desktop_hd/01.jpg');
+      ">
         <div class="article-gallery--intro">
           <div class="article-header">
             <h1 class="article-title">El Castillo (Parador)</h1>
@@ -62,7 +71,9 @@
             
             <ul><li>El parador de turismo fue construido en 1965 sobre el antiguo Alcázar Viejo del Castillo de Santa Catalina.</li><li>El salón principal, con sus arcos cruzados a más de 20 metros de altura, traslada a sus visitantes a épocas pasadas.</li><li>La estética del edificio y la decoración de las habitaciones se ha realizado guardando concordancia con el entorno.</li><li>Famosa es la leyenda referente a la existencia de un fantasma en la habitación número 22.</li></ul>
             
-          </div>
+          </div><button type="button" class="button article-start" id="article-start">
+            Comenzar
+          </button>
         </div>
       </div>
     </div><div class="slides--slide">
@@ -164,16 +175,29 @@
               --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/586/desktop_hd/11.jpg');
             "></div>
           </div>
-        </div></div>
+        </div><div class="slides--slide slides--slide__extra">
+      <div class="article-extra">
+  <div class="article-extra--wrapper">
+    <section class="extra-block">
+      <h2 class="extra-block--title">Algo más sobre este lugar…</h2>
+      <p>Construido en 1965 sobre el Alcázar Viejo del Castillo de Santa Catalina, el parador de turismo de Jaén es uno de los mejor valorados de toda España. Su estética traslada a sus visitantes a épocas pasadas, de castillos y batallas. Disfrutar de una comida en su espectacular salón principal, es un lujo para todos los sentidos. Desde él podemos contemplar unas inigualables panorámicas de toda la ciudad de Jaén.</p>
+    </section>
 
-  <!-- Slide navigation dots (large screens only) -->
-  <div class="slides-nav" id="slides-nav"></div>
-</article>
-
+    <section class="extra-block">
+      <h2 class="extra-block--title">Cómo llegar</h2>
+      <div class="extra-map"
+           id="article-map"
+           data-latitude="37.767506"
+           data-longitude="-3.801"></div>
+      <a class="button"
+         href="https://maps.google.com/maps?q=37.767506,-3.801&amp;ll=37.767506,-3.801&amp;z=10"
+         rel="noopener">Ampliar mapa</a>
+    </section>
 
   </div>
+</div>
 
-  <footer class="footer">
+      <footer class="footer">
   <div class="footer-container">
     <nav class="footer-sitemap" aria-label="El proyecto">
       <div class="footer-sitemap--column">
@@ -269,6 +293,17 @@
   </div>
 </footer>
 
+    </div>
+  </div>
+
+  <!-- Slide navigation dots (large screens only) -->
+  <div class="slides-nav" id="slides-nav"></div>
+</article>
+
+
+
+
+  </div>
 </body>
 
 </html>

@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Castillo de Arjonilla – Mythical Places of Jaén</title><link rel="stylesheet" href="/css/styles.css?v=1792883152749">
-  <script src="/js/hamburger-menu.js?v=1792883152749" defer></script>
-  <script src="/js/slide-scroll.js?v=1792883152749" defer></script>
-  <script src="/js/slide-navigation.js?v=1792883152749" defer></script></head>
+  <title>Castillo de Arjonilla – Mythical Places of Jaén</title><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script><link rel="stylesheet" href="/css/styles.css?v=1792889779109">
+  <script src="/js/hamburger-menu.js?v=1792889779109" defer></script>
+  <script src="/js/article-slides.js?v=1792889779109" defer></script><script src="/js/article-map.js?v=1792889779109" defer></script></head>
 
 <body class="article-page">
   <div id="header" class="header">
@@ -25,16 +25,25 @@
       <nav class="header-nav" id="header-nav">
         <a href="/en/">Home</a>
         <a href="/en/articles/">Articles</a>
+        <a href="/en/about-us">The project</a>
+        <a href="/en/the-books">The books</a>
       </nav>
     </div>
   </div>
 
   <div class="main-container">
     
+
+
 <article class="article">
   <div class="slides--container">
     <div class="slides--slide">
-      <div class="article-gallery">
+      <div class="article-gallery" style="
+        --intro-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/561/mobile/1.jpg');
+        --intro-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/561/tablet/1.jpg');
+        --intro-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/561/desktop/1.jpg');
+        --intro-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/561/desktop_hd/1.jpg');
+      ">
         <div class="article-gallery--intro">
           <div class="article-header">
             <h1 class="article-title">Castillo de Arjonilla</h1>
@@ -62,7 +71,9 @@
             
             <ul><li>Arjonilla’s Castle is from Almohad origin, It was conquered in 1244 by Fernando the 3rd’s troops. In the 13th century it passed to the Calatrava Order’s hands to refurbish it.</li><li>Above the whole castle it stands out the Homenaje tower. Square plan tower, 5 meters wide x 17 metres high. It is possible that the castle had another Homenaje tower, lost today.</li><li>However this castle is not well known for being the scene of wars and battles but rather for the famous Troubadour Macias legend, that inspired Larra or Lope de Vega among others.</li><li>Legend has it that in the Homenaje tower Troubadour Macias was a prisoner that lived and died there, because he was in love with dona Elvira.</li></ul>
             
-          </div>
+          </div><button type="button" class="button article-start" id="article-start">
+            Start
+          </button>
         </div>
       </div>
     </div><div class="slides--slide">
@@ -137,16 +148,29 @@
               --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/568/desktop_hd/8.jpg');
             "></div>
           </div>
-        </div></div>
+        </div><div class="slides--slide slides--slide__extra">
+      <div class="article-extra">
+  <div class="article-extra--wrapper">
+    <section class="extra-block">
+      <h2 class="extra-block--title">More about this place…</h2>
+      <p>The origins of this fortress go back to the 12th century, when the Almohads fortified the place by building several towers to protect it against the Christian troops. It was conquered in 1244 by Fernando the 3rd, and passed to the Calatrava Order’s hands in the 13th century. It was shaped in its current structure by the “Calatravos” who were in charge of its refurbishment. Later on, in the 17th century, the South wall was demolished in order to join it to the Marquis’ palace. As a curiosity, it is worth mentioning that the well known name of the castle is not due to wars or battles that took place among its walls, but rather to Troubadour Macias legend who was locked and killed at the Homenaje tower because of love.</p>
+    </section>
 
-  <!-- Slide navigation dots (large screens only) -->
-  <div class="slides-nav" id="slides-nav"></div>
-</article>
-
+    <section class="extra-block">
+      <h2 class="extra-block--title">How to arrive</h2>
+      <div class="extra-map"
+           id="article-map"
+           data-latitude="37.974151"
+           data-longitude="-4.104753"></div>
+      <a class="button"
+         href="https://maps.google.com/maps?q=37.974151,-4.104753&amp;ll=37.974151,-4.104753&amp;z=10"
+         rel="noopener">View larger map</a>
+    </section>
 
   </div>
+</div>
 
-  <footer class="footer">
+      <footer class="footer">
   <div class="footer-container">
     <nav class="footer-sitemap" aria-label="The project">
       <div class="footer-sitemap--column">
@@ -242,6 +266,17 @@
   </div>
 </footer>
 
+    </div>
+  </div>
+
+  <!-- Slide navigation dots (large screens only) -->
+  <div class="slides-nav" id="slides-nav"></div>
+</article>
+
+
+
+
+  </div>
 </body>
 
 </html>

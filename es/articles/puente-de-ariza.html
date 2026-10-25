@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Puente de Ariza – Lugares míticos de Jaén</title><link rel="stylesheet" href="/css/styles.css?v=1792883152749">
-  <script src="/js/hamburger-menu.js?v=1792883152749" defer></script>
-  <script src="/js/slide-scroll.js?v=1792883152749" defer></script>
-  <script src="/js/slide-navigation.js?v=1792883152749" defer></script></head>
+  <title>Puente de Ariza – Lugares míticos de Jaén</title><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script><link rel="stylesheet" href="/css/styles.css?v=1792889779109">
+  <script src="/js/hamburger-menu.js?v=1792889779109" defer></script>
+  <script src="/js/article-slides.js?v=1792889779109" defer></script><script src="/js/article-map.js?v=1792889779109" defer></script></head>
 
 <body class="article-page">
   <div id="header" class="header">
@@ -25,16 +25,25 @@
       <nav class="header-nav" id="header-nav">
         <a href="/es/">Inicio</a>
         <a href="/es/articles/">Artículos</a>
+        <a href="/es/acerca-de">El proyecto</a>
+        <a href="/es/los-libros">Los libros</a>
       </nav>
     </div>
   </div>
 
   <div class="main-container">
     
+
+
 <article class="article">
   <div class="slides--container">
     <div class="slides--slide">
-      <div class="article-gallery">
+      <div class="article-gallery" style="
+        --intro-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/265/mobile/1.jpg');
+        --intro-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/265/tablet/1.jpg');
+        --intro-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/265/desktop/1.jpg');
+        --intro-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/265/desktop_hd/1.jpg');
+      ">
         <div class="article-gallery--intro">
           <div class="article-header">
             <h1 class="article-title">Puente de Ariza</h1>
@@ -62,7 +71,9 @@
             
             <ul><li>Construido en el siglo XVI sobre las aguas del río Guadalimar, el Puente de Ariza constituye una de las obras de ingeniería más importantes del maestro renacentista Andrés de Vandelvira.</li><li>La obra se llevó a cabo a instancias del Concejo de Úbeda con el objetivo de mejorar las comunicaciones con Castilla, siendo financiada por el obispo de Jaén, Diego de los Cobos y Molina.</li><li>El puente –de casi 100 metros de longitud– construido en piedra arenisca, es del tipo “lomo de asno”, pues su paso no es llano, sino que está compuesto por dos rampas con importante inclinación.</li><li>Formado por cinco arcos de medio punto con diferente luz, alcanza una altura máxima de 17 metros justo en el ábside del arco central.</li><li>Actualmente, esta maravillosa obra de ingeniería renacentista solo es visible durante épocas de sequía. Tras quedar sepultado desde 2010 por las aguas del pantano Giribaile, su conservación corre grave peligro, siendo su traslado una de las principales reivindicaciones por parte de numerosos colectivos ciudadanos.</li></ul>
             
-          </div>
+          </div><button type="button" class="button article-start" id="article-start">
+            Comenzar
+          </button>
         </div>
       </div>
     </div><div class="slides--slide">
@@ -191,16 +202,29 @@
               --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/278/desktop_hd/14.jpg');
             "></div>
           </div>
-        </div></div>
+        </div><div class="slides--slide slides--slide__extra">
+      <div class="article-extra">
+  <div class="article-extra--wrapper">
+    <section class="extra-block">
+      <h2 class="extra-block--title">Algo más sobre este lugar…</h2>
+      <p>El Puente de Ariza constituye una de las obras de ingeniería más importantes del maestro renacentista Andrés de Vandelvira. Construido entre 1550 y 1560, sufrió una importante reforma durante el año 1868, rectificándose la rasante para rebajar la inclinación de las rampas y reconstruyéndose los tamajares. Desde 2010 permanece sepultado bajo las aguas del Giribaile, emergiendo únicamente en épocas de sequía, cuando muestra sus 100 metros de longitud y 5 arcos de medio punto, todos ellos de diferente luz. Al estar construido en piedra arenisca, su actual situación supone un enorme peligro para su conservación, motivo por el cual numerosos colectivos reivindican su protección o traslado inmediato.</p>
+    </section>
 
-  <!-- Slide navigation dots (large screens only) -->
-  <div class="slides-nav" id="slides-nav"></div>
-</article>
-
+    <section class="extra-block">
+      <h2 class="extra-block--title">Cómo llegar</h2>
+      <div class="extra-map"
+           id="article-map"
+           data-latitude="38.114444"
+           data-longitude="-3.365"></div>
+      <a class="button"
+         href="https://maps.google.com/maps?q=38.114444,-3.365&amp;ll=38.114444,-3.365&amp;z=10"
+         rel="noopener">Ampliar mapa</a>
+    </section>
 
   </div>
+</div>
 
-  <footer class="footer">
+      <footer class="footer">
   <div class="footer-container">
     <nav class="footer-sitemap" aria-label="El proyecto">
       <div class="footer-sitemap--column">
@@ -296,6 +320,17 @@
   </div>
 </footer>
 
+    </div>
+  </div>
+
+  <!-- Slide navigation dots (large screens only) -->
+  <div class="slides-nav" id="slides-nav"></div>
+</article>
+
+
+
+
+  </div>
 </body>
 
 </html>

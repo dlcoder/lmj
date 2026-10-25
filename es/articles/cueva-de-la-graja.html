@@ -4,10 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cueva de la Graja – Lugares míticos de Jaén</title><link rel="stylesheet" href="/css/styles.css?v=1792883152749">
-  <script src="/js/hamburger-menu.js?v=1792883152749" defer></script>
-  <script src="/js/slide-scroll.js?v=1792883152749" defer></script>
-  <script src="/js/slide-navigation.js?v=1792883152749" defer></script></head>
+  <title>Cueva de la Graja – Lugares míticos de Jaén</title><link rel="stylesheet" href="/css/styles.css?v=1792889779109">
+  <script src="/js/hamburger-menu.js?v=1792889779109" defer></script>
+  <script src="/js/article-slides.js?v=1792889779109" defer></script></head>
 
 <body class="article-page">
   <div id="header" class="header">
@@ -25,16 +24,25 @@
       <nav class="header-nav" id="header-nav">
         <a href="/es/">Inicio</a>
         <a href="/es/articles/">Artículos</a>
+        <a href="/es/acerca-de">El proyecto</a>
+        <a href="/es/los-libros">Los libros</a>
       </nav>
     </div>
   </div>
 
   <div class="main-container">
     
+
+
 <article class="article">
   <div class="slides--container">
     <div class="slides--slide">
-      <div class="article-gallery">
+      <div class="article-gallery" style="
+        --intro-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/031/mobile/01.jpg');
+        --intro-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/031/tablet/01.jpg');
+        --intro-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/031/desktop/01.jpg');
+        --intro-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/031/desktop_hd/01.jpg');
+      ">
         <div class="article-gallery--intro">
           <div class="article-header">
             <h1 class="article-title">Cueva de la Graja</h1>
@@ -62,7 +70,9 @@
             
             <ul><li>En el extremo norte del macizo del Aznaitín, en el paraje conocido como “la Cimbra”, se halla la Cueva de la Graja.</li><li>Realmente se trata de un abrigo de 6 metros de profundidad por 6 de anchura, que en su parte más alta alcanza los 5 metros.</li><li>Además de ofrecer unas maravillosas vistas desde sus 750 metros de altitud, este abrigo alberga manifestaciones de arte rupestre que fueron realizadas entre 2000 y 5000 años antes de nuestra era.</li><li>Realizadas con pigmentos obtenidos a través de la mezcla de óxido de hierro, arcillas y grasas animales; las pinturas representan ritos y labores de pastoreo.</li><li>Declarada Monumento Histórico Artístico en 1924, la cueva se puede visitar bajo solicitud previa en el Ayuntamiento de Jimena.</li></ul>
             
-          </div>
+          </div><button type="button" class="button article-start" id="article-start">
+            Comenzar
+          </button>
         </div>
       </div>
     </div><div class="slides--slide">
@@ -155,16 +165,23 @@
               --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/040/desktop_hd/10.jpg');
             "></div>
           </div>
-        </div></div>
+        </div><div class="slides--slide slides--slide__extra">
+      <div class="article-extra">
+  <div class="article-extra--wrapper">
+    <section class="extra-block">
+      <h2 class="extra-block--title">Algo más sobre este lugar…</h2>
+      <p>La gran presencia de roca caliza y los efectos kársticos hacen que en nuestra provincia abunden las cuevas y abrigos que sirvieron de hogar para los que hace miles de años poblaron estas tierras. La Cueva de la Graja es un ejemplo de ello; este abrigo rocoso situado en el extremo norte del Aznaitín a 750 metros de altura alberga manifestaciones de arte rupestre con una antigüedad de entre 2000 y 5000 años antes de nuestra era. La cueva se puede visitar solicitándolo previamente en el Ayuntamiento de Jimena.</p>
+    </section>
 
-  <!-- Slide navigation dots (large screens only) -->
-  <div class="slides-nav" id="slides-nav"></div>
-</article>
-
+    <section class="extra-block">
+      <h2 class="extra-block--title">Cómo llegar</h2>
+      <p class="extra-block--notice">No publicamos la geolocalización sobre cómo llegar a este lugar, pues consideramos que se trata de un lugar por el que debemos velar especialmente. No quiere esto decir que no puedas encontrar su ubicación si indagas un poco por la red, pero te pedimos que si lo visitas, lo cuides y protejas especialmente, al igual que el resto de enclaves que representan nuestro patrimonio.</p>
+    </section>
 
   </div>
+</div>
 
-  <footer class="footer">
+      <footer class="footer">
   <div class="footer-container">
     <nav class="footer-sitemap" aria-label="El proyecto">
       <div class="footer-sitemap--column">
@@ -260,6 +277,17 @@
   </div>
 </footer>
 
+    </div>
+  </div>
+
+  <!-- Slide navigation dots (large screens only) -->
+  <div class="slides-nav" id="slides-nav"></div>
+</article>
+
+
+
+
+  </div>
 </body>
 
 </html>

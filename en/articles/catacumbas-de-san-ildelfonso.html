@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Catacumbas de San Ildelfonso – Mythical Places of Jaén</title><link rel="stylesheet" href="/css/styles.css?v=1792883152749">
-  <script src="/js/hamburger-menu.js?v=1792883152749" defer></script>
-  <script src="/js/slide-scroll.js?v=1792883152749" defer></script>
-  <script src="/js/slide-navigation.js?v=1792883152749" defer></script></head>
+  <title>Catacumbas de San Ildelfonso – Mythical Places of Jaén</title><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script><link rel="stylesheet" href="/css/styles.css?v=1792889779109">
+  <script src="/js/hamburger-menu.js?v=1792889779109" defer></script>
+  <script src="/js/article-slides.js?v=1792889779109" defer></script><script src="/js/article-map.js?v=1792889779109" defer></script></head>
 
 <body class="article-page">
   <div id="header" class="header">
@@ -25,16 +25,25 @@
       <nav class="header-nav" id="header-nav">
         <a href="/en/">Home</a>
         <a href="/en/articles/">Articles</a>
+        <a href="/en/about-us">The project</a>
+        <a href="/en/the-books">The books</a>
       </nav>
     </div>
   </div>
 
   <div class="main-container">
     
+
+
 <article class="article">
   <div class="slides--container">
     <div class="slides--slide">
-      <div class="article-gallery">
+      <div class="article-gallery" style="
+        --intro-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/338/mobile/1.jpg');
+        --intro-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/338/tablet/1.jpg');
+        --intro-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/338/desktop/1.jpg');
+        --intro-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/338/desktop_hd/1.jpg');
+      ">
         <div class="article-gallery--intro">
           <div class="article-header">
             <h1 class="article-title">Catacumbas de San Ildelfonso</h1>
@@ -62,7 +71,9 @@
             
             <ul><li>Located under the church, San Ildefonso Catacombs occupied the same extension as the church itself from entrance to the altar.</li><li>Looking like a maze, after the last restoration works the walls are full of closed niches, harbouring the remains of martyrs, saints and the wealthy people of the time.</li><li>The crypts are specially well-known for being the place where the remains of the great Renaissance artist Andres de Vandelvira rest for eternity.</li><li>There is a plaque indicating the exact place where Vandelvira remains are, however it is not the original place where he was buried. It was moved at the beginning of the 17th century with the relocation of Virgen de la Capilla’s lady chapel.</li></ul>
             
-          </div>
+          </div><button type="button" class="button article-start" id="article-start">
+            Start
+          </button>
         </div>
       </div>
     </div><div class="slides--slide">
@@ -137,16 +148,29 @@
               --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/345/desktop_hd/8.jpg');
             "></div>
           </div>
-        </div></div>
+        </div><div class="slides--slide slides--slide__extra">
+      <div class="article-extra">
+  <div class="article-extra--wrapper">
+    <section class="extra-block">
+      <h2 class="extra-block--title">More about this place…</h2>
+      <p>San Ildefonso’s crypt occupies practically the same extension as the church itself, from the entrance till the altar. The entrance is in Vicente Montuno, however they are not open to the public at the moment. The Catacombs, holding the remains of martyrs, saints and wealthy people at the time, are specially well-known for being the location which the Renaissance artist Andres de Vandelvira chose for his eternal rest. He was buried wearing the tunic of hermano mayor of the Vera Cruz’s brotherhood.</p>
+    </section>
 
-  <!-- Slide navigation dots (large screens only) -->
-  <div class="slides-nav" id="slides-nav"></div>
-</article>
-
+    <section class="extra-block">
+      <h2 class="extra-block--title">How to arrive</h2>
+      <div class="extra-map"
+           id="article-map"
+           data-latitude="37.766404"
+           data-longitude="-3.786504"></div>
+      <a class="button"
+         href="https://maps.google.com/maps?q=37.766404,-3.786504&amp;ll=37.766404,-3.786504&amp;z=10"
+         rel="noopener">View larger map</a>
+    </section>
 
   </div>
+</div>
 
-  <footer class="footer">
+      <footer class="footer">
   <div class="footer-container">
     <nav class="footer-sitemap" aria-label="The project">
       <div class="footer-sitemap--column">
@@ -242,6 +266,17 @@
   </div>
 </footer>
 
+    </div>
+  </div>
+
+  <!-- Slide navigation dots (large screens only) -->
+  <div class="slides-nav" id="slides-nav"></div>
+</article>
+
+
+
+
+  </div>
 </body>
 
 </html>

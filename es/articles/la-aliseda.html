@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>La Aliseda – Lugares míticos de Jaén</title><link rel="stylesheet" href="/css/styles.css?v=1792883152749">
-  <script src="/js/hamburger-menu.js?v=1792883152749" defer></script>
-  <script src="/js/slide-scroll.js?v=1792883152749" defer></script>
-  <script src="/js/slide-navigation.js?v=1792883152749" defer></script></head>
+  <title>La Aliseda – Lugares míticos de Jaén</title><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script><link rel="stylesheet" href="/css/styles.css?v=1792889779109">
+  <script src="/js/hamburger-menu.js?v=1792889779109" defer></script>
+  <script src="/js/article-slides.js?v=1792889779109" defer></script><script src="/js/article-map.js?v=1792889779109" defer></script></head>
 
 <body class="article-page">
   <div id="header" class="header">
@@ -25,16 +25,25 @@
       <nav class="header-nav" id="header-nav">
         <a href="/es/">Inicio</a>
         <a href="/es/articles/">Artículos</a>
+        <a href="/es/acerca-de">El proyecto</a>
+        <a href="/es/los-libros">Los libros</a>
       </nav>
     </div>
   </div>
 
   <div class="main-container">
     
+
+
 <article class="article">
   <div class="slides--container">
     <div class="slides--slide">
-      <div class="article-gallery">
+      <div class="article-gallery" style="
+        --intro-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/409/mobile/1.jpg');
+        --intro-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/409/tablet/1.jpg');
+        --intro-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/409/desktop/1.jpg');
+        --intro-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/409/desktop_hd/1.jpg');
+      ">
         <div class="article-gallery--intro">
           <div class="article-header">
             <h1 class="article-title">La Aliseda</h1>
@@ -62,7 +71,9 @@
             
             <ul><li>La Aliseda se encuentra situada junto al monte que le da nombre, siendo esta zona especialmente conocida desde siglos atrás por sus paisajes y por el valor de sus aguas medicinales.</li><li>Lugar ideal para disfrutar de un picnic en un magnífico entorno natural, este espacio de esparcimiento cuenta con mesas, barbacoas y zona de juegos para los más pequeños.</li><li>Junto a ella encontramos el inicio del sendero del río de la campana, un breve pero espectacular recorrido circular de apenas un kilómetro de longitud y baja dificultad.</li><li>En nuestro camino nos toparemos con castaños, fresnos, alisos, con un conjunto de enormes pinos piñoneros de copas redondeadas y disfrutaremos principalmente de la frondosidad del bosque de ribera que crece junto al río.</li><li>Es recomendable recorrer el sendero entre el otoño y la primavera, cuando el cauce cuenta con más agua. Este paseo es también una referencia para los recolectores de setas.</li></ul>
             
-          </div>
+          </div><button type="button" class="button article-start" id="article-start">
+            Comenzar
+          </button>
         </div>
       </div>
     </div><div class="slides--slide">
@@ -227,16 +238,29 @@
               --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/426/desktop_hd/18.jpg');
             "></div>
           </div>
-        </div></div>
+        </div><div class="slides--slide slides--slide__extra">
+      <div class="article-extra">
+  <div class="article-extra--wrapper">
+    <section class="extra-block">
+      <h2 class="extra-block--title">Algo más sobre este lugar…</h2>
+      <p>La zona recreativa de la Aliseda se encuentra situada en un espectacular entorno natural. Desde aquí parte el sendero del río de la Campana, un recorrido breve pero encantador que nos permitirá disfrutar de la frondosidad del bosque de ribera que se desarrolla alimentado por las aguas del río. Junto a la zona recreativa también podemos contemplar las ruinas de un antiguo balneario de principios del siglo XX –que hacía uso de las aguas ferruginosas de uno de los múltiples manantiales de la zona– o acercarnos al centro de cría del lince ibérico de La Olivilla.</p>
+    </section>
 
-  <!-- Slide navigation dots (large screens only) -->
-  <div class="slides-nav" id="slides-nav"></div>
-</article>
-
+    <section class="extra-block">
+      <h2 class="extra-block--title">Cómo llegar</h2>
+      <div class="extra-map"
+           id="article-map"
+           data-latitude="38.329841"
+           data-longitude="-3.582625"></div>
+      <a class="button"
+         href="https://maps.google.com/maps?q=38.329841,-3.582625&amp;ll=38.329841,-3.582625&amp;z=10"
+         rel="noopener">Ampliar mapa</a>
+    </section>
 
   </div>
+</div>
 
-  <footer class="footer">
+      <footer class="footer">
   <div class="footer-container">
     <nav class="footer-sitemap" aria-label="El proyecto">
       <div class="footer-sitemap--column">
@@ -332,6 +356,17 @@
   </div>
 </footer>
 
+    </div>
+  </div>
+
+  <!-- Slide navigation dots (large screens only) -->
+  <div class="slides-nav" id="slides-nav"></div>
+</article>
+
+
+
+
+  </div>
 </body>
 
 </html>

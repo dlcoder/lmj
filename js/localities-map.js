@@ -1,5 +1,9 @@
 (function () {
-  const STATIC_HOST = 'https://lmjstatic.deliriumcoder.com';
+  // The outlines come from the assets host and are read with fetch(), so the
+  // browser applies CORS to them. The bucket answers with an allowlist of
+  // origins, which has to include wherever the site is being served from —
+  // including localhost while developing.
+  const GEOJSON = 'https://lmjstatic.deliriumcoder.com/files/geojson';
   const JAEN_CENTER = [37.9556459, -3.361515];
   const JAEN_ZOOM = 9;
 
@@ -15,7 +19,6 @@
       center: JAEN_CENTER,
       zoom: JAEN_ZOOM,
       zoomControl: false,
-      attributionControl: false,
       dragging: false,
       touchZoom: false,
       scrollWheelZoom: false,
@@ -24,9 +27,11 @@
       keyboard: false
     });
 
-    // Add OpenStreetMap tile layer
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+    // OpenStreetMap's own tiles: no API key, unlike the Carto basemap that
+    // used to be here and now answers with a placeholder tile.
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      maxZoom: 19
     }).addTo(map);
 
     // Load and render province boundary
@@ -37,7 +42,7 @@
 
   async function loadProvinceBoundary() {
     try {
-      const response = await fetch(`${STATIC_HOST}/files/geojson/province.json`);
+      const response = await fetch(`${GEOJSON}/province.json`);
       if (!response.ok) return;
 
       const geoJson = await response.json();
@@ -86,7 +91,7 @@
       return geoJsonCache[localityId];
     }
 
-    const url = `${STATIC_HOST}/files/geojson/locality_${localityId}.json`;
+    const url = `${GEOJSON}/locality_${localityId}.json`;
     const response = await fetch(url);
 
     if (!response.ok) {

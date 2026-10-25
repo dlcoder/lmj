@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Balneario de Marmolejo – Lugares míticos de Jaén</title><link rel="stylesheet" href="/css/styles.css?v=1792883152749">
-  <script src="/js/hamburger-menu.js?v=1792883152749" defer></script>
-  <script src="/js/slide-scroll.js?v=1792883152749" defer></script>
-  <script src="/js/slide-navigation.js?v=1792883152749" defer></script></head>
+  <title>Balneario de Marmolejo – Lugares míticos de Jaén</title><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script><link rel="stylesheet" href="/css/styles.css?v=1792889779109">
+  <script src="/js/hamburger-menu.js?v=1792889779109" defer></script>
+  <script src="/js/article-slides.js?v=1792889779109" defer></script><script src="/js/article-map.js?v=1792889779109" defer></script></head>
 
 <body class="article-page">
   <div id="header" class="header">
@@ -25,16 +25,25 @@
       <nav class="header-nav" id="header-nav">
         <a href="/es/">Inicio</a>
         <a href="/es/articles/">Artículos</a>
+        <a href="/es/acerca-de">El proyecto</a>
+        <a href="/es/los-libros">Los libros</a>
       </nav>
     </div>
   </div>
 
   <div class="main-container">
     
+
+
 <article class="article">
   <div class="slides--container">
     <div class="slides--slide">
-      <div class="article-gallery">
+      <div class="article-gallery" style="
+        --intro-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/570/mobile/1.jpg');
+        --intro-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/570/tablet/1.jpg');
+        --intro-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/570/desktop/1.jpg');
+        --intro-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/570/desktop_hd/1.jpg');
+      ">
         <div class="article-gallery--intro">
           <div class="article-header">
             <h1 class="article-title">Balneario de Marmolejo</h1>
@@ -62,7 +71,9 @@
             
             <ul><li>La primera referencia escrita sobre las aguas medicinales de Marmolejo data del año 1.701, aunque no sería hasta el siglo XIX cuando este pequeño municipio y sus aguas comenzarían a disfrutar de gran fama.</li><li>Marmolejo –con escasos 4.000 habitantes– se convirtió en destino predilecto de la alta burguesía española. Los 3 cines, 4 casinos, 7 hoteles, teatro e innumerables tiendas con las que llegó a contar hablan de la revolución económica que el balneario supuso.</li><li>A partir de 1.950 comienza la decadencia del balneario, sucediéndose el cierre de varios hoteles ante el descenso de visitantes. La crecida del Guadalquivir en el año 1.997 destruyó  gran parte del balneario y contaminó los acuíferos, lo que culminó en su cierre.</li><li>En 2.001 el Ayuntamiento se hizo con la titularidad del  balneario, reabriendo sus puertas nuevamente en 2.004. Sin embargo, las nuevas crecidas del año 2.009 arrasarán nuevamente las instalaciones, quedando en el estado que podéis comprobar en este reportaje.</li></ul>
             
-          </div>
+          </div><button type="button" class="button article-start" id="article-start">
+            Comenzar
+          </button>
         </div>
       </div>
     </div><div class="slides--slide">
@@ -155,16 +166,29 @@
               --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/579/desktop_hd/10.jpg');
             "></div>
           </div>
-        </div></div>
+        </div><div class="slides--slide slides--slide__extra">
+      <div class="article-extra">
+  <div class="article-extra--wrapper">
+    <section class="extra-block">
+      <h2 class="extra-block--title">Algo más sobre este lugar…</h2>
+      <p>La historia reciente de Marmolejo está ligada a la de sus aguas y manantiales. Con apenas 4.000 habitantes, este pequeño municipio de labores fundamentalmente agrícolas, llamaban al balneario y a la actividad económica generada por este como “la tercera cosecha”. Durante 185 años se explotaron los manantiales de Marmolejo –a través del balneario y del embotellamiento de sus aguas– hasta que una de las crecidas del Guadalquivir puso fin a su actividad arrasándolo todo. Pese a que en 2.004 reabrió sus puertas, ya bajo titularidad municipal, una nueva crecida del río acababa con el sueño tan sólo cinco años después.</p>
+    </section>
 
-  <!-- Slide navigation dots (large screens only) -->
-  <div class="slides-nav" id="slides-nav"></div>
-</article>
-
+    <section class="extra-block">
+      <h2 class="extra-block--title">Cómo llegar</h2>
+      <div class="extra-map"
+           id="article-map"
+           data-latitude="38.054271"
+           data-longitude="-4.192958"></div>
+      <a class="button"
+         href="https://maps.google.com/maps?q=38.054271,-4.192958&amp;ll=38.054271,-4.192958&amp;z=10"
+         rel="noopener">Ampliar mapa</a>
+    </section>
 
   </div>
+</div>
 
-  <footer class="footer">
+      <footer class="footer">
   <div class="footer-container">
     <nav class="footer-sitemap" aria-label="El proyecto">
       <div class="footer-sitemap--column">
@@ -260,6 +284,17 @@
   </div>
 </footer>
 
+    </div>
+  </div>
+
+  <!-- Slide navigation dots (large screens only) -->
+  <div class="slides-nav" id="slides-nav"></div>
+</article>
+
+
+
+
+  </div>
 </body>
 
 </html>

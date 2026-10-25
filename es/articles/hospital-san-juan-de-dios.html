@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hospital San Juan de Dios – Lugares míticos de Jaén</title><link rel="stylesheet" href="/css/styles.css?v=1792883152749">
-  <script src="/js/hamburger-menu.js?v=1792883152749" defer></script>
-  <script src="/js/slide-scroll.js?v=1792883152749" defer></script>
-  <script src="/js/slide-navigation.js?v=1792883152749" defer></script></head>
+  <title>Hospital San Juan de Dios – Lugares míticos de Jaén</title><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script><link rel="stylesheet" href="/css/styles.css?v=1792889779109">
+  <script src="/js/hamburger-menu.js?v=1792889779109" defer></script>
+  <script src="/js/article-slides.js?v=1792889779109" defer></script><script src="/js/article-map.js?v=1792889779109" defer></script></head>
 
 <body class="article-page">
   <div id="header" class="header">
@@ -25,16 +25,25 @@
       <nav class="header-nav" id="header-nav">
         <a href="/es/">Inicio</a>
         <a href="/es/articles/">Artículos</a>
+        <a href="/es/acerca-de">El proyecto</a>
+        <a href="/es/los-libros">Los libros</a>
       </nav>
     </div>
   </div>
 
   <div class="main-container">
     
+
+
 <article class="article">
   <div class="slides--container">
     <div class="slides--slide">
-      <div class="article-gallery">
+      <div class="article-gallery" style="
+        --intro-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/188/mobile/01.jpg');
+        --intro-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/188/tablet/01.jpg');
+        --intro-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/188/desktop/01.jpg');
+        --intro-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/188/desktop_hd/01.jpg');
+      ">
         <div class="article-gallery--intro">
           <div class="article-header">
             <h1 class="article-title">Hospital San Juan de Dios</h1>
@@ -62,7 +71,9 @@
             
             <ul><li>Tiene su origen en la unión de los antiguos hospitales de la Santa Misericordia y de San Lázaro, que fueron entregados a la Orden de San Juan de Dios en el año 1619.</li><li>El complejo estaba formado por dos patios, una iglesia y el propio hospital, que fue ampliado en múltiples ocasiones.</li><li>Con las últimas remodelaciones, que finalizaron en 1957, llegó a ocupar una superficie de 12.000 metros cuadrados.</li><li>Tuvo actividad hasta Octubre de 1973, fecha en la que transfirió sus competencias al recién inaugurado Centro Hospitalario Princesa Sofía.</li><li>En los años posteriores el edificio quedó en un lamentable estado de abandono, hasta que en 1992 se rehabilitó como sede del Instituto de Estudios Giennenses.</li></ul>
             
-          </div>
+          </div><button type="button" class="button article-start" id="article-start">
+            Comenzar
+          </button>
         </div>
       </div>
     </div><div class="slides--slide">
@@ -182,16 +193,29 @@
               --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/200/desktop_hd/13.jpg');
             "></div>
           </div>
-        </div></div>
+        </div><div class="slides--slide slides--slide__extra">
+      <div class="article-extra">
+  <div class="article-extra--wrapper">
+    <section class="extra-block">
+      <h2 class="extra-block--title">Algo más sobre este lugar…</h2>
+      <p>Situado en el casco histórico de Jaén, el Hospital San Juan de Dios es hoy sede el Instituto de Estudios Giennenses y lugar habitual de conferencias. Su origen se remonta al siglo XV, aunque fue a partir del 1619 cuando la Orden de San Juan de Dios se hizo cargo del mismo y pasó a conocerse con el nombre actual. Fue el hospital de referencia en la provincia y uno de los más longevos de España, manteniéndose en funcionamiento hasta 1973, año en el que se inauguró el nuevo complejo hospitalario de Jaén. Hoy sólo se conservan íntegros la capilla y el edificio original del hospital, que fueron restaurados. El albergue juvenil, situado justo al lado, fue construido sobre uno de los edificios del antiguo hospital, conservando su fachada, de gran valor arquitectónico.</p>
+    </section>
 
-  <!-- Slide navigation dots (large screens only) -->
-  <div class="slides-nav" id="slides-nav"></div>
-</article>
-
+    <section class="extra-block">
+      <h2 class="extra-block--title">Cómo llegar</h2>
+      <div class="extra-map"
+           id="article-map"
+           data-latitude="37.772727"
+           data-longitude="-3.795547"></div>
+      <a class="button"
+         href="https://maps.google.com/maps?q=37.772727,-3.795547&amp;ll=37.772727,-3.795547&amp;z=10"
+         rel="noopener">Ampliar mapa</a>
+    </section>
 
   </div>
+</div>
 
-  <footer class="footer">
+      <footer class="footer">
   <div class="footer-container">
     <nav class="footer-sitemap" aria-label="El proyecto">
       <div class="footer-sitemap--column">
@@ -287,6 +311,17 @@
   </div>
 </footer>
 
+    </div>
+  </div>
+
+  <!-- Slide navigation dots (large screens only) -->
+  <div class="slides-nav" id="slides-nav"></div>
+</article>
+
+
+
+
+  </div>
 </body>
 
 </html>

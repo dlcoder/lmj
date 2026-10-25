@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>El Encinarejo – Lugares míticos de Jaén</title><link rel="stylesheet" href="/css/styles.css?v=1792883152749">
-  <script src="/js/hamburger-menu.js?v=1792883152749" defer></script>
-  <script src="/js/slide-scroll.js?v=1792883152749" defer></script>
-  <script src="/js/slide-navigation.js?v=1792883152749" defer></script></head>
+  <title>El Encinarejo – Lugares míticos de Jaén</title><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script><link rel="stylesheet" href="/css/styles.css?v=1792889779109">
+  <script src="/js/hamburger-menu.js?v=1792889779109" defer></script>
+  <script src="/js/article-slides.js?v=1792889779109" defer></script><script src="/js/article-map.js?v=1792889779109" defer></script></head>
 
 <body class="article-page">
   <div id="header" class="header">
@@ -25,16 +25,25 @@
       <nav class="header-nav" id="header-nav">
         <a href="/es/">Inicio</a>
         <a href="/es/articles/">Artículos</a>
+        <a href="/es/acerca-de">El proyecto</a>
+        <a href="/es/los-libros">Los libros</a>
       </nav>
     </div>
   </div>
 
   <div class="main-container">
     
+
+
 <article class="article">
   <div class="slides--container">
     <div class="slides--slide">
-      <div class="article-gallery">
+      <div class="article-gallery" style="
+        --intro-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/617/mobile/1.jpg');
+        --intro-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/617/tablet/1.jpg');
+        --intro-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/617/desktop/1.jpg');
+        --intro-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/617/desktop_hd/1.jpg');
+      ">
         <div class="article-gallery--intro">
           <div class="article-header">
             <h1 class="article-title">El Encinarejo</h1>
@@ -62,7 +71,9 @@
             
             <ul><li>El área recreativa del Encinarejo constituye el punto de partida de este sendero cuyo trayecto discurre a través de una de las zonas más emblemáticas del Parque Natural.</li><li>Caminando siempre junto a las aguas del río Jándula, arrancamos este inolvidable paseo cruzando el Puente de Hierro, considerado como la entrada principal del Parque.</li><li>Un precioso bosque de ribera formado por fresnos, alisos, adelfas y sargas nos acompañará durante el camino, siempre marcando la silueta del río. Con suerte podremos divisar alguna de las muchas nutrias que aquí habitan junto a otras especies como garzas reales o zampullines.</li><li>A lo anterior se une la presencia de alguna de las especies más representativas de la fauna ibérica, como el lince, el ciervo, el águila imperial, el lobo o el buitre negro.</li><li>Existen múltiples observatorios a lo largo del recorrido, especialmente instalados para divisar la fauna en general y la avifauna en particular.</li><li>Nuestro trayecto concluye en la presa del embalse del Encinarejo –más parecido a un lago natural–, cuyas colas podremos recorrer.</li></ul>
             
-          </div>
+          </div><button type="button" class="button article-start" id="article-start">
+            Comenzar
+          </button>
         </div>
       </div>
     </div><div class="slides--slide">
@@ -182,16 +193,29 @@
               --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/629/desktop_hd/13.jpg');
             "></div>
           </div>
-        </div></div>
+        </div><div class="slides--slide slides--slide__extra">
+      <div class="article-extra">
+  <div class="article-extra--wrapper">
+    <section class="extra-block">
+      <h2 class="extra-block--title">Algo más sobre este lugar…</h2>
+      <p>El Parque Natural de la Sierra de Andújar es especialmente famoso por ser el último reducto del lince ibérico. Sin embargo, más allá de este enorme factor diferenciador, estas espectaculares sierras son un auténtico lujo para los sentidos. La zona del Encinarejo, de la que hoy hablamos, está considerada como la entrada principal del Parque y el sendero que la recorre es uno de los más concurridos. Las aguas del Jándula dan vida a un hermoso bosque de ribera junto al que caminaremos, topándonos inevitablemente con alguna de las numerosas especies que aquí habitan. Concluiremos nuestro paseo a los pies de la presa del Encinarejo, un pequeño pantano con funciones de producción de energía eléctrica.</p>
+    </section>
 
-  <!-- Slide navigation dots (large screens only) -->
-  <div class="slides-nav" id="slides-nav"></div>
-</article>
-
+    <section class="extra-block">
+      <h2 class="extra-block--title">Cómo llegar</h2>
+      <div class="extra-map"
+           id="article-map"
+           data-latitude="38.151846"
+           data-longitude="-4.016479"></div>
+      <a class="button"
+         href="https://maps.google.com/maps?q=38.151846,-4.016479&amp;ll=38.151846,-4.016479&amp;z=10"
+         rel="noopener">Ampliar mapa</a>
+    </section>
 
   </div>
+</div>
 
-  <footer class="footer">
+      <footer class="footer">
   <div class="footer-container">
     <nav class="footer-sitemap" aria-label="El proyecto">
       <div class="footer-sitemap--column">
@@ -287,6 +311,17 @@
   </div>
 </footer>
 
+    </div>
+  </div>
+
+  <!-- Slide navigation dots (large screens only) -->
+  <div class="slides-nav" id="slides-nav"></div>
+</article>
+
+
+
+
+  </div>
 </body>
 
 </html>

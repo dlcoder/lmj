@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Santuario de Tíscar – Lugares míticos de Jaén</title><link rel="stylesheet" href="/css/styles.css?v=1792883152749">
-  <script src="/js/hamburger-menu.js?v=1792883152749" defer></script>
-  <script src="/js/slide-scroll.js?v=1792883152749" defer></script>
-  <script src="/js/slide-navigation.js?v=1792883152749" defer></script></head>
+  <title>Santuario de Tíscar – Lugares míticos de Jaén</title><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script><link rel="stylesheet" href="/css/styles.css?v=1792889779109">
+  <script src="/js/hamburger-menu.js?v=1792889779109" defer></script>
+  <script src="/js/article-slides.js?v=1792889779109" defer></script><script src="/js/article-map.js?v=1792889779109" defer></script></head>
 
 <body class="article-page">
   <div id="header" class="header">
@@ -25,16 +25,25 @@
       <nav class="header-nav" id="header-nav">
         <a href="/es/">Inicio</a>
         <a href="/es/articles/">Artículos</a>
+        <a href="/es/acerca-de">El proyecto</a>
+        <a href="/es/los-libros">Los libros</a>
       </nav>
     </div>
   </div>
 
   <div class="main-container">
     
+
+
 <article class="article">
   <div class="slides--container">
     <div class="slides--slide">
-      <div class="article-gallery">
+      <div class="article-gallery" style="
+        --intro-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/695/mobile/1.jpg');
+        --intro-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/695/tablet/1.jpg');
+        --intro-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/695/desktop/1.jpg');
+        --intro-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/695/desktop_hd/1.jpg');
+      ">
         <div class="article-gallery--intro">
           <div class="article-header">
             <h1 class="article-title">Santuario de Tíscar</h1>
@@ -62,7 +71,9 @@
             
             <ul><li>Situado en un espectacular paraje, a los pies del castillo de la Peña Negra y sobre la Cueva del Agua, se encuentra el Santuario de Tíscar.</li><li>Restos arquitectónicos aparecidos establecen el origen del templo en el siglo XVI, aunque el grueso de la construcción se llevo a cabo en siglos posteriores.</li><li>Tras la guerra civil sufrió importantes daños, debiendo su imagen actual a las obras de rehabilitación de mediados del siglo XX.</li><li>Probablemente el lugar de mayor devoción de toda la comarca del alto Guadalquivir, el primer y último domingo de Septiembre recibe la visita de los peregrinos, quienes de noche se acercan al Santuario y a la Cueva del Agua para rendir culto a la imagen de la Virgen de Tíscar.</li></ul>
             
-          </div>
+          </div><button type="button" class="button article-start" id="article-start">
+            Comenzar
+          </button>
         </div>
       </div>
     </div><div class="slides--slide">
@@ -128,16 +139,29 @@
               --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/701/desktop_hd/7.jpg');
             "></div>
           </div>
-        </div></div>
+        </div><div class="slides--slide slides--slide__extra">
+      <div class="article-extra">
+  <div class="article-extra--wrapper">
+    <section class="extra-block">
+      <h2 class="extra-block--title">Algo más sobre este lugar…</h2>
+      <p>La conquista del castillo de la Peña Negra tuvo lugar más de 70 años después de la toma cristiana de Quesada. Las dificultades de la conquista de la fortaleza provocaron la glorificación de este lugar, que comenzó a ser centro de devoción de la zona. Esto daría lugar a la construcción del Santuario, cuyo exterior conserva gran parte de la traza original de los siglos XVI y XVII. Sin embargo, su parte interior presenta más alteraciones respecto a la construcción original, tras la restauración llevada a cabo para paliar los daños sufridos durante la guerra civil. A día de hoy es uno de los lugares de mayor devoción de toda la provincia, recibiendo cada mes de Septiembre la visita de miles de devotos para venerar la imagen de la Virgen de Tíscar, patrona de Quesada y del Adelantado de Cazorla.</p>
+    </section>
 
-  <!-- Slide navigation dots (large screens only) -->
-  <div class="slides-nav" id="slides-nav"></div>
-</article>
-
+    <section class="extra-block">
+      <h2 class="extra-block--title">Cómo llegar</h2>
+      <div class="extra-map"
+           id="article-map"
+           data-latitude="37.769234"
+           data-longitude="-3.025337"></div>
+      <a class="button"
+         href="https://maps.google.com/maps?q=37.769234,-3.025337&amp;ll=37.769234,-3.025337&amp;z=10"
+         rel="noopener">Ampliar mapa</a>
+    </section>
 
   </div>
+</div>
 
-  <footer class="footer">
+      <footer class="footer">
   <div class="footer-container">
     <nav class="footer-sitemap" aria-label="El proyecto">
       <div class="footer-sitemap--column">
@@ -233,6 +257,17 @@
   </div>
 </footer>
 
+    </div>
+  </div>
+
+  <!-- Slide navigation dots (large screens only) -->
+  <div class="slides-nav" id="slides-nav"></div>
+</article>
+
+
+
+
+  </div>
 </body>
 
 </html>

@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fortaleza de La Mota – Mythical Places of Jaén</title><link rel="stylesheet" href="/css/styles.css?v=1792883152749">
-  <script src="/js/hamburger-menu.js?v=1792883152749" defer></script>
-  <script src="/js/slide-scroll.js?v=1792883152749" defer></script>
-  <script src="/js/slide-navigation.js?v=1792883152749" defer></script></head>
+  <title>Fortaleza de La Mota – Mythical Places of Jaén</title><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script><link rel="stylesheet" href="/css/styles.css?v=1792889779109">
+  <script src="/js/hamburger-menu.js?v=1792889779109" defer></script>
+  <script src="/js/article-slides.js?v=1792889779109" defer></script><script src="/js/article-map.js?v=1792889779109" defer></script></head>
 
 <body class="article-page">
   <div id="header" class="header">
@@ -25,16 +25,25 @@
       <nav class="header-nav" id="header-nav">
         <a href="/en/">Home</a>
         <a href="/en/articles/">Articles</a>
+        <a href="/en/about-us">The project</a>
+        <a href="/en/the-books">The books</a>
       </nav>
     </div>
   </div>
 
   <div class="main-container">
     
+
+
 <article class="article">
   <div class="slides--container">
     <div class="slides--slide">
-      <div class="article-gallery">
+      <div class="article-gallery" style="
+        --intro-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/522/mobile/01.jpg');
+        --intro-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/522/tablet/01.jpg');
+        --intro-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/522/desktop/01.jpg');
+        --intro-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/522/desktop_hd/01.jpg');
+      ">
         <div class="article-gallery--intro">
           <div class="article-header">
             <h1 class="article-title">Fortaleza de La Mota</h1>
@@ -62,7 +71,9 @@
             
             <ul><li>Situada en el cerro que le da nombre, a 1033 metros de altura, en el municipio de Alcalá la Real.</li><li>El complejo reproduce el modelo clásico de ciudad musulmana, con distintos recintos de funciones defensivas, residenciales o religiosas.</li><li>La atalaya-castillo, que se erige en el siglo XI, marcó la frontera entre los reinos de Granada y Castilla durante muchos años.</li><li>En 1341 pasó definitivamente a manos cristianas, y hasta la caída del reino de Granada obtuvo grandes dotaciones de Castilla, para posteriormente quedar abandonada.</li><li>Fue ocupada por las fuerzas francesas en el siglo XIX, que causaron graves desperfectos en su huida, una vez finalizada la Guerra de la Independencia. Posteriormente también sufrió daños en la guerra civil española.</li></ul>
             
-          </div>
+          </div><button type="button" class="button article-start" id="article-start">
+            Start
+          </button>
         </div>
       </div>
     </div><div class="slides--slide">
@@ -182,16 +193,29 @@
               --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/534/desktop_hd/13.jpg');
             "></div>
           </div>
-        </div></div>
+        </div><div class="slides--slide slides--slide__extra">
+      <div class="article-extra">
+  <div class="article-extra--wrapper">
+    <section class="extra-block">
+      <h2 class="extra-block--title">More about this place…</h2>
+      <p>Jaén es tierra de castillos y batallas, su posición estratégica entre los antiguos reinos de Granada y Castilla originó la construcción de numerosas fortificaciones. Entre ellas destaca el Castillo o Fortaleza de la Mota, en Alcalá la Real. Situada en un cerro a más de 1000 metros de altura, es uno de los recintos amurallados más grandes de toda Andalucía. Fué declarada monumento nacional en 1913.</p>
+    </section>
 
-  <!-- Slide navigation dots (large screens only) -->
-  <div class="slides-nav" id="slides-nav"></div>
-</article>
-
+    <section class="extra-block">
+      <h2 class="extra-block--title">How to arrive</h2>
+      <div class="extra-map"
+           id="article-map"
+           data-latitude="37.459991"
+           data-longitude="-3.930154"></div>
+      <a class="button"
+         href="https://maps.google.com/maps?q=37.459991,-3.930154&amp;ll=37.459991,-3.930154&amp;z=10"
+         rel="noopener">View larger map</a>
+    </section>
 
   </div>
+</div>
 
-  <footer class="footer">
+      <footer class="footer">
   <div class="footer-container">
     <nav class="footer-sitemap" aria-label="The project">
       <div class="footer-sitemap--column">
@@ -287,6 +311,17 @@
   </div>
 </footer>
 
+    </div>
+  </div>
+
+  <!-- Slide navigation dots (large screens only) -->
+  <div class="slides-nav" id="slides-nav"></div>
+</article>
+
+
+
+
+  </div>
 </body>
 
 </html>

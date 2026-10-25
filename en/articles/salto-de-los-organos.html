@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Salto de los Órganos – Mythical Places of Jaén</title><link rel="stylesheet" href="/css/styles.css?v=1792883152749">
-  <script src="/js/hamburger-menu.js?v=1792883152749" defer></script>
-  <script src="/js/slide-scroll.js?v=1792883152749" defer></script>
-  <script src="/js/slide-navigation.js?v=1792883152749" defer></script></head>
+  <title>Salto de los Órganos – Mythical Places of Jaén</title><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script><link rel="stylesheet" href="/css/styles.css?v=1792889779109">
+  <script src="/js/hamburger-menu.js?v=1792889779109" defer></script>
+  <script src="/js/article-slides.js?v=1792889779109" defer></script><script src="/js/article-map.js?v=1792889779109" defer></script></head>
 
 <body class="article-page">
   <div id="header" class="header">
@@ -25,16 +25,25 @@
       <nav class="header-nav" id="header-nav">
         <a href="/en/">Home</a>
         <a href="/en/articles/">Articles</a>
+        <a href="/en/about-us">The project</a>
+        <a href="/en/the-books">The books</a>
       </nav>
     </div>
   </div>
 
   <div class="main-container">
     
+
+
 <article class="article">
   <div class="slides--container">
     <div class="slides--slide">
-      <div class="article-gallery">
+      <div class="article-gallery" style="
+        --intro-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/648/mobile/01.jpg');
+        --intro-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/648/tablet/01.jpg');
+        --intro-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/648/desktop/01.jpg');
+        --intro-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/648/desktop_hd/01.jpg');
+      ">
         <div class="article-gallery--intro">
           <div class="article-header">
             <h1 class="article-title">Salto de los Órganos</h1>
@@ -62,7 +71,9 @@
             
             <ul><li>Este último tramo, que parte de la central eléctrica, es probablemente el más espectacular y también el más duro.</li><li>Tras unos cuantos repechos, a la izquierda, desde el Picón del Haza se produce un salto de agua de más de 170 metros de caída. Recomendamos su visita en primavera o en épocas de deshielo para poder disfrutar de él.</li><li>Continuando la subida, en los continuos zigzagueos, el Borosa discurre a través de innumerables cascadas. Una de ellas —no visible desde el camino— forma una bella poza que cuenta con más de 15 metros de profundidad.</li><li>La mayor maravilla de este camino nos aguarda en el Salto de los Órganos. Una bella cascada de más de 60 metros que dejará una estampa inolvidable en nuestro recuerdo.</li><li>Finalmente tras atravesar el picón del Haza por unos túneles excavados en la roca, llegaremos al embalse de Aguas Negras y a la laguna de Valdeazores.</li></ul>
             
-          </div>
+          </div><button type="button" class="button article-start" id="article-start">
+            Start
+          </button>
         </div>
       </div>
     </div><div class="slides--slide">
@@ -200,16 +211,29 @@
               --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/000/662/desktop_hd/15.jpg');
             "></div>
           </div>
-        </div></div>
+        </div><div class="slides--slide slides--slide__extra">
+      <div class="article-extra">
+  <div class="article-extra--wrapper">
+    <section class="extra-block">
+      <h2 class="extra-block--title">More about this place…</h2>
+      <p>El último tramo de la ruta del Borosa nos reserva una inigualable colección de estremecedores paisajes. Seremos testigos de saltos de 170 metros de altura, de cascadas que forman bellas pozas cuya profundidad se hace difícil de intuir, y del impresionante y emblemático salto de los Órganos. Para terminar nuestro camino podremos relajarnos mientras contemplamos las tonalidades oscuras del embalse de Aguas Negras que contrastan con los tonos turquesas que el agua presenta en la laguna de Valdeazores. Un tremendo espectáculo para los sentidos.</p>
+    </section>
 
-  <!-- Slide navigation dots (large screens only) -->
-  <div class="slides-nav" id="slides-nav"></div>
-</article>
-
+    <section class="extra-block">
+      <h2 class="extra-block--title">How to arrive</h2>
+      <div class="extra-map"
+           id="article-map"
+           data-latitude="37.964649"
+           data-longitude="-2.815772"></div>
+      <a class="button"
+         href="https://maps.google.com/maps?q=37.964649,-2.815772&amp;ll=37.964649,-2.815772&amp;z=10"
+         rel="noopener">View larger map</a>
+    </section>
 
   </div>
+</div>
 
-  <footer class="footer">
+      <footer class="footer">
   <div class="footer-container">
     <nav class="footer-sitemap" aria-label="The project">
       <div class="footer-sitemap--column">
@@ -305,6 +329,17 @@
   </div>
 </footer>
 
+    </div>
+  </div>
+
+  <!-- Slide navigation dots (large screens only) -->
+  <div class="slides-nav" id="slides-nav"></div>
+</article>
+
+
+
+
+  </div>
 </body>
 
 </html>

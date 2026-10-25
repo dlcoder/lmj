@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>La Judería – Lugares míticos de Jaén</title><link rel="stylesheet" href="/css/styles.css?v=1792883152749">
-  <script src="/js/hamburger-menu.js?v=1792883152749" defer></script>
-  <script src="/js/slide-scroll.js?v=1792883152749" defer></script>
-  <script src="/js/slide-navigation.js?v=1792883152749" defer></script></head>
+  <title>La Judería – Lugares míticos de Jaén</title><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script><link rel="stylesheet" href="/css/styles.css?v=1792889779109">
+  <script src="/js/hamburger-menu.js?v=1792889779109" defer></script>
+  <script src="/js/article-slides.js?v=1792889779109" defer></script><script src="/js/article-map.js?v=1792889779109" defer></script></head>
 
 <body class="article-page">
   <div id="header" class="header">
@@ -25,16 +25,25 @@
       <nav class="header-nav" id="header-nav">
         <a href="/es/">Inicio</a>
         <a href="/es/articles/">Artículos</a>
+        <a href="/es/acerca-de">El proyecto</a>
+        <a href="/es/los-libros">Los libros</a>
       </nav>
     </div>
   </div>
 
   <div class="main-container">
     
+
+
 <article class="article">
   <div class="slides--container">
     <div class="slides--slide">
-      <div class="article-gallery">
+      <div class="article-gallery" style="
+        --intro-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/123/mobile/01.jpg');
+        --intro-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/123/tablet/01.jpg');
+        --intro-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/123/desktop/01.jpg');
+        --intro-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/123/desktop_hd/01.jpg');
+      ">
         <div class="article-gallery--intro">
           <div class="article-header">
             <h1 class="article-title">La Judería</h1>
@@ -62,7 +71,9 @@
             
             <ul><li>Compuesta por un entramado de estrechas y empinadas calles, la Judería de Jaén —ubicada entre los primitivos barrios de Santa Cruz y San Andrés— llegó a albergar a más de 300 familias.</li><li>En el año 612 ya existe constancia documental de la presencia judía en Jaén, aunque probablemente su llegada fue muy anterior.</li><li>En 1391 la Judería de Jaén desaparece como tal, convirtiéndose en un barrio de judeoconversos. En 1483 se instalará en Jaén el tercer tribunal de la Inquisición de España.</li><li>Los 12 siglos de presencia judía y judeoconversa dejaron un legado imborrable en la ciudad. La relevancia histórica de la Judería de Jaén está representada de forma especial en Hasday ibn Shaprut, figura universal y precursor de la llamada “Edad de Oro de los Judíos españoles”.</li><li>Perteneciente desde el año 2005 a la Red de Juderías de España “Caminos de Sefarad”, la Judería de Jaén es una de nuestras joyas patrimoniales más desconocida y menos valorada.</li></ul>
             
-          </div>
+          </div><button type="button" class="button article-start" id="article-start">
+            Comenzar
+          </button>
         </div>
       </div>
     </div><div class="slides--slide">
@@ -209,16 +220,29 @@
               --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/138/desktop_hd/16.jpg');
             "></div>
           </div>
-        </div></div>
+        </div><div class="slides--slide slides--slide__extra">
+      <div class="article-extra">
+  <div class="article-extra--wrapper">
+    <section class="extra-block">
+      <h2 class="extra-block--title">Algo más sobre este lugar…</h2>
+      <p>El Callejón del Gato, la calle del Rostro, la calle Santa Cruz y la plaza de los Huérfanos son algunas de las más destacadas dentro de la singular red de angostas calles que componen la Judería de Jaén. Recorrerlas significa acercarse al legado que los 12 siglos de presencia hebrea ha dejado en la ciudad, con figuras universales como la de Hasday ibn Shaprut, consejero de dos califas de Córdoba, uno de los primeros poetas hispano-hebreos y precursor de la llamada “Edad de Oro de los Judíos Españoles”. Declarada Bien de Interés Cultural, desde 2005 pertenece a la Red de Juderías de España “Caminos del Sefarad”.</p>
+    </section>
 
-  <!-- Slide navigation dots (large screens only) -->
-  <div class="slides-nav" id="slides-nav"></div>
-</article>
-
+    <section class="extra-block">
+      <h2 class="extra-block--title">Cómo llegar</h2>
+      <div class="extra-map"
+           id="article-map"
+           data-latitude="37.771202"
+           data-longitude="-3.79185"></div>
+      <a class="button"
+         href="https://maps.google.com/maps?q=37.771202,-3.79185&amp;ll=37.771202,-3.79185&amp;z=10"
+         rel="noopener">Ampliar mapa</a>
+    </section>
 
   </div>
+</div>
 
-  <footer class="footer">
+      <footer class="footer">
   <div class="footer-container">
     <nav class="footer-sitemap" aria-label="El proyecto">
       <div class="footer-sitemap--column">
@@ -314,6 +338,17 @@
   </div>
 </footer>
 
+    </div>
+  </div>
+
+  <!-- Slide navigation dots (large screens only) -->
+  <div class="slides-nav" id="slides-nav"></div>
+</article>
+
+
+
+
+  </div>
 </body>
 
 </html>

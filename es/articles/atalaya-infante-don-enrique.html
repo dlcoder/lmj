@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Atalaya Infante Don Enrique – Lugares míticos de Jaén</title><link rel="stylesheet" href="/css/styles.css?v=1792883152749">
-  <script src="/js/hamburger-menu.js?v=1792883152749" defer></script>
-  <script src="/js/slide-scroll.js?v=1792883152749" defer></script>
-  <script src="/js/slide-navigation.js?v=1792883152749" defer></script></head>
+  <title>Atalaya Infante Don Enrique – Lugares míticos de Jaén</title><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script><link rel="stylesheet" href="/css/styles.css?v=1792889779109">
+  <script src="/js/hamburger-menu.js?v=1792889779109" defer></script>
+  <script src="/js/article-slides.js?v=1792889779109" defer></script><script src="/js/article-map.js?v=1792889779109" defer></script></head>
 
 <body class="article-page">
   <div id="header" class="header">
@@ -25,16 +25,25 @@
       <nav class="header-nav" id="header-nav">
         <a href="/es/">Inicio</a>
         <a href="/es/articles/">Artículos</a>
+        <a href="/es/acerca-de">El proyecto</a>
+        <a href="/es/los-libros">Los libros</a>
       </nav>
     </div>
   </div>
 
   <div class="main-container">
     
+
+
 <article class="article">
   <div class="slides--container">
     <div class="slides--slide">
-      <div class="article-gallery">
+      <div class="article-gallery" style="
+        --intro-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/581/mobile/1.jpg');
+        --intro-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/581/tablet/1.jpg');
+        --intro-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/581/desktop/1.jpg');
+        --intro-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/581/desktop_hd/1.jpg');
+      ">
         <div class="article-gallery--intro">
           <div class="article-header">
             <h1 class="article-title">Atalaya Infante Don Enrique</h1>
@@ -62,7 +71,9 @@
             
             <ul><li>En el puerto de Tíscar, a escasos kilómetros de Quesada, se encuentra esta espectacular torre cilíndrica de más de 10 metros de altura.</li><li>Construida a finales del siglo XIII por orden del Infante don Enrique –hijo de Fernando III el Santo y hermano de Alfonso X el Sabio– su función consistía principalmente en controlar los movimientos de tropas en el camino al reino de Granada.</li><li>Tras su restauración, una escalera metálica nos permite acceder a su interior a través de la puerta original, situada a 3,5 metros de altura.</li><li>Desde su privilegiada situación –está situada a 1.183 metros sobre el nivel del mar– nos permite divisar municipios como Baeza, Torreperogil, Úbeda, Santo Tomé, Villacarrillo o Iznatoraf.</li></ul>
             
-          </div>
+          </div><button type="button" class="button article-start" id="article-start">
+            Comenzar
+          </button>
         </div>
       </div>
     </div><div class="slides--slide">
@@ -155,16 +166,29 @@
               --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/590/desktop_hd/10.jpg');
             "></div>
           </div>
-        </div></div>
+        </div><div class="slides--slide slides--slide__extra">
+      <div class="article-extra">
+  <div class="article-extra--wrapper">
+    <section class="extra-block">
+      <h2 class="extra-block--title">Algo más sobre este lugar…</h2>
+      <p>En la carretera de camino a Quesada encontramos el desvío hacia el puerto de Tíscar. Allí, a más de 1.180 metros de altura, se encuentra la Atalaya del Infante don Enrique, una torre cilíndrica con más de 10 metros de altura desde su base que permite controlar visualmente un vasto territorio a su alrededor. Su función principal consistía en vigilar el movimiento de tropas en el camino hacia el reino nazarí de Granada, alertando también a los castillos cercanos –Tíscar o Quesada– en caso de peligro a través de señales de humo. En su fachada aún se conservan dos escudos empotrados; en uno de ellos –el mejor conservado– se distinguen las figuras de dos castillos y dos cruces calatravas, pudiendo tratarse del escudo del Infante don Enrique.</p>
+    </section>
 
-  <!-- Slide navigation dots (large screens only) -->
-  <div class="slides-nav" id="slides-nav"></div>
-</article>
-
+    <section class="extra-block">
+      <h2 class="extra-block--title">Cómo llegar</h2>
+      <div class="extra-map"
+           id="article-map"
+           data-latitude="37.787869"
+           data-longitude="-3.037698"></div>
+      <a class="button"
+         href="https://maps.google.com/maps?q=37.787869,-3.037698&amp;ll=37.787869,-3.037698&amp;z=10"
+         rel="noopener">Ampliar mapa</a>
+    </section>
 
   </div>
+</div>
 
-  <footer class="footer">
+      <footer class="footer">
   <div class="footer-container">
     <nav class="footer-sitemap" aria-label="El proyecto">
       <div class="footer-sitemap--column">
@@ -260,6 +284,17 @@
   </div>
 </footer>
 
+    </div>
+  </div>
+
+  <!-- Slide navigation dots (large screens only) -->
+  <div class="slides-nav" id="slides-nav"></div>
+</article>
+
+
+
+
+  </div>
 </body>
 
 </html>

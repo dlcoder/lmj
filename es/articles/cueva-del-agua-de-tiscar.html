@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cueva del Agua de Tíscar – Lugares míticos de Jaén</title><link rel="stylesheet" href="/css/styles.css?v=1792883152749">
-  <script src="/js/hamburger-menu.js?v=1792883152749" defer></script>
-  <script src="/js/slide-scroll.js?v=1792883152749" defer></script>
-  <script src="/js/slide-navigation.js?v=1792883152749" defer></script></head>
+  <title>Cueva del Agua de Tíscar – Lugares míticos de Jaén</title><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script><link rel="stylesheet" href="/css/styles.css?v=1792889779109">
+  <script src="/js/hamburger-menu.js?v=1792889779109" defer></script>
+  <script src="/js/article-slides.js?v=1792889779109" defer></script><script src="/js/article-map.js?v=1792889779109" defer></script></head>
 
 <body class="article-page">
   <div id="header" class="header">
@@ -25,16 +25,25 @@
       <nav class="header-nav" id="header-nav">
         <a href="/es/">Inicio</a>
         <a href="/es/articles/">Artículos</a>
+        <a href="/es/acerca-de">El proyecto</a>
+        <a href="/es/los-libros">Los libros</a>
       </nav>
     </div>
   </div>
 
   <div class="main-container">
     
+
+
 <article class="article">
   <div class="slides--container">
     <div class="slides--slide">
-      <div class="article-gallery">
+      <div class="article-gallery" style="
+        --intro-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/592/mobile/1.jpg');
+        --intro-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/592/tablet/1.jpg');
+        --intro-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/592/desktop/1.jpg');
+        --intro-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/592/desktop_hd/1.jpg');
+      ">
         <div class="article-gallery--intro">
           <div class="article-header">
             <h1 class="article-title">Cueva del Agua de Tíscar</h1>
@@ -62,7 +71,9 @@
             
             <ul><li>A medio camino entre Quesada y Pozo Alcón se encuentra esta espectacular cueva de naturaleza calcárea, famosa por su belleza y por ser una de las primeras grutas naturales descubiertas en la península.</li><li>Declarada Monumento Natural por la Junta de Andalucía, las formas de sus rocas son obra del arroyo de Tíscar, cuyas aguas han labrado un precioso cañón a lo largo de los siglos.</li><li>A ella accedemos a través de un túnel de 10 metros de longitud excavado en la roca. Posteriormente, a través de unas escaleras, podremos subir a la parte superior de la cueva, contemplando unas vistas sobrecogedoras.</li><li>También es conocida como cueva de la Virgen, ya que según la tradición, este fue el lugar donde se apareció la virgen en el año 1.319 al reyezuelo de Tíscar Mahomad Abdón.</li></ul>
             
-          </div>
+          </div><button type="button" class="button article-start" id="article-start">
+            Comenzar
+          </button>
         </div>
       </div>
     </div><div class="slides--slide">
@@ -173,16 +184,29 @@
               --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/603/desktop_hd/12.jpg');
             "></div>
           </div>
-        </div></div>
+        </div><div class="slides--slide slides--slide__extra">
+      <div class="article-extra">
+  <div class="article-extra--wrapper">
+    <section class="extra-block">
+      <h2 class="extra-block--title">Algo más sobre este lugar…</h2>
+      <p>Desde Quesada tomamos la carretera A-6206 hacia Pozo Alcón para recorrer unos 13 kilómetros hasta toparnos a nuestra izquierda con el Santuario de Tíscar. Desde allí parte un breve sendero que nos conducirá a la famosa Cueva del Agua, también conocida como Cueva de la Virgen. Este cañón, horadado por las aguas del arroyo de Tíscar, es una de las primeras grutas naturales descubiertas en nuestro país. Su espectacular belleza, conformando saltos, fuentes y cascadas de agua, hizo que fuese declarada Monumento Natural por la Junta de Andalucía. Desde el año 1.993 el Ayuntamiento de Quesada organiza cada mes de Agosto conciertos de música étnica, convirtiendo la cueva en un espectacular escenario.</p>
+    </section>
 
-  <!-- Slide navigation dots (large screens only) -->
-  <div class="slides-nav" id="slides-nav"></div>
-</article>
-
+    <section class="extra-block">
+      <h2 class="extra-block--title">Cómo llegar</h2>
+      <div class="extra-map"
+           id="article-map"
+           data-latitude="37.768624"
+           data-longitude="-3.023531"></div>
+      <a class="button"
+         href="https://maps.google.com/maps?q=37.768624,-3.023531&amp;ll=37.768624,-3.023531&amp;z=10"
+         rel="noopener">Ampliar mapa</a>
+    </section>
 
   </div>
+</div>
 
-  <footer class="footer">
+      <footer class="footer">
   <div class="footer-container">
     <nav class="footer-sitemap" aria-label="El proyecto">
       <div class="footer-sitemap--column">
@@ -278,6 +302,17 @@
   </div>
 </footer>
 
+    </div>
+  </div>
+
+  <!-- Slide navigation dots (large screens only) -->
+  <div class="slides-nav" id="slides-nav"></div>
+</article>
+
+
+
+
+  </div>
 </body>
 
 </html>

@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>La Iglesia de San Lorenzo – Lugares míticos de Jaén</title><link rel="stylesheet" href="/css/styles.css?v=1792883152749">
-  <script src="/js/hamburger-menu.js?v=1792883152749" defer></script>
-  <script src="/js/slide-scroll.js?v=1792883152749" defer></script>
-  <script src="/js/slide-navigation.js?v=1792883152749" defer></script></head>
+  <title>La Iglesia de San Lorenzo – Lugares míticos de Jaén</title><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script><link rel="stylesheet" href="/css/styles.css?v=1792889779109">
+  <script src="/js/hamburger-menu.js?v=1792889779109" defer></script>
+  <script src="/js/article-slides.js?v=1792889779109" defer></script><script src="/js/article-map.js?v=1792889779109" defer></script></head>
 
 <body class="article-page">
   <div id="header" class="header">
@@ -25,16 +25,25 @@
       <nav class="header-nav" id="header-nav">
         <a href="/es/">Inicio</a>
         <a href="/es/articles/">Artículos</a>
+        <a href="/es/acerca-de">El proyecto</a>
+        <a href="/es/los-libros">Los libros</a>
       </nav>
     </div>
   </div>
 
   <div class="main-container">
     
+
+
 <article class="article">
   <div class="slides--container">
     <div class="slides--slide">
-      <div class="article-gallery">
+      <div class="article-gallery" style="
+        --intro-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/140/mobile/01.jpg');
+        --intro-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/140/tablet/01.jpg');
+        --intro-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/140/desktop/01.jpg');
+        --intro-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/140/desktop_hd/01.jpg');
+      ">
         <div class="article-gallery--intro">
           <div class="article-header">
             <h1 class="article-title">La Iglesia de San Lorenzo</h1>
@@ -62,7 +71,9 @@
             
             <ul><li>De origen medieval, su construcción se lleva a cabo en el siglo XIII, tras la conquista cristiana de la ciudad de Úbeda por las tropas de Fernando III.</li><li>Durante el Barroco y el Renacimiento la iglesia original sufre gran cantidad de modificaciones, especialmente en el último tercio del siglo XVI cuando se labra su actual portada lateral.</li><li>En 1740 se le agrega la feligresía de la collación de San Juan de los Huertos. En esta época se reforma la capilla central y se sustituye la techumbre mudéjar por una gran bóveda de cañón encamonada.</li><li>A partir del siglo XIX comienza el declive de San Lorenzo; en 1842 se suprime su feligresía aunque continúa abierta para la misa dominical.</li><li>Durante la guerra civil es saqueada, sufriendo graves desperfectos. Desde entonces no volverá a abrirse al culto.</li><li>Recientemente recuperada por la Fundación Huertas de San Antonio, San Lorenzo ha reabierto sus puertas como centro cultural y social, llevándose a cabo multitud de actividades.</li></ul>
             
-          </div>
+          </div><button type="button" class="button article-start" id="article-start">
+            Comenzar
+          </button>
         </div>
       </div>
     </div><div class="slides--slide">
@@ -182,16 +193,29 @@
               --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/152/desktop_hd/13.jpg');
             "></div>
           </div>
-        </div></div>
+        </div><div class="slides--slide slides--slide__extra">
+      <div class="article-extra">
+  <div class="article-extra--wrapper">
+    <section class="extra-block">
+      <h2 class="extra-block--title">Algo más sobre este lugar…</h2>
+      <p>Construida en el siglo XIII tras la conquista cristiana de la ciudad, San Lorenzo se situó en uno de los barrios periféricos de la ciudad, colindando con la muralla sur de la misma. De origen medieval, sufrió amplias reformas durante el renacimiento y el barroco, quedando poco visible de su fábrica original. En 1842 se suprime su feligresía, comenzando su declive. Durante la guerra civil es saqueada y cerrada, no volviendo a abrir sus puertas para el culto tras la contienda. Recientemente rehabilitada y reabierta para la ciudadanía por la Fundación Huertas de San Antonio, la iglesia de San Lorenzo acoge hoy en día multitud de actividades sociales y culturales.</p>
+    </section>
 
-  <!-- Slide navigation dots (large screens only) -->
-  <div class="slides-nav" id="slides-nav"></div>
-</article>
-
+    <section class="extra-block">
+      <h2 class="extra-block--title">Cómo llegar</h2>
+      <div class="extra-map"
+           id="article-map"
+           data-latitude="38.006726"
+           data-longitude="-3.371499"></div>
+      <a class="button"
+         href="https://maps.google.com/maps?q=38.006726,-3.371499&amp;ll=38.006726,-3.371499&amp;z=10"
+         rel="noopener">Ampliar mapa</a>
+    </section>
 
   </div>
+</div>
 
-  <footer class="footer">
+      <footer class="footer">
   <div class="footer-container">
     <nav class="footer-sitemap" aria-label="El proyecto">
       <div class="footer-sitemap--column">
@@ -287,6 +311,17 @@
   </div>
 </footer>
 
+    </div>
+  </div>
+
+  <!-- Slide navigation dots (large screens only) -->
+  <div class="slides-nav" id="slides-nav"></div>
+</article>
+
+
+
+
+  </div>
 </body>
 
 </html>

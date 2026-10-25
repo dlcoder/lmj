@@ -4,10 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cueva de los Soles – Mythical Places of Jaén</title><link rel="stylesheet" href="/css/styles.css?v=1792883152749">
-  <script src="/js/hamburger-menu.js?v=1792883152749" defer></script>
-  <script src="/js/slide-scroll.js?v=1792883152749" defer></script>
-  <script src="/js/slide-navigation.js?v=1792883152749" defer></script></head>
+  <title>Cueva de los Soles – Mythical Places of Jaén</title><link rel="stylesheet" href="/css/styles.css?v=1792889779109">
+  <script src="/js/hamburger-menu.js?v=1792889779109" defer></script>
+  <script src="/js/article-slides.js?v=1792889779109" defer></script></head>
 
 <body class="article-page">
   <div id="header" class="header">
@@ -25,16 +24,25 @@
       <nav class="header-nav" id="header-nav">
         <a href="/en/">Home</a>
         <a href="/en/articles/">Articles</a>
+        <a href="/en/about-us">The project</a>
+        <a href="/en/the-books">The books</a>
       </nav>
     </div>
   </div>
 
   <div class="main-container">
     
+
+
 <article class="article">
   <div class="slides--container">
     <div class="slides--slide">
-      <div class="article-gallery">
+      <div class="article-gallery" style="
+        --intro-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/183/mobile/1.jpg');
+        --intro-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/183/tablet/1.jpg');
+        --intro-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/183/desktop/1.jpg');
+        --intro-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/183/desktop_hd/1.jpg');
+      ">
         <div class="article-gallery--intro">
           <div class="article-header">
             <h1 class="article-title">Cueva de los Soles</h1>
@@ -62,7 +70,9 @@
             
             <ul><li>Located in one of the multiple and spectacular rock shelters of Otinar Valley, the Suns’ Cave is one of the most beautiful examples of ancient rock painting.</li><li>A big amount of scattered dots, some figures and dark red suns representations decorate the shelter’s walls, scholars think this could be a sanctuary.</li><li>This painting dates back to the Copper Age and they are clearly linked to the village that was once placed at Veleta Hill.</li><li>It is not easy to get to it because of the steep terrain. But from the Sun’s Cave there is a privileged view of the valley. Unfortunately, the paintings - that were remarkably well preserved - have been seriously damaged, preventing us from enjoying them at their best.</li></ul>
             
-          </div>
+          </div><button type="button" class="button article-start" id="article-start">
+            Start
+          </button>
         </div>
       </div>
     </div><div class="slides--slide">
@@ -155,16 +165,23 @@
               --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/192/desktop_hd/10.jpg');
             "></div>
           </div>
-        </div></div>
+        </div><div class="slides--slide slides--slide__extra">
+      <div class="article-extra">
+  <div class="article-extra--wrapper">
+    <section class="extra-block">
+      <h2 class="extra-block--title">More about this place…</h2>
+      <p>We could define the Sun’s Cave as the best viewing platform to discover Otinar’s Valley. Full of rock shelters, Otinar hide treasures that tell us about the first inhabitants in this area. The Sun’s Cave is one of those treasures, a huge rock shelter holding ancient rock paintings dating back to the Copper Age. Several scattered dots, some figures and suns representations in dark red decorates the walls of what could be a sanctuary used by the ancient inhabitants of a settlement in Veleta Hill. Unfortunately the paintings have been looted and damaged and we not enjoy them at their best.</p>
+    </section>
 
-  <!-- Slide navigation dots (large screens only) -->
-  <div class="slides-nav" id="slides-nav"></div>
-</article>
-
+    <section class="extra-block">
+      <h2 class="extra-block--title">How to arrive</h2>
+      <p class="extra-block--notice">We have not revealed the location of this site, as we think it is a place that should be taken special care of. That does not mean you cannot find it with a bit of research online, only that if you do visit it, we ask you to look after it and protect it, as with every other place that makes up our heritage.</p>
+    </section>
 
   </div>
+</div>
 
-  <footer class="footer">
+      <footer class="footer">
   <div class="footer-container">
     <nav class="footer-sitemap" aria-label="The project">
       <div class="footer-sitemap--column">
@@ -260,6 +277,17 @@
   </div>
 </footer>
 
+    </div>
+  </div>
+
+  <!-- Slide navigation dots (large screens only) -->
+  <div class="slides-nav" id="slides-nav"></div>
+</article>
+
+
+
+
+  </div>
 </body>
 
 </html>

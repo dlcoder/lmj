@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Jewish Quarter – Mythical Places of Jaén</title><link rel="stylesheet" href="/css/styles.css?v=1792883152749">
-  <script src="/js/hamburger-menu.js?v=1792883152749" defer></script>
-  <script src="/js/slide-scroll.js?v=1792883152749" defer></script>
-  <script src="/js/slide-navigation.js?v=1792883152749" defer></script></head>
+  <title>The Jewish Quarter – Mythical Places of Jaén</title><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script><link rel="stylesheet" href="/css/styles.css?v=1792889779109">
+  <script src="/js/hamburger-menu.js?v=1792889779109" defer></script>
+  <script src="/js/article-slides.js?v=1792889779109" defer></script><script src="/js/article-map.js?v=1792889779109" defer></script></head>
 
 <body class="article-page">
   <div id="header" class="header">
@@ -25,16 +25,25 @@
       <nav class="header-nav" id="header-nav">
         <a href="/en/">Home</a>
         <a href="/en/articles/">Articles</a>
+        <a href="/en/about-us">The project</a>
+        <a href="/en/the-books">The books</a>
       </nav>
     </div>
   </div>
 
   <div class="main-container">
     
+
+
 <article class="article">
   <div class="slides--container">
     <div class="slides--slide">
-      <div class="article-gallery">
+      <div class="article-gallery" style="
+        --intro-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/123/mobile/01.jpg');
+        --intro-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/123/tablet/01.jpg');
+        --intro-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/123/desktop/01.jpg');
+        --intro-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/123/desktop_hd/01.jpg');
+      ">
         <div class="article-gallery--intro">
           <div class="article-header">
             <h1 class="article-title">The Jewish Quarter</h1>
@@ -62,7 +71,9 @@
             
             <ul><li>The Jewish Quarter in Jaen is made of a maze of narrow and steep streets - located between the old neighbourhood of Santa Cruz and San Andres- it became home for more than 300 families.</li><li>Jewish presence in Jaen dates from 612, however their arrival was probably much earlier.</li><li>The Jewish Quarter disappeared as such in 1931, turning into a neighbourhood of Jewish converted into Christianism. In 1483 Jaen will be the place of the third Inquisition Court in Spain.</li><li>The 12 centuries of Jewish and Converted into Christian Jewish presence left an important legacy in the city. The historical relevance of the Jewish Quarter in Jaen is represented in a very special way by Hasday ibn Shaprut, universal figure and pioneer of the so called ‘Golden Age of Spanish Jews’.</li><li>Part since 2005 of the Red de Juderias de Espana ‘Caminos de Seferad’, the Jewish Quarter in Jaen is one of the most unknown and less valued of our legacy jewels.</li></ul>
             
-          </div>
+          </div><button type="button" class="button article-start" id="article-start">
+            Start
+          </button>
         </div>
       </div>
     </div><div class="slides--slide">
@@ -209,16 +220,29 @@
               --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/138/desktop_hd/16.jpg');
             "></div>
           </div>
-        </div></div>
+        </div><div class="slides--slide slides--slide__extra">
+      <div class="article-extra">
+  <div class="article-extra--wrapper">
+    <section class="extra-block">
+      <h2 class="extra-block--title">More about this place…</h2>
+      <p>El Callejon del Gato, la calle del Rostro, la calle Santa Cruz and la plaza de los Huerfanos are some of the most well-known places within the odd web of narrow streets that make the Jewish Quarter in Jaen. To walk them means to get close to the legacy of 12 centuries of Hebrew presence in the city, with universal figures such as Hasday ibn Shaprut, adviser to the Cordoba’s Caliphs, one of the first Spanish-Hebrew poets and pioneer of the so called “Golden Age of the Spanish Jews” . Declared of Cultural Interest, belongs to Red de Juderias de Espana “Caminos del Sefarad” since 2005.</p>
+    </section>
 
-  <!-- Slide navigation dots (large screens only) -->
-  <div class="slides-nav" id="slides-nav"></div>
-</article>
-
+    <section class="extra-block">
+      <h2 class="extra-block--title">How to arrive</h2>
+      <div class="extra-map"
+           id="article-map"
+           data-latitude="37.771202"
+           data-longitude="-3.79185"></div>
+      <a class="button"
+         href="https://maps.google.com/maps?q=37.771202,-3.79185&amp;ll=37.771202,-3.79185&amp;z=10"
+         rel="noopener">View larger map</a>
+    </section>
 
   </div>
+</div>
 
-  <footer class="footer">
+      <footer class="footer">
   <div class="footer-container">
     <nav class="footer-sitemap" aria-label="The project">
       <div class="footer-sitemap--column">
@@ -314,6 +338,17 @@
   </div>
 </footer>
 
+    </div>
+  </div>
+
+  <!-- Slide navigation dots (large screens only) -->
+  <div class="slides-nav" id="slides-nav"></div>
+</article>
+
+
+
+
+  </div>
 </body>
 
 </html>

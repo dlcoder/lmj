@@ -327,9 +327,10 @@ a:hover {
 /* Main Container */
 
 .main-container {
+  --container-padding: 2rem;
   margin: 0 auto;
   max-width: 1920px;
-  padding: 2rem;
+  padding: var(--container-padding);
   padding-top: 6rem;
 }
 
@@ -363,11 +364,34 @@ body.home-page {
 }
 
 .page-title {
-  font-size: 3rem;
+  font-size: clamp(2.125rem, 6vw, 3rem);
   font-weight: bold;
 }
 
 /* Article Page */
+
+/* The call to action only makes sense where the deck is: on narrower screens
+   the photos already follow the text in reading order. Scoped to the page so
+   it outranks the shared .button rule, whatever the order of the file. */
+body.article-page .article-start {
+  display: none;
+}
+
+/* Below the slide-deck breakpoint the article is an ordinary stacked page:
+   a readable column for the text and the gallery photos one after another,
+   with room to breathe. Everything here is overridden from 1280px up. */
+
+body.article-page .main-container {
+  max-width: 60rem;
+}
+
+.slides--slide + .slides--slide {
+  margin-top: 1.5rem;
+}
+
+.article-gallery--media .responsive-image {
+  border-radius: 4px;
+}
 
 @media (min-width: 1280px) {
   body.article-page {
@@ -376,6 +400,7 @@ body.home-page {
   }
 
   body.article-page .main-container {
+    --container-padding: 0px;
     padding: 0;
     max-width: none;
   }
@@ -460,33 +485,32 @@ body.home-page {
     display: none;
   }
 
-  .slides--slide {
+  .slides--slide,
+  .slides--slide + .slides--slide {
     grid-column: 1;
     height: 100vh;
     scroll-snap-align: start;
+    /* Stop at every photo: a hard flick should not fly past several. */
+    scroll-snap-stop: always;
     width: 100%;
+    margin-top: 0;
   }
 
-  .slides--slide:nth-child(1),
-  .slides--slide:nth-child(2) {
-    grid-row: 1;
+  .article-gallery--media .responsive-image {
+    border-radius: 0;
   }
 
-  .slides--slide:nth-child(1) {
-    z-index: 10;
-    pointer-events: none;
-  }
-
-  .slides--slide:nth-child(1)>* {
-    pointer-events: auto;
-  }
-
-  /* Subsequent slides will naturally start from row 2 because the 1st/2nd occupy row 1 */
-
+  /* The intro is a slide of its own, over the article's featured photo, so
+     every slide is a real scroll-snap stop and the browser can do the
+     scrolling itself. */
   .article-gallery {
     height: 100%;
     width: 100%;
+    background-image: var(--intro-desktop-hd);
+    background-size: cover;
+    background-position: center center;
   }
+
 
   .article-gallery--intro {
     height: 100%;
@@ -500,6 +524,26 @@ body.home-page {
     max-width: 1920px;
     margin: 0 auto;
     transition: opacity 0.3s ease;
+  }
+
+  body.article-page .article-start {
+    display: inline-block;
+    margin-top: 1.5rem;
+    align-self: flex-start;
+    border: 0;
+    font: inherit;
+    cursor: pointer;
+  }
+
+  .article-gallery--intro a {
+    color: #fff;
+    text-decoration: underline;
+    text-decoration-color: rgba(255, 255, 255, 0.5);
+    text-underline-offset: 2px;
+  }
+
+  .article-gallery--intro a:hover {
+    text-decoration-color: #fff;
   }
 
   .article-gallery--media {
@@ -516,6 +560,7 @@ body.home-page {
     max-width: 1920px;
     background-size: contain;
   }
+
 
   .article-header {
     border-bottom: none;
@@ -557,11 +602,18 @@ body.home-page {
   .slides-nav-dot {
     width: 10px;
     height: 10px;
+    padding: 0;
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.4);
     cursor: pointer;
     transition: all 0.3s ease;
     border: 2px solid transparent;
+    appearance: none;
+  }
+
+  .slides-nav-dot:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
   }
 
   .slides-nav-dot:hover {
@@ -801,13 +853,26 @@ body.home-page {
 /* Static Pages */
 
 .static-page .main-container {
-  max-width: 1120px;
+  max-width: 52rem;
 }
 
+/* The title shares the measure of the text below it: one column, one edge. */
 .page-prose,
 .page-section {
-  max-width: 48rem;
-  margin: 0 auto 3rem;
+  margin: 0 0 3rem;
+}
+
+.page-prose a,
+.page-section a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-decoration-color: var(--color-primary-60);
+  text-underline-offset: 2px;
+}
+
+.page-prose a:hover,
+.page-section a:hover {
+  text-decoration-color: var(--color-primary);
 }
 
 .page-lead {
@@ -845,6 +910,8 @@ body.home-page {
   display: block;
   width: 100%;
   height: auto;
+  max-height: 24rem;
+  object-fit: cover;
   border-radius: 4px;
   margin: 1rem 0 1.5rem;
 }
@@ -967,14 +1034,16 @@ body.home-page {
 
 .backers--names {
   columns: 2;
-  column-gap: 2rem;
-  font-size: 0.875rem;
+  column-gap: 1.5rem;
+  font-size: 0.8125rem;
+  line-height: 1.45;
   color: #777;
 }
 
 .backers--names li {
   break-inside: avoid;
-  padding: 0.125rem 0;
+  padding: 0.0625rem 0;
+  hyphens: none;
 }
 
 /* Footer */
@@ -1010,7 +1079,7 @@ body.home-page {
   font-size: 0.8125rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.75);
   margin: 0 0 0.75rem;
 }
 
@@ -1034,7 +1103,7 @@ body.home-page {
 }
 
 .footer-languages--item__current span {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.65);
 }
 
 .footer-social {
@@ -1070,11 +1139,11 @@ body.home-page {
 
 .footer-credits {
   font-size: 0.8125rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.78);
 }
 
 .footer-credits--byline {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.78);
   margin-bottom: 0.5rem;
 }
 
@@ -1133,11 +1202,334 @@ body.home-page {
   }
 }
 
-/* The article page becomes a full-screen slide deck at this width and sets
-   overflow: hidden on the body, so the footer could never be scrolled to.
-   It stays available on every narrower screen. */
-@media (min-width: 1280px) {
-  body.article-page .footer {
-    display: none;
+/* The footer sits inside the deck's last slide, which scrolls on its own, so
+   it needs no top margin there. It also has to reach the edges: the slide is
+   inside the padded main container, which would otherwise leave a strip of
+   page either side of it. */
+.slides--slide__extra .footer {
+  margin-top: 0;
+  margin-left: calc(-1 * var(--container-padding, 0px));
+  margin-right: calc(-1 * var(--container-padding, 0px));
+}
+
+/* Tradition articles
+   Long-form reading pages, not the slide deck the place articles use. The
+   body HTML comes from the old site and carries its own title, metadata and
+   a twelve column grid, so the grid classes it expects are rebuilt here with
+   CSS Grid rather than the float system the original used. */
+
+.tradition-page .main-container {
+  --container-padding: 0px;
+  max-width: 1920px;
+  padding: 0;
+}
+
+.wrapper,
+.wrapper-full {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 2rem;
+}
+
+.wrapper {
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.wrapper-full {
+  column-gap: 0;
+}
+
+/* The original grid let any child without a span class fill the row, so the
+   same default has to be explicit here. The span rules below override it. */
+.wrapper > *,
+.wrapper-full > * {
+  grid-column: span 12;
+}
+
+.span-12 { grid-column: span 12; }
+
+@media (min-width: 640px) {
+  .span-tablet-4 { grid-column: span 4; }
+  .span-tablet-5 { grid-column: span 5; }
+  .span-tablet-6 { grid-column: span 6; }
+  .span-tablet-7 { grid-column: span 7; }
+  .span-tablet-8 { grid-column: span 8; }
+}
+
+/* The intro is pulled up over the opening photo, fading into it. */
+.article-tradition__intro {
+  background-color: #000;
+  color: #fff;
+  padding: 1rem 0;
+}
+
+.article-tradition__title {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 1.8rem;
+  margin-bottom: 0;
+}
+
+.article-tradition__metadata {
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.article-tradition__intro p {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.article-tradition__body {
+  color: #555;
+  font-weight: 300;
+  margin-top: 2rem;
+}
+
+.article-tradition__body .responsive-image {
+  margin-bottom: 1rem;
+}
+
+.article-tradition__gallery .responsive-image {
+  margin-bottom: 0;
+}
+
+.article-tradition__highlight {
+  font-style: italic;
+  text-align: center;
+  font-weight: 300;
+}
+
+.article-tradition__quote {
+  font-size: 1.2rem;
+  font-style: italic;
+  text-align: center;
+  font-weight: 300;
+  margin: 3rem 0;
+}
+
+.article-tradition__quote::before {
+  content: "«";
+  color: #ccc;
+}
+
+.article-tradition__quote::after {
+  content: "»";
+  color: #ccc;
+}
+
+.article-tradition__question {
+  font-style: italic;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.article-tradition__border {
+  border-top: 1px solid #efefef;
+  border-bottom: 1px solid #ddd;
+}
+
+.article-tradition__separator {
+  margin: 1rem 0;
+}
+
+.article-tradition__full-image-with-text,
+.article-tradition__closing {
+  position: relative;
+}
+
+.article-tradition__closing-text,
+.article-tradition__full-image-with-text-text {
+  background-color: #333;
+  color: #fff;
+  padding-top: 1rem;
+}
+
+/* These sit over a photo, so their text has to beat the global paragraph
+   colour rather than inherit it. */
+.article-tradition__closing-text p,
+.article-tradition__closing-text strong,
+.article-tradition__full-image-with-text-text p,
+.article-tradition__full-image-with-text-text strong {
+  color: #fff;
+}
+
+.article-tradition__closing .responsive-image {
+  margin-bottom: 0;
+}
+
+@media (min-width: 640px) {
+  .article-tradition__intro {
+    background: linear-gradient(to bottom, transparent 0%, transparent 10%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 1) 100%);
+    margin-top: -25rem;
+    /* Matching the pull-up makes the intro end exactly where the opening
+       photo does. The original computed this in JavaScript. */
+    min-height: 25rem;
+    padding: 0 0 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
   }
+
+  .article-tradition__title {
+    font-size: 3rem;
+  }
+
+  .article-tradition__metadata {
+    font-size: 1rem;
+  }
+
+  .article-tradition__body {
+    margin-top: 4rem;
+  }
+
+  .article-tradition__highlight,
+  .article-tradition__quote {
+    font-size: 1.3rem;
+  }
+
+  .article-tradition__separator {
+    margin: 4rem 0;
+  }
+
+  .article-tradition__full-image-with-text-text {
+    background: linear-gradient(to bottom, rgba(17, 17, 17, 1) 0%, rgba(17, 17, 17, 1) 50%, rgba(17, 17, 17, 0.6) 80%, transparent 100%);
+    color: #fff;
+    padding-top: 4rem;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+  }
+
+  .article-tradition__full-image-with-text-image {
+    padding-top: 10rem;
+  }
+
+  .article-tradition__closing-text {
+    background-color: rgba(0, 0, 0, 0.5);
+    bottom: 0;
+    font-size: 1.5rem;
+    padding-top: 10rem;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}
+
+@media (min-width: 1120px) {
+  .article-tradition__intro {
+    margin-top: -40rem;
+    min-height: 40rem;
+  }
+
+  .article-tradition__title {
+    font-size: 5rem;
+  }
+
+  .article-tradition__metadata {
+    font-size: 1.5rem;
+  }
+
+  .article-tradition__body .responsive-image {
+    margin-bottom: 2rem;
+  }
+
+  .article-tradition__quote {
+    font-size: 2.5rem;
+    margin: 6rem 0;
+  }
+
+  .article-tradition__highlight {
+    font-size: 1.5rem;
+  }
+
+  .article-tradition__closing-text {
+    padding-top: 15rem;
+  }
+}
+
+/* Closing block of an article */
+
+.article-extra {
+  background-color: #fff;
+  width: 100%;
+}
+
+.article-extra--wrapper {
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+}
+
+.extra-block {
+  margin-bottom: 2.5rem;
+}
+
+.extra-block--title {
+  color: var(--color-primary);
+  text-transform: uppercase;
+  font-size: 1.125rem;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.75rem;
+}
+
+.extra-block--notice {
+  background-color: #f6f6f9;
+  border-left: 3px solid var(--color-primary-60);
+  padding: 1rem 1.25rem;
+}
+
+.extra-map {
+  height: 20rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  background-color: #eee;
+}
+
+.button {
+  display: inline-block;
+  background-color: var(--color-primary);
+  color: #fff;
+  padding: 0.5rem 1.125rem;
+  border-radius: 4px;
+  font-size: 0.9375rem;
+}
+
+.button:hover {
+  background-color: var(--color-primary-75);
+  color: #fff;
+  text-decoration: none;
+}
+
+@media (min-width: 1280px) {
+  /* The closing block is taller than a screen, so it is the one slide that
+     scrolls inside itself instead of snapping. */
+  .slides--slide__extra {
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+    background-color: #fff;
+  }
+
+  .article-extra--wrapper {
+    padding: 3rem 2rem 4rem;
+  }
+}
+
+/* Maps
+   OpenStreetMap's tiles carry far more colour and labelling than the flat
+   basemap this design was built around, which drowned the purple overlays.
+   Washing them out restores the quiet backdrop they need. */
+
+.leaflet-tile-pane {
+  filter: grayscale(1) contrast(0.55) brightness(1.22);
+}
+
+.leaflet-container .leaflet-control-attribution {
+  background: rgba(255, 255, 255, 0.8);
+  font-size: 0.6875rem;
 }

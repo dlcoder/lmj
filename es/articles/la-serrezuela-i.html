@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>La Serrezuela I – Lugares míticos de Jaén</title><link rel="stylesheet" href="/css/styles.css?v=1792883152749">
-  <script src="/js/hamburger-menu.js?v=1792883152749" defer></script>
-  <script src="/js/slide-scroll.js?v=1792883152749" defer></script>
-  <script src="/js/slide-navigation.js?v=1792883152749" defer></script></head>
+  <title>La Serrezuela I – Lugares míticos de Jaén</title><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script><link rel="stylesheet" href="/css/styles.css?v=1792889779109">
+  <script src="/js/hamburger-menu.js?v=1792889779109" defer></script>
+  <script src="/js/article-slides.js?v=1792889779109" defer></script><script src="/js/article-map.js?v=1792889779109" defer></script></head>
 
 <body class="article-page">
   <div id="header" class="header">
@@ -25,16 +25,25 @@
       <nav class="header-nav" id="header-nav">
         <a href="/es/">Inicio</a>
         <a href="/es/articles/">Artículos</a>
+        <a href="/es/acerca-de">El proyecto</a>
+        <a href="/es/los-libros">Los libros</a>
       </nav>
     </div>
   </div>
 
   <div class="main-container">
     
+
+
 <article class="article">
   <div class="slides--container">
     <div class="slides--slide">
-      <div class="article-gallery">
+      <div class="article-gallery" style="
+        --intro-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/363/mobile/1.jpg');
+        --intro-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/363/tablet/1.jpg');
+        --intro-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/363/desktop/1.jpg');
+        --intro-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/363/desktop_hd/1.jpg');
+      ">
         <div class="article-gallery--intro">
           <div class="article-header">
             <h1 class="article-title">La Serrezuela I</h1>
@@ -62,7 +71,9 @@
             
             <ul><li>Parte nuestro camino desde la estación de vuelo libre de las Siete Pilillas –conocida así por la fuente cercana que le da nombre–, considerada como una de las mejores zonas de toda Andalucía para la práctica del parapente.</li><li>Desde allí y a través de un sendero perfectamente marcado y conservado, recorreremos las laderas de la Serrezuela de Pegalajar.</li><li>Atravesando un bosque típicamente mediterráneo –compuesto en su mayoría por pino Carrasco de repoblación– disfrutaremos de maravillosas vistas de la campiña, de Sierra Mágina y del término municipal de Pegalajar.</li><li>Los chozos, construcciones circulares hechas en piedra sin labrar que servían de refugio a agricultores y pastores, junto con abrigos que albergan pinturas rupestres son algunas de las sorpresas que descubriremos en nuestro camino.</li><li>Debido a la belleza de esta ruta, hemos dividido la misma en dos reportajes, siendo esta la primera entrega.</li></ul>
             
-          </div>
+          </div><button type="button" class="button article-start" id="article-start">
+            Comenzar
+          </button>
         </div>
       </div>
     </div><div class="slides--slide">
@@ -164,16 +175,29 @@
               --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/373/desktop_hd/11.jpg');
             "></div>
           </div>
-        </div></div>
+        </div><div class="slides--slide slides--slide__extra">
+      <div class="article-extra">
+  <div class="article-extra--wrapper">
+    <section class="extra-block">
+      <h2 class="extra-block--title">Algo más sobre este lugar…</h2>
+      <p>Situado a escasos 150 metros del núcleo urbano de Pegalajar se encuentra el sendero que circular recorre las laderas de la Serrezuela de Pegalajar. En un estupendo estado de conservación y con gran cantidad de paneles informativos, este sendero de escasos 7 kilómetros de longitud nos permite disfrutar de unas espectaculares panorámicas de Sierra Mágina o de la campiña, a través de los distintos miradores situados a lo largo del recorrido. Atravesando un rico bosque típicamente mediterráneo, nos toparemos con chozos –construcción típica de estas sierras utilizada como refugio por pastores o agricultores– o con abrigos con pinturas rupestres entre otros.</p>
+    </section>
 
-  <!-- Slide navigation dots (large screens only) -->
-  <div class="slides-nav" id="slides-nav"></div>
-</article>
-
+    <section class="extra-block">
+      <h2 class="extra-block--title">Cómo llegar</h2>
+      <div class="extra-map"
+           id="article-map"
+           data-latitude="37.745039"
+           data-longitude="-3.647826"></div>
+      <a class="button"
+         href="https://maps.google.com/maps?q=37.745039,-3.647826&amp;ll=37.745039,-3.647826&amp;z=10"
+         rel="noopener">Ampliar mapa</a>
+    </section>
 
   </div>
+</div>
 
-  <footer class="footer">
+      <footer class="footer">
   <div class="footer-container">
     <nav class="footer-sitemap" aria-label="El proyecto">
       <div class="footer-sitemap--column">
@@ -269,6 +293,17 @@
   </div>
 </footer>
 
+    </div>
+  </div>
+
+  <!-- Slide navigation dots (large screens only) -->
+  <div class="slides-nav" id="slides-nav"></div>
+</article>
+
+
+
+
+  </div>
 </body>
 
 </html>

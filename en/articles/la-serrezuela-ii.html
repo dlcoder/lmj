@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>La Serrezuela II – Mythical Places of Jaén</title><link rel="stylesheet" href="/css/styles.css?v=1792883152749">
-  <script src="/js/hamburger-menu.js?v=1792883152749" defer></script>
-  <script src="/js/slide-scroll.js?v=1792883152749" defer></script>
-  <script src="/js/slide-navigation.js?v=1792883152749" defer></script></head>
+  <title>La Serrezuela II – Mythical Places of Jaén</title><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script><link rel="stylesheet" href="/css/styles.css?v=1792889779109">
+  <script src="/js/hamburger-menu.js?v=1792889779109" defer></script>
+  <script src="/js/article-slides.js?v=1792889779109" defer></script><script src="/js/article-map.js?v=1792889779109" defer></script></head>
 
 <body class="article-page">
   <div id="header" class="header">
@@ -25,16 +25,25 @@
       <nav class="header-nav" id="header-nav">
         <a href="/en/">Home</a>
         <a href="/en/articles/">Articles</a>
+        <a href="/en/about-us">The project</a>
+        <a href="/en/the-books">The books</a>
       </nav>
     </div>
   </div>
 
   <div class="main-container">
     
+
+
 <article class="article">
   <div class="slides--container">
     <div class="slides--slide">
-      <div class="article-gallery">
+      <div class="article-gallery" style="
+        --intro-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/733/mobile/1.jpg');
+        --intro-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/733/tablet/1.jpg');
+        --intro-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/733/desktop/1.jpg');
+        --intro-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/733/desktop_hd/1.jpg');
+      ">
         <div class="article-gallery--intro">
           <div class="article-header">
             <h1 class="article-title">La Serrezuela II</h1>
@@ -62,7 +71,9 @@
             
             <ul><li>En esta segunda entrega abarcamos la ascensión hasta la Peña de los Buitres y su vértice geodésico, avanzando posteriormente hasta completar el recorrido de este sendero circular.</li><li>A bastante distancia ya se advierte la presencia de los espectaculares tajos de la Peña de los Buitres, a cuya cima podremos acceder para disfrutar de las vistas más espectaculares de toda la ruta desde un mirador habilitado para ello.</li><li>Continuando el sendero –en camino hacia el vértice geodésico– nos toparemos con el contadero, una estrechez natural entre dos rocas que facilitaba a los pastores el recuento del ganado, ya que tenían que pasar de uno en uno.</li><li>Culminamos nuestro ascenso en el vértice geodésico –1126 metros–, lugar donde estaba enclavada la Torre vigía de la Pedregosa y que nos ofrece unas abrumadoras vistas.</li><li>Desde el vértice continuamos el camino hasta llegar al área recreativa de las Siete Pilillas –nuestro punto de partida– habiendo disfrutado de una ruta hermosa y sencilla, ideal para hacer en familia.</li></ul>
             
-          </div>
+          </div><button type="button" class="button article-start" id="article-start">
+            Start
+          </button>
         </div>
       </div>
     </div><div class="slides--slide">
@@ -173,16 +184,29 @@
               --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/744/desktop_hd/12.jpg');
             "></div>
           </div>
-        </div></div>
+        </div><div class="slides--slide slides--slide__extra">
+      <div class="article-extra">
+  <div class="article-extra--wrapper">
+    <section class="extra-block">
+      <h2 class="extra-block--title">More about this place…</h2>
+      <p>El sendero circular de la Serrezuela conforma un trayecto circular de baja dificultad –ideal para hacer con los más pequeños– y de singular belleza. Podemos iniciar la ruta desde distintos puntos –mirador de las Siete Pilillas o desde el núcleo urbano de Pegalajar– accediendo a un sendero perfectamente conservado a través del que disfrutaremos de hermosas vistas desde sus múltiples miradores, como el de la Peña de los Buitres. Nuestra caminata también nos servirá de acercamiento a la historia de Pegalajar, conociendo su arquitectura rural a través de los Chozos; su uso como frontera natural entre los reinos cristiano y nazarí, con los restos de la Torre vigía de la Pedregosa o su pasado más remoto, viendo las pinturas rupestres del abrigo de la Serrezuela. Para completar nuestro día de campo, podremos optar por tomar un picnic en el área recreativa de las Siete Pilillas, lugar famoso por la práctica de los deportes de vuelo sin motor.</p>
+    </section>
 
-  <!-- Slide navigation dots (large screens only) -->
-  <div class="slides-nav" id="slides-nav"></div>
-</article>
-
+    <section class="extra-block">
+      <h2 class="extra-block--title">How to arrive</h2>
+      <div class="extra-map"
+           id="article-map"
+           data-latitude="37.739608"
+           data-longitude="-3.659625"></div>
+      <a class="button"
+         href="https://maps.google.com/maps?q=37.739608,-3.659625&amp;ll=37.739608,-3.659625&amp;z=10"
+         rel="noopener">View larger map</a>
+    </section>
 
   </div>
+</div>
 
-  <footer class="footer">
+      <footer class="footer">
   <div class="footer-container">
     <nav class="footer-sitemap" aria-label="The project">
       <div class="footer-sitemap--column">
@@ -278,6 +302,17 @@
   </div>
 </footer>
 
+    </div>
+  </div>
+
+  <!-- Slide navigation dots (large screens only) -->
+  <div class="slides-nav" id="slides-nav"></div>
+</article>
+
+
+
+
+  </div>
 </body>
 
 </html>

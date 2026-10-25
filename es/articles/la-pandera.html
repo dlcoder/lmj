@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>La Pandera – Lugares míticos de Jaén</title><link rel="stylesheet" href="/css/styles.css?v=1792883152749">
-  <script src="/js/hamburger-menu.js?v=1792883152749" defer></script>
-  <script src="/js/slide-scroll.js?v=1792883152749" defer></script>
-  <script src="/js/slide-navigation.js?v=1792883152749" defer></script></head>
+  <title>La Pandera – Lugares míticos de Jaén</title><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script><link rel="stylesheet" href="/css/styles.css?v=1792889779109">
+  <script src="/js/hamburger-menu.js?v=1792889779109" defer></script>
+  <script src="/js/article-slides.js?v=1792889779109" defer></script><script src="/js/article-map.js?v=1792889779109" defer></script></head>
 
 <body class="article-page">
   <div id="header" class="header">
@@ -25,16 +25,25 @@
       <nav class="header-nav" id="header-nav">
         <a href="/es/">Inicio</a>
         <a href="/es/articles/">Artículos</a>
+        <a href="/es/acerca-de">El proyecto</a>
+        <a href="/es/los-libros">Los libros</a>
       </nav>
     </div>
   </div>
 
   <div class="main-container">
     
+
+
 <article class="article">
   <div class="slides--container">
     <div class="slides--slide">
-      <div class="article-gallery">
+      <div class="article-gallery" style="
+        --intro-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/645/mobile/1.jpg');
+        --intro-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/645/tablet/1.jpg');
+        --intro-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/645/desktop/1.jpg');
+        --intro-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/645/desktop_hd/1.jpg');
+      ">
         <div class="article-gallery--intro">
           <div class="article-header">
             <h1 class="article-title">La Pandera</h1>
@@ -67,7 +76,9 @@
             
             <ul><li>Techo de la Sierra Sur de Jaén, con sus 1872 metros de altura La Pandera ofrece unas espectaculares vistas del Quiebrajano, la Sierra Sur, Jaén capital, Mágina, Cazorla e incluso Sierra Nevada.</li><li>Situada entre los términos municipales de los Villares y Valdepeñas de Jaén, una carretera –con pendientes superiores al 15%– proporciona acceso directo hasta su cima. Este hecho ha provocado su inclusión como etapa reina de montaña en las últimas ediciones de la vuelta ciclista a España.</li><li>Para los aficionados al senderismo, la ruta que parte desde el Puerto de las Coberteras, pasando por el Puerto de la Nava y la Peña del Altar hasta hacer cima en la Pandera, es una de las más hermosas de la Sierra Sur y de toda la provincia en general.</li><li>Hoy en desuso, en su cima existe una Red Territorial de Mando –base militar de telecomunicaciones– que fue construida en la década de 1950 con asesoramiento del ejército estadounidense, contando con barracones, helipuerto, varios edificios y puestos de vigilancia.</li><li>Pese a su rehabilitación en el año 2011 para uso turístico, las instalaciones se encuentran en un lamentable estado de abandono.</li></ul>
             
-          </div>
+          </div><button type="button" class="button article-start" id="article-start">
+            Comenzar
+          </button>
         </div>
       </div>
     </div><div class="slides--slide">
@@ -214,16 +225,29 @@
               --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/660/desktop_hd/16.jpg');
             "></div>
           </div>
-        </div></div>
+        </div><div class="slides--slide slides--slide__extra">
+      <div class="article-extra">
+  <div class="article-extra--wrapper">
+    <section class="extra-block">
+      <h2 class="extra-block--title">Algo más sobre este lugar…</h2>
+      <p>La Pandera es uno de los emblemas de la Sierra Sur y de la provincia de Jaén. Sus 1872 metros de altura proporcionan unas espectaculares vistas de casi toda la provincia de Jaén, llegando a divisarse –en días despejados– zonas como Sierra Nevada, la sierra de Alhama o la serranía de Ronda. Si vamos en coche podremos llegar a su cima a través de la carretera A-6050 que comunica Jaén con Valdepeñas de Jaén y Castillo de Locubín. No obstante, si queremos disfrutar en todo su esplendor de uno de los entornos naturales más hermosos de toda la provincia, lo ideal es subir andando. Existen múltiples rutas con distintos orígenes, aunque desde aquí os recomendamos subir a través del Puerto de las Coberteras.</p>
+    </section>
 
-  <!-- Slide navigation dots (large screens only) -->
-  <div class="slides-nav" id="slides-nav"></div>
-</article>
-
+    <section class="extra-block">
+      <h2 class="extra-block--title">Cómo llegar</h2>
+      <div class="extra-map"
+           id="article-map"
+           data-latitude="37.631159"
+           data-longitude="-3.774694"></div>
+      <a class="button"
+         href="https://maps.google.com/maps?q=37.631159,-3.774694&amp;ll=37.631159,-3.774694&amp;z=10"
+         rel="noopener">Ampliar mapa</a>
+    </section>
 
   </div>
+</div>
 
-  <footer class="footer">
+      <footer class="footer">
   <div class="footer-container">
     <nav class="footer-sitemap" aria-label="El proyecto">
       <div class="footer-sitemap--column">
@@ -319,6 +343,17 @@
   </div>
 </footer>
 
+    </div>
+  </div>
+
+  <!-- Slide navigation dots (large screens only) -->
+  <div class="slides-nav" id="slides-nav"></div>
+</article>
+
+
+
+
+  </div>
 </body>
 
 </html>

@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Iglesia de Santo Domingo – Lugares míticos de Jaén</title><link rel="stylesheet" href="/css/styles.css?v=1792883152749">
-  <script src="/js/hamburger-menu.js?v=1792883152749" defer></script>
-  <script src="/js/slide-scroll.js?v=1792883152749" defer></script>
-  <script src="/js/slide-navigation.js?v=1792883152749" defer></script></head>
+  <title>Iglesia de Santo Domingo – Lugares míticos de Jaén</title><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script><link rel="stylesheet" href="/css/styles.css?v=1792889779109">
+  <script src="/js/hamburger-menu.js?v=1792889779109" defer></script>
+  <script src="/js/article-slides.js?v=1792889779109" defer></script><script src="/js/article-map.js?v=1792889779109" defer></script></head>
 
 <body class="article-page">
   <div id="header" class="header">
@@ -25,16 +25,25 @@
       <nav class="header-nav" id="header-nav">
         <a href="/es/">Inicio</a>
         <a href="/es/articles/">Artículos</a>
+        <a href="/es/acerca-de">El proyecto</a>
+        <a href="/es/los-libros">Los libros</a>
       </nav>
     </div>
   </div>
 
   <div class="main-container">
     
+
+
 <article class="article">
   <div class="slides--container">
     <div class="slides--slide">
-      <div class="article-gallery">
+      <div class="article-gallery" style="
+        --intro-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/347/mobile/1.jpg');
+        --intro-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/347/tablet/1.jpg');
+        --intro-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/347/desktop/1.jpg');
+        --intro-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/347/desktop_hd/1.jpg');
+      ">
         <div class="article-gallery--intro">
           <div class="article-header">
             <h1 class="article-title">Iglesia de Santo Domingo</h1>
@@ -62,7 +71,9 @@
             
             <ul><li>Originalmente construido tras la reconquista cristiana de La Iruela, el viejo templo de la Iglesia de Santo Domingo fue reemplazado en el siglo XVI por uno nuevo de estilo renacentista.</li><li>Francisco de los Cobos fue el promotor de esta nueva construcción, en la que trabajaron discípulos del maestro Andrés de Vandelvira.</li><li>Su compleja ubicación –por lo escarpado del terreno y por albergar construcciones antiguas– fue solventada con elegancia, construyendo un templo de planta similar a la cercana Iglesia de Santa María en Cazorla.</li><li>Incendiada y volada en Junio de 1810 por las tropas francesas durante su huída, la iglesia quedó en ruinas, siendo posteriormente usada como cementerio hasta el año 1954.</li><li>Junto a ella se encuentra el teatro, construido recientemente emulando el estilo clásico griego, en el cual se llevan a cabo múltiples actos culturales bajo un marco de incomparable belleza.</li></ul>
             
-          </div>
+          </div><button type="button" class="button article-start" id="article-start">
+            Comenzar
+          </button>
         </div>
       </div>
     </div><div class="slides--slide">
@@ -200,16 +211,29 @@
               --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/361/desktop_hd/15.jpg');
             "></div>
           </div>
-        </div></div>
+        </div><div class="slides--slide slides--slide__extra">
+      <div class="article-extra">
+  <div class="article-extra--wrapper">
+    <section class="extra-block">
+      <h2 class="extra-block--title">Algo más sobre este lugar…</h2>
+      <p>Las ruinas actuales de la Iglesia de Santo Domingo corresponden al templo de estilo renacentista edificado en el siglo XVI por orden de Francisco de los Cobos, que suplantó a la iglesia construida siglos atrás tras la reconquista cristiana de La Iruela. Situada dentro del recinto del castillo y junto al teatro, cuyo estilo emula a los clásicos teatros griegos, sus ruinas evocan a la inacabada iglesia de Santa María de Cazorla. El conjunto formado por castillo, iglesia y teatro, enmarcado en un espectacular entorno natural, es de obligada visita para los que se desplazan al Parque Natural de las Sierras de Cazorla, Segura y Las Villas.</p>
+    </section>
 
-  <!-- Slide navigation dots (large screens only) -->
-  <div class="slides-nav" id="slides-nav"></div>
-</article>
-
+    <section class="extra-block">
+      <h2 class="extra-block--title">Cómo llegar</h2>
+      <div class="extra-map"
+           id="article-map"
+           data-latitude="37.920867"
+           data-longitude="-2.989805"></div>
+      <a class="button"
+         href="https://maps.google.com/maps?q=37.920867,-2.989805&amp;ll=37.920867,-2.989805&amp;z=10"
+         rel="noopener">Ampliar mapa</a>
+    </section>
 
   </div>
+</div>
 
-  <footer class="footer">
+      <footer class="footer">
   <div class="footer-container">
     <nav class="footer-sitemap" aria-label="El proyecto">
       <div class="footer-sitemap--column">
@@ -305,6 +329,17 @@
   </div>
 </footer>
 
+    </div>
+  </div>
+
+  <!-- Slide navigation dots (large screens only) -->
+  <div class="slides-nav" id="slides-nav"></div>
+</article>
+
+
+
+
+  </div>
 </body>
 
 </html>

@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>El Huerto de la Cora – Mythical Places of Jaén</title><link rel="stylesheet" href="/css/styles.css?v=1792883152749">
-  <script src="/js/hamburger-menu.js?v=1792883152749" defer></script>
-  <script src="/js/slide-scroll.js?v=1792883152749" defer></script>
-  <script src="/js/slide-navigation.js?v=1792883152749" defer></script></head>
+  <title>El Huerto de la Cora – Mythical Places of Jaén</title><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script><link rel="stylesheet" href="/css/styles.css?v=1792889779109">
+  <script src="/js/hamburger-menu.js?v=1792889779109" defer></script>
+  <script src="/js/article-slides.js?v=1792889779109" defer></script><script src="/js/article-map.js?v=1792889779109" defer></script></head>
 
 <body class="article-page">
   <div id="header" class="header">
@@ -25,16 +25,25 @@
       <nav class="header-nav" id="header-nav">
         <a href="/en/">Home</a>
         <a href="/en/articles/">Articles</a>
+        <a href="/en/about-us">The project</a>
+        <a href="/en/the-books">The books</a>
       </nav>
     </div>
   </div>
 
   <div class="main-container">
     
+
+
 <article class="article">
   <div class="slides--container">
     <div class="slides--slide">
-      <div class="article-gallery">
+      <div class="article-gallery" style="
+        --intro-mobile: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/969/mobile/1.jpg');
+        --intro-tablet: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/969/tablet/1.jpg');
+        --intro-desktop: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/969/desktop/1.jpg');
+        --intro-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/969/desktop_hd/1.jpg');
+      ">
         <div class="article-gallery--intro">
           <div class="article-header">
             <h1 class="article-title">El Huerto de la Cora</h1>
@@ -62,7 +71,9 @@
             
             <ul><li>Ubicado en el municipio de Jódar, en un antiguo colegio que fue ocupado a principios de los 90 del siglo pasado, el Huerto de la Cora es una realidad construida gracias a la solidaridad y al trabajo desinteresado de las personas que integran la asociación que lo gestiona.</li><li>En sus bancales alberga una compleja amalgama de especies y variedades vegetales promisorias de alto valor agroecológico, sumamente singulares y muchas de ellas casi desconocidas o en riesgo de desaparición, hecho que ha atraído visitas de expertos y estudiosos de innumerables puntos del planeta.</li><li>A día de hoy el huerto mantiene –bien en cultivo directo a en a través de su banco de semillas– un contingente de unas 400 variedades distintas.</li><li>Desde 2013 la Asociación Ecocultural Huerto de la Cora, cuenta con el reconocimiento institucional y con la cesión de los terrenos por acuerdo unánime de todos los grupos políticos del Ayuntamiento de Jódar.</li></ul>
             
-          </div>
+          </div><button type="button" class="button article-start" id="article-start">
+            Start
+          </button>
         </div>
       </div>
     </div><div class="slides--slide">
@@ -146,16 +157,29 @@
               --img-desktop-hd: url('https://lmjstatic.deliriumcoder.com/system/medium/photos/images/000/001/977/desktop_hd/9.jpg');
             "></div>
           </div>
-        </div></div>
+        </div><div class="slides--slide slides--slide__extra">
+      <div class="article-extra">
+  <div class="article-extra--wrapper">
+    <section class="extra-block">
+      <h2 class="extra-block--title">More about this place…</h2>
+      <p>Todo en el Huerto de la Cora tiene un porqué, una historia que pasa desapercibida a ojos del visitante. Es preciso descifrar el significado de cada componente o habitante de este espacio para entender el verdadero valor de lo que encierran las paredes de este antiguo colegio, que pese no estar ocupado por las risas y juegos de los niños, sigue siendo sinónimo de vida y de futuro. Gracias al trabajo de los miembros de la Asociación Ecocultural del Huerto de la Cora, aquí se mantiene una verdadera actividad de laboratorio; de recuperación y conservación de semillas locales –o de otras provincias– en riesgo de extinción así como el cultivo de ejemplares de otras zonas del planeta que se consideran especialmente interesantes en base a las condiciones climáticas de la zona.</p>
+    </section>
 
-  <!-- Slide navigation dots (large screens only) -->
-  <div class="slides-nav" id="slides-nav"></div>
-</article>
-
+    <section class="extra-block">
+      <h2 class="extra-block--title">How to arrive</h2>
+      <div class="extra-map"
+           id="article-map"
+           data-latitude="37.838479"
+           data-longitude="-3.354583"></div>
+      <a class="button"
+         href="https://maps.google.com/maps?q=37.838479,-3.354583&amp;ll=37.838479,-3.354583&amp;z=10"
+         rel="noopener">View larger map</a>
+    </section>
 
   </div>
+</div>
 
-  <footer class="footer">
+      <footer class="footer">
   <div class="footer-container">
     <nav class="footer-sitemap" aria-label="The project">
       <div class="footer-sitemap--column">
@@ -251,6 +275,17 @@
   </div>
 </footer>
 
+    </div>
+  </div>
+
+  <!-- Slide navigation dots (large screens only) -->
+  <div class="slides-nav" id="slides-nav"></div>
+</article>
+
+
+
+
+  </div>
 </body>
 
 </html>
