@@ -405,8 +405,16 @@ body.article-page .main-container {
   margin-top: 1.5rem;
 }
 
-.article-gallery--media .responsive-image {
+.article-gallery--media .article-gallery--photo {
   border-radius: 4px;
+  /* Stacked reading order below the deck: the photo keeps the shape the
+     old background-image gave it. */
+  aspect-ratio: 3 / 2;
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
 }
 
 @media (min-width: 1280px) {
@@ -512,7 +520,7 @@ body.article-page .main-container {
     margin-top: 0;
   }
 
-  .article-gallery--media .responsive-image {
+  .article-gallery--media .article-gallery--photo {
     border-radius: 0;
   }
 
@@ -572,12 +580,14 @@ body.article-page .main-container {
     justify-content: center;
   }
 
-  .article-gallery--media .responsive-image {
+  .article-gallery--media .article-gallery--photo {
+    /* On the deck the slide is the viewport: the photo is as tall as it is
+       allowed and shown whole, letterboxed, rather than cropped. */
     height: 90vh;
-    padding-top: 0;
     width: 100%;
     max-width: 1920px;
-    background-size: contain;
+    aspect-ratio: auto;
+    object-fit: contain;
   }
 
 

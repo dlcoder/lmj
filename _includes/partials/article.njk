@@ -50,12 +50,24 @@
     {%- for media in article.galleryPhotos -%}
         <div class="slides--slide">
           <div class="article-gallery--media">
-            <div class="responsive-image" role="img" style="
-              --img-mobile: url('{% static_image media.image_urls.mobile %}');
-              --img-tablet: url('{% static_image media.image_urls.tablet %}');
-              --img-desktop: url('{% static_image media.image_urls.desktop %}');
-              --img-desktop-hd: url('{% static_image media.image_urls.desktop_hd %}');
-            "></div>
+            {#- A gallery runs to eleven photos on the median article and
+                twenty on the longest, and the deck shows one at a time, so
+                they wait until they are scrolled to. Unlike the carousel's,
+                these slides really are below the fold, so the browser's own
+                lazy loading is enough. On the deck the photo is sized by
+                its height — 90vh, letterboxed — which is what `sizes`
+                describes there. -#}
+            <img class="article-gallery--photo"
+                 src="{% static_image media.image_urls.desktop %}"
+                 srcset="{% static_image media.image_urls.mobile %} 480w,
+                         {% static_image media.image_urls.tablet %} 640w,
+                         {% static_image media.image_urls.desktop %} 1120w,
+                         {% static_image media.image_urls.desktop_hd %} 1920w"
+                 sizes="(min-width: 1280px) min(1920px, 135vh), 100vw"
+                 width="1920" height="1278"
+                 alt=""
+                 loading="lazy"
+                 decoding="async">
           </div>
         </div>
     {%- endfor -%}

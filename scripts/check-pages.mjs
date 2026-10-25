@@ -69,7 +69,7 @@ async function measure(page) {
         ? getComputedStyle(document.getElementById('article-start')).display : null,
       introBackground: document.querySelector('.article-gallery')
         ? getComputedStyle(document.querySelector('.article-gallery')).backgroundImage : null,
-      galleryImages: document.querySelectorAll('.responsive-image').length,
+      galleryImages: document.querySelectorAll('.article-gallery--photo').length,
       traditionIntro: box('.article-tradition__intro'),
       traditionSections: [...document.querySelectorAll('.article-tradition__full-image-with-text, .article-tradition__closing')]
         .map(el => Math.round(el.getBoundingClientRect().height)),

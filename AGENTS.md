@@ -239,10 +239,11 @@ The most relevant items when touching templates:
 
 - `main.njk` has a hardcoded `<html lang="en">`, and there is no Open Graph, `hreflang`,
   `canonical`, `sitemap.xml`, `robots.txt` or 404 page.
-- The article gallery and the card grids still paint photos with `background-image` and
-  per-breakpoint custom properties: no `srcset`, no lazy loading. The home carousel has
-  moved to `<img srcset>` already; doing the same to the rest is the biggest pending
-  performance win.
+- Photos are `<img srcset loading="lazy">` everywhere now — carousel, card grids, category
+  tiles, article gallery. What is left on `background-image` is the photo behind the
+  article intro, which carries a gradient scrim over it, and the dead
+  `.article-tradition__* .responsive-image` rules, whose markup no longer exists.
+  **WebP/AVIF is the remaining win**, and it needs a CDN that negotiates on `Accept`.
 - From 1280px up the article is a scroll-snap deck: the intro over the featured photo,
   the featured photo on its own, then the gallery. The scrolling is the browser's; the
   script only adds arrow keys and the navigation dots. Below that width it is an ordinary
