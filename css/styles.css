@@ -196,43 +196,19 @@ a:hover {
   transition: opacity 0.3s ease;
 }
 
-.header.header--faded {
-  background-color: var(--color-primary);
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* Show header on hover even if faded */
-.header:hover {
-  background-color: var(--color-primary);
-  opacity: 1 !important;
-  pointer-events: auto !important;
-}
-
-.header.header--faded:hover {
-  background-color: var(--color-primary);
-  opacity: 1;
-}
-
-/* Article pages: hide header by default on large screens, show on hover */
+/* On the article deck the header gets out of the way of the photos, as the
+   original's did: whole over the intro, gone from the first photo on, and
+   back while the pointer is over it, or focus or the open menu is inside.
+   The slide script sets the class; it stays clickable while invisible so
+   that pointing at it can bring it back. */
 @media (min-width: 1280px) {
-  body.article-page .header {
+  body.article-page .header.header--faded {
     opacity: 0;
-    transition: opacity 0.3s ease;
   }
 
-  /* Create an invisible hover zone at the top */
-  body.article-page .header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    z-index: -1;
-  }
-
-  body.article-page .header:hover {
+  body.article-page .header.header--faded:hover,
+  body.article-page .header.header--faded:focus-within,
+  body.article-page .header.header--faded:has(.is-open) {
     opacity: 1;
   }
 }

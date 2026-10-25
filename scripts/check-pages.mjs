@@ -233,6 +233,31 @@ for (const spec of pages) {
       });
 
       if (dotsOnLastSlide) fail(spec.name, 'the dots stay over the closing slide');
+
+      // The header sits over the intro and fades from the first photo on,
+      // coming back when pointed at. The pointer is kept off it while the
+      // fading is read, or the hover would bring it straight back.
+      // The dots check above has just scrolled back to the intro, so give
+      // the 0.3s fade time to finish first.
+      await page.mouse.move(WIDE / 2, 600);
+      await page.waitForTimeout(500);
+      const opacity = () => page.evaluate(() =>
+        parseFloat(getComputedStyle(document.getElementById('header')).opacity));
+      const overIntro = await opacity();
+      await page.evaluate(() => {
+        const deck = document.querySelector('.slides--container');
+        deck.scrollTo({ top: deck.clientHeight, behavior: 'instant' });
+        deck.dispatchEvent(new Event('scroll'));
+      });
+      await page.waitForTimeout(500);
+      const overPhoto = await opacity();
+      await page.mouse.move(WIDE / 2, 20);
+      await page.waitForTimeout(500);
+      const pointedAt = await opacity();
+
+      if (overIntro < 0.95) fail(spec.name, `the header is hidden over the intro (${overIntro})`);
+      if (overPhoto > 0.05) fail(spec.name, `the header stays over the photos (${overPhoto})`);
+      if (pointedAt < 0.95) fail(spec.name, `pointing at the header does not bring it back (${pointedAt})`);
     }
 
     // The five newest articles are a carousel only once their script runs;

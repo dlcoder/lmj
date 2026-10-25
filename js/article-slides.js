@@ -15,6 +15,7 @@
 
   const wide = window.matchMedia('(min-width: 1280px)');
   const slides = [...container.querySelectorAll('.slides--slide')];
+  const header = document.getElementById('header');
 
   let hideTimer;
   let settleTimer;
@@ -59,9 +60,16 @@
     }
   };
 
+  // The header stays over the intro and fades from the first photo on; the
+  // CSS brings it back while it is pointed at.
+  const updateHeader = () => {
+    header?.classList.toggle('header--faded', currentIndex() > 0);
+  };
+
   const onScroll = () => {
     updateDots();
     revealDots();
+    updateHeader();
 
     clearTimeout(settleTimer);
     settleTimer = setTimeout(() => { target = currentIndex(); }, 120);
@@ -107,6 +115,7 @@
     target = currentIndex();
     updateDots();
     revealDots();
+    updateHeader();
   };
 
   const deactivate = () => {
@@ -119,6 +128,7 @@
     start?.removeEventListener('click', onStart);
     nav?.classList.remove('visible');
     nav?.replaceChildren();
+    header?.classList.remove('header--faded');
   };
 
   // Attached and detached as the viewport crosses the breakpoint: reading the
