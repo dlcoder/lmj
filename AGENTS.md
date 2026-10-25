@@ -59,20 +59,27 @@ npm run check-pages  # render the built pages in a browser and assert the layout
 │   ├── article.njk                   # Article
 │   ├── category.njk                  # Category index
 │   ├── region.njk                    # Region index
-│   └── locality.njk                  # Locality index
+│   ├── locality.njk                  # Locality index
+│   └── pages/                        # Hand-written static pages (one per locale)
 ├── _includes/
 │   ├── layouts/main.njk              # Single layout
 │   └── partials/
 │       ├── article.njk               # Article body (slides + gallery)
 │       ├── article-grid.njk          # Card grid + pagination
+│       ├── article-extra.njk         # Closing block: summary and how to arrive
 │       ├── article-category.njk
 │       ├── article-date.njk
 │       ├── article-location.njk
+│       ├── latest-articles.njk       # Home carousel of the newest articles
+│       ├── home-books.njk            # Home block for the two books
+│       ├── footer.njk                # Colophon and site map
 │       └── pagination.njk
 ├── css/styles.css                    # Passthrough-copied to _site/css/
 ├── js/                               # Passthrough-copied to _site/js/
 │   ├── hamburger-menu.js
 │   ├── article-slides.js             # Keyboard and dots for the article deck
+│   ├── article-map.js                # Leaflet map in the article closing block
+│   ├── latest-articles.js            # Home carousel
 │   └── localities-map.js             # Leaflet map on the home page
 ├── scripts/                          # Dev utilities (not part of the build)
 │   ├── validate-data.mjs             # Raw data integrity checks (runs in CI)
