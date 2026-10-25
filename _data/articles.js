@@ -78,39 +78,8 @@ function hydrate(articles, categoryMap, locale) {
   });
 }
 
-// The old app filled the "more articles" block with the editor's picks and
-// then topped it up at random on every request. Random cannot be frozen into
-// a build in any useful way, so the filler is the most recent articles that
-// share a category or a locality, which is both deterministic and a better
-// suggestion.
-const RELATED_COUNT = 6;
-
-function withRelated(articles) {
-  const byTitle = new Map(articles.map(a => [a.title, a]));
-
-  return articles.map(article => {
-    const picked = (article.related_articles || [])
-      .map(title => byTitle.get(title))
-      .filter(Boolean);
-
-    const chosen = new Set([article.title, ...picked.map(a => a.title)]);
-    const shares = other =>
-      other.categories?.some(c => article.categories?.includes(c)) ||
-      other.localities?.some(l => article.localities?.includes(l));
-
-    const filler = articles
-      .filter(other => !chosen.has(other.title) && shares(other))
-      .sort((a, b) => new Date(b.published_at) - new Date(a.published_at));
-
-    return {
-      ...article,
-      relatedArticles: [...picked, ...filler].slice(0, RELATED_COUNT)
-    };
-  });
-}
-
-export const en = withRelated(hydrate(en_json, enCategoryMap, 'en'));
-export const es = withRelated(hydrate(es_json, esCategoryMap, 'es'));
+export const en = hydrate(en_json, enCategoryMap, 'en');
+export const es = hydrate(es_json, esCategoryMap, 'es');
 
 export default [
   ...en.map(a => ({ ...a, locale: 'en' })),

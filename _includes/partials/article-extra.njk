@@ -1,7 +1,6 @@
 {#- Closing block of a place article: summary, how to arrive, more articles
     and the share buttons, as the old site had it. -#}
 {%- set t = i18n[locale].article -%}
-{%- set articleUrl = siteUrl + "/" + locale + "/articles/" + article.slug -%}
 
 <div class="article-extra">
   <div class="article-extra--wrapper">
@@ -26,28 +25,6 @@
       {%- else %}
       <p class="extra-block--notice">{{ t.noGeolocation }}</p>
       {%- endif %}
-    </section>
-
-    {%- if article.relatedArticles | length %}
-    <section class="extra-block">
-      <h2 class="extra-block--title">{{ t.relatedArticles }}</h2>
-      {%- set articles = article.relatedArticles -%}
-      {%- set pagination = false -%}
-      {% include "partials/article-grid.njk" %}
-    </section>
-    {%- endif %}
-
-    <section class="extra-block">
-      <h2 class="extra-block--title">{{ t.share }}</h2>
-      <p>{{ t.shareHelp }}</p>
-      <div class="extra-share">
-        <a class="extra-share--link"
-           href="https://x.com/intent/post?url={{ articleUrl | urlencode }}&amp;text={{ article.title | urlencode }}"
-           rel="noopener">X</a>
-        <a class="extra-share--link"
-           href="https://www.facebook.com/sharer/sharer.php?u={{ articleUrl | urlencode }}"
-           rel="noopener">Facebook</a>
-      </div>
     </section>
 
   </div>

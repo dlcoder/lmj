@@ -5,10 +5,7 @@ export default {
       summary: "More about this place…",
       howToArrive: "How to arrive",
       viewLargerMap: "View larger map",
-      noGeolocation: "We have not revealed the location of this site, as we think it is a place that should be taken special care of. That does not mean you cannot find it with a bit of research online, only that if you do visit it, we ask you to look after it and protect it, as with every other place that makes up our heritage.",
-      relatedArticles: "More articles",
-      share: "Share it",
-      shareHelp: "Help more people discover what this land hides by sharing this article."
+      noGeolocation: "We have not revealed the location of this site, as we think it is a place that should be taken special care of. That does not mean you cannot find it with a bit of research online, only that if you do visit it, we ask you to look after it and protect it, as with every other place that makes up our heritage."
     },
     categoriesLabel: "Categories",
     localitiesLabel: "Localities",
@@ -48,10 +45,7 @@ export default {
       summary: "Algo más sobre este lugar…",
       howToArrive: "Cómo llegar",
       viewLargerMap: "Ampliar mapa",
-      noGeolocation: "No publicamos la geolocalización sobre cómo llegar a este lugar, pues consideramos que se trata de un lugar por el que debemos velar especialmente. No quiere esto decir que no puedas encontrar su ubicación si indagas un poco por la red, pero te pedimos que si lo visitas, lo cuides y protejas especialmente, al igual que el resto de enclaves que representan nuestro patrimonio.",
-      relatedArticles: "Más reportajes",
-      share: "Compártelo",
-      shareHelp: "Ayúdanos a que muchas personas descubran las maravillas que esconde nuestra tierra compartiendo este reportaje."
+      noGeolocation: "No publicamos la geolocalización sobre cómo llegar a este lugar, pues consideramos que se trata de un lugar por el que debemos velar especialmente. No quiere esto decir que no puedas encontrar su ubicación si indagas un poco por la red, pero te pedimos que si lo visitas, lo cuides y protejas especialmente, al igual que el resto de enclaves que representan nuestro patrimonio."
     },
     categoriesLabel: "Categorías",
     localitiesLabel: "Localidades",

@@ -1485,27 +1485,6 @@ body.article-page .main-container {
   text-decoration: none;
 }
 
-.extra-share {
-  display: flex;
-  gap: 0.75rem;
-}
-
-.extra-share--link {
-  display: inline-block;
-  border: 1px solid var(--color-primary-60);
-  color: var(--color-primary);
-  padding: 0.4375rem 1rem;
-  border-radius: 4px;
-  font-size: 0.9375rem;
-}
-
-.extra-share--link:hover {
-  background-color: var(--color-primary);
-  border-color: var(--color-primary);
-  color: #fff;
-  text-decoration: none;
-}
-
 @media (min-width: 1280px) {
   /* The closing block is taller than a screen, so it is the one slide that
      scrolls inside itself instead of snapping. */

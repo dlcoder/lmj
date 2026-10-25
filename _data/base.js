@@ -8,10 +8,6 @@ const PAGE_SIZE = 12;
 // and the data layer read it from one place.
 export const STATICS_HOST = process.env.STATICS_HOST || "https://lmjstatic.deliriumcoder.com";
 
-// Absolute base for links that have to leave the site, such as the share
-// buttons. Overridable so a build can point somewhere else.
-export const SITE_URL = process.env.SITE_URL || "https://www.lugaresmiticosdejaen.com";
-
 // Shared Maps for fast lookup
 export const localityMap = new Map(
   regions.flatMap(region =>
