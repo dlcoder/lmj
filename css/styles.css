@@ -772,6 +772,39 @@ body.article-page .main-container {
   font-size: 0.9rem;
 }
 
+/* Books index page */
+
+.books-index {
+  display: grid;
+  gap: 3rem;
+  list-style: none;
+  margin: 3rem 0;
+  padding: 0;
+}
+
+.books-index--item a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.books-index--banner {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.books-index--title {
+  color: var(--color-primary);
+  font-size: 1.5rem;
+  margin: 1rem 0 0.5rem;
+}
+
+.books-index--summary {
+  margin: 0;
+  color: #666;
+}
+
 /* Localities Section */
 
 .localities-section {

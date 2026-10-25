@@ -12,7 +12,9 @@ export default {
     localitiesLabel: "Localities",
     home: {
       discover: "Discover the province of Jaén",
-      exploreLocalities: "Explore the 97 municipalities of the province"
+      exploreLocalities: "Explore the 97 municipalities of the province",
+      firstBook: "The first book (2015)",
+      secondBook: "The second book (2017)"
     },
     nav: {
       home: "Home",
@@ -24,7 +26,9 @@ export default {
     // here rather than each keeping its own copy.
     pages: {
       project: "about-us",
-      books: "the-books",
+      books: "the-books/",
+      book1: "the-books/the-first-book",
+      book2: "the-books/the-second-book",
       cookies: "cookies",
       copyright: "copyright"
     },
@@ -61,7 +65,9 @@ export default {
     localitiesLabel: "Localidades",
     home: {
       discover: "Descubre la provincia de Jaén",
-      exploreLocalities: "Recorre los 97 municipios de la provincia"
+      exploreLocalities: "Recorre los 97 municipios de la provincia",
+      firstBook: "El primer libro (2015)",
+      secondBook: "El segundo libro (2017)"
     },
     nav: {
       home: "Inicio",
@@ -71,7 +77,9 @@ export default {
     },
     pages: {
       project: "acerca-de",
-      books: "los-libros",
+      books: "los-libros/",
+      book1: "los-libros/el-primer-libro",
+      book2: "los-libros/el-segundo-libro",
       cookies: "cookies",
       copyright: "copyright"
     },
