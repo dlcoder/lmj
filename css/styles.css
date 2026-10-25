@@ -721,6 +721,19 @@ body.article-page .main-container {
   margin: 0 0.25rem;
 }
 
+/* On a phone the place rarely fits beside the date, and when it wrapped the
+   separator led the new line. Stacked, it needs none. */
+@media (max-width: 639px) {
+  .article-date,
+  .article-location {
+    display: block;
+  }
+
+  .article-location:before {
+    content: none;
+  }
+}
+
 .article-body {
   margin-bottom: 4rem;
   font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
