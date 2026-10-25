@@ -13,6 +13,8 @@ export default {
     home: {
       discover: "Discover the province of Jaén",
       exploreLocalities: "Explore the 97 municipalities of the province",
+      previousArticle: "Previous article",
+      nextArticle: "Next article",
       books: "The books",
       booksLead: "The project published two books, in 2015 and 2017. The first is out of print; a few copies of the second may still be left in the bookshops in Jaén, Úbeda and Martos that sold it. Both were deposited in local and provincial libraries.",
       booksContact: "If you are looking for one, write to us at",
@@ -71,6 +73,8 @@ export default {
     home: {
       discover: "Descubre la provincia de Jaén",
       exploreLocalities: "Recorre los 97 municipios de la provincia",
+      previousArticle: "Reportaje anterior",
+      nextArticle: "Reportaje siguiente",
       books: "Los libros",
       booksLead: "El proyecto publicó dos libros, en 2015 y 2017. El primero está agotado; del segundo puede que aún quede alguna copia en las librerías de Jaén, Úbeda y Martos que lo vendieron. De ambos hay depósito en bibliotecas locales y provinciales.",
       booksContact: "Si buscas uno, escríbenos a",

@@ -15,6 +15,9 @@
   {%- if includeLocalitiesMap -%}
   <script src="/js/localities-map.js?v={{ timestamp }}" defer></script>
   {%- endif -%}
+  {%- if includeLatestArticles -%}
+  <script src="/js/latest-articles.js?v={{ timestamp }}" defer></script>
+  {%- endif -%}
   {%- if includeArticleMap -%}
   <script src="/js/article-map.js?v={{ timestamp }}" defer></script>
   {%- endif -%}

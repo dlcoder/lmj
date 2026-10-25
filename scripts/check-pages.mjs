@@ -191,6 +191,42 @@ for (const spec of pages) {
 
     check(spec.name, width, await measure(page), consoleErrors);
 
+    // The five newest articles are a carousel only once their script runs;
+    // without it the slides stack and all five stay reachable. What broke
+    // here was the slide overflowing its track, which pushed a full-size
+    // photo down the page.
+    if (spec.name === 'home') {
+      const carousel = await page.evaluate(() => {
+        const root = document.getElementById('latest-articles');
+        if (!root) return null;
+        const slides = [...root.querySelectorAll('.latest-article')];
+        return {
+          count: slides.length,
+          track: root.querySelector('.latest-articles--track').getBoundingClientRect().height,
+          tallest: Math.max(...slides.flatMap(s => [
+            s.getBoundingClientRect().height,
+            s.querySelector('.latest-article--image').getBoundingClientRect().height
+          ])),
+          current: slides.filter(s => s.classList.contains('is-current')).length,
+          title: root.querySelector('.is-current .latest-article--title')?.textContent.trim()
+        };
+      });
+
+      if (!carousel || !carousel.count) {
+        fail('home carousel', 'the latest articles block is missing');
+      } else if (carousel.current !== 1) {
+        fail('home carousel', `${carousel.current} slides are showing, expected 1`);
+      } else if (carousel.tallest > carousel.track + 1) {
+        fail('home carousel', `a slide spills to ${Math.round(carousel.tallest)}px inside a ${Math.round(carousel.track)}px track`);
+      } else {
+        await page.locator('#latest-articles-next').click();
+        await page.waitForTimeout(700);
+        const next = await page.evaluate(() =>
+          document.querySelector('.is-current .latest-article--title')?.textContent.trim());
+        if (next === carousel.title) fail('home carousel', 'the next arrow does not change the slide');
+      }
+    }
+
     // The home map outlines a municipality when you point at it, reading
     // GeoJSON from the assets host with fetch(). That is subject to CORS and
     // the host answers with an allowlist of origins, so this can only be held

@@ -11,7 +11,11 @@ eleventyComputed:
 bodyClass: "home-page"
 includeLeaflet: true
 includeLocalitiesMap: true
+includeLatestArticles: true
 ---
+
+{%- set latestArticles = indexPage.articles.slice(0, 5) -%}
+{% include "partials/latest-articles.njk" %}
 
 
 <div class="categories-section">

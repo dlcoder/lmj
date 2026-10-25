@@ -1,0 +1,39 @@
+{#- Five articles, full bleed, as the original home page opened. The archive
+    stopped in 2018, so "the five newest" would be the same five for ever:
+    the script below picks a different five each day from the index that
+    follows. Without JavaScript the slides stack, still showing the newest
+    five, and all of them stay reachable. -#}
+<section class="latest-articles" id="latest-articles">
+  <div class="latest-articles--track">
+    {%- for article in latestArticles -%}
+      <a class="latest-article" href="/{{ locale }}/articles/{{ article.slug }}">
+        <div class="latest-article--image responsive-image" role="img" aria-label="{{ article.title }}" style="
+          --img-mobile: url('{% featured_image article, 'big_teaser_mobile' %}');
+          --img-tablet: url('{% featured_image article, 'big_teaser_tablet' %}');
+          --img-desktop: url('{% featured_image article, 'big_teaser_desktop' %}');
+          --img-desktop-hd: url('{% featured_image article, 'big_teaser_desktop_hd' %}');
+        "></div>
+        <div class="latest-article--caption">
+          <h2 class="latest-article--title">{{ article.title }}</h2>
+          <div class="latest-article--location">{{ article.localities | join(', ') }}</div>
+          <time class="latest-article--date" datetime="{{ article.published_at }}">
+            {{ article.published_at | formatDate }}
+          </time>
+        </div>
+      </a>
+    {%- endfor -%}
+  </div>
+
+  <div class="latest-articles--arrows">
+    <button type="button" class="latest-articles--arrow latest-articles--arrow__prev"
+            id="latest-articles-prev" aria-label="{{ i18n[locale].home.previousArticle }}"></button>
+    <button type="button" class="latest-articles--arrow latest-articles--arrow__next"
+            id="latest-articles-next" aria-label="{{ i18n[locale].home.nextArticle }}"></button>
+  </div>
+</section>
+
+{#- Inlined rather than fetched: ~20 KB that the page already pays for in one
+    round trip, against a second request on every visit to the home page. -#}
+<script type="application/json" id="latest-articles-index">
+  {{ carousel_articles[locale] | dump | safe }}
+</script>
