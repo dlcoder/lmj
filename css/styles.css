@@ -726,10 +726,12 @@ body.article-page .main-container {
 
 .article-card--image {
   aspect-ratio: 4 / 3;
-  padding-top: 0;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  display: block;
+  width: 100%;
+  /* Or the height attribute pins the card to the photo's own height. */
+  height: auto;
+  object-fit: cover;
+  object-position: center;
 }
 
 .article-card--content {
