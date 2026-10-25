@@ -230,10 +230,12 @@ page reaches `collections.all`, and the sitemap would miss the rest.
 
 ### Articles
 - `id` — stable across locales, and the **only** way to pair an article with its
-  translation: 16 articles have a different slug in each language, and the 107 untranslated
-  ones reuse the Spanish slug
+  translation: 84 articles have a different slug in each language
+- `legacy_slug` — only on the 68 English articles that got a slug of their own when they were
+  translated in 2026; the Spanish slug they were published under until then. `redirects.js`
+  sends both the Rails URLs and the old ones here to the new slug
 - Content and metadata (`title`, `summary`, `sentences`, `published_at`, `hashtag`, `type`,
-  `translated`, `related_articles`, geolocation)
+  `translated`, geolocation)
 - `summary` and `sentences` are plain text, HTML entities already decoded during hydration
 - `body` — only for `Tradition` articles: the HTML from `content/`, with its `[img::N]`
   placeholders resolved to real images
@@ -313,8 +315,10 @@ The most relevant items when touching templates:
   stacked page.
 - Some photos have black letterbox bands baked into the file. Nothing in the CSS adds
   them.
-- 107 of 164 articles have `translated: false` and are published in EN anyway. Their title, text
-  and summary carry `lang="es"` inside the otherwise English page.
+- All 164 articles are translated. The 107 the Rails app never translated were translated in
+  2026 (title, summary, sentences, and the two `Tradition` bodies in `content/`). The templates
+  still handle `translated: false` — `lang="es"` on the text, no `hreflang` pair — should an
+  untranslated article ever come back.
 - Articles are written as `{slug}.html` but linked without the extension
   (`/es/articles/{slug}`). This works because GitHub Pages resolves `.html` automatically,
   but it ties the site to hosts with that convention. `npm run check-links` reproduces that

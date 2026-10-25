@@ -1,8 +1,9 @@
 {#- Tradition articles are long-form reading pages with their own layout,
     not the slide deck the place articles use. Their body already carries its
     own title and metadata. -#}
-{#- 107 English articles were never translated and carry the Spanish text,
-    so the text says so, while the page around it stays English. -#}
+{#- An English article that was never translated carries the Spanish text,
+    so the text says so, while the page around it stays English. None is
+    left today; this stays for any that comes back. -#}
 {%- set untranslated = ' lang="es"' if locale == "en" and not article.translated else "" -%}
 
 {% if article.body %}

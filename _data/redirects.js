@@ -34,8 +34,12 @@ function forLocale(locale) {
   for (const article of articles[locale]) {
     const kind = article.type === 'Tradition' ? p.traditions : p.places;
     const to = `/${locale}/articles/${article.slug}`;
-    add(`/${locale}/${p.articles}/${kind}/${article.slug}`, to);
-    add(`/${locale}/${p.articles}/${article.slug}`, to);
+    // 68 English articles got a slug of their own when they were translated
+    // in 2026. Until then they were published, here and by the Rails app,
+    // under the Spanish one, which legacy_slug keeps.
+    const old = article.legacy_slug ?? article.slug;
+    add(`/${locale}/${p.articles}/${kind}/${old}`, to);
+    add(`/${locale}/${p.articles}/${old}`, to);
   }
 
   for (const category of categories[locale]) {
