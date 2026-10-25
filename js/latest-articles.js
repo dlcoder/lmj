@@ -60,13 +60,17 @@
     const src = imageUrl(base, article, 'big_teaser_desktop');
 
     // The first slide carries a real src from the server and is already on
-    // its way; the rest wait in data attributes until they are shown.
-    if (image.src) {
-      image.srcset = srcset;
-      image.src = src;
-    } else {
-      image.dataset.srcset = srcset;
-      image.dataset.src = src;
+    // its way; the rest wait in data attributes until they are shown. The
+    // blurred backdrop asks for the same file, so it costs nothing.
+    for (const element of [image, slide.querySelector('.latest-article--backdrop')]) {
+      if (!element) continue;
+      if (element.src) {
+        element.srcset = srcset;
+        element.src = src;
+      } else {
+        element.dataset.srcset = srcset;
+        element.dataset.src = src;
+      }
     }
 
     slide.querySelector('.latest-article--title').textContent = article.t;
@@ -97,12 +101,12 @@
 
   // A slide's photo is only worth its bytes once the slide is on screen.
   function load(slide) {
-    const image = slide.querySelector('.latest-article--image');
-    if (!image || !image.dataset.src) return;
-    image.srcset = image.dataset.srcset;
-    image.src = image.dataset.src;
-    delete image.dataset.srcset;
-    delete image.dataset.src;
+    for (const image of slide.querySelectorAll('[data-src]')) {
+      image.srcset = image.dataset.srcset;
+      image.src = image.dataset.src;
+      delete image.dataset.srcset;
+      delete image.dataset.src;
+    }
   }
 
   function show(index) {

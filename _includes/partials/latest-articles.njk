@@ -7,15 +7,24 @@
   <div class="latest-articles--track">
     {%- for article in latestArticles -%}
       <a class="latest-article" href="/{{ locale }}/articles/{{ article.slug }}">
+        {#- The four variants, written once: the sharp photo and the blurred
+            backdrop behind it ask for the same file, so the second one costs
+            no bytes. -#}
+        {%- set srcset -%}
+          {% featured_image article, 'big_teaser_mobile' %} 480w,
+          {% featured_image article, 'big_teaser_tablet' %} 640w,
+          {% featured_image article, 'big_teaser_desktop' %} 1120w,
+          {% featured_image article, 'big_teaser_desktop_hd' %} 1920w
+        {%- endset -%}
+        {%- set src -%}{% featured_image article, 'big_teaser_desktop' %}{%- endset -%}
         {%- if loop.first -%}
         {#- The opening slide is the page's largest paint, so it is asked for
             as early as the parser can. -#}
+        <img class="latest-article--backdrop" src="{{ src }}" srcset="{{ srcset }}"
+             sizes="100vw" alt="" aria-hidden="true" decoding="async">
         <img class="latest-article--image"
-             src="{% featured_image article, 'big_teaser_desktop' %}"
-             srcset="{% featured_image article, 'big_teaser_mobile' %} 480w,
-                     {% featured_image article, 'big_teaser_tablet' %} 640w,
-                     {% featured_image article, 'big_teaser_desktop' %} 1120w,
-                     {% featured_image article, 'big_teaser_desktop_hd' %} 1920w"
+             src="{{ src }}"
+             srcset="{{ srcset }}"
              sizes="100vw"
              width="1920" height="768"
              alt="{{ article.title }}"
@@ -28,24 +37,21 @@
             the script, which loads each one the first time it is shown. The
             carousel shows one photo at a time, so paying for five up front
             was paying four times over. Without JavaScript there is no
-            carousel and no script, and <noscript> serves the real thing. -#}
+            carousel and no script, and <noscript> serves the real thing —
+            the sharp photo only, since the backdrop is decoration. -#}
+        <img class="latest-article--backdrop" data-src="{{ src }}" data-srcset="{{ srcset }}"
+             sizes="100vw" alt="" aria-hidden="true" decoding="async">
         <img class="latest-article--image"
-             data-src="{% featured_image article, 'big_teaser_desktop' %}"
-             data-srcset="{% featured_image article, 'big_teaser_mobile' %} 480w,
-                          {% featured_image article, 'big_teaser_tablet' %} 640w,
-                          {% featured_image article, 'big_teaser_desktop' %} 1120w,
-                          {% featured_image article, 'big_teaser_desktop_hd' %} 1920w"
+             data-src="{{ src }}"
+             data-srcset="{{ srcset }}"
              sizes="100vw"
              width="1920" height="768"
              alt="{{ article.title }}"
              decoding="async">
         <noscript>
           <img class="latest-article--image"
-               src="{% featured_image article, 'big_teaser_desktop' %}"
-               srcset="{% featured_image article, 'big_teaser_mobile' %} 480w,
-                       {% featured_image article, 'big_teaser_tablet' %} 640w,
-                       {% featured_image article, 'big_teaser_desktop' %} 1120w,
-                       {% featured_image article, 'big_teaser_desktop_hd' %} 1920w"
+               src="{{ src }}"
+               srcset="{{ srcset }}"
                sizes="100vw"
                width="1920" height="768"
                alt="{{ article.title }}"

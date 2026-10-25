@@ -797,6 +797,8 @@ body.article-page .main-container {
 
 .latest-articles {
   position: relative;
+  /* The band runs edge to edge; the photo inside it does not. */
+  overflow: hidden;
 }
 
 .latest-article {
@@ -817,6 +819,15 @@ body.article-page .main-container {
   aspect-ratio: 3 / 2;
   display: block;
   width: 100%;
+  /* No photo in the archive is wider than 1920px — the originals included —
+     so past that the carousel would be stretching one: 1,33x on a 2560px
+     screen, which is what makes it look soft. The original capped its whole
+     body at this width (descubrejaen, basics/wrappers.scss). Here only the
+     photo stops, and the backdrop fills what is left. */
+  max-width: 1920px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
   /* The width and height attributes would otherwise pin the height to the
      photo's own 768px and leave the ratio above with nothing to do. */
   height: auto;
@@ -830,11 +841,37 @@ body.article-page .main-container {
   display: none;
 }
 
+/* Past 1920px the photo leaves a strip either side. Rather than a flat
+   colour, it is the same photo blown up and blurred, which is the same file
+   the browser has already fetched — no extra bytes. Scaled up a touch so the
+   blur has something to bleed from and no soft edge shows. */
+.latest-article--backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(2rem) brightness(0.8);
+  transform: scale(1.15);
+  z-index: 0;
+}
+
+.latest-article--backdrop[data-src] {
+  display: none;
+}
+
 .latest-article--caption {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
+  /* Lines up with the photo, not with the blurred strip beside it. The
+     padding has to count towards the cap, or the text starts 4rem to the
+     left of the photo's edge. */
+  box-sizing: border-box;
+  max-width: 1920px;
+  margin: 0 auto;
+  z-index: 2;
   padding: 2.5rem 1.25rem 1.25rem;
   color: #fff;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
@@ -862,11 +899,28 @@ body.article-page .main-container {
 
 .latest-articles.is-carousel .latest-articles--arrows {
   display: block;
+  /* Same, so they sit on the photo's edges and not the viewport's. */
+  max-width: 1920px;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.latest-articles.is-carousel .latest-articles--arrow {
+  pointer-events: auto;
 }
 
 .latest-articles.is-carousel .latest-articles--track {
   position: relative;
   aspect-ratio: 3 / 2;
+  /* Stated, so that the max-height further down trims the band's height
+     without the ratio pulling its width in with it — the blurred strip
+     needs the full width. */
+  width: 100%;
 }
 
 .latest-articles.is-carousel .latest-article {
@@ -929,6 +983,10 @@ body.article-page .main-container {
   .latest-articles.is-carousel .latest-articles--track {
     /* Wide enough now for the source crop, 2.5:1, to be shown whole. */
     aspect-ratio: 2.5 / 1;
+    /* What that ratio gives a photo at its 1920px cap. Past that width the
+       ratio alone would keep making the band taller than the photo in it,
+       leaving the caption adrift over the blurred strip. */
+    max-height: 768px;
   }
 
   .latest-article--caption {
