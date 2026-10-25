@@ -1270,17 +1270,29 @@ body.article-page .main-container {
 }
 
 .backers--names {
-  columns: 2;
-  column-gap: 1.5rem;
+  /* Sized by column width, not by count: 219 names in narrow columns wrap
+     constantly, and a wrapped line is what gets mistaken for a new backer. */
+  columns: 16rem;
+  column-gap: 2rem;
   font-size: 0.8125rem;
-  line-height: 1.45;
+  line-height: 1.35;
   color: #777;
 }
 
 .backers--names li {
   break-inside: avoid;
-  padding: 0.0625rem 0;
+  /* A name that still wraps needs to read as one entry: the marker sits in
+     the margin and the second line lines up under the first, so only a
+     bullet starts a backer. */
+  list-style: disc outside;
+  margin: 0 0 0.5rem 1rem;
+  padding-left: 0.25rem;
   hyphens: none;
+}
+
+.backers--names li::marker {
+  color: #c4c4c4;
+  font-size: 0.7em;
 }
 
 /* Footer */
@@ -1394,10 +1406,6 @@ body.article-page .main-container {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .backers--names {
-    columns: 3;
-  }
-
   .footer-sitemap {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1434,9 +1442,6 @@ body.article-page .main-container {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .backers--names {
-    columns: 4;
-  }
 }
 
 /* The footer sits inside the deck's last slide, which scrolls on its own, so
