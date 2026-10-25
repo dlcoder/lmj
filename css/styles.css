@@ -1745,6 +1745,13 @@ body.article-page .main-container {
   margin-bottom: 0.5rem;
 }
 
+/* Links inside a sentence need more than a change of shade to be found. */
+.footer-credits--byline a {
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.5);
+  text-underline-offset: 2px;
+}
+
 .footer-credits--legal {
   display: flex;
   gap: 1.25rem;
