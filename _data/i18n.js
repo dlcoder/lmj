@@ -10,6 +10,10 @@ export default {
     },
     categoriesLabel: "Categories",
     localitiesLabel: "Localities",
+    localities: {
+      title: "Municipalities of Jaén",
+      lead: "We invite you to take a tour of the province of Jaén through its 97 municipalities. Nature, spectacular landscapes, medieval castles and fortresses, and countless unique places that will not leave you indifferent. Start your journey!"
+    },
     home: {
       discover: "Discover the province of Jaén",
       exploreLocalities: "Explore the 97 municipalities of the province",
@@ -44,6 +48,7 @@ export default {
       regions: "Regions",
       project: "The project",
       allArticles: "All articles",
+      localities: "Municipalities",
       cookies: "Cookie policy",
       copyright: "Copyright",
       language: "Language",
@@ -70,6 +75,10 @@ export default {
     },
     categoriesLabel: "Categorías",
     localitiesLabel: "Localidades",
+    localities: {
+      title: "Municipios de Jaén",
+      lead: "Te invitamos a hacer un recorrido por la provincia de Jaén a través de sus 97 municipios. Naturaleza, paisajes espectaculares, castillos y fortalezas medievales y un sinfín de lugares únicos que no te dejarán indiferente. ¡Comienza tu viaje!"
+    },
     home: {
       discover: "Descubre la provincia de Jaén",
       exploreLocalities: "Recorre los 97 municipios de la provincia",
@@ -102,6 +111,7 @@ export default {
       regions: "Comarcas",
       project: "El proyecto",
       allArticles: "Todos los artículos",
+      localities: "Municipios",
       cookies: "Política de cookies",
       copyright: "Copyright",
       language: "Idioma",

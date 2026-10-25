@@ -1,0 +1,33 @@
+---
+layout: layouts/main.njk
+# One page per locale: the keys of i18n are the locales.
+pagination:
+  data: i18n
+  size: 1
+  alias: pageLocale
+eleventyComputed:
+  title: "{{ i18n[pageLocale].localities.title }} – {{ i18n[pageLocale].siteTitle }}"
+  permalink: "{{ pageLocale }}/localities/index.html"
+  locale: "{{ pageLocale }}"
+includeLeaflet: true
+includeLocalitiesMap: true
+bodyClass: "locality-page"
+---
+
+{#- As in the original: the map, a lead and the same list the home page
+    carries. The map is the home one too — the province, and the outline of
+    whichever municipality the pointer is on — only here it runs full width
+    above the list instead of behind it. -#}
+<div class="locality-wrapper">
+  <div class="page-header">
+    <h1 class="page-title">{{ i18n[locale].localities.title }}</h1>
+  </div>
+</div>
+
+<div id="localities-map" class="locality-map" data-fit-province></div>
+
+<div class="locality-wrapper">
+  <p class="page-lead localities-lead">{{ i18n[locale].localities.lead }}</p>
+  {%- set localitiesListClass = "localities-list__plain" %}
+  {% include "partials/localities-list.njk" %}
+</div>

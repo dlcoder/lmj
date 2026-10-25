@@ -61,6 +61,7 @@ npm run check-pages  # render the built pages in a browser and assert the layout
 │   ├── category.njk                  # Category index
 │   ├── region.njk                    # Region index
 │   ├── locality.njk                  # Locality index
+│   ├── localities.njk                # Index of the 97 municipalities
 │   ├── articles_index.njk            # Writes `/{locale}/articles.json`
 │   └── pages/                        # Hand-written static pages (one per locale)
 ├── _includes/
@@ -73,6 +74,7 @@ npm run check-pages  # render the built pages in a browser and assert the layout
 │       ├── article-date.njk
 │       ├── article-location.njk
 │       ├── latest-articles.njk       # Home carousel of the newest articles
+│       ├── localities-list.njk       # The 97 municipalities (home + localities index)
 │       ├── home-books.njk            # Home block for the two books
 │       ├── footer.njk                # Colophon and site map
 │       └── pagination.njk
@@ -83,7 +85,7 @@ npm run check-pages  # render the built pages in a browser and assert the layout
 │   ├── article-map.js                # Leaflet map in the article closing block
 │   ├── latest-articles.js            # Home carousel
 │   ├── locality-map.js               # Leaflet map on the locality page
-│   └── localities-map.js             # Leaflet map on the home page
+│   └── localities-map.js             # Leaflet map on the home page and the localities index
 ├── scripts/                          # Dev utilities (not part of the build)
 │   ├── validate-data.mjs             # Raw data integrity checks (runs in CI)
 │   ├── check-pages.mjs               # Browser layout checks (runs in CI)
@@ -167,6 +169,7 @@ All templates are unified and receive the language in the `locale` variable.
 | Category | `all_categories` | `/{locale}/categories/{slug}/`, `…/page/{n}/` | `src/category.njk` |
 | Region | `all_regions` | `/{locale}/regions/{slug}/`, `…/page/{n}/` | `src/region.njk` |
 | Locality | `all_localities` | `/{locale}/localities/{slug}/`, `…/page/{n}/` | `src/locality.njk` |
+| Localities index | `i18n` (one per locale) | `/{locale}/localities/` | `src/localities.njk` |
 | Articles index | `articles_index` | `/{locale}/articles.json` | `src/articles_index.njk` |
 
 All article lists are sorted by `published_at` in descending order (newest first).

@@ -26,6 +26,7 @@ const pages = [
   { name: 'index',     url: '/es/articles/' },
   { name: 'category',  url: '/es/categories/naturaleza/' },
   { name: 'locality',  url: '/es/localities/jaen/' },
+  { name: 'localities', url: '/es/localities/' },
   { name: 'region',    url: '/es/regions/sierra-sur/' },
   { name: 'static',    url: '/es/acerca-de' },
   { name: 'place',     url: '/es/articles/el-posito' },
@@ -129,7 +130,7 @@ function check(name, width, m, consoleErrors) {
 
   // The map runs edge to edge, as it did in the original. The container it
   // lives in is what used to stop it, so this is the thing to watch.
-  if (name === 'locality') {
+  if (name === 'locality' || name === 'localities') {
     if (!m.localityMap) {
       fail(where, 'the locality map is missing');
     } else if (m.localityMap.left !== 0 || m.localityMap.right !== m.viewport) {

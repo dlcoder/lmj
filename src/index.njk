@@ -46,23 +46,7 @@ includeLatestArticles: true
   <h2 class="localities-title">{{ i18n[indexPage.locale].home.exploreLocalities }}</h2>
 
   <div class="localities-container">
-    <ul class="localities-list">
-      {%- for locality in localities_list -%}
-        <li class="locality-item">
-          {#- Half the municipalities have no article, so they have no page to
-              link to. They still belong on the list and still light up on the
-              map, so they stay as plain text. -#}
-          {%- if locality.articleCount %}
-          <a href="/{{ locale }}/localities/{{ locality.slug }}"
-             class="locality-link"
-             data-locality-id="{{ locality.id }}">{{ locality.name }} ({{ locality.articleCount }})</a>
-          {%- else %}
-          <span class="locality-link"
-                data-locality-id="{{ locality.id }}">{{ locality.name }}</span>
-          {%- endif %}
-        </li>
-      {%- endfor -%}
-    </ul>
+    {% include "partials/localities-list.njk" %}
   </div>
 
   <div class="localities-map-container">

@@ -1917,6 +1917,30 @@ body.locality-page .main-container {
   }
 }
 
+/* The localities index: the home list, on paper instead of over the map. */
+
+.localities-lead {
+  max-width: 52rem;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+}
+
+.localities-list__plain {
+  margin-bottom: 4rem;
+}
+
+.localities-list__plain .locality-link {
+  color: #555;
+}
+
+.localities-list__plain a.locality-link {
+  color: var(--color-primary);
+}
+
+.localities-list__plain a.locality-link:hover {
+  text-decoration: underline;
+}
+
 /* The marker popups: the teaser photo with the title under it, the whole
    thing a link. */
 
