@@ -36,6 +36,7 @@ const pages = [
 ];
 
 const failures = [];
+const notes = [];
 const fail = (where, message) => failures.push(`${where}: ${message}`);
 
 async function measure(page) {
@@ -155,6 +156,11 @@ for (const spec of pages) {
     const context = await browser.newContext({ viewport: { width, height: 900 } });
 
     await context.route(`${ASSETS}/**`, route => {
+      // Photos are stubbed so the layout can be measured without the network,
+      // but the outlines have to come from the host itself: whether it serves
+      // them to this origin is the thing being checked.
+      if (route.request().url().includes('/geojson/')) return route.continue();
+
       const file = CACHE + decodeURIComponent(new URL(route.request().url()).pathname);
       if (existsSync(file)) {
         const type = { '.png': 'image/png', '.json': 'application/json' }[extname(file)] ?? 'image/jpeg';
@@ -164,16 +170,19 @@ for (const spec of pages) {
       }
     });
     // Third-party embeds are slow and out of our hands.
-    await context.route(/youtube|speakerdeck|openstreetmap/, route => route.abort());
+    // Tiles are pictures of a map; the outlines are the behaviour under test.
+    await context.route(/youtube|speakerdeck|tile\.openstreetmap/, route => route.abort());
 
     const consoleErrors = [];
     const page = await context.newPage();
     page.on('console', message => {
       // The third-party requests aborted above surface as failed resources;
       // they are the harness's doing, not the page's.
-      if (message.type() === 'error' && !/ERR_FAILED|ERR_ABORTED/.test(message.text())) {
-        consoleErrors.push(message.text());
-      }
+      const text = message.text();
+      // Noise from the aborted third parties above, and from outlines the
+      // assets host may not serve to this origin.
+      const expected = /ERR_FAILED|ERR_ABORTED|CORS policy|province boundary|locality GeoJSON/i.test(text);
+      if (message.type() === 'error' && !expected) consoleErrors.push(text);
     });
     page.on('pageerror', error => consoleErrors.push(error.message));
 
@@ -181,6 +190,38 @@ for (const spec of pages) {
     await page.waitForTimeout(150);
 
     check(spec.name, width, await measure(page), consoleErrors);
+
+    // The home map outlines a municipality when you point at it, reading
+    // GeoJSON from the assets host with fetch(). That is subject to CORS and
+    // the host answers with an allowlist of origins, so this can only be held
+    // to account from an origin the host knows about.
+    if (spec.name === 'home' && width === WIDE) {
+      // A response can come back 200 and still be withheld from the page, so
+      // ask the page itself whether it is allowed to read one.
+      const allowed = await page.evaluate(async host => {
+        try {
+          await fetch(`${host}/files/geojson/province.json`);
+          return true;
+        } catch {
+          return false;
+        }
+      }, ASSETS);
+
+      if (!allowed) {
+        notes.push(`the home map was not checked: the assets host does not serve the outlines to ${BASE}. Add that origin to its CORS allowlist to cover it.`);
+      } else {
+        await page.evaluate(() => document.getElementById('localities-map')?.scrollIntoView({ block: 'center' }));
+        await page.waitForTimeout(600);
+        const before = await page.evaluate(() => document.querySelectorAll('#localities-map .leaflet-overlay-pane path').length);
+        await page.locator('.locality-link').first().hover();
+        await page.waitForTimeout(1500);
+        const after = await page.evaluate(() => document.querySelectorAll('#localities-map .leaflet-overlay-pane path').length);
+
+        if (before < 1) fail('home map', 'the province outline never loaded');
+        else if (after <= before) fail('home map', 'pointing at a municipality draws nothing');
+      }
+    }
+
     await context.close();
   }
   process.stdout.write(`  ${spec.name}\n`);
@@ -188,6 +229,11 @@ for (const spec of pages) {
 
 await browser.close();
 server.kill();
+
+if (notes.length) {
+  console.log('');
+  for (const note of notes) console.log(`  note: ${note}`);
+}
 
 if (failures.length) {
   console.error(`\n${failures.length} problem(s):\n`);

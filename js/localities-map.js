@@ -1,5 +1,9 @@
 (function () {
-  const STATIC_HOST = 'https://lmjstatic.deliriumcoder.com';
+  // The outlines come from the assets host and are read with fetch(), so the
+  // browser applies CORS to them. The bucket answers with an allowlist of
+  // origins, which has to include wherever the site is being served from —
+  // including localhost while developing.
+  const GEOJSON = 'https://lmjstatic.deliriumcoder.com/files/geojson';
   const JAEN_CENTER = [37.9556459, -3.361515];
   const JAEN_ZOOM = 9;
 
@@ -38,15 +42,16 @@
 
   async function loadProvinceBoundary() {
     try {
-      const response = await fetch(`${STATIC_HOST}/files/geojson/province.json`);
+      const response = await fetch(`${GEOJSON}/province.json`);
       if (!response.ok) return;
 
       const geoJson = await response.json();
       L.geoJSON(geoJson, {
         style: {
-          stroke: false,
+          color: '',
+          opacity: 1,
           fillColor: '#423780',
-          fillOpacity: 0.18
+          fillOpacity: 0.3
         }
       }).addTo(map);
     } catch (error) {
@@ -86,7 +91,7 @@
       return geoJsonCache[localityId];
     }
 
-    const url = `${STATIC_HOST}/files/geojson/locality_${localityId}.json`;
+    const url = `${GEOJSON}/locality_${localityId}.json`;
     const response = await fetch(url);
 
     if (!response.ok) {
@@ -101,16 +106,13 @@
   function showLocality(geoJson) {
     clearLocality();
 
-    // An outline as well as a fill: over a detailed basemap a change in fill
-    // alone is hard to pick out. The original set an empty colour, which the
-    // renderer ignored, so there was never a stroke.
     currentLayer = L.geoJSON(geoJson, {
       style: {
-        color: '#2b2357',
+        color: '',
         weight: 2,
         opacity: 1,
         fillColor: '#423780',
-        fillOpacity: 0.75
+        fillOpacity: 0.5
       }
     }).addTo(map);
   }

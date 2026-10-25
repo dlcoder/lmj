@@ -226,5 +226,11 @@ The most relevant items when touching templates:
   but it ties the site to hosts with that convention. `npm run check-links` reproduces that
   behaviour locally via `scripts/serve-site.mjs`.
 - Leaflet is loaded from unpkg.
+- The home map reads municipality outlines from the assets host with `fetch()`, so CORS
+  applies. That host answers with an allowlist of origins: the deployed domains are on it,
+  local development is not unless the origin is added. `npm run check-pages` reports this
+  as a note rather than a failure, since it is configuration outside the repo. The origins
+  used here are `http://localhost:8099` (`scripts/serve-site.mjs`) and `http://localhost:8123`
+  (`scripts/check-pages.mjs`).
 - Missing: the Rails static pages (`about-us`, `the-team`, `press`, books, `cookies`…),
   the footer, the language switcher and the explorer map with filters.
