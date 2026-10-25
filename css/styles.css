@@ -1184,13 +1184,10 @@ body.article-page .main-container {
   }
 }
 
-/* The article page becomes a full-screen slide deck at this width and sets
-   overflow: hidden on the body, so the footer could never be scrolled to.
-   It stays available on every narrower screen. */
-@media (min-width: 1280px) {
-  body.article-page .footer {
-    display: none;
-  }
+/* The footer sits inside the deck's last slide, which scrolls on its own, so
+   it needs no top margin there. */
+.slides--slide__extra .footer {
+  margin-top: 0;
 }
 
 /* Tradition articles

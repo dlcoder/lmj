@@ -44,7 +44,11 @@
     {{ content | safe }}
   </div>
 
+  {#- Place articles carry the footer inside their last slide, because the
+      deck takes over scrolling and anything after it cannot be reached. -#}
+  {%- if not article or article.body %}
   {% include "partials/footer.njk" %}
+  {%- endif %}
 </body>
 
 </html>
