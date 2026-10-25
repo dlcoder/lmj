@@ -1,8 +1,17 @@
+import { readFileSync } from "node:fs";
 import { STATICS_HOST, SITE_URL, cleanUrl, alternateFor } from "./_data/base.js";
+
+const versionOf = name =>
+  JSON.parse(readFileSync(`node_modules/${name}/package.json`, "utf8")).version;
 
 export default function (eleventyConfig) {
   eleventyConfig.addGlobalData("staticsHost", STATICS_HOST);
   eleventyConfig.addGlobalData("siteUrl", SITE_URL);
+  // For cache busting the vendored files: they change only with the package.
+  eleventyConfig.addGlobalData("vendor", {
+    leaflet: versionOf("leaflet"),
+    markercluster: versionOf("leaflet.markercluster")
+  });
 
   eleventyConfig.addFilter("cleanUrl", cleanUrl);
   eleventyConfig.addFilter("alternate", alternateFor);
@@ -54,6 +63,15 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("img");
   // Browsers ask for it at the root whether or not a page links it.
   eleventyConfig.addPassthroughCopy({ "img/favicon.ico": "favicon.ico" });
+  // Leaflet's stylesheet finds its marker images relative to itself.
+  eleventyConfig.addPassthroughCopy({
+    "node_modules/leaflet/dist/leaflet.js": "vendor/leaflet/leaflet.js",
+    "node_modules/leaflet/dist/leaflet.css": "vendor/leaflet/leaflet.css",
+    "node_modules/leaflet/dist/images": "vendor/leaflet/images",
+    "node_modules/leaflet.markercluster/dist/leaflet.markercluster.js": "vendor/leaflet.markercluster/leaflet.markercluster.js",
+    "node_modules/leaflet.markercluster/dist/MarkerCluster.css": "vendor/leaflet.markercluster/MarkerCluster.css",
+    "node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css": "vendor/leaflet.markercluster/MarkerCluster.Default.css"
+  });
 
   return {
     dir: {

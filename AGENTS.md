@@ -107,7 +107,8 @@ npm run build-icons  # re-render the icons in img/ after changing img/favicon.sv
 
 ## Key Configuration (`.eleventy.js`)
 
-- **Leaflet** comes from unpkg, and only on the pages that need it (`includeLeaflet`);
+- **Leaflet** is a pinned dependency, copied out of `node_modules` into `/vendor/` at build time
+  and loaded only on the pages that need it (`includeLeaflet`);
   `leaflet.markercluster` is a second flag (`includeMarkerCluster`), for the maps that plot
   articles — Jaén alone has 43 of them
 - **Static assets host:** `https://lmjstatic.deliriumcoder.com` (`STATICS_HOST` constant)
@@ -117,7 +118,8 @@ npm run build-icons  # re-render the icons in img/ after changing img/favicon.sv
 - **Shortcodes:**
   - `featured_image(article, size)` — URL of the featured photo (`featured: true` and `type: "Photo"`)
   - `static_image(path)` — absolute URL of a bucket asset
-- **Passthrough copy:** `css`, `js`, `img`, and `img/favicon.ico` to the root
+- **Passthrough copy:** `css`, `js`, `img`, `img/favicon.ico` to the root, and the Leaflet and
+  markercluster dist files to `/vendor/`
 - **Ignored paths:** every `*.md` at the root (the site has no Markdown pages), `content`. Anything in `.gitignore`
   (`node_modules`, `_site`) is ignored by Eleventy on its own — no need to repeat it
 
@@ -295,7 +297,6 @@ The most relevant items when touching templates:
   (`/es/articles/{slug}`). This works because GitHub Pages resolves `.html` automatically,
   but it ties the site to hosts with that convention. `npm run check-links` reproduces that
   behaviour locally via `scripts/serve-site.mjs`.
-- Leaflet and `leaflet.markercluster` are loaded from unpkg.
 - The home map reads municipality outlines from the assets host with `fetch()`, so CORS
   applies. That host answers with an allowlist of origins: the deployed domains are on it,
   local development is not unless the origin is added. `npm run check-pages` reports this

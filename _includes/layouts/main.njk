@@ -51,16 +51,19 @@
   {%- else %}
   <meta property="og:type" content="website">
   {%- endif %}
+  {#- Leaflet and its cluster plugin are served from this site, copied out of
+      node_modules at build time, so the maps depend on no third party. The
+      files are byte for byte the ones unpkg served before. -#}
   {%- if includeLeaflet -%}
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <link rel="stylesheet" href="/vendor/leaflet/leaflet.css?v={{ vendor.leaflet }}">
+  <script src="/vendor/leaflet/leaflet.js?v={{ vendor.leaflet }}"></script>
   {%- endif -%}
   {#- Only the maps that plot articles need the clusters: 43 of them land on
       Jaén alone, most inside the old town. It is what the original used. -#}
   {%- if includeMarkerCluster -%}
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" integrity="sha256-YU3qCpj/P06tdPBJGPax0bm6Q1wltfwjsho5TR4+TYc=" crossorigin="">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" integrity="sha256-YSWCMtmNZNwqex4CEw1nQhvFub2lmU7vcCKP+XVwwXA=" crossorigin="">
-  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" integrity="sha256-Hk4dIpcqOSb0hZjgyvFOP+cEmDXUKKNE/tT542ZbNQg=" crossorigin=""></script>
+  <link rel="stylesheet" href="/vendor/leaflet.markercluster/MarkerCluster.css?v={{ vendor.markercluster }}">
+  <link rel="stylesheet" href="/vendor/leaflet.markercluster/MarkerCluster.Default.css?v={{ vendor.markercluster }}">
+  <script src="/vendor/leaflet.markercluster/leaflet.markercluster.js?v={{ vendor.markercluster }}"></script>
   {%- endif -%}
   <link rel="stylesheet" href="/css/styles.css?v={{ timestamp }}">
   <script src="/js/hamburger-menu.js?v={{ timestamp }}" defer></script>

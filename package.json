@@ -18,7 +18,9 @@
     "build-icons": "node scripts/build-icons.mjs"
   },
   "dependencies": {
-    "@11ty/eleventy": "3.1.7"
+    "@11ty/eleventy": "3.1.7",
+    "leaflet": "1.9.4",
+    "leaflet.markercluster": "1.5.3"
   },
   "devDependencies": {
     "playwright": "^1.64.1"
