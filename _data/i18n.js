@@ -47,7 +47,8 @@ export default {
       discover: "Discover Jaén",
       discoverSlogan: "Here you can find several ways to discover the province of Jaén.",
       categories: "Categories",
-      archive: "Archive"
+      archive: "Archive",
+      regions: "Regions"
     },
     nav: {
       home: "Home",
@@ -135,7 +136,8 @@ export default {
       discover: "Descubre Jaén",
       discoverSlogan: "Aquí te presentamos distintas formas de descubrir la provincia de Jaén.",
       categories: "Categorías",
-      archive: "Archivo"
+      archive: "Archivo",
+      regions: "Comarcas"
     },
     nav: {
       home: "Inicio",
