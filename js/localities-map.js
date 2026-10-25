@@ -20,6 +20,9 @@
     map = L.map('localities-map', {
       center: JAEN_CENTER,
       zoom: JAEN_ZOOM,
+      // Whole zoom levels are a factor of two apart, which left the province
+      // either cut off or lost in the middle once the map frames it.
+      zoomSnap: 0.25,
       zoomControl: false,
       dragging: false,
       touchZoom: false,
@@ -48,7 +51,7 @@
       if (!response.ok) return;
 
       const geoJson = await response.json();
-      L.geoJSON(geoJson, {
+      const province = L.geoJSON(geoJson, {
         style: {
           color: '',
           opacity: 1,
@@ -56,6 +59,12 @@
           fillOpacity: 0.3
         }
       }).addTo(map);
+
+      // Behind the home list the fixed view is part of the design; on its own
+      // the map frames the whole province, whatever shape it is given.
+      if ('fitProvince' in map.getContainer().dataset) {
+        map.fitBounds(province.getBounds(), { padding: [20, 20] });
+      }
     } catch (error) {
       console.error('Error loading province boundary:', error);
     }

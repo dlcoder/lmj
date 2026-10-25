@@ -140,23 +140,60 @@ table {
   --color-primary: rgba(66, 55, 128, 1);
   --color-primary-75: rgba(66, 55, 128, 0.75);
   --color-primary-60: rgba(66, 55, 128, 0.6);
+  /* The headings of the header menu, on the purple. */
+  --color-primary-light: #c9c3ee;
+
+  --color-white: #fff;
+  --color-black: #000;
+
+  /* One grey scale for the whole site, darkest first. 500 is the lightest
+     that still reads as text on white (4.5:1), which is what the dates and
+     other small print use; the lighter ones are for rules and fills. */
+  --color-grey-900: #222;
+  --color-grey-800: #333;
+  --color-grey-700: #555;
+  --color-grey-600: #666;
+  --color-grey-500: #767676;
+  --color-grey-400: #ccc;
+  --color-grey-300: #ddd;
+  --color-grey-200: #eee;
+  --color-grey-100: #f6f6f9;
 }
 
 /* Global Styles */
+
+/* The attribute has to win over any display a component sets, or a grid
+   asked to hide stays on screen. */
+[hidden] {
+  display: none !important;
+}
+
+/* For labels a screen reader needs and the design already implies. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
   line-height: 1.6;
-  color: #333;
-  background-color: #fff;
+  color: var(--color-grey-800);
+  background-color: var(--color-white);
 }
 
 h1,
 h2,
 h3 {
   line-height: 1.3;
-  color: #222;
+  color: var(--color-grey-900);
 }
 
 h1 {
@@ -171,16 +208,31 @@ h2 {
 
 p {
   margin-bottom: 1rem;
-  color: #555;
+  color: var(--color-grey-700);
 }
 
 a {
-  color: #0066cc;
+  color: var(--color-primary);
   text-decoration: none;
 }
 
 a:hover {
   text-decoration: underline;
+}
+
+/* One visible focus for everything that takes it, in the brand colour on
+   paper and in white on the purple and over the photos. */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.header :focus-visible,
+.footer :focus-visible,
+.latest-articles :focus-visible,
+.localities-section :focus-visible,
+.article-gallery--intro :focus-visible {
+  outline-color: var(--color-white);
 }
 
 /* Header */
@@ -196,43 +248,19 @@ a:hover {
   transition: opacity 0.3s ease;
 }
 
-.header.header--faded {
-  background-color: var(--color-primary);
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* Show header on hover even if faded */
-.header:hover {
-  background-color: var(--color-primary);
-  opacity: 1 !important;
-  pointer-events: auto !important;
-}
-
-.header.header--faded:hover {
-  background-color: var(--color-primary);
-  opacity: 1;
-}
-
-/* Article pages: hide header by default on large screens, show on hover */
+/* On the article deck the header gets out of the way of the photos, as the
+   original's did: whole over the intro, gone from the first photo on, and
+   back while the pointer is over it, or focus or the open menu is inside.
+   The slide script sets the class; it stays clickable while invisible so
+   that pointing at it can bring it back. */
 @media (min-width: 1280px) {
-  body.article-page .header {
+  body.article-page .header.header--faded {
     opacity: 0;
-    transition: opacity 0.3s ease;
   }
 
-  /* Create an invisible hover zone at the top */
-  body.article-page .header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    z-index: -1;
-  }
-
-  body.article-page .header:hover {
+  body.article-page .header.header--faded:hover,
+  body.article-page .header.header--faded:focus-within,
+  body.article-page .header.header--faded:has(.is-open) {
     opacity: 1;
   }
 }
@@ -245,9 +273,129 @@ a:hover {
   align-items: center;
 }
 
-.header-nav a {
-  color: #fff;
+.header-nav {
+  display: flex;
+  align-items: center;
+}
+
+.header-nav a,
+.header-nav--toggle {
+  color: var(--color-white);
   margin-left: 1rem;
+}
+
+/* The dropdown of the original header: categories and the ways into the
+   archive, in a panel the full width of the page under the bar. */
+
+.header-nav--toggle {
+  font: inherit;
+  line-height: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.header-nav--toggle::after {
+  content: '';
+  display: inline-block;
+  width: 0.4em;
+  height: 0.4em;
+  margin-left: 0.45em;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-0.2em) rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+.header-nav--item__expands.is-open .header-nav--toggle::after {
+  transform: translateY(0.05em) rotate(-135deg);
+}
+
+.header-nav--toggle:focus-visible,
+.header-menu a:focus-visible {
+  outline: 2px solid var(--color-white);
+  outline-offset: 2px;
+}
+
+.header-menu {
+  display: none;
+}
+
+.header-nav--item__expands.is-open .header-menu {
+  display: block;
+}
+
+.header-menu ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.header-menu a {
+  margin: 0;
+}
+
+.header-menu--title {
+  margin: 0 0 0.75rem;
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: var(--color-primary-light);
+}
+
+@media (min-width: 769px) {
+  /* Stretched over the height of the bar, so the pointer does not drop out
+     of the item, and the panel with it, on its way down. */
+  .header-nav--toggle {
+    padding: 1.25rem 0;
+    margin-top: -1.25rem;
+    margin-bottom: -1.25rem;
+  }
+
+  .header-nav--item__expands:hover .header-menu {
+    display: block;
+  }
+
+  .header-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--color-primary);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  .header-menu--wrapper {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 2rem;
+    max-width: 1920px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem 3rem;
+  }
+
+  .header-menu--slogan {
+    margin: 0;
+    color: var(--color-white);
+    font-size: 1.35rem;
+    line-height: 1.4;
+  }
+
+  .header-menu--column {
+    border-left: 1px solid rgba(255, 255, 255, 0.25);
+    padding-left: 2rem;
+  }
+
+  .header-menu--column__categories ul {
+    columns: 2;
+    column-gap: 2rem;
+  }
+
+  .header-menu li {
+    break-inside: avoid;
+    margin-bottom: 0.4rem;
+    line-height: 1.4;
+  }
 }
 
 .header-hamburger {
@@ -266,7 +414,7 @@ a:hover {
 .header-hamburger span {
   width: 2rem;
   height: 0.25rem;
-  background: #fff;
+  background: var(--color-white);
   border-radius: 10px;
   transition: all 0.3s linear;
   position: relative;
@@ -307,21 +455,57 @@ a:hover {
     display: flex;
   }
 
-  .header-nav a {
+  .header-nav {
+    align-items: stretch;
+    /* The accordion can outgrow a short screen. */
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+  }
+
+  .header-nav a,
+  .header-nav--toggle {
     margin: 0.5rem 0;
     font-size: 1.2rem;
+    text-align: left;
+  }
+
+  .header-menu--slogan {
+    display: none;
+  }
+
+  .header-menu {
+    padding: 0 0 0.5rem 1rem;
+    border-left: 2px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .header-menu--column {
+    margin-top: 0.75rem;
+  }
+
+  .header-menu--title {
+    margin-bottom: 0.25rem;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .header-menu a {
+    display: block;
+    margin: 0;
+    padding: 0.3rem 0;
+    font-size: 1rem;
   }
 }
 
 .header-logo--title {
   font-size: 1.5rem;
-  color: #ffffff;
+  color: var(--color-white);
   margin: 0
 }
 
 .header-logo--title a,
 .header-logo--title a:visited {
-  color: #ffffff;
+  color: var(--color-white);
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
@@ -360,10 +544,16 @@ body.home-page {
 }
 
 .categories-section {
-  margin: 4rem auto;
+  margin: 1rem auto 2rem;
   max-width: 1920px;
   padding: 2rem;
   text-align: center;
+}
+
+@media (min-width: 768px) {
+  .categories-section {
+    margin: 4rem auto;
+  }
 }
 
 .categories-section-title {
@@ -371,6 +561,42 @@ body.home-page {
   font-size: 2.5rem;
   font-weight: bold;
   margin-bottom: 2rem;
+}
+
+/* The search on the home page, under the categories heading. Its results
+   replace the tiles, as ordinary article cards. */
+
+.home-search {
+  max-width: 36rem;
+  margin: 0 auto 1rem;
+}
+
+.home-search--input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.85rem 1rem 0.85rem 3rem;
+  font: inherit;
+  font-size: 1.1rem;
+  color: var(--color-grey-800);
+  border: 2px solid var(--color-primary-60);
+  border-radius: 2rem;
+  background: var(--color-white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23423780' stroke-width='2.5' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='6.5'/%3E%3Cpath d='M15.5 15.5 21 21'/%3E%3C/svg%3E") no-repeat 1.1rem center / 1.25rem;
+}
+
+.home-search--input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-60);
+}
+
+.home-search--status {
+  min-height: 1.6em;
+  margin: 0 0 2rem;
+  color: var(--color-grey-600);
+}
+
+.home-search--results {
+  text-align: left;
 }
 
 /* Pages */
@@ -405,13 +631,30 @@ body.article-page .main-container {
   margin-top: 1.5rem;
 }
 
-.article-gallery--media .responsive-image {
+.article-gallery--media .article-gallery--photo {
   border-radius: 4px;
+  /* Stacked reading order below the deck: the photo keeps the shape the
+     old background-image gave it. */
+  aspect-ratio: 3 / 2;
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+}
+
+.article-gallery--video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 4px;
+  background-color: var(--color-black);
 }
 
 @media (min-width: 1280px) {
   body.article-page {
-    background-color: #000;
+    background-color: var(--color-black);
     overflow: hidden;
   }
 
@@ -429,7 +672,7 @@ body.article-page .main-container {
 }
 
 .article-header {
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--color-grey-200);
   margin-bottom: 2rem;
   padding-bottom: 0.5rem;
   width: 100%;
@@ -444,19 +687,19 @@ body.article-page .main-container {
 
 @media (min-width: 1280px) {
   .article-title {
-    color: #ddd;
+    color: var(--color-grey-300);
   }
 }
 
 .article-date {
   display: inline-block;
   font-size: 0.95rem;
-  color: #999;
+  color: var(--color-grey-500);
   font-style: italic;
 }
 
 .article-location {
-  color: #999;
+  color: var(--color-grey-500);
   display: inline-block;
   font-size: 0.95rem;
 }
@@ -473,7 +716,7 @@ body.article-page .main-container {
 
 @media (min-width: 1280px) {
   .article-body {
-    color: #ddd;
+    color: var(--color-grey-300);
     margin-bottom: 0;
   }
 }
@@ -512,7 +755,7 @@ body.article-page .main-container {
     margin-top: 0;
   }
 
-  .article-gallery--media .responsive-image {
+  .article-gallery--media .article-gallery--photo {
     border-radius: 0;
   }
 
@@ -555,14 +798,14 @@ body.article-page .main-container {
   }
 
   .article-gallery--intro a {
-    color: #fff;
+    color: var(--color-white);
     text-decoration: underline;
     text-decoration-color: rgba(255, 255, 255, 0.5);
     text-underline-offset: 2px;
   }
 
   .article-gallery--intro a:hover {
-    text-decoration-color: #fff;
+    text-decoration-color: var(--color-white);
   }
 
   .article-gallery--media {
@@ -572,29 +815,37 @@ body.article-page .main-container {
     justify-content: center;
   }
 
-  .article-gallery--media .responsive-image {
+  .article-gallery--media .article-gallery--photo {
+    /* On the deck the slide is the viewport: the photo is as tall as it is
+       allowed and shown whole, letterboxed, rather than cropped. */
     height: 90vh;
-    padding-top: 0;
     width: 100%;
     max-width: 1920px;
-    background-size: contain;
+    aspect-ratio: auto;
+    object-fit: contain;
+  }
+
+  /* As large as the slide allows while staying 16:9. */
+  .article-gallery--media .article-gallery--video {
+    width: min(100%, 1920px, 90vh * 16 / 9);
+    border-radius: 0;
   }
 
 
   .article-header {
     border-bottom: none;
     margin-bottom: 2rem;
-    color: #fff;
+    color: var(--color-white);
   }
 
   .article-title {
-    color: #fff !important;
+    color: var(--color-white) !important;
     font-size: 4rem;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
   }
 
   .article-body {
-    color: #fff !important;
+    color: var(--color-white) !important;
     text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
   }
 
@@ -631,7 +882,7 @@ body.article-page .main-container {
   }
 
   .slides-nav-dot:focus-visible {
-    outline: 2px solid #fff;
+    outline: 2px solid var(--color-white);
     outline-offset: 3px;
   }
 
@@ -641,7 +892,7 @@ body.article-page .main-container {
   }
 
   .slides-nav-dot.active {
-    background-color: #6366f1;
+    background-color: var(--color-white);
     border-color: rgba(255, 255, 255, 0.5);
     transform: scale(1.3);
   }
@@ -749,13 +1000,13 @@ body.article-page .main-container {
 .article-card--location {
   display: block;
   font-size: 0.85rem;
-  color: #999;
+  color: var(--color-grey-500);
 }
 
 .article-card--date {
   display: block;
   font-size: 0.85rem;
-  color: #999;
+  color: var(--color-grey-500);
 }
 
 /* Pagination */
@@ -763,7 +1014,7 @@ body.article-page .main-container {
 .pagination {
   margin: 3rem 0;
   padding: 2rem 0;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--color-grey-200);
 }
 
 .pagination-links {
@@ -777,7 +1028,7 @@ body.article-page .main-container {
   display: inline-block;
   padding: 0.75rem 1.5rem;
   background-color: var(--color-primary);
-  color: #fff;
+  color: var(--color-white);
   border-radius: 4px;
   text-decoration: none;
   transition: background-color 0.2s ease;
@@ -789,7 +1040,7 @@ body.article-page .main-container {
 }
 
 .pagination-info {
-  color: #666;
+  color: var(--color-grey-600);
   font-size: 0.9rem;
 }
 
@@ -873,12 +1124,12 @@ body.article-page .main-container {
   margin: 0 auto;
   z-index: 2;
   padding: 2.5rem 1.25rem 1.25rem;
-  color: #fff;
+  color: var(--color-white);
   background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
 }
 
 .latest-article--title {
-  color: #fff;
+  color: var(--color-white);
   font-size: 1.2rem;
   font-weight: bold;
   text-transform: uppercase;
@@ -954,8 +1205,8 @@ body.article-page .main-container {
   width: 1.25rem;
   height: 1.25rem;
   margin: 0 auto;
-  border-top: 3px solid #fff;
-  border-right: 3px solid #fff;
+  border-top: 3px solid var(--color-white);
+  border-right: 3px solid var(--color-white);
 }
 
 .latest-articles--arrow__prev {
@@ -975,7 +1226,7 @@ body.article-page .main-container {
 }
 
 .latest-articles--arrow:focus-visible {
-  outline: 2px solid #fff;
+  outline: 2px solid var(--color-white);
 }
 
 @media (min-width: 768px) {
@@ -1034,7 +1285,7 @@ body.article-page .main-container {
 .home-books--lead {
   margin: 0 auto 2rem;
   max-width: 44rem;
-  color: #666;
+  color: var(--color-grey-600);
 }
 
 .home-books--list {
@@ -1094,16 +1345,24 @@ body.article-page .main-container {
 
 .books-index--summary {
   margin: 0;
-  color: #666;
+  color: var(--color-grey-600);
 }
 
 /* Localities Section */
 
 .localities-section {
   background-color: var(--color-primary-60);
-  padding: 3rem 8rem;
+  /* The wide side padding only from the desktop up: on a phone it left the
+     list a column 130px wide. */
+  padding: 3rem 2rem;
   position: relative;
   margin-bottom: 2rem;
+}
+
+@media (min-width: 1280px) {
+  .localities-section {
+    padding: 3rem 8rem;
+  }
 }
 
 .localities-container {
@@ -1114,7 +1373,7 @@ body.article-page .main-container {
 }
 
 .localities-title {
-  color: #fff;
+  color: var(--color-white);
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 2rem;
@@ -1147,7 +1406,7 @@ body.article-page .main-container {
 }
 
 .locality-link {
-  color: #fff;
+  color: var(--color-white);
   font-size: 0.95rem;
   text-decoration: none;
   transition: color 0.2s ease;
@@ -1188,7 +1447,8 @@ body.article-page .main-container {
 }
 
 .page-prose a,
-.page-section a {
+.page-section a,
+.home-books--lead a {
   color: var(--color-primary);
   text-decoration: underline;
   text-decoration-color: var(--color-primary-60);
@@ -1196,14 +1456,15 @@ body.article-page .main-container {
 }
 
 .page-prose a:hover,
-.page-section a:hover {
+.page-section a:hover,
+.home-books--lead a:hover {
   text-decoration-color: var(--color-primary);
 }
 
 .page-lead {
   font-size: 1.25rem;
   line-height: 1.5;
-  color: #333;
+  color: var(--color-grey-800);
 }
 
 .page-section--title {
@@ -1227,7 +1488,7 @@ body.article-page .main-container {
 
 .page-list li {
   margin-bottom: 0.5rem;
-  color: #555;
+  color: var(--color-grey-700);
 }
 
 .page-banner,
@@ -1244,7 +1505,7 @@ body.article-page .main-container {
 /* Timeline */
 
 .timeline {
-  border-left: 2px solid #e5e5e5;
+  border-left: 2px solid var(--color-grey-200);
   padding-left: 1.5rem;
 }
 
@@ -1268,7 +1529,7 @@ body.article-page .main-container {
   width: 14px;
   height: 14px;
   left: calc(-1.5rem - 8px);
-  background-color: #fff;
+  background-color: var(--color-white);
   border: 3px solid var(--color-primary);
 }
 
@@ -1316,13 +1577,13 @@ body.article-page .main-container {
 
 .press-list li {
   padding: 0.625rem 0;
-  border-bottom: 1px solid #eee;
-  color: #555;
+  border-bottom: 1px solid var(--color-grey-200);
+  color: var(--color-grey-700);
 }
 
 .press-list--archived {
   font-size: 0.8125rem;
-  color: #999;
+  color: var(--color-grey-500);
   white-space: nowrap;
 }
 
@@ -1330,7 +1591,7 @@ body.article-page .main-container {
   display: inline-block;
   min-width: 6.5rem;
   font-variant-numeric: tabular-nums;
-  color: #999;
+  color: var(--color-grey-500);
   font-size: 0.875rem;
 }
 
@@ -1364,7 +1625,7 @@ body.article-page .main-container {
   column-gap: 2rem;
   font-size: 0.8125rem;
   line-height: 1.35;
-  color: #777;
+  color: var(--color-grey-500);
 }
 
 .backers--names li {
@@ -1379,7 +1640,7 @@ body.article-page .main-container {
 }
 
 .backers--names li::marker {
-  color: #c4c4c4;
+  color: var(--color-grey-400);
   font-size: 0.7em;
 }
 
@@ -1387,7 +1648,7 @@ body.article-page .main-container {
 
 .footer {
   background-color: var(--color-primary);
-  color: #fff;
+  color: var(--color-white);
   padding: 3rem 2rem 2rem;
   margin-top: 4rem;
 }
@@ -1402,7 +1663,7 @@ body.article-page .main-container {
 }
 
 .footer a:hover {
-  color: #fff;
+  color: var(--color-white);
 }
 
 .footer-sitemap {
@@ -1458,7 +1719,7 @@ body.article-page .main-container {
 }
 
 .footer-social a:hover svg {
-  fill: #fff;
+  fill: var(--color-white);
 }
 
 .footer-social--name {
@@ -1482,6 +1743,13 @@ body.article-page .main-container {
 .footer-credits--byline {
   color: rgba(255, 255, 255, 0.78);
   margin-bottom: 0.5rem;
+}
+
+/* Links inside a sentence need more than a change of shade to be found. */
+.footer-credits--byline a {
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.5);
+  text-underline-offset: 2px;
 }
 
 .footer-credits--legal {
@@ -1590,13 +1858,13 @@ body.article-page .main-container {
 
 /* The intro is pulled up over the opening photo, fading into it. */
 .article-tradition__intro {
-  background-color: #000;
-  color: #fff;
+  background-color: var(--color-black);
+  color: var(--color-white);
   padding: 1rem 0;
 }
 
 .article-tradition__title {
-  color: #fff;
+  color: var(--color-white);
   text-transform: uppercase;
   font-size: 1.8rem;
   margin-bottom: 0;
@@ -1614,7 +1882,7 @@ body.article-page .main-container {
 }
 
 .article-tradition__body {
-  color: #555;
+  color: var(--color-grey-700);
   font-weight: 300;
   margin-top: 2rem;
 }
@@ -1643,23 +1911,23 @@ body.article-page .main-container {
 
 .article-tradition__quote::before {
   content: "«";
-  color: #ccc;
+  color: var(--color-grey-400);
 }
 
 .article-tradition__quote::after {
   content: "»";
-  color: #ccc;
+  color: var(--color-grey-400);
 }
 
 .article-tradition__question {
   font-style: italic;
   font-size: 1.2rem;
-  color: #333;
+  color: var(--color-grey-800);
 }
 
 .article-tradition__border {
-  border-top: 1px solid #efefef;
-  border-bottom: 1px solid #ddd;
+  border-top: 1px solid var(--color-grey-200);
+  border-bottom: 1px solid var(--color-grey-300);
 }
 
 .article-tradition__separator {
@@ -1673,8 +1941,8 @@ body.article-page .main-container {
 
 .article-tradition__closing-text,
 .article-tradition__full-image-with-text-text {
-  background-color: #333;
-  color: #fff;
+  background-color: var(--color-grey-800);
+  color: var(--color-white);
   padding-top: 1rem;
 }
 
@@ -1684,7 +1952,7 @@ body.article-page .main-container {
 .article-tradition__closing-text strong,
 .article-tradition__full-image-with-text-text p,
 .article-tradition__full-image-with-text-text strong {
-  color: #fff;
+  color: var(--color-white);
 }
 
 .article-tradition__closing .responsive-image {
@@ -1727,7 +1995,7 @@ body.article-page .main-container {
 
   .article-tradition__full-image-with-text-text {
     background: linear-gradient(to bottom, rgba(17, 17, 17, 1) 0%, rgba(17, 17, 17, 1) 50%, rgba(17, 17, 17, 0.6) 80%, transparent 100%);
-    color: #fff;
+    color: var(--color-white);
     padding-top: 4rem;
     position: absolute;
     top: 0;
@@ -1785,7 +2053,7 @@ body.article-page .main-container {
 /* Closing block of an article */
 
 .article-extra {
-  background-color: #fff;
+  background-color: var(--color-white);
   width: 100%;
 }
 
@@ -1808,7 +2076,7 @@ body.article-page .main-container {
 }
 
 .extra-block--notice {
-  background-color: #f6f6f9;
+  background-color: var(--color-grey-100);
   border-left: 3px solid var(--color-primary-60);
   padding: 1rem 1.25rem;
 }
@@ -1817,13 +2085,13 @@ body.article-page .main-container {
   height: 20rem;
   border-radius: 4px;
   margin-bottom: 1rem;
-  background-color: #eee;
+  background-color: var(--color-grey-200);
 }
 
 .button {
   display: inline-block;
   background-color: var(--color-primary);
-  color: #fff;
+  color: var(--color-white);
   padding: 0.5rem 1.125rem;
   border-radius: 4px;
   font-size: 0.9375rem;
@@ -1831,7 +2099,7 @@ body.article-page .main-container {
 
 .button:hover {
   background-color: var(--color-primary-75);
-  color: #fff;
+  color: var(--color-white);
   text-decoration: none;
 }
 
@@ -1842,7 +2110,7 @@ body.article-page .main-container {
     height: auto;
     min-height: 100vh;
     overflow-y: auto;
-    background-color: #fff;
+    background-color: var(--color-white);
     display: flex;
     flex-direction: column;
   }
@@ -1898,7 +2166,7 @@ body.locality-page .main-container {
      below the first breakpoint. */
   height: 31.25rem;
   margin: 2rem 0;
-  background-color: #eee;
+  background-color: var(--color-grey-200);
 }
 
 @media (max-width: 768px) {
@@ -1907,12 +2175,138 @@ body.locality-page .main-container {
   }
 }
 
+/* The localities index: the home list, on paper instead of over the map. */
+
+.localities-lead {
+  max-width: 52rem;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+}
+
+.localities-list__plain {
+  margin-bottom: 4rem;
+}
+
+.localities-list__plain .locality-link {
+  color: var(--color-grey-700);
+}
+
+.localities-list__plain a.locality-link {
+  color: var(--color-primary);
+}
+
+.localities-list__plain a.locality-link:hover {
+  text-decoration: underline;
+}
+
+/* The regions index: one block per region, its municipalities under it. */
+
+.regions-lead {
+  max-width: 52rem;
+  margin-bottom: 3rem;
+}
+
+.regions-index {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  gap: 2.5rem 2rem;
+  margin: 0 0 4rem;
+  padding: 0;
+  list-style: none;
+}
+
+.regions-index--item {
+  border-top: 3px solid var(--color-primary);
+  padding-top: 1rem;
+}
+
+.regions-index--title {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.regions-index--title a {
+  color: var(--color-primary);
+}
+
+.regions-index--count {
+  margin: 0.25rem 0 1rem;
+  color: var(--color-grey-600);
+  font-size: 0.95rem;
+}
+
+.regions-index--localities {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--color-grey-700);
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+.regions-index--localities a {
+  color: var(--color-primary);
+}
+
+/* The explorer map: two filters over a map that takes most of the screen,
+   as the original's full-height one did. */
+
+.explorer-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1rem 1.5rem;
+}
+
+.explorer-filters--field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1 1 16rem;
+  min-width: 0;
+  max-width: 24rem;
+}
+
+.explorer-filters--field label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.explorer-filters--field select {
+  /* A long category name would otherwise widen the field past the screen. */
+  width: 100%;
+  min-width: 0;
+  font: inherit;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-grey-400);
+  border-radius: 4px;
+  background-color: var(--color-white);
+  color: var(--color-grey-800);
+}
+
+.explorer-filters--field select:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
+}
+
+.explorer-filters--status {
+  margin: 0 0 0.5rem;
+  color: var(--color-grey-600);
+  font-size: 0.95rem;
+}
+
+.locality-map.explorer-map {
+  height: 75vh;
+  min-height: 24rem;
+}
+
 /* The marker popups: the teaser photo with the title under it, the whole
    thing a link. */
 
 .leaflet-popup-content a {
   display: block;
-  color: #333;
+  color: var(--color-grey-800);
 }
 
 .leaflet-popup-content img {

@@ -4,12 +4,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="statics-host" content="https://lmjstatic.deliriumcoder.com">
-  <title>Jódar – Mythical Places of Jaén</title><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script><link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" integrity="sha256-YU3qCpj/P06tdPBJGPax0bm6Q1wltfwjsho5TR4+TYc=" crossorigin="">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" integrity="sha256-YSWCMtmNZNwqex4CEw1nQhvFub2lmU7vcCKP+XVwwXA=" crossorigin="">
-  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" integrity="sha256-Hk4dIpcqOSb0hZjgyvFOP+cEmDXUKKNE/tT542ZbNQg=" crossorigin=""></script><link rel="stylesheet" href="/css/styles.css?v=1792957777012">
-  <script src="/js/hamburger-menu.js?v=1792957777012" defer></script>
-  <script src="/js/article-slides.js?v=1792957777012" defer></script><script src="/js/locality-map.js?v=1792957777012" defer></script></head>
+  <title>Jódar – Mythical Places of Jaén</title><link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#423780">
+  <meta name="description" content="An archive of 164 articles on the legendary places and the heritage of the province of Jaén, published between 2013 and 2018.">
+  <link rel="canonical" href="https://new.lugaresmiticosdejaen.com/en/localities/jodar/">
+  <link rel="alternate" hreflang="en" href="https://new.lugaresmiticosdejaen.com/en/localities/jodar/">
+  <link rel="alternate" hreflang="es" href="https://new.lugaresmiticosdejaen.com/es/localities/jodar/">
+  <meta property="og:site_name" content="Mythical Places of Jaén">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:url" content="https://new.lugaresmiticosdejaen.com/en/localities/jodar/">
+  <meta property="og:title" content="Jódar – Mythical Places of Jaén">
+  <meta property="og:description" content="An archive of 164 articles on the legendary places and the heritage of the province of Jaén, published between 2013 and 2018.">
+  <meta property="og:type" content="website"><link rel="stylesheet" href="/vendor/leaflet/leaflet.css?v=1.9.4">
+  <script src="/vendor/leaflet/leaflet.js?v=1.9.4" defer></script><link rel="stylesheet" href="/vendor/leaflet.markercluster/MarkerCluster.css?v=1.5.3">
+  <link rel="stylesheet" href="/vendor/leaflet.markercluster/MarkerCluster.Default.css?v=1.5.3">
+  <script src="/vendor/leaflet.markercluster/leaflet.markercluster.js?v=1.5.3" defer></script><link rel="stylesheet" href="/css/styles.css?v=1792966298135">
+  <script src="/js/hamburger-menu.js?v=1792966298135" defer></script>
+  <script src="/js/header-menu.js?v=1792966298135" defer></script>
+  <script src="/js/article-slides.js?v=1792966298135" defer></script><script src="/js/locality-map.js?v=1792966298135" defer></script></head>
 
 <body class="locality-page">
   <div id="header" class="header">
@@ -31,7 +46,39 @@
       </button>
       <nav class="header-nav" id="header-nav">
         <a href="/en/">Home</a>
-        <a href="/en/articles/">Articles</a>
+        <div class="header-nav--item header-nav--item__expands">
+          <button type="button" class="header-nav--toggle" aria-expanded="false" aria-controls="header-menu-discover">Discover Jaén</button>
+          <div class="header-menu" id="header-menu-discover">
+            <div class="header-menu--wrapper">
+              <p class="header-menu--slogan">Here you can find several ways to discover the province of Jaén.</p>
+              <div class="header-menu--column header-menu--column__categories">
+                <h2 class="header-menu--title">Categories</h2>
+                <ul>
+                  <li><a href="/en/categories/nature/">Nature</a></li>
+                  <li><a href="/en/categories/monuments/">Monuments</a></li>
+                  <li><a href="/en/categories/traditional-business/">Traditional Business</a></li>
+                  <li><a href="/en/categories/iberians/">Iberians</a></li>
+                  <li><a href="/en/categories/sierras-cazorla-segura-villas-natural-park/">Sierras de Cazorla, Segura y Las Villas Natural Park</a></li>
+                  <li><a href="/en/categories/sierra-magina-natural-park/">Sierra Mágina Natural Park</a></li>
+                  <li><a href="/en/categories/sierra-sur/">Sierra Sur</a></li>
+                  <li><a href="/en/categories/castles-and-fortresses/">Castles and Fortresses</a></li>
+                  <li><a href="/en/categories/despenaperros-natural-park/">Despeñaperros Natural Park</a></li>
+                  <li><a href="/en/categories/sierra-andujar-natural-park/">Sierra de Andujar Natural Park</a></li>
+                  <li><a href="/en/categories/crafts/">Crafts</a></li>
+                </ul>
+              </div>
+              <div class="header-menu--column">
+                <h2 class="header-menu--title">Archive</h2>
+                <ul>
+                  <li><a href="/en/articles/">All articles</a></li>
+                  <li><a href="/en/localities/">Municipalities</a></li>
+                  <li><a href="/en/regions/">Regions</a></li>
+                  <li><a href="/en/localities/map/">Map</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
         <a href="/en/about-us">The project</a>
         <a href="/en/the-books/">The books</a>
       </nav>
@@ -61,7 +108,6 @@
              sizes="(min-width: 1120px) 25vw, (min-width: 640px) 33vw, (min-width: 480px) 50vw, 100vw"
              width="640" height="480"
              alt="El Huerto de la Cora"
-             loading="lazy"
              fetchpriority="high"
              decoding="async">
         <div class="article-card--content">
@@ -99,6 +145,8 @@
           <li><a href="/en/categories/sierra-andujar-natural-park/">Sierra de Andujar Natural Park</a></li>
           <li><a href="/en/categories/crafts/">Crafts</a></li>
           <li><a href="/en/articles/">All articles</a></li>
+          <li><a href="/en/localities/">Municipalities</a></li>
+          <li><a href="/en/localities/map/">Map</a></li>
         </ul>
       </div>
 
@@ -114,6 +162,7 @@
           <li><a href="/en/regions/sierra-magina/">Sierra Magina</a></li>
           <li><a href="/en/regions/sierra-norte/">Sierra Norte</a></li>
           <li><a href="/en/regions/sierra-sur/">Sierra Sur</a></li>
+          <li><a href="/en/regions/">All regions</a></li>
         </ul>
       </div>
 
@@ -135,7 +184,7 @@
           <span>English</span>
         </li>
         <li class="footer-languages--item">
-          <a href="/es/">Español</a>
+          <a href="/es/localities/jodar/" hreflang="es" lang="es">Español</a>
         </li>
       </ul>
 

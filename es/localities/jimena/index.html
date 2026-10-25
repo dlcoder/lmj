@@ -1,15 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="statics-host" content="https://lmjstatic.deliriumcoder.com">
-  <title>Jimena – Lugares míticos de Jaén</title><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script><link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" integrity="sha256-YU3qCpj/P06tdPBJGPax0bm6Q1wltfwjsho5TR4+TYc=" crossorigin="">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" integrity="sha256-YSWCMtmNZNwqex4CEw1nQhvFub2lmU7vcCKP+XVwwXA=" crossorigin="">
-  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js" integrity="sha256-Hk4dIpcqOSb0hZjgyvFOP+cEmDXUKKNE/tT542ZbNQg=" crossorigin=""></script><link rel="stylesheet" href="/css/styles.css?v=1792957777012">
-  <script src="/js/hamburger-menu.js?v=1792957777012" defer></script>
-  <script src="/js/article-slides.js?v=1792957777012" defer></script><script src="/js/locality-map.js?v=1792957777012" defer></script></head>
+  <title>Jimena – Lugares míticos de Jaén</title><link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#423780">
+  <meta name="description" content="Archivo de 164 reportajes sobre los lugares míticos y el patrimonio de la provincia de Jaén, publicados entre 2013 y 2018.">
+  <link rel="canonical" href="https://new.lugaresmiticosdejaen.com/es/localities/jimena/">
+  <link rel="alternate" hreflang="es" href="https://new.lugaresmiticosdejaen.com/es/localities/jimena/">
+  <link rel="alternate" hreflang="en" href="https://new.lugaresmiticosdejaen.com/en/localities/jimena/">
+  <meta property="og:site_name" content="Lugares míticos de Jaén">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:url" content="https://new.lugaresmiticosdejaen.com/es/localities/jimena/">
+  <meta property="og:title" content="Jimena – Lugares míticos de Jaén">
+  <meta property="og:description" content="Archivo de 164 reportajes sobre los lugares míticos y el patrimonio de la provincia de Jaén, publicados entre 2013 y 2018.">
+  <meta property="og:type" content="website"><link rel="stylesheet" href="/vendor/leaflet/leaflet.css?v=1.9.4">
+  <script src="/vendor/leaflet/leaflet.js?v=1.9.4" defer></script><link rel="stylesheet" href="/vendor/leaflet.markercluster/MarkerCluster.css?v=1.5.3">
+  <link rel="stylesheet" href="/vendor/leaflet.markercluster/MarkerCluster.Default.css?v=1.5.3">
+  <script src="/vendor/leaflet.markercluster/leaflet.markercluster.js?v=1.5.3" defer></script><link rel="stylesheet" href="/css/styles.css?v=1792966298135">
+  <script src="/js/hamburger-menu.js?v=1792966298135" defer></script>
+  <script src="/js/header-menu.js?v=1792966298135" defer></script>
+  <script src="/js/article-slides.js?v=1792966298135" defer></script><script src="/js/locality-map.js?v=1792966298135" defer></script></head>
 
 <body class="locality-page">
   <div id="header" class="header">
@@ -31,7 +46,39 @@
       </button>
       <nav class="header-nav" id="header-nav">
         <a href="/es/">Inicio</a>
-        <a href="/es/articles/">Artículos</a>
+        <div class="header-nav--item header-nav--item__expands">
+          <button type="button" class="header-nav--toggle" aria-expanded="false" aria-controls="header-menu-discover">Descubre Jaén</button>
+          <div class="header-menu" id="header-menu-discover">
+            <div class="header-menu--wrapper">
+              <p class="header-menu--slogan">Aquí te presentamos distintas formas de descubrir la provincia de Jaén.</p>
+              <div class="header-menu--column header-menu--column__categories">
+                <h2 class="header-menu--title">Categorías</h2>
+                <ul>
+                  <li><a href="/es/categories/naturaleza/">Naturaleza</a></li>
+                  <li><a href="/es/categories/patrimonio-monumental/">Patrimonio monumental</a></li>
+                  <li><a href="/es/categories/negocio-tradicional/">Negocio tradicional</a></li>
+                  <li><a href="/es/categories/los-iberos/">Los Íberos</a></li>
+                  <li><a href="/es/categories/parque-natural-sierras-cazorla-segura-villas/">Parque Natural de las Sierras de Cazorla, Segura y Las Villas</a></li>
+                  <li><a href="/es/categories/parque-natural-sierra-magina/">Parque Natural de Sierra Mágina</a></li>
+                  <li><a href="/es/categories/sierra-sur/">Sierra Sur</a></li>
+                  <li><a href="/es/categories/castillos-y-fortalezas/">Castillos y Fortalezas</a></li>
+                  <li><a href="/es/categories/parque-natural-despenaperros/">Parque Natural de Despeñaperros</a></li>
+                  <li><a href="/es/categories/parque-natural-sierra-andujar/">Parque Natural Sierra de Andujar</a></li>
+                  <li><a href="/es/categories/oficios-tradicionales/">Oficios tradicionales</a></li>
+                </ul>
+              </div>
+              <div class="header-menu--column">
+                <h2 class="header-menu--title">Archivo</h2>
+                <ul>
+                  <li><a href="/es/articles/">Todos los artículos</a></li>
+                  <li><a href="/es/localities/">Municipios</a></li>
+                  <li><a href="/es/regions/">Comarcas</a></li>
+                  <li><a href="/es/localities/map/">Mapa</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
         <a href="/es/acerca-de">El proyecto</a>
         <a href="/es/los-libros/">Los libros</a>
       </nav>
@@ -61,7 +108,6 @@
              sizes="(min-width: 1120px) 25vw, (min-width: 640px) 33vw, (min-width: 480px) 50vw, 100vw"
              width="640" height="480"
              alt="El Pinar de Cánavas"
-             loading="lazy"
              fetchpriority="high"
              decoding="async">
         <div class="article-card--content">
@@ -83,7 +129,6 @@
              width="640" height="480"
              alt="Los Caracoles"
              loading="lazy"
-             
              decoding="async">
         <div class="article-card--content">
           <h2 class="article-card--title">Los Caracoles</h2>
@@ -104,7 +149,6 @@
              width="640" height="480"
              alt="Cueva de la Graja"
              loading="lazy"
-             
              decoding="async">
         <div class="article-card--content">
           <h2 class="article-card--title">Cueva de la Graja</h2>
@@ -141,6 +185,8 @@
           <li><a href="/es/categories/parque-natural-sierra-andujar/">Parque Natural Sierra de Andujar</a></li>
           <li><a href="/es/categories/oficios-tradicionales/">Oficios tradicionales</a></li>
           <li><a href="/es/articles/">Todos los artículos</a></li>
+          <li><a href="/es/localities/">Municipios</a></li>
+          <li><a href="/es/localities/map/">Mapa</a></li>
         </ul>
       </div>
 
@@ -156,6 +202,7 @@
           <li><a href="/es/regions/sierra-magina/">Sierra Magina</a></li>
           <li><a href="/es/regions/sierra-norte/">Sierra Norte</a></li>
           <li><a href="/es/regions/sierra-sur/">Sierra Sur</a></li>
+          <li><a href="/es/regions/">Todas las comarcas</a></li>
         </ul>
       </div>
 
@@ -177,7 +224,7 @@
           <span>Español</span>
         </li>
         <li class="footer-languages--item">
-          <a href="/en/">English</a>
+          <a href="/en/localities/jimena/" hreflang="en" lang="en">English</a>
         </li>
       </ul>
 
