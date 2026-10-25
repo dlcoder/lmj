@@ -1,0 +1,31 @@
+{#- The original home page had a block for the second book. Both are shown
+    here, in the past tense: neither is on sale any more. -#}
+<section class="home-books">
+  <div class="home-books--container">
+    <h2 class="home-books--title">{{ i18n[locale].home.books }}</h2>
+    <p class="home-books--lead">{{ i18n[locale].home.booksLead }}</p>
+    <p class="home-books--lead">
+      {{ i18n[locale].home.booksContact }}
+      <a href="mailto:participa@lugaresmiticosdejaen.com">participa@lugaresmiticosdejaen.com</a>.
+    </p>
+
+    <ul class="home-books--list">
+      <li class="home-books--item">
+        <a href="/{{ locale }}/{{ i18n[locale].pages.book1 }}">
+          <img class="home-books--cover"
+               src="{% static_image '/files/book/libro-banner-1.jpg' %}"
+               alt="{{ i18n[locale].home.firstBookCover }}" loading="lazy">
+          <span class="home-books--caption">{{ i18n[locale].home.firstBook }}</span>
+        </a>
+      </li>
+      <li class="home-books--item">
+        <a href="/{{ locale }}/{{ i18n[locale].pages.book2 }}">
+          <img class="home-books--cover"
+               src="{% static_image '/files/book/libro-banner-2.jpg' %}"
+               alt="{{ i18n[locale].home.secondBookCover }}" loading="lazy">
+          <span class="home-books--caption">{{ i18n[locale].home.secondBook }}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>

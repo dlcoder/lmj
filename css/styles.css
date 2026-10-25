@@ -772,6 +772,59 @@ body.article-page .main-container {
   font-size: 0.9rem;
 }
 
+/* Books block (home) */
+
+.home-books {
+  margin: 4rem auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.home-books--container {
+  margin: 0 auto;
+  max-width: 900px;
+}
+
+.home-books--title {
+  color: var(--color-primary);
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.home-books--lead {
+  margin: 0 auto 2rem;
+  max-width: 44rem;
+  color: #666;
+}
+
+.home-books--list {
+  display: grid;
+  gap: 2.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.home-books--item a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.home-books--cover {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.home-books--caption {
+  display: block;
+  margin-top: 0.75rem;
+  font-weight: bold;
+  color: var(--color-primary);
+}
+
 /* Books index page */
 
 .books-index {
