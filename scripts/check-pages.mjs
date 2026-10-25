@@ -331,6 +331,31 @@ for (const spec of pages) {
       }
     }
 
+    // The header dropdown opens on hover where there is a pointer, and as an
+    // accordion inside the hamburger menu on a phone. Either way it has to
+    // end up on screen with every category and the four ways into the archive.
+    if (spec.name === 'index' && width !== NARROW) {
+      if (width === MOBILE) await page.locator('#hamburger-menu').click();
+      const toggle = page.locator('.header-nav--toggle');
+      if (width === MOBILE) await toggle.click();
+      else await toggle.hover();
+      await page.waitForTimeout(200);
+      const menu = await page.evaluate(() => {
+        const panel = document.getElementById('header-menu-discover');
+        const r = panel.getBoundingClientRect();
+        return {
+          shown: getComputedStyle(panel).display !== 'none' && r.height > 0,
+          links: panel.querySelectorAll('a').length,
+          right: Math.round(r.right),
+          viewport: document.documentElement.clientWidth
+        };
+      });
+
+      if (!menu.shown) fail(`header menu @${width}`, 'the Discover Jaén menu does not open');
+      else if (menu.links !== 15) fail(`header menu @${width}`, `${menu.links} links in the menu, expected 15`);
+      else if (menu.right > menu.viewport) fail(`header menu @${width}`, `the menu spills to ${menu.right}px`);
+    }
+
     // The explorer plots every geolocated article from the same-origin index
     // and narrows them in the browser. The status line counts what is on the
     // map, so a filter has to bring that number down and clearing it put it

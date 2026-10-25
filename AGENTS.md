@@ -83,6 +83,7 @@ npm run check-pages  # render the built pages in a browser and assert the layout
 ├── css/styles.css                    # Passthrough-copied to _site/css/
 ├── js/                               # Passthrough-copied to _site/js/
 │   ├── hamburger-menu.js
+│   ├── header-menu.js                # The Discover Jaén dropdown (click, Escape, mobile accordion)
 │   ├── article-slides.js             # Keyboard and dots for the article deck
 │   ├── article-map.js                # Leaflet map in the article closing block
 │   ├── latest-articles.js            # Home carousel

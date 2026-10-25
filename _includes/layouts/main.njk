@@ -22,6 +22,7 @@
   {%- endif -%}
   <link rel="stylesheet" href="/css/styles.css?v={{ timestamp }}">
   <script src="/js/hamburger-menu.js?v={{ timestamp }}" defer></script>
+  <script src="/js/header-menu.js?v={{ timestamp }}" defer></script>
   <script src="/js/article-slides.js?v={{ timestamp }}" defer></script>
   {%- if includeLocalitiesMap -%}
   <script src="/js/localities-map.js?v={{ timestamp }}" defer></script>
@@ -65,7 +66,36 @@
       </button>
       <nav class="header-nav" id="header-nav">
         <a href="/{{ locale }}/">{{ i18n[locale].nav.home }}</a>
-        <a href="/{{ locale }}/articles/">{{ i18n[locale].nav.articles }}</a>
+        {#- The site map of the original's header: categories and the ways
+            into the archive. It opens on hover and focus from the CSS alone,
+            so it works without the script; the script adds the click, the
+            Escape key and the accordion inside the mobile menu. -#}
+        {%- set menu = i18n[locale].menu %}
+        <div class="header-nav--item header-nav--item__expands">
+          <button type="button" class="header-nav--toggle" aria-expanded="false" aria-controls="header-menu-discover">{{ menu.discover }}</button>
+          <div class="header-menu" id="header-menu-discover">
+            <div class="header-menu--wrapper">
+              <p class="header-menu--slogan">{{ menu.discoverSlogan }}</p>
+              <div class="header-menu--column header-menu--column__categories">
+                <h2 class="header-menu--title">{{ menu.categories }}</h2>
+                <ul>
+                  {%- for category in categories_list[locale] %}
+                  <li><a href="/{{ locale }}/categories/{{ category.slug }}/">{{ category.name }}</a></li>
+                  {%- endfor %}
+                </ul>
+              </div>
+              <div class="header-menu--column">
+                <h2 class="header-menu--title">{{ menu.archive }}</h2>
+                <ul>
+                  <li><a href="/{{ locale }}/articles/">{{ i18n[locale].footer.allArticles }}</a></li>
+                  <li><a href="/{{ locale }}/localities/">{{ i18n[locale].footer.localities }}</a></li>
+                  <li><a href="/{{ locale }}/regions/">{{ i18n[locale].footer.allRegions }}</a></li>
+                  <li><a href="/{{ locale }}/localities/map/">{{ i18n[locale].footer.map }}</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
         <a href="/{{ locale }}/{{ i18n[locale].pages.project }}">{{ i18n[locale].nav.project }}</a>
         <a href="/{{ locale }}/{{ i18n[locale].pages.books }}">{{ i18n[locale].nav.books }}</a>
       </nav>

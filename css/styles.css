@@ -245,9 +245,129 @@ a:hover {
   align-items: center;
 }
 
-.header-nav a {
+.header-nav {
+  display: flex;
+  align-items: center;
+}
+
+.header-nav a,
+.header-nav--toggle {
   color: #fff;
   margin-left: 1rem;
+}
+
+/* The dropdown of the original header: categories and the ways into the
+   archive, in a panel the full width of the page under the bar. */
+
+.header-nav--toggle {
+  font: inherit;
+  line-height: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.header-nav--toggle::after {
+  content: '';
+  display: inline-block;
+  width: 0.4em;
+  height: 0.4em;
+  margin-left: 0.45em;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-0.2em) rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+.header-nav--item__expands.is-open .header-nav--toggle::after {
+  transform: translateY(0.05em) rotate(-135deg);
+}
+
+.header-nav--toggle:focus-visible,
+.header-menu a:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.header-menu {
+  display: none;
+}
+
+.header-nav--item__expands.is-open .header-menu {
+  display: block;
+}
+
+.header-menu ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.header-menu a {
+  margin: 0;
+}
+
+.header-menu--title {
+  margin: 0 0 0.75rem;
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: #c9c3ee;
+}
+
+@media (min-width: 769px) {
+  /* Stretched over the height of the bar, so the pointer does not drop out
+     of the item, and the panel with it, on its way down. */
+  .header-nav--toggle {
+    padding: 1.25rem 0;
+    margin-top: -1.25rem;
+    margin-bottom: -1.25rem;
+  }
+
+  .header-nav--item__expands:hover .header-menu {
+    display: block;
+  }
+
+  .header-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--color-primary);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  .header-menu--wrapper {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 2rem;
+    max-width: 1920px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem 3rem;
+  }
+
+  .header-menu--slogan {
+    margin: 0;
+    color: #fff;
+    font-size: 1.35rem;
+    line-height: 1.4;
+  }
+
+  .header-menu--column {
+    border-left: 1px solid rgba(255, 255, 255, 0.25);
+    padding-left: 2rem;
+  }
+
+  .header-menu--column__categories ul {
+    columns: 2;
+    column-gap: 2rem;
+  }
+
+  .header-menu li {
+    break-inside: avoid;
+    margin-bottom: 0.4rem;
+    line-height: 1.4;
+  }
 }
 
 .header-hamburger {
@@ -307,9 +427,45 @@ a:hover {
     display: flex;
   }
 
-  .header-nav a {
+  .header-nav {
+    align-items: stretch;
+    /* The accordion can outgrow a short screen. */
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+  }
+
+  .header-nav a,
+  .header-nav--toggle {
     margin: 0.5rem 0;
     font-size: 1.2rem;
+    text-align: left;
+  }
+
+  .header-menu--slogan {
+    display: none;
+  }
+
+  .header-menu {
+    padding: 0 0 0.5rem 1rem;
+    border-left: 2px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .header-menu--column {
+    margin-top: 0.75rem;
+  }
+
+  .header-menu--title {
+    margin-bottom: 0.25rem;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .header-menu a {
+    display: block;
+    margin: 0;
+    padding: 0.3rem 0;
+    font-size: 1rem;
   }
 }
 

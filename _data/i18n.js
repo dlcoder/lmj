@@ -43,9 +43,14 @@ export default {
       firstBookCover: "The first Lugares Míticos de Jaén book",
       secondBookCover: "The second Lugares Míticos de Jaén book"
     },
+    menu: {
+      discover: "Discover Jaén",
+      discoverSlogan: "Here you can find several ways to discover the province of Jaén.",
+      categories: "Categories",
+      archive: "Archive"
+    },
     nav: {
       home: "Home",
-      articles: "Articles",
       project: "The project",
       books: "The books"
     },
@@ -126,9 +131,14 @@ export default {
       firstBookCover: "El primer libro de Lugares Míticos de Jaén",
       secondBookCover: "El segundo libro de Lugares Míticos de Jaén"
     },
+    menu: {
+      discover: "Descubre Jaén",
+      discoverSlogan: "Aquí te presentamos distintas formas de descubrir la provincia de Jaén.",
+      categories: "Categorías",
+      archive: "Archivo"
+    },
     nav: {
       home: "Inicio",
-      articles: "Artículos",
       project: "El proyecto",
       books: "Los libros"
     },
