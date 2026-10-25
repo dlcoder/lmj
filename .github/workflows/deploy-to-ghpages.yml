@@ -31,6 +31,8 @@ jobs:
 
       - run: npm run check-pages
 
+      - run: npm run check-links
+
       - run: npm run build
         env:
           ELEVENTY_ENV: production

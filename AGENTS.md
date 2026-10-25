@@ -285,10 +285,14 @@ All images also have an `original` size available.
 
 ## Deployment
 
-`.github/workflows/deploy-to-ghpages.yml`: on every push to `main` it builds with
-`ELEVENTY_ENV=production` and publishes `_site/` to the GitHub Pages branch via
-`peaceiris/actions-gh-pages`, setting the domain from the `CNAME` file. Pull requests build
-but do not publish.
+`.github/workflows/deploy-to-ghpages.yml`: on every push to `main` it runs `validate`,
+`check-pages` and `check-links`, builds with `ELEVENTY_ENV=production` and publishes `_site/`
+to the GitHub Pages branch via `peaceiris/actions-gh-pages`. Pull requests run the checks but
+do not publish.
+
+The domain is written twice: in the `CNAME` file, which `SITE_URL` reads for canonical,
+`hreflang`, Open Graph and the sitemap, and in the workflow's `cname:` input, which is what
+GitHub Pages is told. Change both together.
 
 `.github/dependabot.yml` opens monthly pull requests for the actions and the npm dependencies,
 minor and patch grouped.
