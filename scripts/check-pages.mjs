@@ -28,6 +28,7 @@ const pages = [
   { name: 'locality',  url: '/es/localities/jaen/' },
   { name: 'localities', url: '/es/localities/' },
   { name: 'region',    url: '/es/regions/sierra-sur/' },
+  { name: 'regions',   url: '/es/regions/' },
   { name: 'static',    url: '/es/acerca-de' },
   { name: 'place',     url: '/es/articles/el-posito' },
   // The featured photo is the last medium here, not the first, which has

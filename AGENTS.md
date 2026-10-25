@@ -49,7 +49,7 @@ npm run check-pages  # render the built pages in a browser and assert the layout
 │   ├── all_pages.js                  # All page collections
 │   ├── categories_list.js            # Categories for the home page
 │   ├── localities_list.js            # Localities with article counts
-│   ├── regions_list.js               # Regions for the footer
+│   ├── regions_list.js               # Regions with their localities and counts
 │   ├── carousel_articles.js          # Compact index for the home carousel
 │   ├── articles_index.js             # GeoJSON index of geolocated articles
 │   └── i18n.js                       # Translation strings
@@ -62,6 +62,7 @@ npm run check-pages  # render the built pages in a browser and assert the layout
 │   ├── region.njk                    # Region index
 │   ├── locality.njk                  # Locality index
 │   ├── localities.njk                # Index of the 97 municipalities
+│   ├── regions.njk                   # Index of the 9 regions
 │   ├── articles_index.njk            # Writes `/{locale}/articles.json`
 │   └── pages/                        # Hand-written static pages (one per locale)
 ├── _includes/
@@ -170,6 +171,7 @@ All templates are unified and receive the language in the `locale` variable.
 | Region | `all_regions` | `/{locale}/regions/{slug}/`, `…/page/{n}/` | `src/region.njk` |
 | Locality | `all_localities` | `/{locale}/localities/{slug}/`, `…/page/{n}/` | `src/locality.njk` |
 | Localities index | `i18n` (one per locale) | `/{locale}/localities/` | `src/localities.njk` |
+| Regions index | `i18n` (one per locale) | `/{locale}/regions/` | `src/regions.njk` |
 | Articles index | `articles_index` | `/{locale}/articles.json` | `src/articles_index.njk` |
 
 All article lists are sorted by `published_at` in descending order (newest first).

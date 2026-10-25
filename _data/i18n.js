@@ -10,6 +10,11 @@ export default {
     },
     categoriesLabel: "Categories",
     localitiesLabel: "Localities",
+    regions: {
+      title: "Regions of Jaén",
+      lead: "The province is divided into nine regions, each with its own landscape and history. These are the places we visited in each of them.",
+      articles: "articles"
+    },
     localities: {
       title: "Municipalities of Jaén",
       lead: "We invite you to take a tour of the province of Jaén through its 97 municipalities. Nature, spectacular landscapes, medieval castles and fortresses, and countless unique places that will not leave you indifferent. Start your journey!"
@@ -49,6 +54,7 @@ export default {
       project: "The project",
       allArticles: "All articles",
       localities: "Municipalities",
+      allRegions: "All regions",
       cookies: "Cookie policy",
       copyright: "Copyright",
       language: "Language",
@@ -75,6 +81,11 @@ export default {
     },
     categoriesLabel: "Categorías",
     localitiesLabel: "Localidades",
+    regions: {
+      title: "Comarcas de Jaén",
+      lead: "La provincia se divide en nueve comarcas, cada una con su paisaje y su historia. Estos son los lugares que recorrimos en cada una de ellas.",
+      articles: "reportajes"
+    },
     localities: {
       title: "Municipios de Jaén",
       lead: "Te invitamos a hacer un recorrido por la provincia de Jaén a través de sus 97 municipios. Naturaleza, paisajes espectaculares, castillos y fortalezas medievales y un sinfín de lugares únicos que no te dejarán indiferente. ¡Comienza tu viaje!"
@@ -112,6 +123,7 @@ export default {
       project: "El proyecto",
       allArticles: "Todos los artículos",
       localities: "Municipios",
+      allRegions: "Todas las comarcas",
       cookies: "Política de cookies",
       copyright: "Copyright",
       language: "Idioma",

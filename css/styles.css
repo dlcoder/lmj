@@ -1941,6 +1941,55 @@ body.locality-page .main-container {
   text-decoration: underline;
 }
 
+/* The regions index: one block per region, its municipalities under it. */
+
+.regions-lead {
+  max-width: 52rem;
+  margin-bottom: 3rem;
+}
+
+.regions-index {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  gap: 2.5rem 2rem;
+  margin: 0 0 4rem;
+  padding: 0;
+  list-style: none;
+}
+
+.regions-index--item {
+  border-top: 3px solid var(--color-primary);
+  padding-top: 1rem;
+}
+
+.regions-index--title {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.regions-index--title a {
+  color: var(--color-primary);
+}
+
+.regions-index--count {
+  margin: 0.25rem 0 1rem;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.regions-index--localities {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+.regions-index--localities a {
+  color: var(--color-primary);
+}
+
 /* The marker popups: the teaser photo with the title under it, the whole
    thing a link. */
 

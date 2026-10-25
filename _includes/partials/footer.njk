@@ -22,6 +22,7 @@
           {%- for region in regions_list %}
           <li><a href="/{{ locale }}/regions/{{ region.slug }}/">{{ region.name }}</a></li>
           {%- endfor %}
+          <li><a href="/{{ locale }}/regions/">{{ t.allRegions }}</a></li>
         </ul>
       </div>
 

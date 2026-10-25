@@ -1,0 +1,43 @@
+---
+layout: layouts/main.njk
+# One page per locale: the keys of i18n are the locales.
+pagination:
+  data: i18n
+  size: 1
+  alias: pageLocale
+eleventyComputed:
+  title: "{{ i18n[pageLocale].regions.title }} – {{ i18n[pageLocale].siteTitle }}"
+  permalink: "{{ pageLocale }}/regions/index.html"
+  locale: "{{ pageLocale }}"
+---
+
+{#- The original had no such page: regions are new here. Each one links its
+    own page and lists its municipalities, the same way the localities index
+    does — linked where there is an article to read. -#}
+<div class="page-header">
+  <h1 class="page-title">{{ i18n[locale].regions.title }}</h1>
+</div>
+
+<p class="page-lead regions-lead">{{ i18n[locale].regions.lead }}</p>
+
+<ul class="regions-index">
+  {%- for region in regions_list %}
+  <li class="regions-index--item">
+    <h2 class="regions-index--title">
+      <a href="/{{ locale }}/regions/{{ region.slug }}/">{{ region.name }}</a>
+    </h2>
+    <p class="regions-index--count">{{ region.articleCount }} {{ i18n[locale].regions.articles }}</p>
+    <ul class="regions-index--localities">
+      {%- for locality in region.localities %}
+      <li>
+        {%- if locality.articleCount -%}
+        <a href="/{{ locale }}/localities/{{ locality.slug }}">{{ locality.name }} ({{ locality.articleCount }})</a>
+        {%- else -%}
+        {{ locality.name }}
+        {%- endif -%}
+      </li>
+      {%- endfor %}
+    </ul>
+  </li>
+  {%- endfor %}
+</ul>
