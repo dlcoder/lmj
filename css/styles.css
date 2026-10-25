@@ -1221,6 +1221,13 @@ body.article-page .main-container {
   column-gap: 0;
 }
 
+/* The original grid let any child without a span class fill the row, so the
+   same default has to be explicit here. The span rules below override it. */
+.wrapper > *,
+.wrapper-full > * {
+  grid-column: span 12;
+}
+
 .span-12 { grid-column: span 12; }
 
 @media (min-width: 640px) {
@@ -1314,10 +1321,20 @@ body.article-page .main-container {
   position: relative;
 }
 
-.article-tradition__closing-text {
+.article-tradition__closing-text,
+.article-tradition__full-image-with-text-text {
   background-color: #333;
   color: #fff;
   padding-top: 1rem;
+}
+
+/* These sit over a photo, so their text has to beat the global paragraph
+   colour rather than inherit it. */
+.article-tradition__closing-text p,
+.article-tradition__closing-text strong,
+.article-tradition__full-image-with-text-text p,
+.article-tradition__full-image-with-text-text strong {
+  color: #fff;
 }
 
 .article-tradition__closing .responsive-image {
@@ -1502,4 +1519,18 @@ body.article-page .main-container {
   .article-extra--wrapper {
     padding: 3rem 2rem 4rem;
   }
+}
+
+/* Maps
+   OpenStreetMap's tiles carry far more colour and labelling than the flat
+   basemap this design was built around, which drowned the purple overlays.
+   Washing them out restores the quiet backdrop they need. */
+
+.leaflet-tile-pane {
+  filter: grayscale(1) contrast(0.55) brightness(1.22);
+}
+
+.leaflet-container .leaflet-control-attribution {
+  background: rgba(255, 255, 255, 0.8);
+  font-size: 0.6875rem;
 }

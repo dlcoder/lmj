@@ -15,7 +15,6 @@
       center: JAEN_CENTER,
       zoom: JAEN_ZOOM,
       zoomControl: false,
-      attributionControl: false,
       dragging: false,
       touchZoom: false,
       scrollWheelZoom: false,
@@ -24,9 +23,11 @@
       keyboard: false
     });
 
-    // Add OpenStreetMap tile layer
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+    // OpenStreetMap's own tiles: no API key, unlike the Carto basemap that
+    // used to be here and now answers with a placeholder tile.
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      maxZoom: 19
     }).addTo(map);
 
     // Load and render province boundary
@@ -43,10 +44,9 @@
       const geoJson = await response.json();
       L.geoJSON(geoJson, {
         style: {
-          color: '',
-          opacity: 1,
+          stroke: false,
           fillColor: '#423780',
-          fillOpacity: 0.3
+          fillOpacity: 0.18
         }
       }).addTo(map);
     } catch (error) {
@@ -101,13 +101,16 @@
   function showLocality(geoJson) {
     clearLocality();
 
+    // An outline as well as a fill: over a detailed basemap a change in fill
+    // alone is hard to pick out. The original set an empty colour, which the
+    // renderer ignored, so there was never a stroke.
     currentLayer = L.geoJSON(geoJson, {
       style: {
-        color: '',
+        color: '#2b2357',
         weight: 2,
         opacity: 1,
         fillColor: '#423780',
-        fillOpacity: 0.5
+        fillOpacity: 0.75
       }
     }).addTo(map);
   }

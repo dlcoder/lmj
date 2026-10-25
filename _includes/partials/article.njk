@@ -12,12 +12,11 @@
 <article class="article">
   <div class="slides--container">
     <div class="slides--slide">
-      {%- set opening = article.galleryPhotos[0] -%}
       <div class="article-gallery" style="
-        --intro-mobile: url('{% static_image opening.image_urls.mobile %}');
-        --intro-tablet: url('{% static_image opening.image_urls.tablet %}');
-        --intro-desktop: url('{% static_image opening.image_urls.desktop %}');
-        --intro-desktop-hd: url('{% static_image opening.image_urls.desktop_hd %}');
+        --intro-mobile: url('{% static_image article.galleryPhotos[0].image_urls.mobile %}');
+        --intro-tablet: url('{% static_image article.galleryPhotos[0].image_urls.tablet %}');
+        --intro-desktop: url('{% static_image article.galleryPhotos[0].image_urls.desktop %}');
+        --intro-desktop-hd: url('{% static_image article.galleryPhotos[0].image_urls.desktop_hd %}');
       ">
         <div class="article-gallery--intro">
           <div class="article-header">
