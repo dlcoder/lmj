@@ -2326,11 +2326,13 @@ body.article-page .main-container {
 }
 
 /* Side by side once there is room: the summary on the left, the map on the
-   right, and the related articles across both below. */
-@media (min-width: 900px) {
+   right and wider, 2 to 5, and the related articles across both below.
+   Only on the deck, where the block takes the site's full width: in the
+   stacked page's 60rem column the summary would be too narrow to read. */
+@media (min-width: 1280px) {
   .article-extra--wrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 2fr 5fr;
     column-gap: 3rem;
     align-items: start;
   }
