@@ -1632,18 +1632,19 @@ body.article-page .main-container {
   text-align: center;
 }
 
+/* Two columns even on a phone: one ran 97 names, some 3,000px, down the
+   screen. A long name wraps within its column. */
 .localities-list {
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 0.5rem 1rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem 1rem;
   margin-bottom: 0;
-  text-align: center;
+  text-align: left;
 }
 
 @media (min-width: 768px) {
   .localities-list {
-    grid-template-columns: repeat(2, 1fr);
-    text-align: left;
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -1654,7 +1655,13 @@ body.article-page .main-container {
 }
 
 .locality-item {
-  line-height: 1;
+  line-height: 1.25;
+}
+
+@media (max-width: 479px) {
+  .localities-list .locality-link {
+    font-size: 0.875rem;
+  }
 }
 
 .locality-link {
