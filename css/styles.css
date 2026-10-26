@@ -2368,18 +2368,30 @@ body.article-page .main-container {
     clip-path: inset(0 -100vmax);
   }
 
-  /* Where the black shows, the photo's sides fade into it rather than end
-     on a hard edge. */
+  /* The closing photo gets the same: black either side past 1920px. */
+  .article-tradition__closing {
+    box-shadow: 0 0 0 100vmax #000;
+    clip-path: inset(0 -100vmax);
+  }
+
+  /* Where the black shows, the photos' sides fade into it rather than end
+     on a hard edge. The closing text stays over the fade. */
   @media (min-width: 1920px) {
-    .artile-tradition__container > .responsive-image:first-child {
+    .artile-tradition__container > .responsive-image:first-child,
+    .article-tradition__closing .responsive-image {
       position: relative;
     }
 
-    .artile-tradition__container > .responsive-image:first-child::after {
+    .artile-tradition__container > .responsive-image:first-child::after,
+    .article-tradition__closing .responsive-image::after {
       content: "";
       position: absolute;
       inset: 0;
       background: linear-gradient(to right, #000, transparent 12%, transparent 88%, #000);
+    }
+
+    .article-tradition__closing-text {
+      z-index: 1;
     }
   }
 
