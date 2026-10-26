@@ -31,3 +31,34 @@ bodyClass: static-page
     <a href="mailto:info@josetorresfoto.com">info@josetorresfoto.com</a>.
   </p>
 </div>
+
+<div class="page-prose" id="colaboraciones">
+  <h2 class="page-section--title">Colaboraciones</h2>
+
+  {#- Both lists come from the data: `translated_by` on the English articles,
+      `author` on the video media. -#}
+  {%- set translated = all_pages.all_articles | selectattr("locale", "equalto", "en") | selectattr("translated_by") | sort(false, false, "title") %}
+  {%- set filmed = [] %}
+  {%- for article in all_pages.all_articles | sort(false, false, "title") %}
+    {%- if article.locale == "es" and (article.media | selectattr("author") | length) %}{% set _ = filmed.push(article) %}{% endif %}
+  {%- endfor %}
+
+  <h3 class="page-subsection--title">Traducciones al inglés</h3>
+  <p>
+    <strong>Marina Nieto Tirado</strong> tradujo al inglés estos {{ translated | length }} reportajes.
+    Los demás se tradujeron de forma automática en 2026.
+  </p>
+  <ul class="page-list credits-list" lang="en">
+    {%- for article in translated %}
+    <li><a href="/en/articles/{{ article.slug }}" hreflang="en">{{ article.title }}</a></li>
+    {%- endfor %}
+  </ul>
+
+  <h3 class="page-subsection--title">Vídeo aéreo</h3>
+  <p><strong>Deni Meseguer</strong> grabó y editó los vídeos con dron de estos reportajes:</p>
+  <ul class="page-list">
+    {%- for article in filmed %}
+    <li><a href="/es/articles/{{ article.slug }}">{{ article.title }}</a></li>
+    {%- endfor %}
+  </ul>
+</div>

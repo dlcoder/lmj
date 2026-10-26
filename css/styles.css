@@ -1862,6 +1862,17 @@ body.article-page .main-container {
   margin-bottom: 1rem;
 }
 
+/* Long lists of article titles, as on the copyright page: in columns sized
+   by width, so a title never splits across two. */
+.credits-list {
+  columns: 16rem;
+  column-gap: 2rem;
+}
+
+.credits-list li {
+  break-inside: avoid;
+}
+
 .page-list li {
   margin-bottom: 0.5rem;
   color: var(--color-grey-700);

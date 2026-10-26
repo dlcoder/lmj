@@ -29,3 +29,34 @@ bodyClass: static-page
     Fotografía at <a href="mailto:info@josetorresfoto.com">info@josetorresfoto.com</a>.
   </p>
 </div>
+
+<div class="page-prose" id="contributions">
+  <h2 class="page-section--title">Contributions</h2>
+
+  {#- Both lists come from the data: `translated_by` on the English articles,
+      `author` on the video media. -#}
+  {%- set translated = all_pages.all_articles | selectattr("locale", "equalto", "en") | selectattr("translated_by") | sort(false, false, "title") %}
+  {%- set filmed = [] %}
+  {%- for article in all_pages.all_articles | sort(false, false, "title") %}
+    {%- if article.locale == "en" and (article.media | selectattr("author") | length) %}{% set _ = filmed.push(article) %}{% endif %}
+  {%- endfor %}
+
+  <h3 class="page-subsection--title">English translations</h3>
+  <p>
+    <strong>Marina Nieto Tirado</strong> translated these {{ translated | length }} articles into
+    English. The rest were translated automatically in 2026.
+  </p>
+  <ul class="page-list credits-list">
+    {%- for article in translated %}
+    <li><a href="/en/articles/{{ article.slug }}">{{ article.title }}</a></li>
+    {%- endfor %}
+  </ul>
+
+  <h3 class="page-subsection--title">Aerial video</h3>
+  <p><strong>Deni Meseguer</strong> filmed and edited the drone videos in these articles:</p>
+  <ul class="page-list">
+    {%- for article in filmed %}
+    <li><a href="/en/articles/{{ article.slug }}">{{ article.title }}</a></li>
+    {%- endfor %}
+  </ul>
+</div>

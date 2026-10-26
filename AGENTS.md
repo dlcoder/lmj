@@ -196,12 +196,13 @@ Every paginated HTML template sets `addAllPagesToCollections: true`: without it 
 
 ### Articles
 - `id` — stable across locales, and the **only** way to pair an article with its translation: 84 articles have a different slug in each language
+- `translated_by` — only on the 57 English articles Marina Nieto Tirado translated while the project ran; the copyright pages list them. The other 107 were machine-translated in 2026
 - `legacy_slug` — only on the 68 English articles that got a slug of their own when they were translated in 2026; the Spanish slug they were published under until then. `redirects.js` sends both the Rails URLs and the old ones here to the new slug
 - Content and metadata (`title`, `summary`, `sentences`, `published_at`, `hashtag`, `type`, `translated`, geolocation)
 - `summary` and `sentences` are plain text, HTML entities already decoded during hydration
 - `body` — only for `Tradition` articles: the HTML from `content/`, with its `[img::N]` placeholders resolved to real images
 - `type`: `Place` (161) or `Tradition` (3; the body lives in `content/`)
-- `media[]`: 2,068 photos + 4 videos. Look for `featured: true` and `type: "Photo"` for the featured one. A video carries only its `youtube_code`; hydration adds `galleryMedia` (everything but the featured item, videos in place) for the deck, and `galleryPhotos` (photos only)
+- `media[]`: 2,068 photos + 4 videos. Look for `featured: true` and `type: "Photo"` for the featured one. A video carries only its `youtube_code`, and an `author` where the credit is known (three are Deni Meseguer's; Sabiote's has none); hydration adds `galleryMedia` (everything but the featured item, videos in place) for the deck, and `galleryPhotos` (photos only)
 - `image_urls`: relative paths per size, to be concatenated with `STATICS_HOST`
 
 ### Image Sizes
@@ -253,7 +254,7 @@ Deliberate choices a later change could undo by mistake:
 - **The project is closed.** The last article is from 17/12/2018, so the static pages tell its story in the past tense, and there are no share buttons, previous/next links, newsletter form or RSS feed. The related articles at the end of a place article are the one exception: they help a reader find more, not the project grow.
 - **Not migrated, on purpose:** the Rails pages `como-colaborar`, `donaciones`, `lista-de-correo`, `jornadas` and `aviso-legal` (they answer 404). The static pages were rewritten by hand rather than migrated, and stay duplicated per locale, because they are prose, not data.
 - **Only the 46 municipalities with articles get a page.** The other 51 are listed as plain text and their old URLs redirect to the localities index.
-- **Translations:** the 107 articles the Rails app never translated were machine-translated in 2026 (Claude) and are final; an English slug was given where a translation makes sense, keeping proper names. Marina Nieto Tirado translated the other 57 and is credited for those alone: the project page says which are hers, so do not credit her with the rest.
+- **Translations:** the 107 articles the Rails app never translated were machine-translated in 2026 (Claude) and are final; an English slug was given where a translation makes sense, keeping proper names. Marina Nieto Tirado translated the other 57 and is credited for those alone, on the project page and by name on the copyright pages (from `translated_by`), so do not credit her with the rest. Likewise Deni Meseguer for the drone videos whose media carry `author`.
 - **Analytics:** Umami, cookieless, so the site has no cookie banner. Anything that sets cookies would need one, and the cookies pages rewritten.
 - **The search** lives only on the home page, with no page of its own.
 
