@@ -2318,24 +2318,25 @@ body.article-page .main-container {
   padding: 2rem 0 3rem;
 }
 
-/* Side by side once there is room: the map on the left and wider, the
-   summary on the right, 5 to 2, and the related articles across both below.
+/* Side by side once there is room: the map on the left and the summary on
+   the right, two each of the four columns the related cards take below, on
+   the same grid so their edges line up.
    Only on the deck, where the block takes the site's full width: in the
    stacked page's 60rem column the summary would be too narrow to read. */
 @media (min-width: 1280px) {
   .article-extra--wrapper {
     display: grid;
-    grid-template-columns: 5fr 2fr;
-    column-gap: 3rem;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 2rem;
     align-items: start;
   }
 
   .extra-arrive {
-    grid-area: 1 / 1;
+    grid-area: 1 / 1 / 2 / 3;
   }
 
   .extra-summary {
-    grid-area: 1 / 2;
+    grid-area: 1 / 3 / 2 / 5;
   }
 
   .extra-related {
