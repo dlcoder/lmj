@@ -1862,6 +1862,17 @@ body.article-page .main-container {
   margin-bottom: 1rem;
 }
 
+/* Long lists of article titles, as on the copyright page: in columns sized
+   by width, so a title never splits across two. */
+.credits-list {
+  columns: 16rem;
+  column-gap: 2rem;
+}
+
+.credits-list li {
+  break-inside: avoid;
+}
+
 .page-list li {
   margin-bottom: 0.5rem;
   color: var(--color-grey-700);
@@ -1876,6 +1887,16 @@ body.article-page .main-container {
   object-fit: cover;
   border-radius: 4px;
   margin: 1rem 0 1.5rem;
+}
+
+/* The timeline's pictures run from a 150px logo to a 1552px screenshot.
+   Stretched to the column, the small ones blurred and the photos were
+   cropped; now each shows whole, no larger than the file, the column or
+   24rem tall, whichever is least. */
+.timeline--image {
+  width: auto;
+  max-width: 100%;
+  object-fit: initial;
 }
 
 /* Timeline */
