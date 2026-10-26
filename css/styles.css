@@ -2248,6 +2248,16 @@ body.article-page .main-container {
     justify-content: flex-end;
   }
 
+  /* Past 1920px the page stops widening and the opening photo with it; the
+     window either side of it goes black, as the photo's own edges and the
+     intro's gradient do, so the opening reads as one frame. The rest of the
+     article keeps the white page. */
+  .artile-tradition__container > .responsive-image:first-child,
+  .artile-tradition__container > .article-tradition__intro {
+    box-shadow: 0 0 0 100vmax #000;
+    clip-path: inset(0 -100vmax);
+  }
+
   .article-tradition__metadata {
     font-size: 1rem;
   }
