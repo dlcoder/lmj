@@ -2435,6 +2435,13 @@ body.article-page .main-container {
    basemap this design was built around, which drowned the purple overlays.
    Washing them out restores the quiet backdrop they need. */
 
+/* Leaflet stacks its panes and controls up to z-index 1000, the fixed
+   header's own, so a map further down the page painted its zoom buttons
+   over the open header menu. Each map keeps its layers to itself. */
+.leaflet-container {
+  isolation: isolate;
+}
+
 /* The zoom buttons and the popup's close button are links, and the site's
    a:hover, loaded after Leaflet's stylesheet, underlined their symbols. */
 .leaflet-bar a:hover,
