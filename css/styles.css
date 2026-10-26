@@ -356,12 +356,13 @@ a:hover {
 }
 
 @media (min-width: 769px) {
-  /* Stretched over the height of the bar, so the pointer does not drop out
-     of the item, and the panel with it, on its way down. */
+  /* Stretched over the height of the bar, and a little past its bottom edge
+     into the panel, so the pointer does not drop out of the item, and the
+     panel with it, on its way down. Ending flush left a few pixels' gap. */
   .header-nav--toggle {
-    padding: 1.25rem 0;
+    padding: 1.25rem 0 2rem;
     margin-top: -1.25rem;
-    margin-bottom: -1.25rem;
+    margin-bottom: -2rem;
   }
 
   .header-nav--item__expands:hover .header-menu {
