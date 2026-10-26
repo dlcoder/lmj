@@ -19,10 +19,13 @@
   <meta property="og:title" content="Municipios de Jaén – Lugares míticos de Jaén">
   <meta property="og:description" content="Archivo de 164 reportajes sobre los lugares míticos y el patrimonio de la provincia de Jaén, publicados entre 2013 y 2018.">
   <meta property="og:type" content="website"><link rel="stylesheet" href="/vendor/leaflet/leaflet.css?v=1.9.4">
-  <script src="/vendor/leaflet/leaflet.js?v=1.9.4" defer></script><link rel="stylesheet" href="/css/styles.css?v=1793038176031">
-  <script src="/js/hamburger-menu.js?v=1793038176031" defer></script>
-  <script src="/js/header-menu.js?v=1793038176031" defer></script>
-  <script src="/js/article-slides.js?v=1793038176031" defer></script><script src="/js/localities-map.js?v=1793038176031" defer></script></head>
+  <script src="/vendor/leaflet/leaflet.js?v=1.9.4" defer></script>
+  <link rel="preload" href="/vendor/fonts/merriweather-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/vendor/fonts/lato-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/styles.css?v=1793045513923">
+  <script src="/js/hamburger-menu.js?v=1793045513923" defer></script>
+  <script src="/js/header-menu.js?v=1793045513923" defer></script>
+  <script src="/js/article-slides.js?v=1793045513923" defer></script><script src="/js/localities-map.js?v=1793045513923" defer></script></head>
 
 <body class="locality-page">
   <div id="header" class="header">
@@ -90,11 +93,10 @@
   </div>
 </div>
 
-<div id="localities-map" class="locality-map" data-fit-province></div>
-
-<div class="locality-wrapper">
-  <p class="page-lead localities-lead">Te invitamos a hacer un recorrido por la provincia de Jaén a través de sus 97 municipios. Naturaleza, paisajes espectaculares, castillos y fortalezas medievales y un sinfín de lugares únicos que no te dejarán indiferente. ¡Comienza tu viaje!</p>
-  <ul class="localities-list localities-list__plain"><li class="locality-item">
+<div class="localities-section">
+  <div class="localities-container">
+    <p class="page-lead localities-lead">Te invitamos a hacer un recorrido por la provincia de Jaén a través de sus 97 municipios. Naturaleza, paisajes espectaculares, castillos y fortalezas medievales y un sinfín de lugares únicos que no te dejarán indiferente. ¡Comienza tu viaje!</p>
+    <ul class="localities-list"><li class="locality-item">
       <a href="/es/localities/albanchez-de-magina"
          class="locality-link"
          data-locality-id="70">Albanchez de Mágina (3)</a>
@@ -433,6 +435,11 @@
             data-locality-id="17">Villatorres</span>
     </li></ul>
 
+  </div>
+
+  <div class="localities-map-container">
+    <div id="localities-map" class="localities-map" data-fit-province></div>
+  </div>
 </div>
 
   </div>

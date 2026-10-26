@@ -136,10 +136,102 @@ table {
 
 /* Variables */
 
+/* The two typefaces of the old site: Merriweather for reading, Lato for
+   headings, menus and the small print around them. Served from /vendor/,
+   copied out of the @fontsource packages, Latin subset only. */
+
+@font-face {
+  font-family: "Merriweather";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/vendor/fonts/merriweather-latin-300-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Merriweather";
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/vendor/fonts/merriweather-latin-300-italic.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Merriweather";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/vendor/fonts/merriweather-latin-400-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Merriweather";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/vendor/fonts/merriweather-latin-400-italic.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Merriweather";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/vendor/fonts/merriweather-latin-700-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/vendor/fonts/lato-latin-300-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/vendor/fonts/lato-latin-400-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/vendor/fonts/lato-latin-700-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url("/vendor/fonts/lato-latin-900-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 :root {
+  /* The fixed header's height: the header is set to it, and the title
+     bands count it in to centre their text in what shows below. */
+  --header-height: 4rem;
+  --font-serif: "Merriweather", Georgia, serif;
+  --font-sans: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --color-primary: rgba(66, 55, 128, 1);
   --color-primary-75: rgba(66, 55, 128, 0.75);
   --color-primary-60: rgba(66, 55, 128, 0.6);
+  /* The band behind page titles: the purple at about a tenth, on white. */
+  --color-primary-tint: #ecebf3;
   /* The headings of the header menu, on the purple. */
   --color-primary-light: #c9c3ee;
 
@@ -172,6 +264,12 @@ table {
   --step-6: clamp(2.25rem, 1.2rem + 4.5vw, 5rem);
 }
 
+@media (min-width: 769px) {
+  :root {
+    --header-height: 4.5rem;
+  }
+}
+
 /* Global Styles */
 
 /* The attribute has to win over any display a component sets, or a grid
@@ -194,7 +292,7 @@ table {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-serif);
   font-size: 16px;
   line-height: 1.6;
   color: var(--color-grey-800);
@@ -206,6 +304,79 @@ h2,
 h3 {
   line-height: 1.3;
   color: var(--color-grey-900);
+}
+
+/* Where the old site set Lato. Everything else reads in Merriweather. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button,
+input,
+select,
+.header,
+.footer,
+.pagination,
+.button,
+.page-lead,
+.home-search,
+.article-start,
+.article-date,
+.article-location,
+.article-category,
+.timeline--date,
+.press-list--date,
+.article-card--date,
+.article-card--location,
+.latest-article--date,
+.latest-article--location,
+.article-tradition__intro,
+.article-tradition__metadata,
+.explorer-filters,
+.leaflet-container {
+  font-family: var(--font-sans);
+}
+
+.page-lead {
+  font-weight: 300;
+}
+
+/* Headings and buttons bold; capitals only where the text works as a label. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+}
+
+/* The bar's own links, a step up from the body and with more air on a
+   desktop, still below the site's name. */
+@media (min-width: 769px) {
+  .header .header-nav > a,
+  .header-nav .header-nav--toggle {
+    font-size: 1.125rem;
+    margin-left: clamp(1rem, 2vw, 2rem);
+  }
+}
+
+.button,
+.article-start {
+  font-weight: 700;
+}
+
+.latest-article--location {
+  text-transform: uppercase;
+}
+
+/* The category tiles and the headings inside the header menu stayed in
+   Merriweather; the menu's slogan in its light italic. */
+#home-categories .article-card--title,
+.header-menu--title {
+  font-family: var(--font-serif);
 }
 
 h1 {
@@ -249,9 +420,15 @@ a:hover {
 
 /* Header */
 
+/* A fixed height, not whatever the fluid name makes it, so the title bands
+   below can count on it. */
 .header {
   background-color: var(--color-primary);
-  padding: 1rem 2rem;
+  box-sizing: border-box;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
   position: fixed;
   top: 0;
   left: 0;
@@ -278,6 +455,7 @@ a:hover {
 }
 
 .header-container {
+  flex: 1;
   max-width: 1920px;
   margin: 0 auto;
   display: flex;
@@ -356,12 +534,13 @@ a:hover {
 }
 
 @media (min-width: 769px) {
-  /* Stretched over the height of the bar, so the pointer does not drop out
-     of the item, and the panel with it, on its way down. */
-  .header-nav--toggle {
-    padding: 1.25rem 0;
+  /* Stretched over the height of the bar, and a little past its bottom edge
+     into the panel, so the pointer does not drop out of the item, and the
+     panel with it, on its way down. Ending flush left a few pixels' gap. */
+  .header-nav .header-nav--toggle {
+    padding: 1.25rem 0 2rem;
     margin-top: -1.25rem;
-    margin-bottom: -1.25rem;
+    margin-bottom: -2rem;
   }
 
   .header-nav--item__expands:hover .header-menu {
@@ -388,6 +567,9 @@ a:hover {
 
   .header-menu--slogan {
     margin: 0;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 300;
     color: var(--color-white);
     font-size: var(--step-2);
     line-height: 1.4;
@@ -475,7 +657,7 @@ a:hover {
   }
 
   .header-nav a,
-  .header-nav--toggle {
+  .header-nav .header-nav--toggle {
     margin: 0.5rem 0;
     font-size: 1.2rem;
     text-align: left;
@@ -509,8 +691,13 @@ a:hover {
   }
 }
 
+/* As the original set the name: Lato Black in capitals, slightly spaced,
+   from 1rem on a phone to 1.3rem on a desktop. */
 .header-logo--title {
-  font-size: clamp(1.125rem, 0.95rem + 0.8vw, 1.5rem);
+  font-size: clamp(1rem, 0.9rem + 0.444vw, 1.3rem);
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
   color: var(--color-white);
   margin: 0
 }
@@ -613,13 +800,26 @@ body.home-page {
 
 /* Pages */
 
+/* Titles sit on a light purple band the width of the window. It runs up
+   behind the fixed header so it starts right at its edge, and its padding
+   counts the header's height in, so the text has as much room above as
+   below; the shadow carries it past the content's column. */
 .page-header {
-  margin-bottom: 2rem;
+  margin: calc(-1 * 6rem) 0 2rem;
+  padding: calc(var(--header-height) + 1.5rem) 0 1.5rem;
+  background-color: var(--color-primary-tint);
+  box-shadow: 0 0 0 100vmax var(--color-primary-tint);
+  clip-path: inset(0 -100vmax);
 }
 
 .page-title {
   font-size: var(--step-4);
   font-weight: bold;
+  color: var(--color-primary);
+}
+
+.page-header > :last-child {
+  margin-bottom: 0;
 }
 
 /* What the title belongs to: the region of a municipality. */
@@ -647,6 +847,19 @@ body.article-page .main-container {
 
 .slides--slide + .slides--slide {
   margin-top: 1.5rem;
+}
+
+/* Below the deck the photos and videos follow one another down the page;
+   a short rule between each two keeps them from running together. */
+@media (max-width: 1279px) {
+  .slides--slide:has(> .article-gallery--media) + .slides--slide:has(> .article-gallery--media)::before {
+    content: '';
+    display: block;
+    width: 3rem;
+    height: 2px;
+    margin: 0.5rem auto 2rem;
+    background-color: var(--color-primary-60);
+  }
 }
 
 .article-gallery--media .article-gallery--photo {
@@ -696,9 +909,23 @@ body.article-page .main-container {
   width: 100%;
 }
 
+/* Below the deck, where the title is not over the photo, it gets the same
+   band as every other page's title. */
+@media (max-width: 1279px) {
+  .article-header {
+    margin-top: calc(-1 * 6rem);
+    padding: calc(var(--header-height) + 1.5rem) 0 1.5rem;
+    border-bottom: 0;
+    background-color: var(--color-primary-tint);
+    box-shadow: 0 0 0 100vmax var(--color-primary-tint);
+    clip-path: inset(0 -100vmax);
+  }
+}
+
 .article-title {
   font-size: var(--step-5);
   font-weight: bold;
+  color: var(--color-primary);
   margin-bottom: 0;
   text-transform: uppercase;
 }
@@ -824,6 +1051,8 @@ body.article-page .main-container {
     align-self: flex-start;
     border: 0;
     font: inherit;
+    font-family: var(--font-sans);
+    font-weight: 700;
     cursor: pointer;
   }
 
@@ -1020,7 +1249,6 @@ body.article-page .main-container {
 .article-card--title {
   font-size: 1.1rem;
   font-weight: bold;
-  text-transform: uppercase;
   margin: 0 0 0.5rem 0;
   line-height: 1.3;
 }
@@ -1040,8 +1268,8 @@ body.article-page .main-container {
 /* Pagination */
 
 .pagination {
-  margin: 3rem 0;
-  padding: 2rem 0;
+  margin: 3rem 0 0;
+  padding: 2rem 0 0;
   border-top: 1px solid var(--color-grey-200);
 }
 
@@ -1158,7 +1386,7 @@ body.article-page .main-container {
 
 .latest-article--title {
   color: var(--color-white);
-  font-size: clamp(1.125rem, 0.9rem + 1.2vw, 2rem);
+  font-size: clamp(1.25rem, 0.8rem + 2.2vw, 3rem);
   font-weight: bold;
   text-transform: uppercase;
   margin: 0 0 0.25rem 0;
@@ -1167,7 +1395,7 @@ body.article-page .main-container {
 .latest-article--location,
 .latest-article--date {
   display: block;
-  font-size: 0.85rem;
+  font-size: clamp(0.875rem, 0.65rem + 0.9vw, 1.5rem);
   opacity: 0.85;
 }
 
@@ -1404,18 +1632,19 @@ body.article-page .main-container {
   text-align: center;
 }
 
+/* Two columns even on a phone: one ran 97 names, some 3,000px, down the
+   screen. A long name wraps within its column. */
 .localities-list {
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 0.5rem 1rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem 1rem;
   margin-bottom: 0;
-  text-align: center;
+  text-align: left;
 }
 
 @media (min-width: 768px) {
   .localities-list {
-    grid-template-columns: repeat(2, 1fr);
-    text-align: left;
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -1426,7 +1655,13 @@ body.article-page .main-container {
 }
 
 .locality-item {
-  line-height: 1;
+  line-height: 1.25;
+}
+
+@media (max-width: 479px) {
+  .localities-list .locality-link {
+    font-size: 0.875rem;
+  }
 }
 
 .locality-link {
@@ -1468,6 +1703,19 @@ body.article-page .main-container {
 .page-prose,
 .page-section {
   margin: 0 0 3rem;
+}
+
+/* The page's last block leaves the space above the footer to the page's
+   own padding and the footer's margin. */
+.page-prose:last-child,
+.page-section:last-child,
+.books-index:last-child,
+.page-prose > :last-child {
+  margin-bottom: 0;
+}
+
+.locality-wrapper:last-of-type {
+  padding-bottom: 2rem;
 }
 
 .page-prose a,
@@ -1558,15 +1806,16 @@ body.article-page .main-container {
 }
 
 .timeline--date {
-  font-size: 0.8125rem;
-  text-transform: uppercase;
+  font-size: var(--step--1);
   letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: var(--color-primary-75);
   margin-bottom: 0.25rem;
 }
 
 .timeline--title {
-  font-size: var(--step-1);
+  font-size: var(--step-2);
+  font-weight: 700;
   margin-bottom: 0.5rem;
 }
 
@@ -1674,7 +1923,7 @@ body.article-page .main-container {
   background-color: var(--color-primary);
   color: var(--color-white);
   padding: 3rem 2rem 2rem;
-  margin-top: 4rem;
+  margin-top: 2rem;
 }
 
 .footer-container {
@@ -1698,7 +1947,7 @@ body.article-page .main-container {
 }
 
 .footer-sitemap--title {
-  font-size: 0.8125rem;
+  font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: rgba(255, 255, 255, 0.75);
@@ -1980,7 +2229,9 @@ body.article-page .main-container {
   color: var(--color-white);
 }
 
-.article-tradition__closing .responsive-image {
+/* The closing photo ends the page, so it keeps none of the body photos'
+   bottom margin, which showed as a grey strip under the overlay. */
+.article-tradition__body .article-tradition__closing .responsive-image {
   margin-bottom: 0;
 }
 
@@ -1995,6 +2246,16 @@ body.article-page .main-container {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+  }
+
+  /* Past 1920px the page stops widening and the opening photo with it; the
+     window either side of it goes black, as the photo's own edges and the
+     intro's gradient do, so the opening reads as one frame. The rest of the
+     article keeps the white page. */
+  .artile-tradition__container > .responsive-image:first-child,
+  .artile-tradition__container > .article-tradition__intro {
+    box-shadow: 0 0 0 100vmax #000;
+    clip-path: inset(0 -100vmax);
   }
 
   .article-tradition__metadata {
@@ -2059,39 +2320,108 @@ body.article-page .main-container {
 
 /* Closing block of an article */
 
+/* The closing block sits on the same light purple as the titles, the width
+   of the window, which sets it apart from the article above. */
 .article-extra {
-  background-color: var(--color-white);
+  background-color: var(--color-primary-tint);
+  box-shadow: 0 0 0 100vmax var(--color-primary-tint);
+  clip-path: inset(0 -100vmax);
   width: 100%;
 }
 
+/* No side padding of its own: below the deck the page's column already has
+   it, and the photos above run to its edges. */
 .article-extra--wrapper {
   max-width: 68rem;
   margin: 0 auto;
-  padding: 2rem 1.5rem 3rem;
+  padding: 2rem 0 3rem;
 }
 
+/* Side by side once there is room: the map on the left over three of the
+   four columns the related cards take below, the summary on the right over
+   the fourth, on the same grid so their edges line up.
+   Only on the deck, where the block takes the site's full width: in the
+   stacked page's 60rem column the summary would be too narrow to read. */
+@media (min-width: 1280px) {
+  .article-extra--wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 2rem;
+    align-items: start;
+  }
+
+  .extra-arrive {
+    grid-area: 1 / 1 / 2 / 4;
+  }
+
+  .extra-summary {
+    grid-area: 1 / 4 / 2 / 5;
+  }
+
+  .extra-related {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Each block opens on a purple rule with a small label, as the regions
+   index does, so the map, the summary and the cards carry the weight and
+   the labels only name them. */
 .extra-block {
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
+  border-top: 3px solid var(--color-primary);
+  padding-top: 1rem;
 }
 
 .extra-block--title {
+  font-weight: 700;
   color: var(--color-primary);
   text-transform: uppercase;
-  font-size: 1.125rem;
+  font-size: var(--step-1);
   letter-spacing: 0.04em;
-  margin-bottom: 0.75rem;
+  margin: 0 0 1rem;
 }
 
-.extra-block--notice {
-  background-color: var(--color-grey-100);
-  border-left: 3px solid var(--color-primary-60);
-  padding: 1rem 1.25rem;
+/* The related articles are a section of their own, set further apart. */
+.extra-related {
+  margin-top: 1rem;
+}
+
+/* The summary, and the note on why a place has no map, read a size up as
+   plain paragraphs: the block's rule and label frame them. */
+.extra-block--notice,
+.extra-summary p {
+  font-size: var(--step-1);
+  line-height: 1.65;
+  color: var(--color-grey-900);
+}
+
+/* The map with its "view on Google Maps" button over the top right corner,
+   clear of the zoom on the left and the attribution below. Isolated, so
+   Leaflet's own layers stay under the fixed header when it scrolls past. */
+.extra-map--frame {
+  position: relative;
+  isolation: isolate;
+}
+
+.extra-map--expand {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1001;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+}
+
+/* On a phone the map is short, so the button keeps small. */
+@media (max-width: 639px) {
+  .button.extra-map--expand {
+    padding: 0.3rem 0.75rem;
+    font-size: 0.8125rem;
+  }
 }
 
 .extra-map {
-  height: 20rem;
+  aspect-ratio: 16 / 9;
   border-radius: 4px;
-  margin-bottom: 1rem;
   background-color: var(--color-grey-200);
 }
 
@@ -2117,7 +2447,7 @@ body.article-page .main-container {
     height: auto;
     min-height: 100vh;
     overflow-y: auto;
-    background-color: var(--color-white);
+    background-color: var(--color-primary-tint);
     display: flex;
     flex-direction: column;
   }
@@ -2128,7 +2458,11 @@ body.article-page .main-container {
     margin-top: auto;
   }
 
+  /* The width of the rest of the site, the header's and the footer's,
+     now that the block runs in two columns. */
   .article-extra--wrapper {
+    max-width: 1920px;
+    box-sizing: border-box;
     padding: 3rem 2rem 4rem;
   }
 }
@@ -2137,6 +2471,53 @@ body.article-page .main-container {
    OpenStreetMap's tiles carry far more colour and labelling than the flat
    basemap this design was built around, which drowned the purple overlays.
    Washing them out restores the quiet backdrop they need. */
+
+/* Leaflet stacks its panes and controls up to z-index 1000, the fixed
+   header's own, so a map further down the page painted its zoom buttons
+   over the open header menu. Each map keeps its layers to itself. */
+.leaflet-container {
+  isolation: isolate;
+}
+
+/* The zoom buttons and the popup's close button are links, and the site's
+   a:hover, loaded after Leaflet's stylesheet, underlined their symbols. */
+.leaflet-bar a:hover,
+.leaflet-container a.leaflet-popup-close-button:hover {
+  text-decoration: none;
+}
+
+/* Leaflet writes the zoom symbols as text in a monospace font, whose + and
+   − sit a few pixels low and right, by a different amount on each system.
+   Drawn as two bars instead, they are centred exactly; the link keeps its
+   accessible name. */
+.leaflet-bar a.leaflet-control-zoom-in,
+.leaflet-bar a.leaflet-control-zoom-out {
+  position: relative;
+  text-indent: 0;
+}
+
+.leaflet-control-zoom-in span,
+.leaflet-control-zoom-out span {
+  visibility: hidden;
+}
+
+.leaflet-control-zoom-in::before,
+.leaflet-control-zoom-in::after,
+.leaflet-control-zoom-out::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 2px;
+  background-color: currentColor;
+  transform: translate(-50%, -50%);
+}
+
+.leaflet-control-zoom-in::after {
+  width: 2px;
+  height: 12px;
+}
 
 .leaflet-tile-pane {
   filter: grayscale(1) contrast(0.55) brightness(1.22);
@@ -2176,34 +2557,39 @@ body.locality-page .main-container {
   background-color: var(--color-grey-200);
 }
 
+/* Straight under the title's band, with no strip of white between. */
+.locality-wrapper:has(+ .locality-map, + .localities-section) > .page-header:last-child {
+  margin-bottom: 0;
+}
+
+.locality-wrapper:has(> .page-header:last-child) + .locality-map {
+  margin-top: 0;
+}
+
+/* A full-width block that ends the page meets the footer, with no strip of
+   white between: the explorer's map, the localities index's list over its
+   map, a tradition's closing photo. */
+.main-container > :is(.locality-map, .localities-section, .article-tradition):last-child {
+  margin-bottom: 0;
+}
+
+.main-container:has(> :is(.locality-map, .localities-section, .article-tradition):last-child) + .footer {
+  margin-top: 0;
+}
+
 @media (max-width: 768px) {
   .locality-map {
     height: 20rem;
   }
 }
 
-/* The localities index: the home list, on paper instead of over the map. */
+/* The localities index: the home list over the map, under a lead. */
 
 .localities-lead {
   max-width: 52rem;
   margin: 0 auto 2.5rem;
   text-align: center;
-}
-
-.localities-list__plain {
-  margin-bottom: 4rem;
-}
-
-.localities-list__plain .locality-link {
-  color: var(--color-grey-700);
-}
-
-.localities-list__plain a.locality-link {
-  color: var(--color-primary);
-}
-
-.localities-list__plain a.locality-link:hover {
-  text-decoration: underline;
+  color: var(--color-white);
 }
 
 /* The regions index: one block per region, its municipalities under it. */
@@ -2217,7 +2603,7 @@ body.locality-page .main-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
   gap: 2.5rem 2rem;
-  margin: 0 0 4rem;
+  margin: 0;
   padding: 0;
   list-style: none;
 }
@@ -2264,48 +2650,78 @@ body.locality-page .main-container {
 /* The explorer map: two filters over a map that takes most of the screen,
    as the original's full-height one did. */
 
+/* The filters sit in the title's band, as part of the map's header: the
+   band runs on under the title, and the map starts where it ends. */
+.explorer-page .page-header {
+  margin-bottom: 0;
+  padding-bottom: 0.75rem;
+}
+
 .explorer-filters {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
   gap: 1rem 1.5rem;
+  padding-bottom: 1.5rem;
+  background-color: var(--color-primary-tint);
+  box-shadow: 0 0 0 100vmax var(--color-primary-tint);
+  clip-path: inset(0 -100vmax);
+}
+
+.explorer-page .locality-wrapper + .explorer-map {
+  margin-top: 0;
 }
 
 .explorer-filters--field {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.375rem;
   flex: 1 1 16rem;
   min-width: 0;
-  max-width: 24rem;
+  max-width: 22rem;
 }
 
 .explorer-filters--field label {
-  font-size: 0.875rem;
-  font-weight: 600;
+  font-size: var(--step--1);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
   color: var(--color-primary);
 }
 
+/* Drawn by hand: Safari's native select ignores padding and height, which
+   left these thinner than anything else on the page. */
 .explorer-filters--field select {
   /* A long category name would otherwise widen the field past the screen. */
   width: 100%;
   min-width: 0;
+  height: 2.75rem;
+  appearance: none;
   font: inherit;
-  padding: 0.5rem 0.75rem;
-  border: 1px solid var(--color-grey-400);
-  border-radius: 4px;
-  background-color: var(--color-white);
+  padding: 0 2.5rem 0 1rem;
+  border: 2px solid var(--color-primary-60);
+  border-radius: 6px;
+  background: var(--color-white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23423780' stroke-width='2'/%3E%3C/svg%3E") no-repeat right 1rem center;
   color: var(--color-grey-800);
+  cursor: pointer;
+}
+
+.explorer-filters--field select:hover {
+  border-color: var(--color-primary);
 }
 
 .explorer-filters--field select:focus-visible {
   outline: 2px solid var(--color-primary);
-  outline-offset: 1px;
+  outline-offset: 2px;
 }
 
+/* Level with the fields, not with their labels. */
 .explorer-filters--status {
-  margin: 0 0 0.5rem;
-  color: var(--color-grey-600);
+  display: flex;
+  align-items: center;
+  height: 2.75rem;
+  margin: 0;
+  color: var(--color-grey-700);
   font-size: 0.95rem;
 }
 
@@ -2314,12 +2730,49 @@ body.locality-page .main-container {
   min-height: 24rem;
 }
 
-/* The marker popups: the teaser photo with the title under it, the whole
-   thing a link. */
+/* The marker popups, as the original drew them: the teaser photo edge to
+   edge, the title on a purple band under it, the tip in the same purple and
+   the close button in white over the photo. The whole thing is a link. */
+
+.leaflet-popup-content-wrapper {
+  padding: 0;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.leaflet-container .leaflet-popup-content {
+  margin: 0;
+  line-height: 1.3;
+}
+
+.leaflet-popup-tip {
+  background-color: var(--color-primary);
+}
+
+.leaflet-container a.leaflet-popup-close-button,
+.leaflet-container a.leaflet-popup-close-button:hover {
+  width: 28px;
+  height: 28px;
+  font-size: 24px;
+  line-height: 28px;
+  color: var(--color-white);
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
+}
+
+/* On a phone the popup is as wide as the map and would slide under the
+   zoom buttons, which Leaflet keeps above every pane. */
+@media (max-width: 639px) {
+  .leaflet-container:has(.leaflet-popup) .leaflet-control-zoom {
+    visibility: hidden;
+  }
+}
 
 .leaflet-popup-content a {
   display: block;
-  color: var(--color-grey-800);
+}
+
+.leaflet-popup-content a:hover {
+  text-decoration: none;
 }
 
 .leaflet-popup-content img {
@@ -2329,6 +2782,15 @@ body.locality-page .main-container {
 }
 
 .leaflet-popup-content h2 {
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  background-color: var(--color-primary);
+  color: var(--color-white);
   font-size: 1rem;
-  margin: 0.5rem 0 0;
+  text-transform: uppercase;
+}
+
+.leaflet-popup-content a:hover h2,
+.leaflet-popup-content a:focus-visible h2 {
+  background-color: var(--color-primary-75);
 }

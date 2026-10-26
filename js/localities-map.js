@@ -60,10 +60,17 @@
         }
       }).addTo(map);
 
-      // Behind the home list the fixed view is part of the design; on its own
-      // the map frames the whole province, whatever shape it is given.
-      if ('fitProvince' in map.getContainer().dataset) {
-        map.fitBounds(province.getBounds(), { padding: [20, 20] });
+      // Behind the home list the fixed view is part of the design; on the
+      // localities index the map frames the whole province. The list there
+      // runs far taller than a screen on a phone, so the province is framed
+      // in the first screenful of the map rather than in its middle.
+      const container = map.getContainer();
+      if ('fitProvince' in container.dataset) {
+        const below = Math.max(0, container.clientHeight - window.innerHeight);
+        map.fitBounds(province.getBounds(), {
+          paddingTopLeft: [20, 20],
+          paddingBottomRight: [20, 20 + below]
+        });
       }
     } catch (error) {
       console.error('Error loading province boundary:', error);
