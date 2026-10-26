@@ -4,7 +4,7 @@ A bilingual (Spanish/English) static website about mythical and legendary places
 
 > **Single source of truth.** `CLAUDE.md` is a symlink to this file. Keep it up to date when making structural changes (new templates, filters, shortcodes, data files).
 
-**Live site:** https://www.lugaresmiticosdejaen.com/ (still served by the original Rails app)
+**Live site:** https://www.lugaresmiticosdejaen.com/
 
 ## Tech Stack
 

@@ -2,7 +2,7 @@
 
 A bilingual (Spanish/English) static website about mythical and legendary places in the province of Jaén, Spain: 164 articles across 97 localities, 9 regions and 11 categories.
 
-**Live site:** https://www.lugaresmiticosdejaen.com/ (still served by the original Rails app)
+**Live site:** https://www.lugaresmiticosdejaen.com/
 
 This repository is the rewrite of the site as a static website built with [Eleventy](https://www.11ty.dev/).
 
