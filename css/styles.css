@@ -2340,8 +2340,14 @@ body.article-page .main-container {
 }
 
 @media (min-width: 640px) {
+  /* The gradient covers the 25rem the intro pulls up over the photo; a long
+     intro runs on below the photo, and there it is plain black, where the
+     gradient's last, not quite opaque stretch showed the white page as a
+     grey strip. */
   .article-tradition__intro {
-    background: linear-gradient(to bottom, transparent 0%, transparent 10%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 1) 100%);
+    background:
+      linear-gradient(to bottom, transparent 0%, transparent 10%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 1) 100%) top / 100% 25rem no-repeat,
+      linear-gradient(#000, #000) 0 25rem / 100% 100% no-repeat;
     margin-top: -25rem;
     /* Matching the pull-up makes the intro end exactly where the opening
        photo does. The original computed this in JavaScript. */
@@ -2360,6 +2366,21 @@ body.article-page .main-container {
   .artile-tradition__container > .article-tradition__intro {
     box-shadow: 0 0 0 100vmax #000;
     clip-path: inset(0 -100vmax);
+  }
+
+  /* Where the black shows, the photo's sides fade into it rather than end
+     on a hard edge. */
+  @media (min-width: 1920px) {
+    .artile-tradition__container > .responsive-image:first-child {
+      position: relative;
+    }
+
+    .artile-tradition__container > .responsive-image:first-child::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, #000, transparent 12%, transparent 88%, #000);
+    }
   }
 
   .article-tradition__metadata {
