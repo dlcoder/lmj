@@ -2303,8 +2303,12 @@ body.article-page .main-container {
     margin-top: auto;
   }
 
+  /* The same column as the intro's text, so the deck keeps one width from
+     the first slide to the last. */
   .article-extra--wrapper {
-    padding: 3rem 2rem 4rem;
+    max-width: 1920px;
+    box-sizing: border-box;
+    padding: 3rem 15rem 4rem;
   }
 }
 
@@ -2312,6 +2316,13 @@ body.article-page .main-container {
    OpenStreetMap's tiles carry far more colour and labelling than the flat
    basemap this design was built around, which drowned the purple overlays.
    Washing them out restores the quiet backdrop they need. */
+
+/* The zoom buttons and the popup's close button are links, and the site's
+   a:hover, loaded after Leaflet's stylesheet, underlined their symbols. */
+.leaflet-bar a:hover,
+.leaflet-container a.leaflet-popup-close-button:hover {
+  text-decoration: none;
+}
 
 .leaflet-tile-pane {
   filter: grayscale(1) contrast(0.55) brightness(1.22);
