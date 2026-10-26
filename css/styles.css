@@ -227,6 +227,8 @@ table {
   --color-primary: rgba(66, 55, 128, 1);
   --color-primary-75: rgba(66, 55, 128, 0.75);
   --color-primary-60: rgba(66, 55, 128, 0.6);
+  /* The band behind page titles: the purple at about a tenth, on white. */
+  --color-primary-tint: #ecebf3;
   /* The headings of the header menu, on the purple. */
   --color-primary-light: #c9c3ee;
 
@@ -782,8 +784,15 @@ body.home-page {
 
 /* Pages */
 
+/* Titles sit on a light purple band the width of the window. It runs up
+   behind the fixed header, whatever its height, so it starts right at the
+   header's edge; the shadow carries it past the content's column. */
 .page-header {
-  margin-bottom: 2rem;
+  margin: calc(-1 * 6rem) 0 2rem;
+  padding: calc(6rem + 1.5rem) 0 1.75rem;
+  background-color: var(--color-primary-tint);
+  box-shadow: 0 0 0 100vmax var(--color-primary-tint);
+  clip-path: inset(0 -100vmax);
 }
 
 .page-title {
@@ -2406,6 +2415,15 @@ body.locality-page .main-container {
   height: 31.25rem;
   margin: 2rem 0;
   background-color: var(--color-grey-200);
+}
+
+/* Straight under the title's band, with no strip of white between. */
+.locality-wrapper:has(+ .locality-map) > .page-header:last-child {
+  margin-bottom: 0;
+}
+
+.locality-wrapper:has(> .page-header:last-child) + .locality-map {
+  margin-top: 0;
 }
 
 @media (max-width: 768px) {
