@@ -2354,6 +2354,13 @@ body.article-page .main-container {
   margin-bottom: 0.75rem;
 }
 
+/* The summary reads a size up, which also balances it against the map
+   beside it on the deck. */
+.extra-summary p {
+  font-size: var(--step-1);
+  line-height: 1.65;
+}
+
 .extra-block--notice {
   background-color: var(--color-grey-100);
   border-left: 3px solid var(--color-primary-60);
