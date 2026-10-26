@@ -2252,9 +2252,20 @@ body.article-page .main-container {
 
 /* Closing block of an article */
 
+/* The closing block sits on the same light purple as the titles, the width
+   of the window, which sets it apart from the article above. */
 .article-extra {
-  background-color: var(--color-white);
+  background-color: var(--color-primary-tint);
+  box-shadow: 0 0 0 100vmax var(--color-primary-tint);
+  clip-path: inset(0 -100vmax);
   width: 100%;
+}
+
+/* Three cards, so three columns wherever the grid would take four. */
+@media (min-width: 1120px) {
+  .extra-related .article-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 /* No side padding of its own: below the deck the page's column already has
@@ -2327,7 +2338,7 @@ body.article-page .main-container {
     height: auto;
     min-height: 100vh;
     overflow-y: auto;
-    background-color: var(--color-white);
+    background-color: var(--color-primary-tint);
     display: flex;
     flex-direction: column;
   }

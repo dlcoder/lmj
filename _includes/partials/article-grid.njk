@@ -1,32 +1,7 @@
 <div class="article-grid">
   {%- for article in articles -%}
-    <article class="article-card">
-      <a href="/{{ locale }}/articles/{{ article.slug }}" class="article-card--link">
-        {#- `sizes` follows the column count the grid takes on at each of its
-            breakpoints, so a card 360px wide stops being served the 640px
-            variant. The cards below the fold wait their turn; the first one
-            is loaded at once and early, because on an index it is the
-            largest paint, and a lazy image is only asked for after layout. -#}
-        <img class="article-card--image"
-             src="{% featured_image article, 'teaser_desktop' %}"
-             srcset="{% featured_image article, 'teaser_tablet' %} 320w,
-                     {% featured_image article, 'teaser_desktop' %} 375w,
-                     {% featured_image article, 'teaser_mobile' %} 480w,
-                     {% featured_image article, 'teaser_desktop_hd' %} 640w"
-             sizes="(min-width: 1120px) 25vw, (min-width: 640px) 33vw, (min-width: 480px) 50vw, 100vw"
-             width="640" height="480"
-             alt="{{ article.title }}"
-             {% if loop.first %}fetchpriority="high"{% else %}loading="lazy"{% endif %}
-             decoding="async">
-        <div class="article-card--content">
-          <h2 class="article-card--title">{{ article.title }}</h2>
-          <div class="article-card--location">{{ article.localities | join(', ') }}</div>
-          <time class="article-card--date" datetime="{{ article.published_at }}">
-            {{ article.published_at | formatDate }}
-          </time>
-        </div>
-      </a>
-    </article>
+    {%- set eager = loop.first %}
+    {% include "partials/article-card.njk" %}
   {%- endfor -%}
 </div>
 

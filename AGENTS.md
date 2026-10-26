@@ -74,7 +74,8 @@ npm run build-icons  # re-render the icons in img/ after changing img/favicon.sv
 │   └── partials/
 │       ├── article.njk               # Article body (slides + gallery)
 │       ├── article-grid.njk          # Card grid + pagination
-│       ├── article-extra.njk         # Closing block: summary and how to arrive
+│       ├── article-card.njk          # One article card (grid and related articles)
+│       ├── article-extra.njk         # Closing block: summary, how to arrive, related articles
 │       ├── article-category.njk
 │       ├── article-date.njk
 │       ├── article-location.njk
@@ -133,6 +134,7 @@ npm run build-icons  # re-render the icons in img/ after changing img/favicon.sv
 Hydrates the raw JSON, adding to each article:
 - `enrichedLocalities` — full locality objects, including their region
 - `enrichedCategories` — full category objects
+- `related` — three other articles for the closing block, as card-sized objects. Drawn at random from the six closest (ties included): each shared title word counts 3, each category 2, the region 2 and the locality 1. Seeded with the article's `id`, so the pick is stable across builds
 
 Exports `en`, `es` and, as default, the union of both with a `locale` property.
 

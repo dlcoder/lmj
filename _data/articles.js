@@ -81,8 +81,66 @@ function hydrate(articles, categoryMap, locale) {
   });
 }
 
-export const en = hydrate(en_json, enCategoryMap, 'en');
-export const es = hydrate(es_json, esCategoryMap, 'es');
+// Three other articles for the end of each place article, picked at random
+// among the closest ones: each title word they share counts 3, each category
+// 2, the region 2 and the very locality 1. The six best (more if tied) form
+// the pool the three are drawn from, so the pick leans hard on what is
+// related and still varies. The seed is the article's id: the pick holds
+// from one build to the next and differs from one article to the other.
+const STOPWORDS = new Set(['de', 'del', 'la', 'las', 'el', 'los', 'y', 'en', 'al', 'the', 'of', 'and', 'in', 'at']);
+const RELATED = 3;
+const POOL = 6;
+
+const words = title => new Set(title.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase()
+  .split(/[^a-z0-9]+/).filter(word => word.length > 2 && !STOPWORDS.has(word)));
+
+function seeded(seed) {
+  // mulberry32, as the home carousel uses.
+  let a = seed >>> 0;
+  return () => {
+    a = (a + 0x6d2b79f5) >>> 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function score(a, b) {
+  const shared = (x, y) => [...x].filter(item => y.has(item)).length;
+  const regions = article => new Set(article.enrichedLocalities.map(l => l.region.slug));
+  return 3 * shared(a.words, b.words)
+    + 2 * shared(new Set(a.categories), new Set(b.categories))
+    + 2 * Math.min(1, shared(regions(a), regions(b)))
+    + Math.min(1, shared(new Set(a.localities), new Set(b.localities)));
+}
+
+function withRelated(articles) {
+  const pool = articles.map(article => ({ ...article, words: words(article.title) }));
+  return articles.map((article, index) => {
+    const random = seeded(article.id);
+    const ranked = pool.filter(other => other.id !== article.id)
+      .map(other => ({ other, score: score(pool[index], other), tiebreak: random() }))
+      .sort((a, b) => b.score - a.score || a.tiebreak - b.tiebreak);
+    const floor = ranked[Math.min(POOL, ranked.length) - 1].score;
+    const closest = ranked.filter(c => c.score >= floor);
+    const related = [];
+    while (related.length < RELATED && closest.length) {
+      const [{ other }] = closest.splice(Math.floor(random() * closest.length), 1);
+      // Only what a card needs, so the articles do not end up nesting each other.
+      related.push({
+        slug: other.slug,
+        title: other.title,
+        localities: other.localities,
+        published_at: other.published_at,
+        media: other.media.filter(m => m.featured)
+      });
+    }
+    return { ...article, related };
+  });
+}
+
+export const en = withRelated(hydrate(en_json, enCategoryMap, 'en'));
+export const es = withRelated(hydrate(es_json, esCategoryMap, 'es'));
 
 export default [
   ...en.map(a => ({ ...a, locale: 'en' })),

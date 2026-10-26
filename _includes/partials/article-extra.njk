@@ -1,5 +1,5 @@
-{#- Closing block of a place article: summary, how to arrive, more articles
-    and the share buttons, as the old site had it. -#}
+{#- Closing block of a place article: summary, how to arrive and three
+    related articles. -#}
 {%- set t = i18n[locale].article -%}
 
 <div class="article-extra">
@@ -29,6 +29,18 @@
       <p class="extra-block--notice">{{ t.noGeolocation }}</p>
       {%- endif %}
     </section>
+
+    {%- if article.related | length %}
+    <section class="extra-block extra-related">
+      <h2 class="extra-block--title">{{ t.related }}</h2>
+      <div class="article-grid">
+        {%- for article in article.related %}
+        {%- set eager = false %}
+        {% include "partials/article-card.njk" %}
+        {%- endfor %}
+      </div>
+    </section>
+    {%- endif %}
 
   </div>
 </div>
