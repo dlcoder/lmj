@@ -1475,12 +1475,14 @@ body.article-page .main-container {
   visibility: visible;
 }
 
+/* Each arrow is the whole strip at its edge of the photo, top to bottom, so
+   a click anywhere near it turns the slide instead of opening the article;
+   the chevron sits in the middle of the strip. */
 .latest-articles--arrow {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 3rem;
-  height: 3rem;
+  top: 0;
+  bottom: 0;
+  width: 4rem;
   border: 0;
   background: none;
   cursor: pointer;
@@ -1513,7 +1515,7 @@ body.article-page .main-container {
 }
 
 .latest-articles--arrow__prev {
-  left: 0.5rem;
+  left: 0;
 }
 
 .latest-articles--arrow__prev::before {
@@ -1521,7 +1523,7 @@ body.article-page .main-container {
 }
 
 .latest-articles--arrow__next {
-  right: 0.5rem;
+  right: 0;
 }
 
 .latest-articles--arrow__next::before {
@@ -1549,17 +1551,9 @@ body.article-page .main-container {
     padding: 6rem 7rem 3rem;
   }
 
+  /* As wide as the caption's inset, so the strip never reaches its text. */
   .latest-articles--arrow {
-    width: 4rem;
-    height: 4rem;
-  }
-
-  .latest-articles--arrow__prev {
-    left: 1.5rem;
-  }
-
-  .latest-articles--arrow__next {
-    right: 1.5rem;
+    width: 7rem;
   }
 }
 
