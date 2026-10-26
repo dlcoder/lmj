@@ -2261,10 +2261,25 @@ body.article-page .main-container {
   padding: 1rem 1.25rem;
 }
 
+/* The map with its "view larger map" button over the top right corner,
+   clear of the zoom on the left and the attribution below. Isolated, so
+   Leaflet's own layers stay under the fixed header when it scrolls past. */
+.extra-map--frame {
+  position: relative;
+  isolation: isolate;
+}
+
+.extra-map--expand {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1001;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+}
+
 .extra-map {
   aspect-ratio: 4 / 3;
   border-radius: 4px;
-  margin-bottom: 1rem;
   background-color: var(--color-grey-200);
 }
 
@@ -2531,12 +2546,49 @@ body.locality-page .main-container {
   min-height: 24rem;
 }
 
-/* The marker popups: the teaser photo with the title under it, the whole
-   thing a link. */
+/* The marker popups, as the original drew them: the teaser photo edge to
+   edge, the title on a purple band under it, the tip in the same purple and
+   the close button in white over the photo. The whole thing is a link. */
+
+.leaflet-popup-content-wrapper {
+  padding: 0;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.leaflet-container .leaflet-popup-content {
+  margin: 0;
+  line-height: 1.3;
+}
+
+.leaflet-popup-tip {
+  background-color: var(--color-primary);
+}
+
+.leaflet-container a.leaflet-popup-close-button,
+.leaflet-container a.leaflet-popup-close-button:hover {
+  width: 28px;
+  height: 28px;
+  font-size: 24px;
+  line-height: 28px;
+  color: var(--color-white);
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
+}
+
+/* On a phone the popup is as wide as the map and would slide under the
+   zoom buttons, which Leaflet keeps above every pane. */
+@media (max-width: 639px) {
+  .leaflet-container:has(.leaflet-popup) .leaflet-control-zoom {
+    visibility: hidden;
+  }
+}
 
 .leaflet-popup-content a {
   display: block;
-  color: var(--color-grey-800);
+}
+
+.leaflet-popup-content a:hover {
+  text-decoration: none;
 }
 
 .leaflet-popup-content img {
@@ -2546,6 +2598,15 @@ body.locality-page .main-container {
 }
 
 .leaflet-popup-content h2 {
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  background-color: var(--color-primary);
+  color: var(--color-white);
   font-size: 1rem;
-  margin: 0.5rem 0 0;
+  text-transform: uppercase;
+}
+
+.leaflet-popup-content a:hover h2,
+.leaflet-popup-content a:focus-visible h2 {
+  background-color: var(--color-primary-75);
 }

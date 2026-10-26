@@ -15,13 +15,16 @@
     <section class="extra-block">
       <h2 class="extra-block--title">{{ t.howToArrive }}</h2>
       {%- if article.geolocation %}
-      <div class="extra-map"
-           id="article-map"
-           data-latitude="{{ article.geolocation.latitude }}"
-           data-longitude="{{ article.geolocation.longitude }}"></div>
-      <a class="button"
-         href="https://maps.google.com/maps?q={{ article.geolocation.latitude }},{{ article.geolocation.longitude }}&amp;ll={{ article.geolocation.latitude }},{{ article.geolocation.longitude }}&amp;z=10"
-         rel="noopener">{{ t.viewLargerMap }}</a>
+      <div class="extra-map--frame">
+        <div class="extra-map"
+             id="article-map"
+             data-latitude="{{ article.geolocation.latitude }}"
+             data-longitude="{{ article.geolocation.longitude }}"></div>
+        <a class="button extra-map--expand"
+           href="https://maps.google.com/maps?q={{ article.geolocation.latitude }},{{ article.geolocation.longitude }}&amp;ll={{ article.geolocation.latitude }},{{ article.geolocation.longitude }}&amp;z=10"
+           target="_blank"
+           rel="noopener">{{ t.viewLargerMap }}</a>
+      </div>
       {%- else %}
       <p class="extra-block--notice">{{ t.noGeolocation }}</p>
       {%- endif %}
