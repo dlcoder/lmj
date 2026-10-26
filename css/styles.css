@@ -789,7 +789,7 @@ body.home-page {
    header's edge; the shadow carries it past the content's column. */
 .page-header {
   margin: calc(-1 * 6rem) 0 2rem;
-  padding: calc(6rem + 1.5rem) 0 1.75rem;
+  padding: calc(6rem + 1rem) 0 1rem;
   background-color: var(--color-primary-tint);
   box-shadow: 0 0 0 100vmax var(--color-primary-tint);
   clip-path: inset(0 -100vmax);
@@ -798,6 +798,11 @@ body.home-page {
 .page-title {
   font-size: var(--step-4);
   font-weight: bold;
+  color: var(--color-primary);
+}
+
+.page-header > :last-child {
+  margin-bottom: 0;
 }
 
 /* What the title belongs to: the region of a municipality. */
@@ -892,7 +897,7 @@ body.article-page .main-container {
 @media (max-width: 1279px) {
   .article-header {
     margin-top: calc(-1 * 6rem);
-    padding: calc(6rem + 1.5rem) 0 1.75rem;
+    padding: calc(6rem + 1rem) 0 1rem;
     border-bottom: 0;
     background-color: var(--color-primary-tint);
     box-shadow: 0 0 0 100vmax var(--color-primary-tint);
@@ -903,6 +908,7 @@ body.article-page .main-container {
 .article-title {
   font-size: var(--step-5);
   font-weight: bold;
+  color: var(--color-primary);
   margin-bottom: 0;
   text-transform: uppercase;
 }
