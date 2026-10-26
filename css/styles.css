@@ -2325,6 +2325,21 @@ body.article-page .main-container {
   padding: 2rem 0 3rem;
 }
 
+/* Side by side once there is room: the summary on the left, the map on the
+   right, and the related articles across both below. */
+@media (min-width: 900px) {
+  .article-extra--wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 3rem;
+    align-items: start;
+  }
+
+  .extra-related {
+    grid-column: 1 / -1;
+  }
+}
+
 .extra-block {
   margin-bottom: 2.5rem;
 }
@@ -2406,12 +2421,12 @@ body.article-page .main-container {
     margin-top: auto;
   }
 
-  /* The same column as the intro's text, so the deck keeps one width from
-     the first slide to the last. */
+  /* The width of the rest of the site, the header's and the footer's,
+     now that the block runs in two columns. */
   .article-extra--wrapper {
     max-width: 1920px;
     box-sizing: border-box;
-    padding: 3rem 15rem 4rem;
+    padding: 3rem 2rem 4rem;
   }
 }
 
