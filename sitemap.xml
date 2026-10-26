@@ -2236,11 +2236,6 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/localities/baeza/"/>
   </url>
   <url>
-    <loc>https://www.lugaresmiticosdejaen.com/en/localities/iznatoraf/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/localities/iznatoraf/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/localities/iznatoraf/"/>
-  </url>
-  <url>
     <loc>https://www.lugaresmiticosdejaen.com/en/localities/rus/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/localities/rus/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/localities/rus/"/>
@@ -2249,6 +2244,11 @@
     <loc>https://www.lugaresmiticosdejaen.com/en/localities/sabiote/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/localities/sabiote/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/localities/sabiote/"/>
+  </url>
+  <url>
+    <loc>https://www.lugaresmiticosdejaen.com/en/localities/iznatoraf/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/localities/iznatoraf/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/localities/iznatoraf/"/>
   </url>
   <url>
     <loc>https://www.lugaresmiticosdejaen.com/en/localities/villanueva-del-arzobispo/</loc>
@@ -2486,11 +2486,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/localities/baeza/"/>
   </url>
   <url>
-    <loc>https://www.lugaresmiticosdejaen.com/es/localities/iznatoraf/</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/localities/iznatoraf/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/localities/iznatoraf/"/>
-  </url>
-  <url>
     <loc>https://www.lugaresmiticosdejaen.com/es/localities/rus/</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/localities/rus/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/localities/rus/"/>
@@ -2499,6 +2494,11 @@
     <loc>https://www.lugaresmiticosdejaen.com/es/localities/sabiote/</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/localities/sabiote/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/localities/sabiote/"/>
+  </url>
+  <url>
+    <loc>https://www.lugaresmiticosdejaen.com/es/localities/iznatoraf/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/localities/iznatoraf/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/localities/iznatoraf/"/>
   </url>
   <url>
     <loc>https://www.lugaresmiticosdejaen.com/es/localities/villanueva-del-arzobispo/</loc>
@@ -2681,39 +2681,39 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/the-books/"/>
   </url>
   <url>
-    <loc>https://www.lugaresmiticosdejaen.com/en/regions/area-metropolitana-de-jaen/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/area-metropolitana-de-jaen/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/area-metropolitana-de-jaen/"/>
+    <loc>https://www.lugaresmiticosdejaen.com/en/regions/comarca-metropolitana-de-jaen/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/comarca-metropolitana-de-jaen/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/comarca-metropolitana-de-jaen/"/>
   </url>
   <url>
-    <loc>https://www.lugaresmiticosdejaen.com/en/regions/area-metropolitana-de-jaen/page/2/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/area-metropolitana-de-jaen/page/2/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/area-metropolitana-de-jaen/page/2/"/>
+    <loc>https://www.lugaresmiticosdejaen.com/en/regions/comarca-metropolitana-de-jaen/page/2/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/comarca-metropolitana-de-jaen/page/2/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/comarca-metropolitana-de-jaen/page/2/"/>
   </url>
   <url>
-    <loc>https://www.lugaresmiticosdejaen.com/en/regions/area-metropolitana-de-jaen/page/3/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/area-metropolitana-de-jaen/page/3/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/area-metropolitana-de-jaen/page/3/"/>
+    <loc>https://www.lugaresmiticosdejaen.com/en/regions/comarca-metropolitana-de-jaen/page/3/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/comarca-metropolitana-de-jaen/page/3/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/comarca-metropolitana-de-jaen/page/3/"/>
   </url>
   <url>
-    <loc>https://www.lugaresmiticosdejaen.com/en/regions/area-metropolitana-de-jaen/page/4/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/area-metropolitana-de-jaen/page/4/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/area-metropolitana-de-jaen/page/4/"/>
+    <loc>https://www.lugaresmiticosdejaen.com/en/regions/comarca-metropolitana-de-jaen/page/4/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/comarca-metropolitana-de-jaen/page/4/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/comarca-metropolitana-de-jaen/page/4/"/>
   </url>
   <url>
-    <loc>https://www.lugaresmiticosdejaen.com/en/regions/area-metropolitana-de-jaen/page/5/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/area-metropolitana-de-jaen/page/5/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/area-metropolitana-de-jaen/page/5/"/>
+    <loc>https://www.lugaresmiticosdejaen.com/en/regions/comarca-metropolitana-de-jaen/page/5/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/comarca-metropolitana-de-jaen/page/5/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/comarca-metropolitana-de-jaen/page/5/"/>
   </url>
   <url>
-    <loc>https://www.lugaresmiticosdejaen.com/en/regions/alto-guadalquivir/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/alto-guadalquivir/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/alto-guadalquivir/"/>
+    <loc>https://www.lugaresmiticosdejaen.com/en/regions/sierra-de-cazorla/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/sierra-de-cazorla/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/sierra-de-cazorla/"/>
   </url>
   <url>
-    <loc>https://www.lugaresmiticosdejaen.com/en/regions/campina/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/campina/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/campina/"/>
+    <loc>https://www.lugaresmiticosdejaen.com/en/regions/campina-de-jaen/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/campina-de-jaen/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/campina-de-jaen/"/>
   </url>
   <url>
     <loc>https://www.lugaresmiticosdejaen.com/en/regions/el-condado/</loc>
@@ -2721,9 +2721,14 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/el-condado/"/>
   </url>
   <url>
-    <loc>https://www.lugaresmiticosdejaen.com/en/regions/la-loma-y-las-villas/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/la-loma-y-las-villas/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/la-loma-y-las-villas/"/>
+    <loc>https://www.lugaresmiticosdejaen.com/en/regions/la-loma/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/la-loma/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/la-loma/"/>
+  </url>
+  <url>
+    <loc>https://www.lugaresmiticosdejaen.com/en/regions/las-villas/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/las-villas/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/las-villas/"/>
   </url>
   <url>
     <loc>https://www.lugaresmiticosdejaen.com/en/regions/sierra-de-segura/</loc>
@@ -2746,14 +2751,14 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/sierra-magina/page/2/"/>
   </url>
   <url>
-    <loc>https://www.lugaresmiticosdejaen.com/en/regions/sierra-norte/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/sierra-norte/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/sierra-norte/"/>
+    <loc>https://www.lugaresmiticosdejaen.com/en/regions/sierra-morena/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/sierra-morena/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/sierra-morena/"/>
   </url>
   <url>
-    <loc>https://www.lugaresmiticosdejaen.com/en/regions/sierra-norte/page/2/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/sierra-norte/page/2/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/sierra-norte/page/2/"/>
+    <loc>https://www.lugaresmiticosdejaen.com/en/regions/sierra-morena/page/2/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/sierra-morena/page/2/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/sierra-morena/page/2/"/>
   </url>
   <url>
     <loc>https://www.lugaresmiticosdejaen.com/en/regions/sierra-sur/</loc>
@@ -2761,39 +2766,39 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/sierra-sur/"/>
   </url>
   <url>
-    <loc>https://www.lugaresmiticosdejaen.com/es/regions/area-metropolitana-de-jaen/</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/area-metropolitana-de-jaen/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/area-metropolitana-de-jaen/"/>
+    <loc>https://www.lugaresmiticosdejaen.com/es/regions/comarca-metropolitana-de-jaen/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/comarca-metropolitana-de-jaen/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/comarca-metropolitana-de-jaen/"/>
   </url>
   <url>
-    <loc>https://www.lugaresmiticosdejaen.com/es/regions/area-metropolitana-de-jaen/page/2/</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/area-metropolitana-de-jaen/page/2/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/area-metropolitana-de-jaen/page/2/"/>
+    <loc>https://www.lugaresmiticosdejaen.com/es/regions/comarca-metropolitana-de-jaen/page/2/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/comarca-metropolitana-de-jaen/page/2/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/comarca-metropolitana-de-jaen/page/2/"/>
   </url>
   <url>
-    <loc>https://www.lugaresmiticosdejaen.com/es/regions/area-metropolitana-de-jaen/page/3/</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/area-metropolitana-de-jaen/page/3/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/area-metropolitana-de-jaen/page/3/"/>
+    <loc>https://www.lugaresmiticosdejaen.com/es/regions/comarca-metropolitana-de-jaen/page/3/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/comarca-metropolitana-de-jaen/page/3/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/comarca-metropolitana-de-jaen/page/3/"/>
   </url>
   <url>
-    <loc>https://www.lugaresmiticosdejaen.com/es/regions/area-metropolitana-de-jaen/page/4/</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/area-metropolitana-de-jaen/page/4/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/area-metropolitana-de-jaen/page/4/"/>
+    <loc>https://www.lugaresmiticosdejaen.com/es/regions/comarca-metropolitana-de-jaen/page/4/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/comarca-metropolitana-de-jaen/page/4/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/comarca-metropolitana-de-jaen/page/4/"/>
   </url>
   <url>
-    <loc>https://www.lugaresmiticosdejaen.com/es/regions/area-metropolitana-de-jaen/page/5/</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/area-metropolitana-de-jaen/page/5/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/area-metropolitana-de-jaen/page/5/"/>
+    <loc>https://www.lugaresmiticosdejaen.com/es/regions/comarca-metropolitana-de-jaen/page/5/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/comarca-metropolitana-de-jaen/page/5/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/comarca-metropolitana-de-jaen/page/5/"/>
   </url>
   <url>
-    <loc>https://www.lugaresmiticosdejaen.com/es/regions/alto-guadalquivir/</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/alto-guadalquivir/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/alto-guadalquivir/"/>
+    <loc>https://www.lugaresmiticosdejaen.com/es/regions/sierra-de-cazorla/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/sierra-de-cazorla/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/sierra-de-cazorla/"/>
   </url>
   <url>
-    <loc>https://www.lugaresmiticosdejaen.com/es/regions/campina/</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/campina/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/campina/"/>
+    <loc>https://www.lugaresmiticosdejaen.com/es/regions/campina-de-jaen/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/campina-de-jaen/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/campina-de-jaen/"/>
   </url>
   <url>
     <loc>https://www.lugaresmiticosdejaen.com/es/regions/el-condado/</loc>
@@ -2801,9 +2806,14 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/el-condado/"/>
   </url>
   <url>
-    <loc>https://www.lugaresmiticosdejaen.com/es/regions/la-loma-y-las-villas/</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/la-loma-y-las-villas/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/la-loma-y-las-villas/"/>
+    <loc>https://www.lugaresmiticosdejaen.com/es/regions/la-loma/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/la-loma/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/la-loma/"/>
+  </url>
+  <url>
+    <loc>https://www.lugaresmiticosdejaen.com/es/regions/las-villas/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/las-villas/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/las-villas/"/>
   </url>
   <url>
     <loc>https://www.lugaresmiticosdejaen.com/es/regions/sierra-de-segura/</loc>
@@ -2826,14 +2836,14 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/sierra-magina/page/2/"/>
   </url>
   <url>
-    <loc>https://www.lugaresmiticosdejaen.com/es/regions/sierra-norte/</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/sierra-norte/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/sierra-norte/"/>
+    <loc>https://www.lugaresmiticosdejaen.com/es/regions/sierra-morena/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/sierra-morena/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/sierra-morena/"/>
   </url>
   <url>
-    <loc>https://www.lugaresmiticosdejaen.com/es/regions/sierra-norte/page/2/</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/sierra-norte/page/2/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/sierra-norte/page/2/"/>
+    <loc>https://www.lugaresmiticosdejaen.com/es/regions/sierra-morena/page/2/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.lugaresmiticosdejaen.com/es/regions/sierra-morena/page/2/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.lugaresmiticosdejaen.com/en/regions/sierra-morena/page/2/"/>
   </url>
   <url>
     <loc>https://www.lugaresmiticosdejaen.com/es/regions/sierra-sur/</loc>

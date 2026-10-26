@@ -2222,6 +2222,12 @@ body.locality-page .main-container {
   list-style: none;
 }
 
+@media (min-width: 1280px) {
+  .regions-index {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
 .regions-index--item {
   border-top: 3px solid var(--color-primary);
   padding-top: 1rem;
