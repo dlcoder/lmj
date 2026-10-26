@@ -233,6 +233,8 @@ All images also have an `original` size available.
 
 ### Regions (`regions.json`)
 
+The ten comarcas and their 97 municipalities follow the Junta de Andalucía's 2003 catalogue, as Wikipedia's list of the comarcas of Jaén gives it, official spellings included (Torredelcampo, Espeluy, Torres de Albanchez). The Rails app had nine, with La Loma and Las Villas merged; locality slugs kept their old form.
+
 ```json
 {
   "name": "Sierra de Cazorla",
@@ -244,6 +246,17 @@ All images also have an `original` size available.
 }
 ```
 
+## Project Decisions
+
+Deliberate choices a later change could undo by mistake:
+
+- **The project is closed.** The last article is from 17/12/2018, so the static pages tell its story in the past tense, and there are no share buttons, previous/next links, newsletter form or RSS feed. The related articles at the end of a place article are the one exception: they help a reader find more, not the project grow.
+- **Not migrated, on purpose:** the Rails pages `como-colaborar`, `donaciones`, `lista-de-correo`, `jornadas` and `aviso-legal` (they answer 404). The static pages were rewritten by hand rather than migrated, and stay duplicated per locale, because they are prose, not data.
+- **Only the 46 municipalities with articles get a page.** The other 51 are listed as plain text and their old URLs redirect to the localities index.
+- **Translations:** the 107 articles the Rails app never translated were translated in 2026 and are final; an English slug was given where a translation makes sense, keeping proper names.
+- **Analytics:** Umami, cookieless, so the site has no cookie banner. Anything that sets cookies would need one, and the cookies pages rewritten.
+- **The search** lives only on the home page, with no page of its own.
+
 ## Deployment
 
 `.github/workflows/deploy-to-ghpages.yml`: on every push to `main` it runs `validate`, `check-pages` and `check-links`, builds with `ELEVENTY_ENV=production` and publishes `_site/` to the GitHub Pages branch via `peaceiris/actions-gh-pages`. Pull requests run the checks but do not publish.
@@ -253,6 +266,8 @@ The domain is written twice: in the `CNAME` file, which `SITE_URL` reads for can
 `.github/dependabot.yml` opens monthly pull requests for the actions and the npm dependencies, minor and patch grouped.
 
 ## Known Debt
+
+- **The assets host is on Cloudflare**, whose IPs Spain's court-ordered blocks for LaLiga filter during football matches, so images and map outlines fail intermittently for visitors in Spain. Nothing inside Cloudflare avoids it short of an Enterprise plan. Measured in 2026: the bucket holds 11,165 files (3.75 GB; the `original` sizes are 1.58 GB and capped at 1920×1278). CloudFront with S3 fits the free plan (100 GB, 1M requests, 5 GB of storage) but needs WebP/AVIF generated ahead and chosen by `Accept`; ImageKit transforms on the fly within 20 GB a month. Test any new host during a match before moving.
 
 The most relevant items when touching templates:
 
