@@ -21,20 +21,23 @@ includeSearch: true
 
 
 <div class="categories-section">
-  <h2 class="categories-section-title">{{ i18n[indexPage.locale].home.discover }}</h2>
+  <div class="categories-section--head">
+    <h2 class="categories-section-title">{{ i18n[indexPage.locale].home.discover }}</h2>
 
-  {#- The search lives here, under the heading, and its results take the
-      place of the category tiles while there is a query. It needs the
-      script, so the form stays hidden until the script shows it. -#}
-  {%- set search = i18n[locale].search %}
-  <form class="home-search" id="home-search" role="search" hidden
-        data-locale="{{ locale }}"
-        data-one="{{ search.countOne }}" data-many="{{ search.countMany }}" data-none="{{ search.countNone }}">
-    <label class="visually-hidden" for="home-search-input">{{ search.label }}</label>
-    <input class="home-search--input" id="home-search-input" type="search" name="q"
-           placeholder="{{ search.placeholder }}" autocomplete="off" spellcheck="false">
-  </form>
-  <p class="home-search--status" id="home-search-status" role="status"></p>
+    {#- The search lives here, under the heading, and its results take the
+        place of the category tiles while there is a query. It needs the
+        script, so the form stays hidden until the script shows it. -#}
+    {%- set search = i18n[locale].search %}
+    <form class="home-search" id="home-search" role="search" hidden
+          data-locale="{{ locale }}"
+          data-one="{{ search.countOne }}" data-many="{{ search.countMany }}" data-none="{{ search.countNone }}">
+      <label class="visually-hidden" for="home-search-input">{{ search.label }}</label>
+      <input class="home-search--input" id="home-search-input" type="search" name="q"
+             placeholder="{{ search.placeholder }}" autocomplete="off" spellcheck="false">
+    </form>
+    <p class="home-search--status" id="home-search-status" role="status"></p>
+  </div>
+
   <div class="article-grid home-search--results" id="home-search-results" hidden></div>
 
   <div class="article-grid" id="home-categories">
