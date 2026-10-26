@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://new.lugaresmiticosdejaen.com/sitemap.xml
+Sitemap: https://www.lugaresmiticosdejaen.com/sitemap.xml
