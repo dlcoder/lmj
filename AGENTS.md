@@ -1,10 +1,8 @@
 # Lugares Míticos de Jaén
 
-A bilingual (Spanish/English) static website about mythical and legendary places in Jaén, Spain.
-Migrated from a previous Rails app.
+A bilingual (Spanish/English) static website about mythical and legendary places in Jaén, Spain. Migrated from a previous Rails app.
 
-> **Single source of truth.** `CLAUDE.md` is a symlink to this file. Keep it up to date when making
-> structural changes (new templates, filters, shortcodes, data files).
+> **Single source of truth.** `CLAUDE.md` is a symlink to this file. Keep it up to date when making structural changes (new templates, filters, shortcodes, data files).
 
 **Live site:** https://www.lugaresmiticosdejaen.com/ (still served by the original Rails app)
 
@@ -109,42 +107,26 @@ npm run build-icons  # re-render the icons in img/ after changing img/favicon.sv
 
 ## Key Configuration (`.eleventy.js`)
 
-- **Leaflet** is a pinned dependency, copied out of `node_modules` into `/vendor/` at build time
-  and loaded only on the pages that need it (`includeLeaflet`);
-  `leaflet.markercluster` is a second flag (`includeMarkerCluster`), for the maps that plot
-  articles — Jaén alone has 43 of them
+- **Leaflet** is a pinned dependency, copied out of `node_modules` into `/vendor/` at build time and loaded only on the pages that need it (`includeLeaflet`); `leaflet.markercluster` is a second flag (`includeMarkerCluster`), for the maps that plot articles — Jaén alone has 43 of them
 - **Static assets host:** `https://lmjstatic.deliriumcoder.com` (`STATICS_HOST` constant)
 - **Global data:** `env`, `timestamp` (CSS/JS cache busting), `staticsHost`, `siteUrl`
-- **Structured data:** articles carry a JSON-LD `Article` about a `TouristAttraction`, with
-  `GeoCoordinates` only where the article publishes them (`setGeo` filter); each home page a `WebSite`
-- **Filters:** `formatDate` → `DD/MM/YYYY`; `cleanUrl` (drops `.html`); `alternate` (the same page
-  in the other locale, see `alternateFor()`); `excerpt(length)` (meta descriptions, cut at a word)
+- **Structured data:** articles carry a JSON-LD `Article` about a `TouristAttraction`, with `GeoCoordinates` only where the article publishes them (`setGeo` filter); each home page a `WebSite`
+- **Filters:** `formatDate` → `DD/MM/YYYY`; `cleanUrl` (drops `.html`); `alternate` (the same page in the other locale, see `alternateFor()`); `excerpt(length)` (meta descriptions, cut at a word)
 - **Shortcodes:**
   - `featured_image(article, size)` — URL of the featured photo (`featured: true` and `type: "Photo"`)
   - `static_image(path)` — absolute URL of a bucket asset
-- **Passthrough copy:** `css`, `js`, `img`, `img/favicon.ico` to the root, and the Leaflet and
-  markercluster dist files to `/vendor/`
-- **Ignored paths:** every `*.md` at the root (the site has no Markdown pages), `content`. Anything in `.gitignore`
-  (`node_modules`, `_site`) is ignored by Eleventy on its own — no need to repeat it
+- **Passthrough copy:** `css`, `js`, `img`, `img/favicon.ico` to the root, and the Leaflet and markercluster dist files to `/vendor/`
+- **Ignored paths:** every `*.md` at the root (the site has no Markdown pages), `content`. Anything in `.gitignore` (`node_modules`, `_site`) is ignored by Eleventy on its own — no need to repeat it
 
 ## Data Architecture
 
 ### `base.js`
 - `localityMap` — `Map` of locality name → object including its region
 - `enCategoryMap` / `esCategoryMap` — `Map` of category name → object
-- `SITE_URL` — the published domain, read from `CNAME` (overridable with `process.env.SITE_URL`).
-  Canonical, `hreflang` and Open Graph URLs are built on it, so moving the site is changing `CNAME`
-- `alternateFor(url)` — the same page in the other locale, as `{ path, translated }`. Articles pair
-  by `id`, categories by position, static pages by their key in `i18n.pages`, everything else by
-  swapping the locale. `translated` is false for the English articles that carry the Spanish text:
-  the layout gives those no `hreflang` pair. `check-pages` asserts every pair exists and points back
-- `IMAGE_BASE` + `featuredImageParts(article)` — the directory and file name of an article's
-  featured photo. Every size of a photo shares its path but for the variant segment, so the
-  JSON indexes carry only those two halves and the client builds the URLs it needs
-- `generatePaginatedPages({ entities, articles, filterFn, entityKey, pathPrefix, locale, includeEmpty })`
-  — generates paginated pages for any entity type. **`PAGE_SIZE = 12`.** Sorts by `published_at`
-  descending and returns objects with `articles`, `locale`, `pagination` and the entity itself.
-  With `includeEmpty: true` it also generates pages with no articles (used by localities).
+- `SITE_URL` — the published domain, read from `CNAME` (overridable with `process.env.SITE_URL`). Canonical, `hreflang` and Open Graph URLs are built on it, so moving the site is changing `CNAME`
+- `alternateFor(url)` — the same page in the other locale, as `{ path, translated }`. Articles pair by `id`, categories by position, static pages by their key in `i18n.pages`, everything else by swapping the locale. `translated` is false for the English articles that carry the Spanish text: the layout gives those no `hreflang` pair. `check-pages` asserts every pair exists and points back
+- `IMAGE_BASE` + `featuredImageParts(article)` — the directory and file name of an article's featured photo. Every size of a photo shares its path but for the variant segment, so the JSON indexes carry only those two halves and the client builds the URLs it needs
+- `generatePaginatedPages({ entities, articles, filterFn, entityKey, pathPrefix, locale, includeEmpty })` — generates paginated pages for any entity type. **`PAGE_SIZE = 12`.** Sorts by `published_at` descending and returns objects with `articles`, `locale`, `pagination` and the entity itself. With `includeEmpty: true` it also generates pages with no articles (used by localities).
 
 ### `articles.js`
 Hydrates the raw JSON, adding to each article:
@@ -164,38 +146,18 @@ Exports `en`, `es` and, as default, the union of both with a `locale` property.
 | `all_localities` | paginated locality pages (only the 46 with articles) |
 
 ### `articles_index.js`
-The **one** index of geolocated articles, one per locale, written to `/{locale}/articles.json`
-by `src/articles_index.njk`. A GeoJSON `FeatureCollection` in the same shape the Rails app
-served from `/articulos.json`, so Leaflet eats it as it comes: 159 `Point` features — the five
-articles without geolocation are left out — each carrying `title`, `path`, `localities` (ids,
-which is what names the outline files on the bucket), `categories` (slugs) and `image`
-(`{ dir, file }`). ~46 KB, **6,7 KB gzip**.
+The **one** index of geolocated articles, one per locale, written to `/{locale}/articles.json` by `src/articles_index.njk`. A GeoJSON `FeatureCollection` in the same shape the Rails app served from `/articulos.json`, so Leaflet eats it as it comes: 159 `Point` features — the five articles without geolocation are left out — each carrying `title`, `path`, `localities` (ids, which is what names the outline files on the bucket), `categories` (slugs) and `image` (`{ dir, file }`). ~46 KB, **6,7 KB gzip**.
 
-Everything that needs articles on a map or in a list reads this one file: the locality map
-and the explorer map today, the search later. The explorer keeps its filters in the query
-string (`?locality={id}&category={slug}`).
+Everything that needs articles on a map or in a list reads this one file: the locality map and the explorer map today, the search later. The explorer keeps its filters in the query string (`?locality={id}&category={slug}`).
 
 ### `search_index.js`
-The search on the home page, one file per locale at `/{locale}/search.json`: title, places,
-categories, summary and sentences of every article, newest first. ~240 KB, **~75 KB gzip**, so
-`js/home-search.js` fetches it the first time the field is used. It folds case and accents on both
-sides and needs every word of the query; titles weigh most, then places and categories, then text.
-Its results replace the category tiles under the "Discover" heading, and the query stays in `?q=`.
-There is no search page: the field only lives on the home page, by decision.
+The search on the home page, one file per locale at `/{locale}/search.json`: title, places, categories, summary and sentences of every article, newest first. ~240 KB, **~75 KB gzip**, so `js/home-search.js` fetches it the first time the field is used. It folds case and accents on both sides and needs every word of the query; titles weigh most, then places and categories, then text. Its results replace the category tiles under the "Discover" heading, and the query stays in `?q=`. There is no search page: the field only lives on the home page, by decision.
 
 ### `redirects.js`
-Every URL of the Rails app that lives somewhere else now, derived from the same data as the site:
-the final slugs never changed, only the prefixes (`/es/articulos/lugares/{slug}`,
-`/en/cities/{slug}`, `/es/categorias/{slug}`…), plus the renamed static pages and the two `/libro2`
-shortcuts. Each becomes a page at `{old path}.html` with an immediate meta refresh and a canonical
-to the new address. The 51 municipalities with no article go to the localities index. Old query
-strings (`?page=N`) cannot reach a static page and are lost. Paths the two sites share, such as
-`/en/articles/{slug}`, need no entry.
+Every URL of the Rails app that lives somewhere else now, derived from the same data as the site: the final slugs never changed, only the prefixes (`/es/articulos/lugares/{slug}`, `/en/cities/{slug}`, `/es/categorias/{slug}`…), plus the renamed static pages and the two `/libro2` shortcuts. Each becomes a page at `{old path}.html` with an immediate meta refresh and a canonical to the new address. The 51 municipalities with no article go to the localities index. Old query strings (`?page=N`) cannot reach a static page and are lost. Paths the two sites share, such as `/en/articles/{slug}`, need no entry.
 
 ### `categories_list.js` / `localities_list.js`
-Lists for the home page blocks. `categories_list` maps each category to its `imageSlug` (the
-**English** slug, because that is how the bucket files are named). `localities_list` adds
-`articleCount` and sorts alphabetically with `localeCompare('es')`.
+Lists for the home page blocks. `categories_list` maps each category to its `imageSlug` (the **English** slug, because that is how the bucket files are named). `localities_list` adds `articleCount` and sorts alphabetically with `localeCompare('es')`.
 
 ## Page Generation
 
@@ -223,26 +185,18 @@ All templates are unified and receive the language in the `locale` variable.
 
 All article lists are sorted by `published_at` in descending order (newest first).
 
-Every paginated HTML template sets `addAllPagesToCollections: true`: without it only its first
-page reaches `collections.all`, and the sitemap would miss the rest.
+Every paginated HTML template sets `addAllPagesToCollections: true`: without it only its first page reaches `collections.all`, and the sitemap would miss the rest.
 
 ## Data Structure
 
 ### Articles
-- `id` — stable across locales, and the **only** way to pair an article with its
-  translation: 84 articles have a different slug in each language
-- `legacy_slug` — only on the 68 English articles that got a slug of their own when they were
-  translated in 2026; the Spanish slug they were published under until then. `redirects.js`
-  sends both the Rails URLs and the old ones here to the new slug
-- Content and metadata (`title`, `summary`, `sentences`, `published_at`, `hashtag`, `type`,
-  `translated`, geolocation)
+- `id` — stable across locales, and the **only** way to pair an article with its translation: 84 articles have a different slug in each language
+- `legacy_slug` — only on the 68 English articles that got a slug of their own when they were translated in 2026; the Spanish slug they were published under until then. `redirects.js` sends both the Rails URLs and the old ones here to the new slug
+- Content and metadata (`title`, `summary`, `sentences`, `published_at`, `hashtag`, `type`, `translated`, geolocation)
 - `summary` and `sentences` are plain text, HTML entities already decoded during hydration
-- `body` — only for `Tradition` articles: the HTML from `content/`, with its `[img::N]`
-  placeholders resolved to real images
+- `body` — only for `Tradition` articles: the HTML from `content/`, with its `[img::N]` placeholders resolved to real images
 - `type`: `Place` (161) or `Tradition` (3; the body lives in `content/`)
-- `media[]`: 2,068 photos + 4 videos. Look for `featured: true` and `type: "Photo"` for the featured one.
-  A video carries only its `youtube_code`; hydration adds `galleryMedia` (everything but the
-  featured item, videos in place) for the deck, and `galleryPhotos` (photos only)
+- `media[]`: 2,068 photos + 4 videos. Look for `featured: true` and `type: "Photo"` for the featured one. A video carries only its `youtube_code`; hydration adds `galleryMedia` (everything but the featured item, videos in place) for the deck, and `galleryPhotos` (photos only)
 - `image_urls`: relative paths per size, to be concatenated with `STATICS_HOST`
 
 ### Image Sizes
@@ -287,46 +241,19 @@ All images also have an `original` size available.
 
 ## Deployment
 
-`.github/workflows/deploy-to-ghpages.yml`: on every push to `main` it runs `validate`,
-`check-pages` and `check-links`, builds with `ELEVENTY_ENV=production` and publishes `_site/`
-to the GitHub Pages branch via `peaceiris/actions-gh-pages`. Pull requests run the checks but
-do not publish.
+`.github/workflows/deploy-to-ghpages.yml`: on every push to `main` it runs `validate`, `check-pages` and `check-links`, builds with `ELEVENTY_ENV=production` and publishes `_site/` to the GitHub Pages branch via `peaceiris/actions-gh-pages`. Pull requests run the checks but do not publish.
 
-The domain is written twice: in the `CNAME` file, which `SITE_URL` reads for canonical,
-`hreflang`, Open Graph and the sitemap, and in the workflow's `cname:` input, which is what
-GitHub Pages is told. Change both together. The canonical host is `www`: with the apex also
-pointed at GitHub Pages in DNS, Pages redirects it to `www` on its own.
+The domain is written twice: in the `CNAME` file, which `SITE_URL` reads for canonical, `hreflang`, Open Graph and the sitemap, and in the workflow's `cname:` input, which is what GitHub Pages is told. Change both together. The canonical host is `www`: with the apex also pointed at GitHub Pages in DNS, Pages redirects it to `www` on its own.
 
-`.github/dependabot.yml` opens monthly pull requests for the actions and the npm dependencies,
-minor and patch grouped.
+`.github/dependabot.yml` opens monthly pull requests for the actions and the npm dependencies, minor and patch grouped.
 
 ## Known Debt
 
 The most relevant items when touching templates:
 
-- Photos are `<img srcset loading="lazy">` everywhere now — carousel, card grids, category
-  tiles, article gallery. What is left on `background-image` is the photo behind the
-  article intro, which carries a gradient scrim over it, and the dead
-  `.article-tradition__* .responsive-image` rules, whose markup no longer exists.
-  **WebP/AVIF is the remaining win**, and it needs a CDN that negotiates on `Accept`. Re-encoding a sample of 50 gallery photos gave WebP (q80) at
-  ~67 % of the JPEG and AVIF (CRF 35) at ~47 %.
-- From 1280px up the article is a scroll-snap deck: the intro over the featured photo,
-  the featured photo on its own, then the gallery. The scrolling is the browser's; the
-  script only adds arrow keys and the navigation dots. Below that width it is an ordinary
-  stacked page.
-- Some photos have black letterbox bands baked into the file. Nothing in the CSS adds
-  them.
-- All 164 articles are translated. The 107 the Rails app never translated were translated in
-  2026 (title, summary, sentences, and the two `Tradition` bodies in `content/`). The templates
-  still handle `translated: false` — `lang="es"` on the text, no `hreflang` pair — should an
-  untranslated article ever come back.
-- Articles are written as `{slug}.html` but linked without the extension
-  (`/es/articles/{slug}`). This works because GitHub Pages resolves `.html` automatically,
-  but it ties the site to hosts with that convention. `npm run check-links` reproduces that
-  behaviour locally via `scripts/serve-site.mjs`.
-- The home map reads municipality outlines from the assets host with `fetch()`, so CORS
-  applies. That host answers with an allowlist of origins: the deployed domains are on it,
-  local development is not unless the origin is added. `npm run check-pages` reports this
-  as a note rather than a failure, since it is configuration outside the repo. The origins
-  used here are `http://localhost:8099` (`scripts/serve-site.mjs`) and `http://localhost:8123`
-  (`scripts/check-pages.mjs`).
+- Photos are `<img srcset loading="lazy">` everywhere now — carousel, card grids, category tiles, article gallery. What is left on `background-image` is the photo behind the article intro, which carries a gradient scrim over it, and the dead `.article-tradition__* .responsive-image` rules, whose markup no longer exists. **WebP/AVIF is the remaining win**, and it needs a CDN that negotiates on `Accept`. Re-encoding a sample of 50 gallery photos gave WebP (q80) at ~67 % of the JPEG and AVIF (CRF 35) at ~47 %.
+- From 1280px up the article is a scroll-snap deck: the intro over the featured photo, the featured photo on its own, then the gallery. The scrolling is the browser's; the script only adds arrow keys and the navigation dots. Below that width it is an ordinary stacked page.
+- Some photos have black letterbox bands baked into the file. Nothing in the CSS adds them.
+- All 164 articles are translated. The 107 the Rails app never translated were translated in 2026 (title, summary, sentences, and the two `Tradition` bodies in `content/`). The templates still handle `translated: false` — `lang="es"` on the text, no `hreflang` pair — should an untranslated article ever come back.
+- Articles are written as `{slug}.html` but linked without the extension (`/es/articles/{slug}`). This works because GitHub Pages resolves `.html` automatically, but it ties the site to hosts with that convention. `npm run check-links` reproduces that behaviour locally via `scripts/serve-site.mjs`.
+- The home map reads municipality outlines from the assets host with `fetch()`, so CORS applies. That host answers with an allowlist of origins: the deployed domains are on it, local development is not unless the origin is added. `npm run check-pages` reports this as a note rather than a failure, since it is configuration outside the repo. The origins used here are `http://localhost:8099` (`scripts/serve-site.mjs`) and `http://localhost:8123` (`scripts/check-pages.mjs`).
