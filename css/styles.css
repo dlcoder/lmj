@@ -1428,9 +1428,24 @@ body.article-page .main-container {
   top: 0;
   bottom: 0;
   pointer-events: none;
+  /* Over the caption, so a title that wraps never takes the arrows' clicks. */
+  z-index: 4;
+}
+
+/* A faint shade at either edge of the photo, so the white arrows hold up on
+   a bright sky or a white wall. Under the caption, so it does not grey the
+   text; the arrows sit above both. */
+.latest-articles.is-carousel .latest-articles--track::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-width: 1920px;
+  margin: 0 auto;
   z-index: 2;
-  /* A faint shade at either edge of the photo, so the white arrows hold up
-     on a bright sky or a white wall. */
+  pointer-events: none;
   background: linear-gradient(to right, rgba(0, 0, 0, 0.35), transparent 18%, transparent 82%, rgba(0, 0, 0, 0.35));
 }
 
@@ -1528,8 +1543,10 @@ body.article-page .main-container {
     max-height: 768px;
   }
 
+  /* As far from the arrows as the arrows are from the photo's edge: 1.5rem
+     out, 4rem of arrow, 1.5rem in. */
   .latest-article--caption {
-    padding: 6rem 4rem 3rem;
+    padding: 6rem 7rem 3rem;
   }
 
   .latest-articles--arrow {
@@ -1574,7 +1591,8 @@ body.article-page .main-container {
     display: none;
   }
 
-  .latest-articles.is-carousel .latest-articles--arrows {
+  .latest-articles.is-carousel .latest-articles--arrows,
+  .latest-articles.is-carousel .latest-articles--track::after {
     bottom: auto;
     height: calc(100vw * 2 / 3);
   }
