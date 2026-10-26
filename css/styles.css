@@ -2529,6 +2529,15 @@ body.locality-page .main-container {
   margin-top: 0;
 }
 
+/* A map that ends the page, as the explorer's does, meets the footer. */
+.locality-map:last-child {
+  margin-bottom: 0;
+}
+
+.main-container:has(> .locality-map:last-child) + .footer {
+  margin-top: 0;
+}
+
 @media (max-width: 768px) {
   .locality-map {
     height: 20rem;
