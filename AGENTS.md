@@ -253,7 +253,7 @@ Deliberate choices a later change could undo by mistake:
 - **The project is closed.** The last article is from 17/12/2018, so the static pages tell its story in the past tense, and there are no share buttons, previous/next links, newsletter form or RSS feed. The related articles at the end of a place article are the one exception: they help a reader find more, not the project grow.
 - **Not migrated, on purpose:** the Rails pages `como-colaborar`, `donaciones`, `lista-de-correo`, `jornadas` and `aviso-legal` (they answer 404). The static pages were rewritten by hand rather than migrated, and stay duplicated per locale, because they are prose, not data.
 - **Only the 46 municipalities with articles get a page.** The other 51 are listed as plain text and their old URLs redirect to the localities index.
-- **Translations:** the 107 articles the Rails app never translated were translated in 2026 and are final; an English slug was given where a translation makes sense, keeping proper names.
+- **Translations:** the 107 articles the Rails app never translated were machine-translated in 2026 (Claude) and are final; an English slug was given where a translation makes sense, keeping proper names. Marina Nieto Tirado translated the other 57 and is credited for those alone: the project page says which are hers, so do not credit her with the rest.
 - **Analytics:** Umami, cookieless, so the site has no cookie banner. Anything that sets cookies would need one, and the cookies pages rewritten.
 - **The search** lives only on the home page, with no page of its own.
 
