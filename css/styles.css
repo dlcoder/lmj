@@ -1889,6 +1889,16 @@ body.article-page .main-container {
   margin: 1rem 0 1.5rem;
 }
 
+/* The timeline's pictures run from a 150px logo to a 1552px screenshot.
+   Stretched to the column, the small ones blurred and the photos were
+   cropped; now each shows whole, no larger than the file, the column or
+   24rem tall, whichever is least. */
+.timeline--image {
+  width: auto;
+  max-width: 100%;
+  object-fit: initial;
+}
+
 /* Timeline */
 
 .timeline {
