@@ -1,7 +1,7 @@
 [
   {
-    "name": "Área metropolitana de Jaén",
-    "slug": "area-metropolitana-de-jaen",
+    "name": "Comarca Metropolitana de Jaén",
+    "slug": "comarca-metropolitana-de-jaen",
     "localities": [
       {
         "id": 1,
@@ -65,13 +65,8 @@
       },
       {
         "id": 13,
-        "name": "Torre del Campo",
+        "name": "Torredelcampo",
         "slug": "torre-del-campo"
-      },
-      {
-        "id": 14,
-        "name": "Torreblascopedro",
-        "slug": "torreblascopedro"
       },
       {
         "id": 15,
@@ -91,8 +86,8 @@
     ]
   },
   {
-    "name": "Alto Guadalquivir",
-    "slug": "alto-guadalquivir",
+    "name": "Sierra de Cazorla",
+    "slug": "sierra-de-cazorla",
     "localities": [
       {
         "id": 18,
@@ -142,8 +137,8 @@
     ]
   },
   {
-    "name": "Campiña",
-    "slug": "campina",
+    "name": "Campiña de Jaén",
+    "slug": "campina-de-jaen",
     "localities": [
       {
         "id": 27,
@@ -172,7 +167,7 @@
       },
       {
         "id": 32,
-        "name": "Espelúy",
+        "name": "Espeluy",
         "slug": "espeluy"
       },
       {
@@ -239,8 +234,8 @@
     ]
   },
   {
-    "name": "La Loma y Las Villas",
-    "slug": "la-loma-y-las-villas",
+    "name": "La Loma",
+    "slug": "la-loma",
     "localities": [
       {
         "id": 44,
@@ -268,11 +263,6 @@
         "slug": "ibros"
       },
       {
-        "id": 49,
-        "name": "Iznatoraf",
-        "slug": "iznatoraf"
-      },
-      {
         "id": 50,
         "name": "Lupión",
         "slug": "lupion"
@@ -288,14 +278,30 @@
         "slug": "sabiote"
       },
       {
-        "id": 53,
-        "name": "Sorihuela del Guadalimar",
-        "slug": "sorihuela-del-guadalimar"
-      },
-      {
         "id": 54,
         "name": "Torreperogil",
         "slug": "torreperogil"
+      },
+      {
+        "id": 14,
+        "name": "Torreblascopedro",
+        "slug": "torreblascopedro"
+      }
+    ]
+  },
+  {
+    "name": "Las Villas",
+    "slug": "las-villas",
+    "localities": [
+      {
+        "id": 49,
+        "name": "Iznatoraf",
+        "slug": "iznatoraf"
+      },
+      {
+        "id": 53,
+        "name": "Sorihuela del Guadalimar",
+        "slug": "sorihuela-del-guadalimar"
       },
       {
         "id": 55,
@@ -370,7 +376,7 @@
       },
       {
         "id": 68,
-        "name": "Torres de Albánchez",
+        "name": "Torres de Albanchez",
         "slug": "torres-de-albanchez"
       },
       {
@@ -457,8 +463,8 @@
     ]
   },
   {
-    "name": "Sierra Norte",
-    "slug": "sierra-norte",
+    "name": "Sierra Morena",
+    "slug": "sierra-morena",
     "localities": [
       {
         "id": 84,

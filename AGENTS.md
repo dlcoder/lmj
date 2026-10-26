@@ -41,7 +41,7 @@ npm run build-icons  # re-render the icons in img/ after changing img/favicon.sv
 │   │   ├── en_articles.json          # 164 articles
 │   │   ├── es_categories.json        # 11 categories
 │   │   ├── en_categories.json        # 11 categories
-│   │   └── regions.json              # 9 regions → 97 nested localities
+│   │   └── regions.json              # 10 regions → 97 nested localities
 │   ├── base.js                       # Lookup maps + generatePaginatedPages()
 │   ├── articles.js                   # Hydrated articles per locale
 │   ├── index_pages.js                # Main index pages
@@ -63,7 +63,7 @@ npm run build-icons  # re-render the icons in img/ after changing img/favicon.sv
 │   ├── region.njk                    # Region index
 │   ├── locality.njk                  # Locality index
 │   ├── localities.njk                # Index of the 97 municipalities
-│   ├── regions.njk                   # Index of the 9 regions
+│   ├── regions.njk                   # Index of the 10 regions
 │   ├── explorer.njk                  # Map of every article, filtered by locality and category
 │   ├── articles_index.njk            # Writes `/{locale}/articles.json`
 │   ├── search_index.njk              # Writes `/{locale}/search.json`

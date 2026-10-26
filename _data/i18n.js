@@ -23,7 +23,7 @@ export default {
     },
     regions: {
       title: "Regions of Jaén",
-      lead: "The province is divided into nine regions, each with its own landscape and history. These are the places we visited in each of them.",
+      lead: "The province is divided into ten regions, each with its own landscape and history. These are the places we visited in each of them.",
       articles: "articles"
     },
     localities: {
@@ -120,7 +120,7 @@ export default {
     },
     regions: {
       title: "Comarcas de Jaén",
-      lead: "La provincia se divide en nueve comarcas, cada una con su paisaje y su historia. Estos son los lugares que recorrimos en cada una de ellas.",
+      lead: "La provincia se divide en diez comarcas, cada una con su paisaje y su historia. Estos son los lugares que recorrimos en cada una de ellas.",
       articles: "reportajes"
     },
     localities: {
