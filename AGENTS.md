@@ -93,7 +93,7 @@ npm run build-icons  # re-render the icons in img/ after changing img/favicon.sv
 │   ├── article-map.js                # Leaflet map in the article closing block
 │   ├── latest-articles.js            # Home carousel
 │   ├── home-search.js                # Home search: loads search.json on first use
-│   ├── related-articles.js           # Today's three related articles from the pool on the page
+│   ├── related-articles.js           # Today's four related articles from the pool on the page
 │   ├── locality-map.js               # Leaflet map on the locality page
 │   ├── explorer-map.js               # Explorer map and its two filters
 │   └── localities-map.js             # Leaflet map on the home page and the localities index
@@ -135,7 +135,7 @@ npm run build-icons  # re-render the icons in img/ after changing img/favicon.sv
 Hydrates the raw JSON, adding to each article:
 - `enrichedLocalities` — full locality objects, including their region
 - `enrichedCategories` — full category objects
-- `related` — the pool of related articles for the closing block, as card-sized objects: the six closest, up to nine when tied, ranked by shared locality, then region, then each category, then each title word. The page shows the first three; `js/related-articles.js` redraws three each day, seeded with the day and the article's `id`, as the home carousel does
+- `related` — the pool of related articles for the closing block, as card-sized objects: the eight closest, up to 12 when tied, ranked by shared locality, then region, then each category, then each title word. The page shows the first four; `js/related-articles.js` redraws four each day, seeded with the day and the article's `id`, as the home carousel does
 
 Exports `en`, `es` and, as default, the union of both with a `locale` property.
 

@@ -84,13 +84,13 @@ function hydrate(articles, categoryMap, locale) {
 // The pool of related articles for the end of each place article, the
 // closest first: sharing the locality outranks sharing the region, which
 // outranks each category in common, which outranks each word of the title.
-// The six closest make the pool, more when tied at the sixth, up to nine;
+// The eight closest make the pool, more when tied at the eighth, up to 12;
 // ties are ordered with a seed of the article's id, so the pool is stable
-// from build to build. The page shows the first three, and the script
-// redraws three from the pool each day, as the home carousel does.
+// from build to build. The page shows the first four, and the script
+// redraws four from the pool each day, as the home carousel does.
 const STOPWORDS = new Set(['de', 'del', 'la', 'las', 'el', 'los', 'y', 'en', 'al', 'the', 'of', 'and', 'in', 'at']);
-const POOL = 6;
-const POOL_MAX = 9;
+const POOL = 8;
+const POOL_MAX = 12;
 
 const words = title => new Set(title.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase()
   .split(/[^a-z0-9]+/).filter(word => word.length > 2 && !STOPWORDS.has(word)));

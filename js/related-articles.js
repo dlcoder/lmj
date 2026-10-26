@@ -1,14 +1,14 @@
 (function () {
   // The related articles at the end of a place article. The page carries
-  // the whole pool, closest first, with the first three showing; this
-  // draws three from it each day instead, as the home carousel does with
+  // the whole pool, closest first, with the first four showing; this
+  // draws four from it each day instead, as the home carousel does with
   // the archive. The seed mixes the day with the article's id, so two
-  // articles do not draw alike and a reader sees the same three all day.
+  // articles do not draw alike and a reader sees the same four all day.
   const section = document.getElementById('related-articles');
   if (!section) return;
 
   const cards = Array.from(section.querySelectorAll('.article-card'));
-  const count = 3;
+  const count = 4;
   if (cards.length <= count) return;
 
   function seeded(seed) {

@@ -2310,13 +2310,6 @@ body.article-page .main-container {
   width: 100%;
 }
 
-/* Three cards, so three columns wherever the grid would take four. */
-@media (min-width: 1120px) {
-  .extra-related .article-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
 /* No side padding of its own: below the deck the page's column already has
    it, and the photos above run to its edges. */
 .article-extra--wrapper {
@@ -2350,29 +2343,36 @@ body.article-page .main-container {
   }
 }
 
+/* Each block opens on a purple rule with a small label, as the regions
+   index does, so the map, the summary and the cards carry the weight and
+   the labels only name them. */
 .extra-block {
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
+  border-top: 3px solid var(--color-primary);
+  padding-top: 1rem;
 }
 
 .extra-block--title {
   font-weight: 700;
   color: var(--color-primary);
   text-transform: uppercase;
-  font-size: var(--step-2);
-  margin-bottom: 0.75rem;
+  font-size: var(--step-1);
+  letter-spacing: 0.04em;
+  margin: 0 0 1rem;
 }
 
-/* The summary reads a size up, which also balances it against the map
-   beside it on the deck. */
+/* The related articles are a section of their own, set further apart. */
+.extra-related {
+  margin-top: 1rem;
+}
+
+/* The summary, and the note on why a place has no map, read a size up as
+   plain paragraphs: the block's rule and label frame them. */
+.extra-block--notice,
 .extra-summary p {
   font-size: var(--step-1);
   line-height: 1.65;
-}
-
-.extra-block--notice {
-  background-color: var(--color-grey-100);
-  border-left: 3px solid var(--color-primary-60);
-  padding: 1rem 1.25rem;
+  color: var(--color-grey-900);
 }
 
 /* The map with its "view on Google Maps" button over the top right corner,
