@@ -306,7 +306,7 @@ button,
 input,
 select,
 .header,
-.footer,
+.footer-sitemap,
 .pagination,
 .button,
 .page-lead,
@@ -315,21 +315,55 @@ select,
 .article-date,
 .article-location,
 .article-category,
-.timeline--date,
 .press-list--date,
 .article-card--date,
-.article-card--location,
 .latest-article--date,
 .latest-article--location,
 .article-tradition__intro,
 .article-tradition__metadata,
-.explorer-filters,
-.leaflet-container {
+.explorer-filters {
   font-family: var(--font-sans);
 }
 
 .page-lead {
   font-weight: 300;
+}
+
+/* Weights and capitals as the old site set them. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+}
+
+.article-location {
+  font-weight: 300;
+}
+
+/* The bar's own links were light on a desktop only. */
+@media (min-width: 769px) {
+  .header .header-nav > a,
+  .header-nav .header-nav--toggle {
+    font-size: clamp(1rem, 0.4rem + 1.25vw, 1.4rem);
+    font-weight: 300;
+    margin-left: clamp(1rem, 2.5vw, 2.25rem);
+  }
+}
+
+.button,
+.article-start {
+  font-weight: 700;
+}
+
+.page-title,
+.article-location,
+.article-card--location,
+.latest-article--location,
+.timeline--title {
+  text-transform: uppercase;
 }
 
 /* The category tiles and the headings inside the header menu stayed in
@@ -490,7 +524,7 @@ a:hover {
   /* Stretched over the height of the bar, and a little past its bottom edge
      into the panel, so the pointer does not drop out of the item, and the
      panel with it, on its way down. Ending flush left a few pixels' gap. */
-  .header-nav--toggle {
+  .header-nav .header-nav--toggle {
     padding: 1.25rem 0 2rem;
     margin-top: -1.25rem;
     margin-bottom: -2rem;
@@ -610,7 +644,7 @@ a:hover {
   }
 
   .header-nav a,
-  .header-nav--toggle {
+  .header-nav .header-nav--toggle {
     margin: 0.5rem 0;
     font-size: 1.2rem;
     text-align: left;
@@ -644,8 +678,13 @@ a:hover {
   }
 }
 
+/* As the original set the name: Lato Black in capitals, slightly spaced,
+   from 1rem on a phone to 1.3rem on a desktop. */
 .header-logo--title {
-  font-size: clamp(1.125rem, 0.95rem + 0.8vw, 1.5rem);
+  font-size: clamp(1rem, 0.9rem + 0.444vw, 1.3rem);
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
   color: var(--color-white);
   margin: 0
 }
@@ -960,6 +999,7 @@ body.article-page .main-container {
     border: 0;
     font: inherit;
     font-family: var(--font-sans);
+    font-weight: 700;
     cursor: pointer;
   }
 
@@ -1156,7 +1196,6 @@ body.article-page .main-container {
 .article-card--title {
   font-size: 1.1rem;
   font-weight: bold;
-  text-transform: uppercase;
   margin: 0 0 0.5rem 0;
   line-height: 1.3;
 }
@@ -1294,7 +1333,7 @@ body.article-page .main-container {
 
 .latest-article--title {
   color: var(--color-white);
-  font-size: clamp(1.125rem, 0.9rem + 1.2vw, 2rem);
+  font-size: clamp(1.25rem, 0.8rem + 2.2vw, 3rem);
   font-weight: bold;
   text-transform: uppercase;
   margin: 0 0 0.25rem 0;
@@ -1303,7 +1342,7 @@ body.article-page .main-container {
 .latest-article--location,
 .latest-article--date {
   display: block;
-  font-size: 0.85rem;
+  font-size: clamp(0.875rem, 0.65rem + 0.9vw, 1.5rem);
   opacity: 0.85;
 }
 
@@ -1694,15 +1733,15 @@ body.article-page .main-container {
 }
 
 .timeline--date {
-  font-size: 0.8125rem;
+  font-size: var(--step-0);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
   color: var(--color-primary-75);
   margin-bottom: 0.25rem;
 }
 
 .timeline--title {
-  font-size: var(--step-1);
+  font-size: var(--step-2);
+  font-weight: 700;
   margin-bottom: 0.5rem;
 }
 
@@ -1834,7 +1873,7 @@ body.article-page .main-container {
 }
 
 .footer-sitemap--title {
-  font-size: 0.8125rem;
+  font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: rgba(255, 255, 255, 0.75);
@@ -2211,10 +2250,10 @@ body.article-page .main-container {
 }
 
 .extra-block--title {
+  font-weight: 700;
   color: var(--color-primary);
   text-transform: uppercase;
-  font-size: 1.125rem;
-  letter-spacing: 0.04em;
+  font-size: var(--step-2);
   margin-bottom: 0.75rem;
 }
 
