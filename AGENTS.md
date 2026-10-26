@@ -116,6 +116,7 @@ npm run build-icons  # re-render the icons in img/ after changing img/favicon.sv
   - `featured_image(article, size)` — URL of the featured photo (`featured: true` and `type: "Photo"`)
   - `static_image(path)` — absolute URL of a bucket asset
 - **Passthrough copy:** `css`, `js`, `img`, `img/favicon.ico` to the root, and the Leaflet and markercluster dist files to `/vendor/`
+- **Typefaces:** the old site's, Merriweather for the text and Lato for headings, menus and metadata (`--font-serif`, `--font-sans`). Pinned `@fontsource` packages; only the Latin `woff2` of the weights the stylesheet declares are copied to `/vendor/fonts/`, and the layout preloads the two most used
 - **Ignored paths:** every `*.md` at the root (the site has no Markdown pages), `content`. Anything in `.gitignore` (`node_modules`, `_site`) is ignored by Eleventy on its own — no need to repeat it
 
 ## Data Architecture

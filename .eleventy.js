@@ -82,6 +82,20 @@ export default function (eleventyConfig) {
     "node_modules/leaflet.markercluster/dist/MarkerCluster.css": "vendor/leaflet.markercluster/MarkerCluster.css",
     "node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css": "vendor/leaflet.markercluster/MarkerCluster.Default.css"
   });
+  // The site's two typefaces, only the weights the stylesheet declares.
+  for (const file of [
+    "merriweather/files/merriweather-latin-300-normal.woff2",
+    "merriweather/files/merriweather-latin-300-italic.woff2",
+    "merriweather/files/merriweather-latin-400-normal.woff2",
+    "merriweather/files/merriweather-latin-400-italic.woff2",
+    "merriweather/files/merriweather-latin-700-normal.woff2",
+    "lato/files/lato-latin-300-normal.woff2",
+    "lato/files/lato-latin-400-normal.woff2",
+    "lato/files/lato-latin-700-normal.woff2",
+    "lato/files/lato-latin-900-normal.woff2"
+  ]) {
+    eleventyConfig.addPassthroughCopy({ [`node_modules/@fontsource/${file}`]: `vendor/fonts/${file.split("/").pop()}` });
+  }
 
   return {
     dir: {
