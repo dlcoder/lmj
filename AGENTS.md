@@ -150,7 +150,7 @@ Exports `en`, `es` and, as default, the union of both with a `locale` property.
 | `all_localities` | paginated locality pages (only the 46 with articles) |
 
 ### `articles_index.js`
-The **one** index of geolocated articles, one per locale, written to `/{locale}/articles.json` by `src/articles_index.njk`. A GeoJSON `FeatureCollection` in the same shape the Rails app served from `/articulos.json`, so Leaflet eats it as it comes: 159 `Point` features — the five articles without geolocation are left out — each carrying `title`, `path`, `localities` (ids, which is what names the outline files on the bucket), `categories` (slugs) and `image` (`{ dir, file }`). ~46 KB, **6,7 KB gzip**.
+The **one** index of geolocated articles, one per locale, written to `/{locale}/articles.json` by `src/articles_index.njk`. A GeoJSON `FeatureCollection` in the same shape the Rails app served from `/articulos.json`, so Leaflet eats it as it comes: 162 `Point` features — the two caves without geolocation are left out on purpose; the three `Tradition` articles carry their town's coordinates, added in 2026 — each carrying `title`, `path`, `localities` (ids, which is what names the outline files on the bucket), `categories` (slugs) and `image` (`{ dir, file }`). ~46 KB, **6,7 KB gzip**.
 
 Everything that needs articles on a map or in a list reads this one file: the locality map and the explorer map today, the search later. The explorer keeps its filters in the query string (`?locality={id}&category={slug}`).
 

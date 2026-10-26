@@ -9,8 +9,10 @@ import { STATICS_HOST, IMAGE_BASE, featuredImageParts } from './base.js';
 // Three places read it: the map on a locality page (filtered by locality),
 // the explorer map (by locality and category) and, later, the search.
 //
-// 159 of the 164 articles have geolocation. The five without it are left out,
-// exactly as the old _article.json.jbuilder did.
+// 162 of the 164 articles have geolocation: the three traditional trades
+// carry their town's, added in 2026 so they show on the maps. The two caves
+// without it, kept off on purpose, are left out, exactly as the old
+// _article.json.jbuilder did.
 function feature(article) {
   const { latitude, longitude } = article.geolocation ?? {};
   if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) return null;

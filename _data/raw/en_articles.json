@@ -26223,7 +26223,11 @@
         "image_file_size": 573171
       }
     ],
-    "content_in_separate_page": true
+    "content_in_separate_page": true,
+    "geolocation": {
+      "latitude": 37.687713,
+      "longitude": -3.818205
+    }
   },
   {
     "id": 132,
@@ -26954,7 +26958,11 @@
         "image_file_size": 594567
       }
     ],
-    "content_in_separate_page": true
+    "content_in_separate_page": true,
+    "geolocation": {
+      "latitude": 38.01114,
+      "longitude": -3.37191
+    }
   },
   {
     "id": 135,
@@ -32016,7 +32024,11 @@
         "image_file_size": 1849246
       }
     ],
-    "content_in_separate_page": true
+    "content_in_separate_page": true,
+    "geolocation": {
+      "latitude": 37.461979,
+      "longitude": -3.922384
+    }
   },
   {
     "id": 162,
