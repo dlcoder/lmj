@@ -368,9 +368,7 @@ h6 {
   font-weight: 700;
 }
 
-.latest-article--location {
-  text-transform: uppercase;
-}
+
 
 /* The category tiles and the headings inside the header menu stayed in
    Merriweather; the menu's slogan in its light italic. */
@@ -739,6 +737,9 @@ body.home-page {
   .main-container {
     max-width: none;
     padding: 0;
+    /* The carousel starts below the fixed header, not behind it, which hid
+       the top of every photo and set the arrows off its visible centre. */
+    padding-top: var(--header-height);
   }
 }
 
@@ -1384,7 +1385,8 @@ body.article-page .main-container {
   box-sizing: border-box;
   max-width: 1920px;
   margin: 0 auto;
-  z-index: 2;
+  /* Over the arrows' edge shading, which would otherwise grey the text. */
+  z-index: 3;
   padding: 2.5rem 1.25rem 1.25rem;
   color: var(--color-white);
   background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
@@ -1398,11 +1400,16 @@ body.article-page .main-container {
   margin: 0 0 0.25rem 0;
 }
 
+/* The places and the date share a line, in normal case. */
 .latest-article--location,
 .latest-article--date {
-  display: block;
+  display: inline;
   font-size: clamp(0.875rem, 0.65rem + 0.9vw, 1.5rem);
   opacity: 0.85;
+}
+
+.latest-article--location::after {
+  content: " · ";
 }
 
 /* Arrows only steer the carousel, so they stay hidden until it exists. */
@@ -1421,6 +1428,10 @@ body.article-page .main-container {
   top: 0;
   bottom: 0;
   pointer-events: none;
+  z-index: 2;
+  /* A faint shade at either edge of the photo, so the white arrows hold up
+     on a bright sky or a white wall. */
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.35), transparent 18%, transparent 82%, rgba(0, 0, 0, 0.35));
 }
 
 .latest-articles.is-carousel .latest-articles--arrow {
@@ -1461,6 +1472,18 @@ body.article-page .main-container {
   z-index: 2;
   display: grid;
   place-items: center;
+}
+
+/* The chevron grows a little under the pointer, to show where the click
+   lands. The chevron, not the button: scaling the button would scale the
+   offset that centres it too. */
+.latest-articles--arrow::before {
+  transition: scale 0.2s ease;
+}
+
+.latest-articles--arrow:hover::before,
+.latest-articles--arrow:focus-visible::before {
+  scale: 1.3;
 }
 
 /* A chevron drawn from two borders of a rotated square: its ink sits on the
