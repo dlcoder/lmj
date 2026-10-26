@@ -2343,7 +2343,7 @@ body.article-page .main-container {
   padding: 1rem 1.25rem;
 }
 
-/* The map with its "view larger map" button over the top right corner,
+/* The map with its "view on Google Maps" button over the top right corner,
    clear of the zoom on the left and the attribution below. Isolated, so
    Leaflet's own layers stay under the fixed header when it scrolls past. */
 .extra-map--frame {
@@ -2357,6 +2357,14 @@ body.article-page .main-container {
   right: 10px;
   z-index: 1001;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+}
+
+/* On a phone the map is short, so the button keeps small. */
+@media (max-width: 639px) {
+  .button.extra-map--expand {
+    padding: 0.3rem 0.75rem;
+    font-size: 0.8125rem;
+  }
 }
 
 .extra-map {
