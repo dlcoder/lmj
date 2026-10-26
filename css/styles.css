@@ -2222,7 +2222,9 @@ body.article-page .main-container {
   color: var(--color-white);
 }
 
-.article-tradition__closing .responsive-image {
+/* The closing photo ends the page, so it keeps none of the body photos'
+   bottom margin, which showed as a grey strip under the overlay. */
+.article-tradition__body .article-tradition__closing .responsive-image {
   margin-bottom: 0;
 }
 
@@ -2547,12 +2549,14 @@ body.locality-page .main-container {
   margin-top: 0;
 }
 
-/* A map that ends the page, as the explorer's does, meets the footer. */
-.locality-map:last-child {
+/* A full-width block that ends the page meets the footer, with no strip of
+   white between: the explorer's map, the localities index's list over its
+   map, a tradition's closing photo. */
+.main-container > :is(.locality-map, .localities-section, .article-tradition):last-child {
   margin-bottom: 0;
 }
 
-.main-container:has(> .locality-map:last-child) + .footer {
+.main-container:has(> :is(.locality-map, .localities-section, .article-tradition):last-child) + .footer {
   margin-top: 0;
 }
 
