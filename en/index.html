@@ -23,10 +23,11 @@
   <script src="/vendor/leaflet/leaflet.js?v=1.9.4" defer></script>
   <link rel="preload" href="/vendor/fonts/merriweather-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/vendor/fonts/lato-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/css/styles.css?v=1793045513923">
-  <script src="/js/hamburger-menu.js?v=1793045513923" defer></script>
-  <script src="/js/header-menu.js?v=1793045513923" defer></script>
-  <script src="/js/article-slides.js?v=1793045513923" defer></script><script src="/js/localities-map.js?v=1793045513923" defer></script><script src="/js/latest-articles.js?v=1793045513923" defer></script><script src="/js/home-search.js?v=1793045513923" defer></script></head>
+  <link rel="stylesheet" href="/css/styles.css?v=1793047885917">
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="22c5d657-4609-4829-b217-d005ba40d837"></script>
+  <script src="/js/hamburger-menu.js?v=1793047885917" defer></script>
+  <script src="/js/header-menu.js?v=1793047885917" defer></script>
+  <script src="/js/article-slides.js?v=1793047885917" defer></script><script src="/js/localities-map.js?v=1793047885917" defer></script><script src="/js/latest-articles.js?v=1793047885917" defer></script><script src="/js/home-search.js?v=1793047885917" defer></script></head>
 
 <body class="home-page">
   <div id="header" class="header">
@@ -276,15 +277,18 @@
 
 
 <div class="categories-section">
-  <h2 class="categories-section-title">Discover the province of Jaén</h2>
-  <form class="home-search" id="home-search" role="search" hidden
-        data-locale="en"
-        data-one="1 place for “%{query}”" data-many="%{count} places for “%{query}”" data-none="No place matches “%{query}”">
-    <label class="visually-hidden" for="home-search-input">Search the articles</label>
-    <input class="home-search--input" id="home-search-input" type="search" name="q"
-           placeholder="Search for a place or a town…" autocomplete="off" spellcheck="false">
-  </form>
-  <p class="home-search--status" id="home-search-status" role="status"></p>
+  <div class="categories-section--head">
+    <h2 class="categories-section-title">Discover the province of Jaén</h2>
+    <form class="home-search" id="home-search" role="search" hidden
+          data-locale="en"
+          data-one="1 place for “%{query}”" data-many="%{count} places for “%{query}”" data-none="No place matches “%{query}”">
+      <label class="visually-hidden" for="home-search-input">Search the articles</label>
+      <input class="home-search--input" id="home-search-input" type="search" name="q"
+             placeholder="Search for a place or a town…" autocomplete="off" spellcheck="false">
+    </form>
+    <p class="home-search--status" id="home-search-status" role="status"></p>
+  </div>
+
   <div class="article-grid home-search--results" id="home-search-results" hidden></div>
 
   <div class="article-grid" id="home-categories"><article class="article-card">
