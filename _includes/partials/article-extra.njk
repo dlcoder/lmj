@@ -31,11 +31,14 @@
     </section>
 
     {%- if article.related | length %}
-    <section class="extra-block extra-related">
+    {#- The whole pool is on the page, the closest three showing; the
+        script swaps in today's three, seeded with the day and the id. -#}
+    <section class="extra-block extra-related" id="related-articles" data-seed="{{ article.id }}">
       <h2 class="extra-block--title">{{ t.related }}</h2>
       <div class="article-grid">
         {%- for article in article.related %}
         {%- set eager = false %}
+        {%- set hidden = loop.index > 3 %}
         {% include "partials/article-card.njk" %}
         {%- endfor %}
       </div>

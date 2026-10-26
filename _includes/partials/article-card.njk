@@ -1,5 +1,5 @@
 {#- One article as a card: photo, title, places and date, all a link. -#}
-<article class="article-card">
+<article class="article-card"{% if hidden %} hidden{% endif %}>
   <a href="/{{ locale }}/articles/{{ article.slug }}" class="article-card--link">
     {#- `sizes` follows the column count the grid takes on at each of its
         breakpoints, so a card 360px wide stops being served the 640px
