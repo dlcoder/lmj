@@ -10,6 +10,14 @@ title: Página no encontrada · Page not found – Lugares Míticos de Jaén
 bodyClass: static-page
 ---
 
+<script>
+  // The old app answered with or without a trailing slash; the pages here and
+  // the redirects from its addresses live only without one. Try that once.
+  if (/[^/]\/$/.test(location.pathname)) {
+    location.replace(location.pathname.slice(0, -1) + location.search + location.hash);
+  }
+</script>
+
 <div class="page-header">
   <h1 class="page-title">Página no encontrada</h1>
 </div>

@@ -220,7 +220,7 @@ function checkSitemap() {
     }
   };
   walk('_site');
-  if (redirects < 700) fail('redirects', `only ${redirects} old Rails URLs are redirected`);
+  if (redirects < 1400) fail('redirects', `only ${redirects} old Rails URLs are redirected`);
 
   if (new Set(locs).size !== locs.length) fail('sitemap', 'lists some pages twice');
   if (locs.length !== pages) fail('sitemap', `${locs.length} URLs for ${pages} pages`);

@@ -40,11 +40,17 @@ function forLocale(locale) {
     const old = article.legacy_slug ?? article.slug;
     add(`/${locale}/${p.articles}/${kind}/${old}`, to);
     add(`/${locale}/${p.articles}/${old}`, to);
+    // The old app also found an article by its database id, and links of that
+    // form still turn up in its logs.
+    add(`/${locale}/${p.articles}/${kind}/${article.id}`, to);
+    add(`/${locale}/${p.articles}/${article.id}`, to);
   }
 
   for (const category of categories[locale]) {
     add(`/${locale}/${p.categories}/${category.slug}`, `/${locale}/categories/${category.slug}/`);
   }
+  // A slug the old app had retired but still answered to.
+  if (locale === 'es') add('/es/categorias/patrimonio', '/es/categories/patrimonio-monumental/');
 
   add(`/${locale}/${p.localities}`, `/${locale}/localities/`);
   add(`/${locale}/${p.localities}/${p.map}`, `/${locale}/localities/map/`);
@@ -59,7 +65,7 @@ function forLocale(locale) {
 
   // The static pages that were renamed or folded into another.
   const old = locale === 'es'
-    ? { 'libro-1': pages.book1, 'libro-2': pages.book2, 'el-equipo': pages.project, 'medios': pages.project }
+    ? { 'libro': pages.book1, 'libro-1': pages.book1, 'libro-2': pages.book2, 'el-equipo': pages.project, 'medios': pages.project }
     : { 'book-1': pages.book1, 'libro-2': pages.book2, 'the-team': pages.project, 'press': pages.project };
   for (const [slug, to] of Object.entries(old)) add(`/${locale}/${slug}`, `/${locale}/${to}`);
 
