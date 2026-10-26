@@ -306,7 +306,7 @@ button,
 input,
 select,
 .header,
-.footer-sitemap,
+.footer,
 .pagination,
 .button,
 .page-lead,
@@ -315,13 +315,16 @@ select,
 .article-date,
 .article-location,
 .article-category,
+.timeline--date,
 .press-list--date,
 .article-card--date,
+.article-card--location,
 .latest-article--date,
 .latest-article--location,
 .article-tradition__intro,
 .article-tradition__metadata,
-.explorer-filters {
+.explorer-filters,
+.leaflet-container {
   font-family: var(--font-sans);
 }
 
@@ -329,7 +332,7 @@ select,
   font-weight: 300;
 }
 
-/* Weights and capitals as the old site set them. */
+/* Headings and buttons bold; capitals only where the text works as a label. */
 h1,
 h2,
 h3,
@@ -339,17 +342,13 @@ h6 {
   font-weight: 700;
 }
 
-.article-location {
-  font-weight: 300;
-}
-
-/* The bar's own links were light on a desktop only. */
+/* The bar's own links, a step up from the body and with more air on a
+   desktop, still below the site's name. */
 @media (min-width: 769px) {
   .header .header-nav > a,
   .header-nav .header-nav--toggle {
-    font-size: clamp(1rem, 0.4rem + 1.25vw, 1.4rem);
-    font-weight: 300;
-    margin-left: clamp(1rem, 2.5vw, 2.25rem);
+    font-size: 1.125rem;
+    margin-left: clamp(1rem, 2vw, 2rem);
   }
 }
 
@@ -358,11 +357,7 @@ h6 {
   font-weight: 700;
 }
 
-.page-title,
-.article-location,
-.article-card--location,
-.latest-article--location,
-.timeline--title {
+.latest-article--location {
   text-transform: uppercase;
 }
 
@@ -1733,7 +1728,8 @@ body.article-page .main-container {
 }
 
 .timeline--date {
-  font-size: var(--step-0);
+  font-size: var(--step--1);
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--color-primary-75);
   margin-bottom: 0.25rem;
@@ -2239,10 +2235,12 @@ body.article-page .main-container {
   width: 100%;
 }
 
+/* No side padding of its own: below the deck the page's column already has
+   it, and the photos above run to its edges. */
 .article-extra--wrapper {
   max-width: 68rem;
   margin: 0 auto;
-  padding: 2rem 1.5rem 3rem;
+  padding: 2rem 0 3rem;
 }
 
 .extra-block {
@@ -2322,6 +2320,39 @@ body.article-page .main-container {
 .leaflet-bar a:hover,
 .leaflet-container a.leaflet-popup-close-button:hover {
   text-decoration: none;
+}
+
+/* Leaflet writes the zoom symbols as text in a monospace font, whose + and
+   − sit a few pixels low and right, by a different amount on each system.
+   Drawn as two bars instead, they are centred exactly; the link keeps its
+   accessible name. */
+.leaflet-bar a.leaflet-control-zoom-in,
+.leaflet-bar a.leaflet-control-zoom-out {
+  position: relative;
+  text-indent: 0;
+}
+
+.leaflet-control-zoom-in span,
+.leaflet-control-zoom-out span {
+  visibility: hidden;
+}
+
+.leaflet-control-zoom-in::before,
+.leaflet-control-zoom-in::after,
+.leaflet-control-zoom-out::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 2px;
+  background-color: currentColor;
+  transform: translate(-50%, -50%);
+}
+
+.leaflet-control-zoom-in::after {
+  width: 2px;
+  height: 12px;
 }
 
 .leaflet-tile-pane {
