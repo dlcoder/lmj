@@ -82,7 +82,7 @@ async function measure(page) {
       traditionIntro: box('.article-tradition__intro'),
       traditionSections: [...document.querySelectorAll('.article-tradition__full-image-with-text, .article-tradition__closing')]
         .map(el => Math.round(el.getBoundingClientRect().height)),
-      localityMap: box('.locality-map'),
+      localityMap: box('.locality-map') || box('.localities-map'),
       pageTitle: box('.page-title'),
       pageProse: box('.page-prose')
     };

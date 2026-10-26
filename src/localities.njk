@@ -15,20 +15,23 @@ includeLocalitiesMap: true
 bodyClass: "locality-page"
 ---
 
-{#- As in the original: the map, a lead and the same list the home page
-    carries. The map is the home one too — the province, and the outline of
-    whichever municipality the pointer is on — only here it runs full width
-    above the list instead of behind it. -#}
+{#- As in the original: the list over the map, as on the home page, under a
+    lead. The map is the home one too — the province, and the outline of
+    whichever municipality the pointer is on — only framing the whole
+    province, since the list here is taller. -#}
 <div class="locality-wrapper">
   <div class="page-header">
     <h1 class="page-title">{{ i18n[locale].localities.title }}</h1>
   </div>
 </div>
 
-<div id="localities-map" class="locality-map" data-fit-province></div>
+<div class="localities-section">
+  <div class="localities-container">
+    <p class="page-lead localities-lead">{{ i18n[locale].localities.lead }}</p>
+    {% include "partials/localities-list.njk" %}
+  </div>
 
-<div class="locality-wrapper">
-  <p class="page-lead localities-lead">{{ i18n[locale].localities.lead }}</p>
-  {%- set localitiesListClass = "localities-list__plain" %}
-  {% include "partials/localities-list.njk" %}
+  <div class="localities-map-container">
+    <div id="localities-map" class="localities-map" data-fit-province></div>
+  </div>
 </div>

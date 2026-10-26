@@ -2499,7 +2499,7 @@ body.locality-page .main-container {
 }
 
 /* Straight under the title's band, with no strip of white between. */
-.locality-wrapper:has(+ .locality-map) > .page-header:last-child {
+.locality-wrapper:has(+ .locality-map, + .localities-section) > .page-header:last-child {
   margin-bottom: 0;
 }
 
@@ -2513,28 +2513,13 @@ body.locality-page .main-container {
   }
 }
 
-/* The localities index: the home list, on paper instead of over the map. */
+/* The localities index: the home list over the map, under a lead. */
 
 .localities-lead {
   max-width: 52rem;
   margin: 0 auto 2.5rem;
   text-align: center;
-}
-
-.localities-list__plain {
-  margin-bottom: 4rem;
-}
-
-.localities-list__plain .locality-link {
-  color: var(--color-grey-700);
-}
-
-.localities-list__plain a.locality-link {
-  color: var(--color-primary);
-}
-
-.localities-list__plain a.locality-link:hover {
-  text-decoration: underline;
+  color: var(--color-white);
 }
 
 /* The regions index: one block per region, its municipalities under it. */

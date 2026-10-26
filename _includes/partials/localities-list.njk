@@ -1,7 +1,7 @@
 {#- The 97 municipalities, as the home page and the localities index both list
     them. The map beside them outlines whichever one the pointer is on, keyed
     by data-locality-id. -#}
-<ul class="localities-list{% if localitiesListClass %} {{ localitiesListClass }}{% endif %}">
+<ul class="localities-list">
   {%- for locality in localities_list -%}
     <li class="locality-item">
       {#- Half the municipalities have no article, so they have no page to
