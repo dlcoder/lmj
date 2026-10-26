@@ -112,6 +112,7 @@ npm run build-icons  # re-render the icons in img/ after changing img/favicon.sv
 - **Leaflet** is a pinned dependency, copied out of `node_modules` into `/vendor/` at build time and loaded only on the pages that need it (`includeLeaflet`); `leaflet.markercluster` is a second flag (`includeMarkerCluster`), for the maps that plot articles — Jaén alone has 43 of them
 - **Static assets host:** `https://lmjstatic.deliriumcoder.com` (`STATICS_HOST` constant)
 - **Global data:** `env`, `timestamp` (CSS/JS cache busting), `staticsHost`, `siteUrl`
+- **Analytics:** Umami Cloud, cookieless, loaded by the layout only when `ELEVENTY_ENV` is `production` (the deploy build), so local builds and the checks send nothing. The cookies pages say so
 - **Structured data:** articles carry a JSON-LD `Article` about a `TouristAttraction`, with `GeoCoordinates` only where the article publishes them (`setGeo` filter); each home page a `WebSite`
 - **Filters:** `formatDate` → `DD/MM/YYYY`; `cleanUrl` (drops `.html`); `alternate` (the same page in the other locale, see `alternateFor()`); `excerpt(length)` (meta descriptions, cut at a word)
 - **Shortcodes:**

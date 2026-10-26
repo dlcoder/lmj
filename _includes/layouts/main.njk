@@ -105,6 +105,11 @@
   <link rel="preload" href="/vendor/fonts/merriweather-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/vendor/fonts/lato-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/css/styles.css?v={{ timestamp }}">
+  {#- Visit statistics, cookieless; only on the published site, so local
+      builds and the checks do not count as visits. -#}
+  {%- if env.ELEVENTY_ENV == "production" %}
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="22c5d657-4609-4829-b217-d005ba40d837"></script>
+  {%- endif %}
   <script src="/js/hamburger-menu.js?v={{ timestamp }}" defer></script>
   <script src="/js/header-menu.js?v={{ timestamp }}" defer></script>
   <script src="/js/article-slides.js?v={{ timestamp }}" defer></script>
