@@ -874,6 +874,19 @@ body.article-page .main-container {
   width: 100%;
 }
 
+/* Below the deck, where the title is not over the photo, it gets the same
+   band as every other page's title. */
+@media (max-width: 1279px) {
+  .article-header {
+    margin-top: calc(-1 * 6rem);
+    padding: calc(6rem + 1.5rem) 0 1.75rem;
+    border-bottom: 0;
+    background-color: var(--color-primary-tint);
+    box-shadow: 0 0 0 100vmax var(--color-primary-tint);
+    clip-path: inset(0 -100vmax);
+  }
+}
+
 .article-title {
   font-size: var(--step-5);
   font-weight: bold;
