@@ -294,7 +294,8 @@ do not publish.
 
 The domain is written twice: in the `CNAME` file, which `SITE_URL` reads for canonical,
 `hreflang`, Open Graph and the sitemap, and in the workflow's `cname:` input, which is what
-GitHub Pages is told. Change both together.
+GitHub Pages is told. Change both together. The canonical host is `www`: with the apex also
+pointed at GitHub Pages in DNS, Pages redirects it to `www` on its own.
 
 `.github/dependabot.yml` opens monthly pull requests for the actions and the npm dependencies,
 minor and patch grouped.
