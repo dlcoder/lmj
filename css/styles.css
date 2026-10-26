@@ -222,6 +222,9 @@ table {
 }
 
 :root {
+  /* The fixed header's height: the header is set to it, and the title
+     bands count it in to centre their text in what shows below. */
+  --header-height: 4rem;
   --font-serif: "Merriweather", Georgia, serif;
   --font-sans: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --color-primary: rgba(66, 55, 128, 1);
@@ -259,6 +262,12 @@ table {
   --step-4: clamp(1.75rem, 1.35rem + 1.8vw, 2.5rem);
   --step-5: clamp(2rem, 1.4rem + 2.8vw, 3.5rem);
   --step-6: clamp(2.25rem, 1.2rem + 4.5vw, 5rem);
+}
+
+@media (min-width: 769px) {
+  :root {
+    --header-height: 4.5rem;
+  }
 }
 
 /* Global Styles */
@@ -411,9 +420,15 @@ a:hover {
 
 /* Header */
 
+/* A fixed height, not whatever the fluid name makes it, so the title bands
+   below can count on it. */
 .header {
   background-color: var(--color-primary);
-  padding: 1rem 2rem;
+  box-sizing: border-box;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
   position: fixed;
   top: 0;
   left: 0;
@@ -440,6 +455,7 @@ a:hover {
 }
 
 .header-container {
+  flex: 1;
   max-width: 1920px;
   margin: 0 auto;
   display: flex;
@@ -785,11 +801,12 @@ body.home-page {
 /* Pages */
 
 /* Titles sit on a light purple band the width of the window. It runs up
-   behind the fixed header, whatever its height, so it starts right at the
-   header's edge; the shadow carries it past the content's column. */
+   behind the fixed header so it starts right at its edge, and its padding
+   counts the header's height in, so the text has as much room above as
+   below; the shadow carries it past the content's column. */
 .page-header {
   margin: calc(-1 * 6rem) 0 2rem;
-  padding: calc(6rem + 1rem) 0 1rem;
+  padding: calc(var(--header-height) + 1.5rem) 0 1.5rem;
   background-color: var(--color-primary-tint);
   box-shadow: 0 0 0 100vmax var(--color-primary-tint);
   clip-path: inset(0 -100vmax);
@@ -897,7 +914,7 @@ body.article-page .main-container {
 @media (max-width: 1279px) {
   .article-header {
     margin-top: calc(-1 * 6rem);
-    padding: calc(6rem + 1rem) 0 1rem;
+    padding: calc(var(--header-height) + 1.5rem) 0 1.5rem;
     border-bottom: 0;
     background-color: var(--color-primary-tint);
     box-shadow: 0 0 0 100vmax var(--color-primary-tint);
@@ -1251,8 +1268,8 @@ body.article-page .main-container {
 /* Pagination */
 
 .pagination {
-  margin: 3rem 0;
-  padding: 2rem 0;
+  margin: 3rem 0 0;
+  padding: 2rem 0 0;
   border-top: 1px solid var(--color-grey-200);
 }
 
@@ -1681,6 +1698,19 @@ body.article-page .main-container {
   margin: 0 0 3rem;
 }
 
+/* The page's last block leaves the space above the footer to the page's
+   own padding and the footer's margin. */
+.page-prose:last-child,
+.page-section:last-child,
+.books-index:last-child,
+.page-prose > :last-child {
+  margin-bottom: 0;
+}
+
+.locality-wrapper:last-of-type {
+  padding-bottom: 2rem;
+}
+
 .page-prose a,
 .page-section a,
 .home-books--lead a {
@@ -1886,7 +1916,7 @@ body.article-page .main-container {
   background-color: var(--color-primary);
   color: var(--color-white);
   padding: 3rem 2rem 2rem;
-  margin-top: 4rem;
+  margin-top: 2rem;
 }
 
 .footer-container {
@@ -2510,7 +2540,7 @@ body.locality-page .main-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
   gap: 2.5rem 2rem;
-  margin: 0 0 4rem;
+  margin: 0;
   padding: 0;
   list-style: none;
 }
