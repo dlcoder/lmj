@@ -1,9 +1,7 @@
 (function () {
-  // The "Discover Jaén" dropdown in the header. On a wide screen the CSS
-  // already opens it on hover; this adds what hover cannot do — opening it
-  // by click or keyboard, closing it with Escape or by moving elsewhere —
-  // and is the only thing that opens it inside the mobile menu, where it is
-  // an accordion.
+  // The "Discover Jaén" dropdown in the header. It opens only on click (or
+  // the keyboard), never on hover, and closes with Escape or by moving
+  // elsewhere; inside the mobile menu it is an accordion.
   const item = document.querySelector('.header-nav--item__expands');
   const toggle = item?.querySelector('.header-nav--toggle');
   if (!item || !toggle) return;
