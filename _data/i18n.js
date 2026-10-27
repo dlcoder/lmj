@@ -2,7 +2,14 @@ export default {
   en: {
     all_articles: "All articles",
     article: {
-      start: "Start",
+      start: "Start »",
+      published: "Published",
+      municipality: "Municipality",
+      municipalities: "Municipalities",
+      region: "Region",
+      regions: "Regions",
+      category: "Category",
+      categories: "Categories",
       summary: "More about this place…",
       howToArrive: "How to arrive",
       viewOnGoogleMaps: "View on Google Maps",
@@ -33,6 +40,7 @@ export default {
     },
     home: {
       discover: "Discover the province of Jaén",
+      categoryArticles: "articles",
       exploreLocalities: "Explore the 97 municipalities of the province",
       previousArticle: "Previous article",
       nextArticle: "Next article",
@@ -91,7 +99,6 @@ export default {
     },
     paginationNext: "Older »",
     paginationPrev: "« Newer",
-    publishedOn: "Published on",
     readMore: "Read full article »",
     siteTitle: "Mythical Places of Jaén",
     siteDescription: "An archive of 164 articles on the legendary places and the heritage of the province of Jaén, published between 2013 and 2018.",
@@ -100,7 +107,14 @@ export default {
   es: {
     all_articles: "Todos los artículos",
     article: {
-      start: "Comenzar",
+      start: "Comenzar »",
+      published: "Publicado",
+      municipality: "Municipio",
+      municipalities: "Municipios",
+      region: "Comarca",
+      regions: "Comarcas",
+      category: "Categoría",
+      categories: "Categorías",
       summary: "Algo más sobre este lugar…",
       howToArrive: "Cómo llegar",
       viewOnGoogleMaps: "Ver en Google Maps",
@@ -131,6 +145,7 @@ export default {
     },
     home: {
       discover: "Descubre la provincia de Jaén",
+      categoryArticles: "reportajes",
       exploreLocalities: "Recorre los 97 municipios de la provincia",
       previousArticle: "Reportaje anterior",
       nextArticle: "Reportaje siguiente",
@@ -187,7 +202,6 @@ export default {
     },
     paginationNext: "Más antiguos »",
     paginationPrev: "« Más recientes",
-    publishedOn: "Publicado el",
     readMore: "Ver el reportaje completo »",
     siteTitle: "Lugares míticos de Jaén",
     siteDescription: "Archivo de 164 reportajes sobre los lugares míticos y el patrimonio de la provincia de Jaén, publicados entre 2013 y 2018.",

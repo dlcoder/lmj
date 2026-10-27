@@ -12,6 +12,7 @@ eleventyComputed:
   bodyClass: "{{ 'tradition-page' if article.body else 'article-page' }}"
   includeLeaflet: "{{ true if article.geolocation and article.type == 'Place' else '' }}"
   includeArticleMap: "{{ true if article.geolocation and article.type == 'Place' else '' }}"
+  includeTraditionHeader: "{{ true if article.body else '' }}"
 ---
 
 {% include "partials/article.njk" %}

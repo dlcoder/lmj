@@ -1,8 +1,0 @@
-{% if article.enrichedCategories.length > 0 %}
-<div class="article-category">
-  {%- for cat in article.enrichedCategories -%}
-    <a href="/{{ locale }}/categories/{{ cat.slug }}/">{{ cat.name }}</a>
-    {%- if not loop.last %}, {% endif -%}
-  {%- endfor -%}
-</div>
-{% endif %}

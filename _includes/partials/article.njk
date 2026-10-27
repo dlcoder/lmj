@@ -26,9 +26,7 @@
         <div class="article-gallery--intro">
           <div class="article-header">
             <h1 class="article-title"{{ untranslated | safe }}>{{ article.title }}</h1>
-            {% include "partials/article-date.njk" %}
-            {% include "partials/article-location.njk" %}
-            {% include "partials/article-category.njk" %}
+            {% include "partials/article-meta.njk" %}
           </div>
 
           <div class="article-body"{{ untranslated | safe }}>
@@ -45,7 +43,7 @@
 
           {#- Only on the deck: below that width the photos are already in
               reading order and there is nothing to jump to. -#}
-          <button type="button" class="button article-start" id="article-start">
+          <button type="button" class="article-start" id="article-start">
             {{ i18n[locale].article.start }}
           </button>
         </div>

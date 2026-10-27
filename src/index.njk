@@ -45,7 +45,7 @@ includeSearch: true
       <article class="article-card">
         <a href="/{{ locale }}/categories/{{ category.slug }}" class="article-card--link">
           {#- One file per category, no variants to choose from. Empty alt
-              because the name is right below, in the heading. -#}
+              because the name is over it, in the heading. -#}
           <img class="article-card--image"
                src="{% static_image '/files/categories/' + category.imageSlug + '.jpg' %}"
                width="640" height="480"
@@ -53,7 +53,9 @@ includeSearch: true
                loading="lazy"
                decoding="async">
           <div class="article-card--content">
+            <span class="category-tile--index">{{ ("0" + loop.index) if loop.index < 10 else loop.index }}</span>
             <h2 class="article-card--title">{{ category.name }}</h2>
+            <span class="category-tile--count">{{ category.articleCount }} {{ i18n[indexPage.locale].home.categoryArticles }}</span>
           </div>
         </a>
       </article>

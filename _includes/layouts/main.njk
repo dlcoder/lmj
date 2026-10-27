@@ -131,6 +131,9 @@
   {%- if includeArticleMap -%}
   <script src="/js/article-map.js?v={{ timestamp }}" defer></script>
   {%- endif -%}
+  {%- if includeTraditionHeader -%}
+  <script src="/js/tradition-header.js?v={{ timestamp }}" defer></script>
+  {%- endif -%}
   {%- if article.type == 'Place' and article.related | length > 4 -%}
   <script src="/js/related-articles.js?v={{ timestamp }}" defer></script>
   {%- endif -%}

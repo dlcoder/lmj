@@ -1,0 +1,53 @@
+{#- The article's facts in a row, each under a small label. A place can sit
+    in more than one municipality, and those in the same comarca list it
+    once. -#}
+{%- set labels = i18n[locale].article -%}
+{%- set localities = article.enrichedLocalities -%}
+{%- set regions = [] -%}
+{%- set regionSlugs = [] -%}
+{%- for loc in localities -%}
+  {%- if loc.region and not (loc.region.slug in regionSlugs) -%}
+    {%- set _ = regionSlugs.push(loc.region.slug) -%}
+    {%- set _ = regions.push(loc.region) -%}
+  {%- endif -%}
+{%- endfor %}
+<dl class="article-meta">
+  <div class="article-meta--item">
+    <dt>{{ labels.published }}</dt>
+    <dd><time datetime="{{ article.published_at }}">{{ article.published_at | formatDate }}</time></dd>
+  </div>
+  {%- if localities.length > 0 %}
+  <div class="article-meta--item">
+    <dt>{{ labels.municipality if localities.length == 1 else labels.municipalities }}</dt>
+    <dd>
+      {%- for loc in localities -%}
+        <a href="/{{ locale }}/localities/{{ loc.slug }}">{{ loc.name }}</a>
+        {%- if not loop.last %}, {% endif -%}
+      {%- endfor -%}
+    </dd>
+  </div>
+  {%- endif %}
+  {%- if regions.length > 0 %}
+  <div class="article-meta--item">
+    <dt>{{ labels.region if regions.length == 1 else labels.regions }}</dt>
+    <dd>
+      {%- for region in regions -%}
+        <a href="/{{ locale }}/regions/{{ region.slug }}">{{ region.name }}</a>
+        {%- if not loop.last %}, {% endif -%}
+      {%- endfor -%}
+    </dd>
+  </div>
+  {%- endif %}
+  {%- set categories = article.enrichedCategories %}
+  {%- if categories.length > 0 %}
+  <div class="article-meta--item">
+    <dt>{{ labels.category if categories.length == 1 else labels.categories }}</dt>
+    <dd>
+      {%- for category in categories -%}
+        <a href="/{{ locale }}/categories/{{ category.slug }}/">{{ category.name }}</a>
+        {%- if not loop.last %}, {% endif -%}
+      {%- endfor -%}
+    </dd>
+  </div>
+  {%- endif %}
+</dl>

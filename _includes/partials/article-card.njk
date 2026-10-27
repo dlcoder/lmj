@@ -1,4 +1,5 @@
-{#- One article as a card: photo, title, places and date, all a link. -#}
+{#- One article as a card: photo, title, then date and places on one line,
+    all a link. -#}
 <article class="article-card"{% if hidden %} hidden{% endif %}>
   <a href="/{{ locale }}/articles/{{ article.slug }}" class="article-card--link">
     {#- `sizes` follows the column count the grid takes on at each of its
@@ -19,10 +20,10 @@
          decoding="async">
     <div class="article-card--content">
       <h2 class="article-card--title">{{ article.title }}</h2>
-      <div class="article-card--location">{{ article.localities | join(', ') }}</div>
       <time class="article-card--date" datetime="{{ article.published_at }}">
-        {{ article.published_at | formatDate }}
+        {{- article.published_at | formatDate -}}
       </time>
+      <span class="article-card--location">{{ article.localities | join(', ') }}</span>
     </div>
   </a>
 </article>

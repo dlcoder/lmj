@@ -76,9 +76,7 @@ npm run build-icons  # re-render the icons in img/ after changing img/favicon.sv
 │       ├── article-grid.njk          # Card grid + pagination
 │       ├── article-card.njk          # One article card (grid and related articles)
 │       ├── article-extra.njk         # Closing block: summary, how to arrive, related articles
-│       ├── article-category.njk
-│       ├── article-date.njk
-│       ├── article-location.njk
+│       ├── article-meta.njk          # Date, municipality, region and categories, each under its label
 │       ├── latest-articles.njk       # Home carousel of the newest articles
 │       ├── localities-list.njk       # The 97 municipalities (home + localities index)
 │       ├── home-books.njk            # Home block for the two books
@@ -91,6 +89,7 @@ npm run build-icons  # re-render the icons in img/ after changing img/favicon.sv
 │   ├── header-menu.js                # The Discover Jaén dropdown (click, Escape, mobile accordion)
 │   ├── article-slides.js             # Keyboard and dots for the article deck
 │   ├── article-map.js                # Leaflet map in the article closing block
+│   ├── tradition-header.js           # Gives a Tradition article its header band back past the opening
 │   ├── latest-articles.js            # Home carousel
 │   ├── home-search.js                # Home search: loads search.json on first use
 │   ├── related-articles.js           # Today's four related articles from the pool on the page
