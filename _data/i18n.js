@@ -2,8 +2,8 @@ export default {
   en: {
     all_articles: "All articles",
     article: {
-      start: "See the photos ↓",
       published: "Published",
+      place: "Place",
       municipality: "Municipality",
       municipalities: "Municipalities",
       region: "Region",
@@ -14,7 +14,7 @@ export default {
       summary: "More about this place…",
       howToArrive: "How to arrive",
       viewOnGoogleMaps: "View on Google Maps",
-      related: "You may also like",
+      related: "More mythical places nearby",
       noGeolocation: "We have not revealed the location of this site, as we think it is a place that should be taken special care of. That does not mean you cannot find it with a bit of research online, only that if you do visit it, we ask you to look after it and protect it, as with every other place that makes up our heritage."
     },
     categoriesLabel: "Categories",
@@ -108,8 +108,8 @@ export default {
   es: {
     all_articles: "Todos los artículos",
     article: {
-      start: "Ver las fotos ↓",
       published: "Publicado",
+      place: "Lugar",
       municipality: "Municipio",
       municipalities: "Municipios",
       region: "Comarca",
@@ -120,7 +120,7 @@ export default {
       summary: "Algo más sobre este lugar…",
       howToArrive: "Cómo llegar",
       viewOnGoogleMaps: "Ver en Google Maps",
-      related: "Te puede interesar",
+      related: "Otros lugares míticos cercanos",
       noGeolocation: "No publicamos la geolocalización sobre cómo llegar a este lugar, pues consideramos que se trata de un lugar por el que debemos velar especialmente. No quiere esto decir que no puedas encontrar su ubicación si indagas un poco por la red, pero te pedimos que si lo visitas, lo cuides y protejas especialmente, al igual que el resto de enclaves que representan nuestro patrimonio."
     },
     categoriesLabel: "Categorías",

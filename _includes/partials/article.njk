@@ -21,8 +21,8 @@
       <div class="article-gallery" style="--intro-desktop-hd: url('{% static_image article.galleryPhotos[0].image_urls.desktop_hd %}');">
         <div class="article-gallery--intro">
           <div class="article-header">
-            <h1 class="article-title"{{ untranslated | safe }}>{{ article.title }}</h1>
             {% include "partials/article-meta.njk" %}
+            <h1 class="article-title"{{ untranslated | safe }}>{{ article.title }}</h1>
           </div>
 
           <div class="article-body"{{ untranslated | safe }}>
@@ -36,12 +36,6 @@
             </ul>
             {% endif %}
           </div>
-
-          {#- Only on the deck: below that width the photos are already in
-              reading order and there is nothing to jump to. -#}
-          <button type="button" class="article-start" id="article-start">
-            {{ i18n[locale].article.start }}
-          </button>
         </div>
       </div>
     </div>

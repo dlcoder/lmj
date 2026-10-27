@@ -72,8 +72,6 @@ async function measure(page) {
       footer: box('footer.footer'),
       slides: document.querySelectorAll('.slides--slide').length,
       dots: document.querySelectorAll('.slides-nav-dot').length,
-      startButton: document.getElementById('article-start')
-        ? getComputedStyle(document.getElementById('article-start')).display : null,
       introBackground: document.querySelector('.article-gallery')
         ? getComputedStyle(document.querySelector('.article-gallery')).backgroundImage : null,
       galleryImages: document.querySelectorAll('.article-gallery--photo').length,
@@ -119,10 +117,8 @@ function check(name, width, m, consoleErrors) {
         fail(where, 'the opening photo behind the intro is missing');
       }
       if (m.dots !== m.slides) fail(where, `${m.dots} dots for ${m.slides} slides`);
-      if (m.startButton === 'none') fail(where, 'the start button is hidden on the deck');
     } else {
       if (m.dots !== 0) fail(where, `${m.dots} dots outside the deck`);
-      if (m.startButton !== 'none') fail(where, `the start button shows at ${width}px`);
     }
   }
 

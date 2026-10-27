@@ -13,6 +13,13 @@
   {%- endif -%}
 {%- endfor %}
 <dl class="article-meta">
+  {#- On the deck the title is many slides back, so the facts repeat it. -#}
+  {%- if full %}
+  <div class="article-meta--item">
+    <dt>{{ labels.place }}</dt>
+    <dd{{ untranslated | safe }}>{{ article.title }}</dd>
+  </div>
+  {%- endif %}
   <div class="article-meta--item">
     <dt>{{ labels.published }}</dt>
     <dd><time datetime="{{ article.published_at }}">{{ article.published_at | formatDate }}</time></dd>
