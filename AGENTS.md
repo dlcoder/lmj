@@ -75,8 +75,8 @@ npm run build-icons  # re-render the icons in img/ after changing img/favicon.sv
 │       ├── article.njk               # Article body (slides + gallery)
 │       ├── article-grid.njk          # Card grid + pagination
 │       ├── article-card.njk          # One article card (grid and related articles)
-│       ├── article-extra.njk         # Closing block: summary, how to arrive, related articles
-│       ├── article-meta.njk          # Date, municipality, region and categories, each under its label
+│       ├── article-extra.njk         # Closing block: details, how to arrive, summary, related articles
+│       ├── article-meta.njk          # Date and municipality in the intro; with `full`, every fact, linked
 │       ├── latest-articles.njk       # Home carousel of the newest articles
 │       ├── localities-list.njk       # The 97 municipalities (home + localities index)
 │       ├── home-books.njk            # Home block for the two books

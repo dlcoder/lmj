@@ -1,16 +1,15 @@
-{#- Closing block of a place article: summary, how to arrive and four
-    related articles. -#}
+{#- Closing block of a place article: every fact, how to arrive, the
+    summary and four related articles, in that order at every width. -#}
 {%- set t = i18n[locale].article -%}
 
 <div class="article-extra">
   <div class="article-extra--wrapper">
 
-    {%- if article.summary %}
-    <section class="extra-block extra-summary">
-      <h2 class="extra-block--title">{{ t.summary }}</h2>
-      <p{{ untranslated | safe }}>{{ article.summary }}</p>
+    <section class="extra-block extra-meta">
+      <h2 class="extra-block--title">{{ t.details }}</h2>
+      {%- set full = true %}
+      {% include "partials/article-meta.njk" %}
     </section>
-    {%- endif %}
 
     <section class="extra-block extra-arrive">
       <h2 class="extra-block--title">{{ t.howToArrive }}</h2>
@@ -31,6 +30,13 @@
       <p class="extra-block--notice">{{ t.noGeolocation }}</p>
       {%- endif %}
     </section>
+
+    {%- if article.summary %}
+    <section class="extra-block extra-summary">
+      <h2 class="extra-block--title">{{ t.summary }}</h2>
+      <p{{ untranslated | safe }}>{{ article.summary }}</p>
+    </section>
+    {%- endif %}
 
     {%- if article.related | length %}
     {#- The whole pool is on the page, the closest four showing; the

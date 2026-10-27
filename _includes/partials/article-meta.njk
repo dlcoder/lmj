@@ -1,6 +1,7 @@
-{#- The article's facts in a row, each under a small label. A place can sit
-    in more than one municipality, and those in the same comarca list it
-    once. -#}
+{#- The article's facts, each under a small label. The intro carries only
+    the date and the municipality, as plain text; with `full` set, the
+    closing block carries them all, linked. A place can sit in more than
+    one municipality, and those in the same comarca list it once. -#}
 {%- set labels = i18n[locale].article -%}
 {%- set localities = article.enrichedLocalities -%}
 {%- set regions = [] -%}
@@ -21,13 +22,13 @@
     <dt>{{ labels.municipality if localities.length == 1 else labels.municipalities }}</dt>
     <dd>
       {%- for loc in localities -%}
-        <a href="/{{ locale }}/localities/{{ loc.slug }}">{{ loc.name }}</a>
+        {%- if full %}<a href="/{{ locale }}/localities/{{ loc.slug }}">{{ loc.name }}</a>{% else %}{{ loc.name }}{% endif %}
         {%- if not loop.last %}, {% endif -%}
       {%- endfor -%}
     </dd>
   </div>
   {%- endif %}
-  {%- if regions.length > 0 %}
+  {%- if full and regions.length > 0 %}
   <div class="article-meta--item">
     <dt>{{ labels.region if regions.length == 1 else labels.regions }}</dt>
     <dd>
@@ -39,7 +40,7 @@
   </div>
   {%- endif %}
   {%- set categories = article.enrichedCategories %}
-  {%- if categories.length > 0 %}
+  {%- if full and categories.length > 0 %}
   <div class="article-meta--item">
     <dt>{{ labels.category if categories.length == 1 else labels.categories }}</dt>
     <dd>

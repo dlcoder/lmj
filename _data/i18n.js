@@ -2,7 +2,7 @@ export default {
   en: {
     all_articles: "All articles",
     article: {
-      start: "Start »",
+      start: "See the photos ↓",
       published: "Published",
       municipality: "Municipality",
       municipalities: "Municipalities",
@@ -10,6 +10,7 @@ export default {
       regions: "Regions",
       category: "Category",
       categories: "Categories",
+      details: "Details",
       summary: "More about this place…",
       howToArrive: "How to arrive",
       viewOnGoogleMaps: "View on Google Maps",
@@ -107,7 +108,7 @@ export default {
   es: {
     all_articles: "Todos los artículos",
     article: {
-      start: "Comenzar »",
+      start: "Ver las fotos ↓",
       published: "Publicado",
       municipality: "Municipio",
       municipalities: "Municipios",
@@ -115,6 +116,7 @@ export default {
       regions: "Comarcas",
       category: "Categoría",
       categories: "Categorías",
+      details: "Ficha",
       summary: "Algo más sobre este lugar…",
       howToArrive: "Cómo llegar",
       viewOnGoogleMaps: "Ver en Google Maps",

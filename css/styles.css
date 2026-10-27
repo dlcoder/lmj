@@ -560,19 +560,6 @@ a:hover {
 }
 
 @media (min-width: 769px) {
-  /* Stretched over the height of the bar, and a little past its bottom edge
-     into the panel, so the pointer does not drop out of the item, and the
-     panel with it, on its way down. Ending flush left a few pixels' gap. */
-  .header-nav .header-nav--toggle {
-    padding: 1.25rem 0 2rem;
-    margin-top: -1.25rem;
-    margin-bottom: -2rem;
-  }
-
-  .header-nav--item__expands:hover .header-menu {
-    display: block;
-  }
-
   .header-menu {
     position: absolute;
     top: 100%;
@@ -1057,7 +1044,7 @@ body.article-page .main-container {
        1920px the intro is capped at. It darkens from the bottom, where the
        text sits, and leaves the top of the photo clear, as the Tradition
        articles' opening does. */
-    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.75) 55%, transparent 100%),
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 55%, transparent 100%),
       var(--intro-desktop-hd);
     background-size: cover;
     background-position: center center;
@@ -1076,27 +1063,30 @@ body.article-page .main-container {
     transition: opacity 0.3s ease;
   }
 
-  /* Text, not a button: underlined like the intro's links. */
+  /* A button, outlined so it does not read as one more of the intro's
+     links; it fills on hover. */
   body.article-page .article-start {
     display: inline-block;
     margin-top: 1.5rem;
     align-self: flex-start;
-    padding: 0;
-    border: 0;
+    padding: 0.8em 1.6em;
+    border: 1px solid var(--color-white);
+    border-radius: 4px;
     background: none;
     color: var(--color-white);
     font: inherit;
     font-family: var(--font-sans);
+    font-size: var(--step--1);
     font-weight: 700;
-    text-decoration: underline;
-    text-decoration-color: rgba(255, 255, 255, 0.5);
-    text-underline-offset: 2px;
-    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
     cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
   }
 
   body.article-page .article-start:hover {
-    text-decoration-color: var(--color-white);
+    background-color: var(--color-white);
+    color: var(--color-grey-900);
   }
 
   .article-gallery--intro a {
@@ -1153,12 +1143,12 @@ body.article-page .main-container {
   }
 
   /* The page's colours are lost on the photo. */
-  .article-meta {
+  .article-gallery--intro .article-meta {
     color: var(--color-white);
     text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
   }
 
-  .article-meta dt {
+  .article-gallery--intro .article-meta dt {
     color: rgba(255, 255, 255, 0.75);
   }
 
@@ -1171,7 +1161,8 @@ body.article-page .main-container {
     z-index: 100;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    /* Room for the current dot's ring, clear of its neighbours. */
+    gap: 1.25rem;
     opacity: 0;
     transition: opacity 0.3s ease;
     pointer-events: none;
@@ -1204,9 +1195,11 @@ body.article-page .main-container {
     transform: scale(1.2);
   }
 
+  /* The current slide's dot wears the same ring as keyboard focus. */
   .slides-nav-dot.active {
     background-color: var(--color-white);
-    border-color: rgba(255, 255, 255, 0.5);
+    outline: 2px solid var(--color-white);
+    outline-offset: 3px;
     transform: scale(1.3);
   }
 }
@@ -1287,6 +1280,13 @@ body.article-page .main-container {
   color: var(--color-primary);
 }
 
+/* The title underlines on hover, as any other link does. */
+.article-card--link:hover .article-card--title,
+.article-card--link:focus-visible .article-card--title {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
 .article-card--image {
   aspect-ratio: 4 / 3;
   display: block;
@@ -1300,7 +1300,7 @@ body.article-page .main-container {
 }
 
 .article-card--content {
-  padding: 1rem 0;
+  padding: 0.5rem 0 1rem;
 }
 
 .article-card--title {
@@ -1829,6 +1829,22 @@ body.article-page .main-container {
   margin-top: 0.75rem;
   font-weight: bold;
   color: var(--color-primary);
+}
+
+/* The caption underlines on hover, as the article cards' titles do. */
+.home-books--item a:hover .home-books--caption,
+.home-books--item a:focus-visible .home-books--caption {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+/* Speaker Deck's script sets the deck's width in pixels, measured once and
+   on resize, and a bad measurement left it wider than the column. The
+   column sizes it instead; its own full screen mode is left alone. */
+.speakerdeck-embed-wrapper iframe:not([style*="position: fixed"]) {
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 4 / 3;
 }
 
 /* Books index page */
@@ -2637,9 +2653,9 @@ body.article-page .main-container {
   padding: 2rem 0 3rem;
 }
 
-/* Side by side once there is room: the map on the left over three of the
-   four columns the related cards take below, the summary on the right over
-   the fourth, on the same grid so their edges line up.
+/* Side by side once there is room, on the four columns the related cards
+   take below so their edges line up: the facts in the first, the map over
+   the next two, the summary in the fourth.
    Only on the deck, where the block takes the site's full width: in the
    stacked page's 60rem column the summary would be too narrow to read. */
 @media (min-width: 1280px) {
@@ -2650,8 +2666,12 @@ body.article-page .main-container {
     align-items: start;
   }
 
+  .extra-meta {
+    grid-area: 1 / 1 / 2 / 2;
+  }
+
   .extra-arrive {
-    grid-area: 1 / 1 / 2 / 4;
+    grid-area: 1 / 2 / 2 / 4;
   }
 
   .extra-summary {
@@ -2679,6 +2699,15 @@ body.article-page .main-container {
   font-size: var(--step-1);
   letter-spacing: 0.04em;
   margin: 0 0 1rem;
+}
+
+/* The facts one under another, a size up, as the summary beside them. */
+.extra-meta .article-meta {
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0;
+  font-size: var(--step-1);
+  color: var(--color-grey-900);
 }
 
 /* The related articles are a section of their own, set further apart. */

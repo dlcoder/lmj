@@ -470,14 +470,13 @@ for (const spec of pages) {
       }
     }
 
-    // The header dropdown opens on hover where there is a pointer, and as an
+    // The header dropdown opens on click, never on hover, and as an
     // accordion inside the hamburger menu on a phone. Either way it has to
     // end up on screen with every category and the four ways into the archive.
     if (spec.name === 'index' && width !== NARROW) {
       if (width === MOBILE) await page.locator('#hamburger-menu').click();
       const toggle = page.locator('.header-nav--toggle');
-      if (width === MOBILE) await toggle.click();
-      else await toggle.hover();
+      await toggle.click();
       await page.waitForTimeout(200);
       const menu = await page.evaluate(() => {
         const panel = document.getElementById('header-menu-discover');

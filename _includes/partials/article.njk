@@ -17,12 +17,8 @@
 <article class="article">
   <div class="slides--container">
     <div class="slides--slide">
-      <div class="article-gallery" style="
-        --intro-mobile: url('{% static_image article.galleryPhotos[0].image_urls.mobile %}');
-        --intro-tablet: url('{% static_image article.galleryPhotos[0].image_urls.tablet %}');
-        --intro-desktop: url('{% static_image article.galleryPhotos[0].image_urls.desktop %}');
-        --intro-desktop-hd: url('{% static_image article.galleryPhotos[0].image_urls.desktop_hd %}');
-      ">
+      {#- Only the deck shows the intro over a photo, the gallery's first. -#}
+      <div class="article-gallery" style="--intro-desktop-hd: url('{% static_image article.galleryPhotos[0].image_urls.desktop_hd %}');">
         <div class="article-gallery--intro">
           <div class="article-header">
             <h1 class="article-title"{{ untranslated | safe }}>{{ article.title }}</h1>
