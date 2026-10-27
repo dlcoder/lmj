@@ -322,7 +322,6 @@ select,
 .button,
 .page-lead,
 .home-search,
-.article-start,
 .article-meta,
 .timeline--date,
 .press-list--date,
@@ -361,8 +360,7 @@ h6 {
   }
 }
 
-.button,
-.article-start {
+.button {
   font-weight: 700;
 }
 
@@ -605,31 +603,35 @@ a:hover {
   }
 }
 
+/* Three 2px bars, 1.5rem wide, in the middle of a 2.5rem target whose
+   padding hangs past the gutter so the bars line up with the edge. */
 .header-hamburger {
   display: none;
   flex-direction: column;
-  justify-content: space-around;
-  width: 2rem;
-  height: 2rem;
+  justify-content: space-between;
+  box-sizing: content-box;
+  width: 1.5rem;
+  height: 1rem;
   background: transparent;
   border: none;
   cursor: pointer;
-  padding: 0;
+  padding: 0.75rem 0.5rem;
+  margin-right: -0.5rem;
   z-index: 10;
 }
 
 .header-hamburger span {
-  width: 2rem;
-  height: 0.25rem;
+  width: 100%;
+  height: 2px;
   background: var(--color-white);
-  border-radius: 10px;
+  border-radius: 1px;
   transition: all 0.3s linear;
   position: relative;
-  transform-origin: 1px;
 }
 
+/* The outer bars meet in the middle, 7px away, and cross. */
 .header-hamburger.is-active span:first-child {
-  transform: rotate(45deg);
+  transform: translateY(7px) rotate(45deg);
 }
 
 .header-hamburger.is-active span:nth-child(2) {
@@ -638,7 +640,7 @@ a:hover {
 }
 
 .header-hamburger.is-active span:nth-child(3) {
-  transform: rotate(-45deg);
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 @media (max-width: 768px) {
@@ -715,10 +717,12 @@ a:hover {
   margin: 0
 }
 
+/* A flex box rather than an inline one: inline, it sat on the heading's
+   baseline and the room left for descenders lifted it off centre. */
 .header-logo--title a,
 .header-logo--title a:visited {
   color: var(--color-white);
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 0.6rem;
 }
@@ -852,13 +856,6 @@ body.home-page {
 
 /* Article Page */
 
-/* The call to action only makes sense where the deck is: on narrower screens
-   the photos already follow the text in reading order. Scoped to the page so
-   it outranks the shared .button rule, whatever the order of the file. */
-body.article-page .article-start {
-  display: none;
-}
-
 /* Below the slide-deck breakpoint the article is an ordinary stacked page:
    a readable column for the text and the gallery photos one after another,
    with room to breathe. Everything here is overridden from 1280px up. */
@@ -866,6 +863,8 @@ body.article-page .article-start {
 body.article-page .main-container {
   max-width: 60rem;
 }
+
+
 
 .slides--slide + .slides--slide {
   margin-top: 1.5rem;
@@ -969,6 +968,11 @@ body.article-page .main-container {
   color: var(--color-grey-700);
 }
 
+/* In the opening the facts sit above the title. */
+.article-header .article-meta {
+  margin: 0 0 1rem;
+}
+
 .article-meta--item {
   display: flex;
   flex-direction: column;
@@ -1007,6 +1011,10 @@ body.article-page .main-container {
   margin-bottom: 1.5rem;
 }
 
+.article-body li:last-child {
+  margin-bottom: 0;
+}
+
 @media (min-width: 1280px) {
   .slides--container {
     display: grid;
@@ -1041,10 +1049,9 @@ body.article-page .main-container {
     width: 100%;
     /* The scrim rides on the photo so both reach the edges. Putting it on
        the intro instead left the sides unshaded on screens wider than the
-       1920px the intro is capped at. It darkens from the bottom, where the
-       text sits, and leaves the top of the photo clear, as the Tradition
-       articles' opening does. */
-    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 55%, transparent 100%),
+       1920px the intro is capped at. It is darkest at the bottom and still
+       shades the top, which the facts and the title reach on a long intro. */
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.65) 55%, rgba(0, 0, 0, 0.4) 100%),
       var(--intro-desktop-hd);
     background-size: cover;
     background-position: center center;
@@ -1055,38 +1062,15 @@ body.article-page .main-container {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    align-items: center;
-    padding: 0 15rem 4rem;
+    align-items: flex-start;
+    /* The text starts where the logo does: the header's 2rem gutter inside
+       its 1920px container. The right side keeps the measure the text had
+       when it was centred between two 15rem gutters. */
+    padding: 0 28rem 4rem 2rem;
     box-sizing: border-box;
-    max-width: 1920px;
+    max-width: calc(1920px + 4rem);
     margin: 0 auto;
     transition: opacity 0.3s ease;
-  }
-
-  /* A button, outlined so it does not read as one more of the intro's
-     links; it fills on hover. */
-  body.article-page .article-start {
-    display: inline-block;
-    margin-top: 1.5rem;
-    align-self: flex-start;
-    padding: 0.8em 1.6em;
-    border: 1px solid var(--color-white);
-    border-radius: 4px;
-    background: none;
-    color: var(--color-white);
-    font: inherit;
-    font-family: var(--font-sans);
-    font-size: var(--step--1);
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background-color 0.2s ease, color 0.2s ease;
-  }
-
-  body.article-page .article-start:hover {
-    background-color: var(--color-white);
-    color: var(--color-grey-900);
   }
 
   .article-gallery--intro a {
@@ -1127,23 +1111,35 @@ body.article-page .main-container {
 
   .article-header {
     border-bottom: none;
-    margin-bottom: 2rem;
+    margin-bottom: 0.75rem;
     color: var(--color-white);
   }
 
+  /* The intro aims at the lower half of the window, leaving the top to the
+     photo, so its type is a step smaller than a page's. */
   .article-title {
     color: var(--color-white) !important;
-    font-size: 4rem;
+    font-size: 2.75rem;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
   }
 
   .article-body {
     color: var(--color-white) !important;
+    font-size: 1rem;
     text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  }
+
+  .article-gallery--intro .article-body li {
+    margin-bottom: 0.75rem;
+  }
+
+  .article-gallery--intro .article-body li:last-child {
+    margin-bottom: 0;
   }
 
   /* The page's colours are lost on the photo. */
   .article-gallery--intro .article-meta {
+    font-size: 0.85rem;
     color: var(--color-white);
     text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
   }
@@ -2701,13 +2697,24 @@ body.article-page .main-container {
   margin: 0 0 1rem;
 }
 
-/* The facts one under another, a size up, as the summary beside them. */
+/* The facts one under another, at the size of the summary beside them. */
 .extra-meta .article-meta {
   flex-direction: column;
   gap: 1rem;
   margin: 0;
-  font-size: var(--step-1);
+  font-size: var(--step-0);
   color: var(--color-grey-900);
+}
+
+/* Underlined, or the municipality and the category read as plain facts. */
+.extra-meta .article-meta a {
+  text-decoration: underline;
+  text-decoration-color: var(--color-primary-60);
+  text-underline-offset: 3px;
+}
+
+.extra-meta .article-meta a:hover {
+  text-decoration-color: currentColor;
 }
 
 /* The related articles are a section of their own, set further apart. */
@@ -2719,7 +2726,7 @@ body.article-page .main-container {
    plain paragraphs: the block's rule and label frame them. */
 .extra-block--notice,
 .extra-summary p {
-  font-size: var(--step-1);
+  font-size: var(--step-0);
   line-height: 1.65;
   color: var(--color-grey-900);
 }
