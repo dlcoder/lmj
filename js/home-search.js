@@ -86,13 +86,13 @@
     const title = document.createElement('h2');
     title.className = 'article-card--title';
     title.textContent = article.t;
-    const place = document.createElement('div');
-    place.className = 'article-card--location';
-    place.textContent = article.l;
-    const date = document.createElement('div');
+    const date = document.createElement('span');
     date.className = 'article-card--date';
     date.textContent = article.d;
-    content.append(title, place, date);
+    const place = document.createElement('span');
+    place.className = 'article-card--location';
+    place.textContent = article.l;
+    content.append(title, date, place);
     link.append(content);
     item.append(link);
     return item;
