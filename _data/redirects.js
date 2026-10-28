@@ -21,6 +21,28 @@ const prefixes = {
 
 const categories = { es: es_categories_raw, en: en_categories_raw };
 
+// Slugs some articles had before they were renamed, from the Rails app's
+// friendly_id_slugs table, by article id. The old app kept answering to them
+// in either language, as the table carries no locale.
+const formerSlugs = {
+  93: ['castilo-de-sabiote-i'],
+  95: ['banos-arabes-de-segura-de-la-sierra'],
+  98: ['el-puente-viejo'],
+  107: ['catatumbas-de-san-ildelfonso'],
+  109: ['la-serrezuela'],
+  111: ['castulo-2-parte'],
+  114: ['refugio-de-miramundos-00e6f0b2-7aca-4166-9e50-5c3d22c47360'],
+  116: ['exteriores-del-castillo-de-segura-de-la-sierra'],
+  117: ['castillo-de-segura-de-la-sierra'],
+  119: ['casco-historico-de-iznatoraf'],
+  121: ['castillo-de-segura-exteriores'],
+  136: ['el-peregrino'],
+  140: ['galapan-y-campos'],
+  145: ['cueva-del-agua'],
+  146: ['los-negros'],
+  161: ['zapatero']
+};
+
 function forLocale(locale) {
   const p = prefixes[locale];
   const pages = i18n[locale].pages;
@@ -38,8 +60,10 @@ function forLocale(locale) {
     // in 2026. Until then they were published, here and by the Rails app,
     // under the Spanish one, which legacy_slug keeps.
     const old = article.legacy_slug ?? article.slug;
-    add(`/${locale}/${p.articles}/${kind}/${old}`, to);
-    add(`/${locale}/${p.articles}/${old}`, to);
+    for (const slug of [old, ...(formerSlugs[article.id] ?? [])]) {
+      add(`/${locale}/${p.articles}/${kind}/${slug}`, to);
+      add(`/${locale}/${p.articles}/${slug}`, to);
+    }
     // The old app also found an article by its database id, and links of that
     // form still turn up in its logs.
     add(`/${locale}/${p.articles}/${kind}/${article.id}`, to);
