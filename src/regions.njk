@@ -7,7 +7,7 @@ pagination:
   addAllPagesToCollections: true
   alias: pageLocale
 eleventyComputed:
-  title: "{{ i18n[pageLocale].regions.title }} – {{ i18n[pageLocale].siteTitle }}"
+  title: "{{ i18n[pageLocale].regions.title }} – {{ i18n[pageLocale].site.title }}"
   permalink: "{{ pageLocale }}/regions/index.html"
   locale: "{{ pageLocale }}"
 ---

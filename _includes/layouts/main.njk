@@ -22,7 +22,7 @@
       so it gets no hreflang pair. -#}
   {%- set url = siteUrl + (page.url | cleanUrl) %}
   {%- set alternate = page.url | alternate %}
-  {%- set description = (article.summary or (article.sentences | join(" ")) if article else pageDescription) or i18n[locale].siteDescription %}
+  {%- set description = (article.summary or (article.sentences | join(" ")) if article else pageDescription) or i18n[locale].site.description %}
   <meta name="description" content="{{ description | excerpt }}">
   {%- if noIndex %}
   <meta name="robots" content="noindex">
@@ -37,7 +37,7 @@
   <link rel="alternate" hreflang="x-default" href="{{ siteUrl }}/">
   {%- endif %}
   {%- endif %}
-  <meta property="og:site_name" content="{{ i18n[locale].siteTitle }}">
+  <meta property="og:site_name" content="{{ i18n[locale].site.title }}">
   <meta property="og:locale" content="{{ "es_ES" if locale == "es" else "en_GB" }}">
   <meta property="og:url" content="{{ url }}">
   <meta property="og:title" content="{{ article.title if article else title }}">
@@ -66,7 +66,7 @@
     "inLanguage": "es" if (locale == "en" and not article.translated) else locale,
     "url": url,
     "image": ogImage,
-    "publisher": { "@type": "Organization", "name": i18n[locale].siteTitle, "url": siteUrl + "/" + locale + "/" },
+    "publisher": { "@type": "Organization", "name": i18n[locale].site.title, "url": siteUrl + "/" + locale + "/" },
     "about": {
       "@type": "TouristAttraction",
       "name": article.title,
@@ -83,7 +83,7 @@
   {%- endif %}
   <script type="application/ld+json">{{ structured | dump | safe }}</script>
   {%- elif page.url == "/" + locale + "/" %}
-  <script type="application/ld+json">{{ { "@context": "https://schema.org", "@type": "WebSite", "name": i18n[locale].siteTitle, "url": url, "inLanguage": locale } | dump | safe }}</script>
+  <script type="application/ld+json">{{ { "@context": "https://schema.org", "@type": "WebSite", "name": i18n[locale].site.title, "url": url, "inLanguage": locale } | dump | safe }}</script>
   {%- endif %}
   {#- Leaflet and its cluster plugin are served from this site, copied out of
       node_modules at build time, so the maps depend on no third party. The
@@ -153,7 +153,7 @@
               <path fill="currentColor" fill-rule="evenodd"
                     d="M4.109 49.162L0.453 20.871A18.5 18.5 0 1 1 28.448 34.285ZM18.8 3.95a14.55 14.55 0 1 0 0 29.1a14.55 14.55 0 1 0 0-29.1ZM18.8 9.25a9.25 9.25 0 1 0 0 18.5a9.25 9.25 0 1 0 0-18.5Z"/>
             </svg>
-            <span>{{ i18n[locale].siteTitle }}</span>
+            <span>{{ i18n[locale].site.title }}</span>
           </a>
         </h1>
       </div>

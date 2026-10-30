@@ -6,7 +6,7 @@ pagination:
   addAllPagesToCollections: true
   alias: indexPage
 eleventyComputed:
-  title: "{{ i18n[indexPage.locale].siteTitle }}"
+  title: "{{ i18n[indexPage.locale].site.title }}"
   permalink: "{{ indexPage.locale }}/index.html"
   locale: "{{ indexPage.locale }}"
 bodyClass: "home-page"

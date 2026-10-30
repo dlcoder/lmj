@@ -6,7 +6,7 @@ pagination:
   addAllPagesToCollections: true
   alias: localityPage
 eleventyComputed:
-  title: "{{ localityPage.locality.name }} – {{ i18n[localityPage.locale].siteTitle }}"
+  title: "{{ localityPage.locality.name }} – {{ i18n[localityPage.locale].site.title }}"
   permalink: "{{ localityPage.locale }}/localities/{{ localityPage.locality.slug }}{% if localityPage.pagination.pageNumber > 0 %}/page/{{ localityPage.pagination.pageNumber + 1 }}{% endif %}/"
   locale: "{{ localityPage.locality.locale if localityPage.locality.locale else localityPage.locale }}"
 includeLeaflet: true

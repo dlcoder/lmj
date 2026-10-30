@@ -6,7 +6,7 @@ pagination:
   addAllPagesToCollections: true
   alias: regionPage
 eleventyComputed:
-  title: "{{ regionPage.region.name }} – {{ i18n[regionPage.locale].siteTitle }}"
+  title: "{{ regionPage.region.name }} – {{ i18n[regionPage.locale].site.title }}"
   permalink: "{{ regionPage.locale }}/regions/{{ regionPage.region.slug }}{% if regionPage.pagination.pageNumber > 0 %}/page/{{ regionPage.pagination.pageNumber + 1 }}{% endif %}/"
   locale: "{{ regionPage.locale }}"
 ---

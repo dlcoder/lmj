@@ -3,7 +3,7 @@
   <div class="pagination-links">
     {% if paginationPrevHref %}
       <a href="{{ paginationPrevHref }}" class="pagination-link pagination-link--prev">
-        {{ i18n[locale].paginationPrev }}
+        {{ i18n[locale].pagination.previous }}
       </a>
     {% endif %}
 
@@ -13,7 +13,7 @@
 
     {% if paginationNextHref %}
       <a href="{{ paginationNextHref }}" class="pagination-link pagination-link--next">
-        {{ i18n[locale].paginationNext }}
+        {{ i18n[locale].pagination.next }}
       </a>
     {% endif %}
   </div>

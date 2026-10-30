@@ -6,13 +6,13 @@ pagination:
   addAllPagesToCollections: true
   alias: indexPage
 eleventyComputed:
-  title: "{{ i18n[indexPage.locale].all_articles }} – {{ i18n[indexPage.locale].siteTitle }}"
+  title: "{{ i18n[indexPage.locale].articles.title }} – {{ i18n[indexPage.locale].site.title }}"
   permalink: "{{ indexPage.locale }}/articles/{% if indexPage.pagination.pageNumber > 0 %}page/{{ indexPage.pagination.pageNumber + 1 }}/{% endif %}/"
   locale: "{{ indexPage.locale }}"
 ---
 
 <div class="page-header">
-  <h1 class="page-title">{{ i18n[indexPage.locale].all_articles }}</h1>
+  <h1 class="page-title">{{ i18n[indexPage.locale].articles.title }}</h1>
 </div>
 
 {% set articles = indexPage.articles %}

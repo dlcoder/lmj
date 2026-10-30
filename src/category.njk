@@ -6,7 +6,7 @@ pagination:
   addAllPagesToCollections: true
   alias: categoryPage
 eleventyComputed:
-  title: "{{ categoryPage.category.name }} – {{ i18n[categoryPage.locale].siteTitle }}"
+  title: "{{ categoryPage.category.name }} – {{ i18n[categoryPage.locale].site.title }}"
   permalink: "{{ categoryPage.locale }}/categories/{{ categoryPage.category.slug }}{% if categoryPage.pagination.pageNumber > 0 %}/page/{{ categoryPage.pagination.pageNumber + 1 }}{% endif %}/"
   locale: "{{ categoryPage.locale }}"
 ---
