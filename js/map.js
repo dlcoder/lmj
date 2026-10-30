@@ -6,7 +6,7 @@
   if (typeof L === 'undefined') return;
 
   const STATICS_HOST = document.querySelector('meta[name="statics-host"]')?.content
-    ?? 'https://lmjstatic.deliriumcoder.com';
+    ?? 'https://files.lugaresmiticosdejaen.com';
   const JAEN_CENTER = [37.9556459, -3.361515];
 
   // Same purple the original used for the outlines.
