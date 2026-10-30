@@ -856,13 +856,9 @@ body.home-page {
 
 /* Article Page */
 
-/* Below the slide-deck breakpoint the article is an ordinary stacked page:
-   a readable column for the text and the gallery photos one after another,
-   with room to breathe. Everything here is overridden from 1280px up. */
-
-body.article-page .main-container {
-  max-width: 60rem;
-}
+/* Below the slide-deck breakpoint the article is an ordinary stacked page,
+   the text and the gallery photos one after another on the width of the
+   header's content. Everything here is overridden from 1280px up. */
 
 
 
@@ -2374,16 +2370,12 @@ body.article-page .main-container {
 /* The footer sits inside the deck's last slide, which scrolls on its own, so
    it needs no top margin there. It also has to reach the edges: the slide is
    inside the padded main container, which would otherwise leave a strip of
-   page either side of it and below. Below the deck that container is also a
-   narrow column, so the colour runs on to the window's edges as the closing
-   block's does. */
+   page either side of it and below. */
 .slides--slide__extra .footer {
   margin-top: 0;
   margin-left: calc(-1 * var(--container-padding, 0px));
   margin-right: calc(-1 * var(--container-padding, 0px));
   margin-bottom: calc(-1 * var(--container-padding, 0px));
-  box-shadow: 0 0 0 100vmax var(--color-primary);
-  clip-path: inset(0 -100vmax);
 }
 
 /* Tradition articles
@@ -2646,10 +2638,9 @@ body.article-page .main-container {
   width: 100%;
 }
 
-/* No side padding of its own: below the deck the page's column already has
-   it, and the photos above run to its edges. */
+/* No side padding of its own: below the deck the page's container already
+   has it, and the photos above run to its edges. */
 .article-extra--wrapper {
-  max-width: 68rem;
   margin: 0 auto;
   padding: 2rem 0 3rem;
 }
@@ -2657,8 +2648,8 @@ body.article-page .main-container {
 /* Side by side once there is room, on the four columns the related cards
    take below so their edges line up: the facts in the first, the map over
    the next two, the summary in the fourth.
-   Only on the deck, where the block takes the site's full width: in the
-   stacked page's 60rem column the summary would be too narrow to read. */
+   Only on the deck: on the narrower stacked page the summary would be too
+   narrow to read. */
 @media (min-width: 1280px) {
   .article-extra--wrapper {
     display: grid;
