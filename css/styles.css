@@ -406,8 +406,7 @@ a:hover {
 .header :focus-visible,
 .footer :focus-visible,
 .latest-articles :focus-visible,
-.localities-section :focus-visible,
-.article-gallery--intro :focus-visible {
+.localities-section :focus-visible {
   outline-color: var(--color-white);
 }
 
@@ -1069,17 +1068,6 @@ body.home-page {
     transition: opacity 0.3s ease;
   }
 
-  .article-gallery--intro a {
-    color: var(--color-white);
-    text-decoration: underline;
-    text-decoration-color: rgba(255, 255, 255, 0.5);
-    text-underline-offset: 2px;
-  }
-
-  .article-gallery--intro a:hover {
-    text-decoration-color: var(--color-white);
-  }
-
   .article-gallery--media {
     height: 100%;
     display: flex;
@@ -1198,30 +1186,15 @@ body.home-page {
 
 /* Responsive Images */
 
+/* The photos in a Tradition body: cropped to a box of the usual 3:2, or
+   of the shape its placeholder gives inline. */
 .responsive-image {
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  padding-top: 66.5625%;
-  background-image: var(--img-mobile);
-}
-
-@media (min-width: 480px) {
-  .responsive-image {
-    background-image: var(--img-tablet);
-  }
-}
-
-@media (min-width: 640px) {
-  .responsive-image {
-    background-image: var(--img-desktop);
-  }
-}
-
-@media (min-width: 1120px) {
-  .responsive-image {
-    background-image: var(--img-desktop-hd);
-  }
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 100 / 66.5625;
+  object-fit: cover;
+  object-position: center;
 }
 
 /* Article Grid */
@@ -2526,7 +2499,6 @@ body.home-page {
 /* These sit over a photo, so their text has to beat the global paragraph
    colour rather than inherit it. */
 .article-tradition__closing-text p,
-.article-tradition__closing-text strong,
 .article-tradition__full-image-with-text-text p,
 .article-tradition__full-image-with-text-text strong {
   color: var(--color-white);
@@ -2545,10 +2517,11 @@ body.home-page {
     --opening-height: 100svh;
   }
 
-  /* Important over the inline padding an [img:PAD:N] placeholder writes
+  /* Important over the inline shape an [img:PAD:N] placeholder writes
      (66% on La zapatería). */
   .artile-tradition__container > .responsive-image:first-child {
-    padding-top: var(--opening-height) !important;
+    aspect-ratio: auto !important;
+    height: var(--opening-height);
   }
 
   /* The intro covers the whole photo and sets its text at the foot, with
