@@ -1,12 +1,13 @@
 // Renders the built site in a real browser and asserts the things that have
 // actually broken here before: images resolving to url(''), layouts
 // collapsing, content spilling sideways, the footer not reaching the edges,
-// the slide deck losing its dots. Run with `npm run check-pages`.
+// the slide deck losing its dots. Run with `npm run check-pages`; what can be
+// read from the files alone is in check-site.mjs.
 import { spawn } from 'node:child_process';
 import { once } from 'node:events';
-import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
-import { extname, join } from 'node:path';
-import { STATICS_HOST, SITE_URL } from '../lib/base.js';
+import { existsSync, readFileSync } from 'node:fs';
+import { extname } from 'node:path';
+import { STATICS_HOST } from '../lib/base.js';
 
 const PORT = 8123;
 const BASE = `http://localhost:${PORT}`;
@@ -14,6 +15,9 @@ const ASSETS = STATICS_HOST;
 const CACHE = '/tmp/lmjimg';
 
 const WIDE = 1440;
+// Just below the deck: the stacked article once sat in a centred column of
+// its own here, and nothing at 900px showed it.
+const STACKED = 1200;
 const NARROW = 900;
 const MOBILE = 390;
 
@@ -81,6 +85,8 @@ async function measure(page) {
       traditionSections: [...document.querySelectorAll('.article-tradition__full-image-with-text, .article-tradition__closing')]
         .map(el => Math.round(el.getBoundingClientRect().height)),
       localityMap: box('.locality-map') || box('.localities-map'),
+      headerContent: box('.header-container'),
+      articleHeader: box('.article-header'),
       pageTitle: box('.page-title'),
       pageProse: box('.page-prose')
     };
@@ -119,6 +125,11 @@ function check(name, width, m, consoleErrors) {
       if (m.dots !== m.slides) fail(where, `${m.dots} dots for ${m.slides} slides`);
     } else {
       if (m.dots !== 0) fail(where, `${m.dots} dots outside the deck`);
+      // Stacked, the article runs on the header's width, not a column of
+      // its own centred inside it.
+      if (m.articleHeader && m.headerContent && m.articleHeader.left !== m.headerContent.left) {
+        fail(where, `the article starts at ${m.articleHeader.left}px, the header's content at ${m.headerContent.left}px`);
+      }
     }
   }
 
@@ -154,82 +165,6 @@ function check(name, width, m, consoleErrors) {
   }
 }
 
-// Not a browser check, but one over the built pages that nothing else holds
-// to account: every canonical and hreflang URL has to be a page that exists,
-// every hreflang pair has to point back, and the structured data has to parse. A slug paired wrongly would
-// otherwise only show up in Search Console.
-function checkAlternates() {
-  const isPage = path => [path, `${path}.html`, join(path, 'index.html')]
-    .some(file => existsSync(file) && statSync(file).isFile());
-  const local = url => join('_site', url.slice(SITE_URL.length));
-  const pairs = new Map();
-
-  const walk = dir => {
-    for (const name of readdirSync(dir)) {
-      const path = join(dir, name);
-      if (statSync(path).isDirectory()) { walk(path); continue; }
-      if (!path.endsWith('.html')) continue;
-
-      const html = readFileSync(path, 'utf8');
-      for (const [, json] of html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)) {
-        try { JSON.parse(json); } catch { fail(path, 'its structured data is not valid JSON'); }
-      }
-      const canonical = html.match(/<link rel="canonical" href="([^"]+)"/)?.[1];
-      if (!canonical) continue;
-      if (!isPage(local(canonical))) fail(path, `canonical ${canonical} is not a page`);
-
-      const alternates = [...html.matchAll(/<link rel="alternate" hreflang="\w+" href="([^"]+)"/g)]
-        .map(match => match[1])
-        .filter(url => url !== canonical);
-      for (const url of alternates) {
-        if (!isPage(local(url))) fail(path, `hreflang ${url} is not a page`);
-        pairs.set(canonical, url);
-      }
-    }
-  };
-
-  walk('_site');
-  for (const [from, to] of pairs) {
-    if (pairs.get(to) !== from) fail(from, `hreflang points to ${to}, which does not point back`);
-  }
-  if (pairs.size < 100) fail('hreflang', `only ${pairs.size} pages carry a translation pair`);
-}
-
-// The sitemap lists every page but the root redirect, each one once and
-// each one a page that exists. Pagination is the easy thing to lose: by
-// default only the first page of a paginated template reaches a collection.
-function checkSitemap() {
-  const locs = [...readFileSync('_site/sitemap.xml', 'utf8').matchAll(/<loc>([^<]+)<\/loc>/g)]
-    .map(match => match[1]);
-  let pages = 0;
-  let redirects = 0;
-  const walk = dir => {
-    for (const name of readdirSync(dir)) {
-      const path = join(dir, name);
-      if (statSync(path).isDirectory()) walk(path);
-      else if (path.endsWith('.html') && path !== join('_site', 'index.html') && path !== join('_site', '404.html')) {
-        // The old Rails addresses are pages too, but only to send the reader
-        // on; their targets are checked with the canonicals.
-        if (readFileSync(path, 'utf8').includes('http-equiv="refresh"')) redirects++;
-        else pages++;
-      }
-    }
-  };
-  walk('_site');
-  if (redirects < 1400) fail('redirects', `only ${redirects} old Rails URLs are redirected`);
-
-  if (new Set(locs).size !== locs.length) fail('sitemap', 'lists some pages twice');
-  if (locs.length !== pages) fail('sitemap', `${locs.length} URLs for ${pages} pages`);
-  for (const url of locs) {
-    const path = join('_site', url.slice(SITE_URL.length));
-    if (![path, `${path}.html`, join(path, 'index.html')].some(file => existsSync(file) && statSync(file).isFile())) {
-      fail('sitemap', `${url} is not a page`);
-    }
-  }
-}
-
-checkAlternates();
-checkSitemap();
 
 let chromium;
 try {
@@ -251,7 +186,8 @@ for (let i = 0; i < 50; i++) {
 const browser = await chromium.launch();
 
 for (const spec of pages) {
-  for (const width of [WIDE, NARROW, MOBILE]) {
+  const widths = spec.name.startsWith('place') ? [WIDE, STACKED, NARROW, MOBILE] : [WIDE, NARROW, MOBILE];
+  for (const width of widths) {
     const context = await browser.newContext({ viewport: { width, height: 900 } });
 
     await context.route(`${ASSETS}/**`, route => {
@@ -275,12 +211,11 @@ for (const spec of pages) {
     const consoleErrors = [];
     const page = await context.newPage();
     page.on('console', message => {
-      // The third-party requests aborted above surface as failed resources;
-      // they are the harness's doing, not the page's.
       const text = message.text();
-      // Noise from the aborted third parties above, and from outlines the
-      // assets host may not serve to this origin.
-      const expected = /ERR_FAILED|ERR_ABORTED|CORS policy|province boundary|locality GeoJSON/i.test(text) ||
+      // The third-party requests aborted above surface as failed resources,
+      // and the assets host may not serve the outlines to this origin: the
+      // harness's doing, or the host's, not the page's.
+      const expected = /ERR_FAILED|ERR_ABORTED|CORS policy/i.test(text) ||
         // The not-found page is, rightly, served with a 404 status.
         (spec.name === 'not-found' && /status of 404/.test(text));
       if (message.type() === 'error' && !expected) consoleErrors.push(text);
@@ -536,4 +471,4 @@ if (failures.length) {
   for (const line of failures) console.error(`  ${line}`);
   process.exit(1);
 }
-console.log(`\nAll ${pages.length} pages pass at ${WIDE}, ${NARROW} and ${MOBILE}px.`);
+console.log(`\nAll ${pages.length} pages pass at ${WIDE}, ${NARROW} and ${MOBILE}px, and the articles also at ${STACKED}px.`);

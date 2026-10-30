@@ -26,6 +26,8 @@ jobs:
 
       - run: npm run validate
 
+      - run: npm run check-site
+
       - name: Install the browser the page checks need
         run: npx playwright install --with-deps chromium
 

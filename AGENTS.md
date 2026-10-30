@@ -25,6 +25,7 @@ npm run serve        # dev server with hot reload
 npm run clean        # remove _site/ and .cache/
 npm run validate     # check _data/raw/ for broken references and gaps
 npm run check-links  # build and validate internal links with linkinator
+npm run check-site   # build and check canonicals, hreflang pairs, JSON-LD, sitemap and redirects
 npm run check-pages  # render the built pages in a browser and assert the layout
 npm run build-icons  # re-render the icons in img/ after changing img/favicon.svg
 ```
@@ -101,6 +102,7 @@ npm run build-icons  # re-render the icons in img/ after changing img/favicon.sv
 ├── scripts/                          # Dev utilities (not part of the build)
 │   ├── validate-data.mjs             # Raw data integrity checks (runs in CI)
 │   ├── check-pages.mjs               # Browser layout checks (runs in CI)
+│   ├── check-site.mjs                # Checks over the built files that need no browser (runs in CI)
 │   ├── build-icons.mjs               # Renders the PNG icons and favicon.ico from img/favicon.svg
 │   ├── serve-site.mjs                # Static server mimicking GitHub Pages
 │   └── check-links.mjs               # Internal link validation
@@ -131,7 +133,7 @@ Shared by the data files, `.eleventy.js` and the scripts. It lives outside `_dat
 - `localityMap` — `Map` of locality name → object including its region
 - `enCategoryMap` / `esCategoryMap` — `Map` of category name → object
 - `SITE_URL` — the published domain, read from `CNAME` (overridable with `process.env.SITE_URL`). Canonical, `hreflang` and Open Graph URLs are built on it, so moving the site is changing `CNAME`
-- `alternateFor(url)` — the same page in the other locale, as `{ path, translated }`. Articles pair by `id`, categories by position, static pages by their key in `i18n.pages`, everything else by swapping the locale. `translated` is false for the English articles that carry the Spanish text: the layout gives those no `hreflang` pair. `check-pages` asserts every pair exists and points back
+- `alternateFor(url)` — the same page in the other locale, as `{ path, translated }`. Articles pair by `id`, categories by position, static pages by their key in `i18n.pages`, everything else by swapping the locale. `translated` is false for the English articles that carry the Spanish text: the layout gives those no `hreflang` pair. `check-site` asserts every pair exists and points back
 - `IMAGE_BASE` + `featuredImageParts(article)` — the directory and file name of an article's featured photo. Every size of a photo shares its path but for the variant segment, so the JSON indexes carry only those two halves and the client builds the URLs it needs
 - `generatePaginatedPages({ entities, articles, filterFn, entityKey, pathPrefix, locale, includeEmpty })` — generates paginated pages for any entity type. **`PAGE_SIZE = 12`.** Sorts by `published_at` descending and returns objects with `articles`, `locale`, `pagination` and the entity itself. With `includeEmpty: true` it also generates pages with no articles (used by localities).
 
@@ -263,7 +265,7 @@ Deliberate choices a later change could undo by mistake:
 
 ## Deployment
 
-`.github/workflows/deploy-to-ghpages.yml`: on every push to `main` it runs `validate`, `check-pages` and `check-links`, builds with `ELEVENTY_ENV=production` and publishes `_site/` to the GitHub Pages branch via `peaceiris/actions-gh-pages`. Pull requests run the checks but do not publish.
+`.github/workflows/deploy-to-ghpages.yml`: on every push to `main` it runs `validate`, `check-site`, `check-pages` and `check-links`, builds with `ELEVENTY_ENV=production` and publishes `_site/` to the GitHub Pages branch via `peaceiris/actions-gh-pages`. Pull requests run the checks but do not publish.
 
 The domain is written twice: in the `CNAME` file, which `SITE_URL` reads for canonical, `hreflang`, Open Graph and the sitemap, and in the workflow's `cname:` input, which is what GitHub Pages is told. Change both together. The canonical host is `www`: with the apex also pointed at GitHub Pages in DNS, Pages redirects it to `www` on its own.
 
