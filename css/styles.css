@@ -406,8 +406,7 @@ a:hover {
 .header :focus-visible,
 .footer :focus-visible,
 .latest-articles :focus-visible,
-.localities-section :focus-visible,
-.article-gallery--intro :focus-visible {
+.localities-section :focus-visible {
   outline-color: var(--color-white);
 }
 
@@ -1067,17 +1066,6 @@ body.home-page {
     max-width: calc(1920px + 4rem);
     margin: 0 auto;
     transition: opacity 0.3s ease;
-  }
-
-  .article-gallery--intro a {
-    color: var(--color-white);
-    text-decoration: underline;
-    text-decoration-color: rgba(255, 255, 255, 0.5);
-    text-underline-offset: 2px;
-  }
-
-  .article-gallery--intro a:hover {
-    text-decoration-color: var(--color-white);
   }
 
   .article-gallery--media {
@@ -2526,7 +2514,6 @@ body.home-page {
 /* These sit over a photo, so their text has to beat the global paragraph
    colour rather than inherit it. */
 .article-tradition__closing-text p,
-.article-tradition__closing-text strong,
 .article-tradition__full-image-with-text-text p,
 .article-tradition__full-image-with-text-text strong {
   color: var(--color-white);
