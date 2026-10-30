@@ -1,5 +1,5 @@
 import * as articles from './articles.js';
-import { STATICS_HOST, IMAGE_BASE, featuredImageParts } from './base.js';
+import { STATICS_HOST, IMAGE_BASE, featuredImageParts } from '../lib/base.js';
 
 // The one index of geolocated articles, in the same shape the Rails app
 // served from /articulos.json: a GeoJSON FeatureCollection that Leaflet can

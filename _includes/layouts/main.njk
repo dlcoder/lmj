@@ -17,7 +17,7 @@
   <meta name="theme-color" content="#423780">
   {#- The page as search engines and link previews should know it. The
       domain is whatever CNAME publishes the site under, and the translation
-      is paired by alternateFor() in _data/base.js. An English article that
+      is paired by alternateFor() in lib/base.js. An English article that
       still carries the Spanish text is the same page but not a translation,
       so it gets no hreflang pair. -#}
   {%- set url = siteUrl + (page.url | cleanUrl) %}

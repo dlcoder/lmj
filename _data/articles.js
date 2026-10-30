@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import en_json from './raw/en_articles.json' with { type: 'json' };
 import es_json from './raw/es_articles.json' with { type: 'json' };
-import { localityMap, enCategoryMap, esCategoryMap, STATICS_HOST } from './base.js';
+import { localityMap, enCategoryMap, esCategoryMap, STATICS_HOST } from '../lib/base.js';
 
 // Tradition articles keep their body as hand-written HTML under content/,
 // where images are referenced with the placeholder the Rails app used:

@@ -1,4 +1,4 @@
-import { generatePaginatedPages } from './base.js';
+import { generatePaginatedPages } from '../lib/base.js';
 import * as articles from './articles.js';
 
 export default function () {

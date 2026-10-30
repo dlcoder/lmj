@@ -1,5 +1,5 @@
 import regions from './raw/regions.json' with { type: 'json' };
-import { en_categories_raw, es_categories_raw } from './base.js';
+import { en_categories_raw, es_categories_raw } from '../lib/base.js';
 import * as articles from './articles.js';
 import i18n from './i18n.js';
 import localities_list from './localities_list.js';

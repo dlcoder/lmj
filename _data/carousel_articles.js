@@ -1,4 +1,4 @@
-import { STATICS_HOST, IMAGE_BASE, featuredImageParts } from './base.js';
+import { STATICS_HOST, IMAGE_BASE, featuredImageParts } from '../lib/base.js';
 import * as articles from './articles.js';
 
 // Each entry carries only the directory and the file name of the featured

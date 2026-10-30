@@ -6,7 +6,7 @@ import { spawn } from 'node:child_process';
 import { once } from 'node:events';
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { extname, join } from 'node:path';
-import { STATICS_HOST, SITE_URL } from '../_data/base.js';
+import { STATICS_HOST, SITE_URL } from '../lib/base.js';
 
 const PORT = 8123;
 const BASE = `http://localhost:${PORT}`;

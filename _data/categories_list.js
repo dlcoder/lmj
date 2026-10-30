@@ -1,4 +1,4 @@
-import { en_categories_raw, es_categories_raw } from './base.js';
+import { en_categories_raw, es_categories_raw } from '../lib/base.js';
 import en_articles from './raw/en_articles.json' with { type: 'json' };
 import es_articles from './raw/es_articles.json' with { type: 'json' };
 

@@ -42,7 +42,6 @@ npm run build-icons  # re-render the icons in img/ after changing img/favicon.sv
 │   │   ├── es_categories.json        # 11 categories
 │   │   ├── en_categories.json        # 11 categories
 │   │   └── regions.json              # 10 regions → 97 nested localities
-│   ├── base.js                       # Lookup maps + generatePaginatedPages()
 │   ├── articles.js                   # Hydrated articles per locale
 │   ├── index_pages.js                # Main index pages
 │   ├── all_pages.js                  # All page collections
@@ -54,6 +53,8 @@ npm run build-icons  # re-render the icons in img/ after changing img/favicon.sv
 │   ├── search_index.js               # Full-text index for the home search
 │   ├── redirects.js                  # Old Rails URLs → their new address
 │   └── i18n.js                       # Translation strings
+├── lib/
+│   └── base.js                       # Lookup maps, URLs, generatePaginatedPages(); outside _data/ so it is not global data
 ├── src/                              # Page templates (locale-aware)
 │   ├── index_redirect_to_locale.njk  # `/` → JS language redirect
 │   ├── index.njk                     # Home page per locale
@@ -123,7 +124,9 @@ npm run build-icons  # re-render the icons in img/ after changing img/favicon.sv
 
 ## Data Architecture
 
-### `base.js`
+### `lib/base.js`
+Shared by the data files, `.eleventy.js` and the scripts. It lives outside `_data/` because Eleventy would load anything there as global data.
+
 - `localityMap` — `Map` of locality name → object including its region
 - `enCategoryMap` / `esCategoryMap` — `Map` of category name → object
 - `SITE_URL` — the published domain, read from `CNAME` (overridable with `process.env.SITE_URL`). Canonical, `hreflang` and Open Graph URLs are built on it, so moving the site is changing `CNAME`

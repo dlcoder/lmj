@@ -1,5 +1,5 @@
 import { readFileSync } from "node:fs";
-import { STATICS_HOST, SITE_URL, cleanUrl, alternateFor } from "./_data/base.js";
+import { STATICS_HOST, SITE_URL, cleanUrl, alternateFor } from "./lib/base.js";
 
 const versionOf = name =>
   JSON.parse(readFileSync(`node_modules/${name}/package.json`, "utf8")).version;
@@ -67,6 +67,8 @@ export default function (eleventyConfig) {
   // including notes kept locally and never committed.
   eleventyConfig.ignores.add("*.md");
   eleventyConfig.ignores.add("content");
+  // The data files import it, so the dev server rebuilds when it changes.
+  eleventyConfig.addWatchTarget("lib/");
 
   eleventyConfig.addPassthroughCopy("css");
   eleventyConfig.addPassthroughCopy("js");

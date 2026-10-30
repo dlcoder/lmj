@@ -1,4 +1,4 @@
-import { regions, en_categories_raw, es_categories_raw, generatePaginatedPages } from './base.js';
+import { regions, en_categories_raw, es_categories_raw, generatePaginatedPages } from '../lib/base.js';
 import * as articles from './articles.js';
 import index_pages from './index_pages.js';
 
