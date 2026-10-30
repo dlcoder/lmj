@@ -30,17 +30,35 @@ function decodeEntities(value) {
   });
 }
 
-function responsiveImage(media, paddingTop) {
+// How wide a body photo is drawn, for its `sizes`: the column it sits in,
+// on the old site's twelve-column grid, inside a `wrapper` (the reading
+// width) or a `wrapper-full` (the window). Read from the markup before the
+// placeholder: the last wrapper opened and the div that holds the photo.
+const READING_WIDTH = 'min(100vw, 68rem)';
+
+function imageSizes(before) {
+  const holder = before.match(/<div class="([^"]*)">\s*(?:\[img:\d*:\d+\]\s*)*$/)?.[1] ?? '';
+  if (/__(?:full-image-with-text|closing)-image/.test(holder)) return '100vw';
+
+  const wrapper = [...before.matchAll(/class="(wrapper(?:-full)?)[" ]/g)].at(-1)?.[1];
+  const width = wrapper === 'wrapper' ? READING_WIDTH : '100vw';
+  const span = Number(holder.match(/span-tablet-(\d+)/)?.[1]);
+  return span ? `(min-width: 640px) calc(${width} * ${span} / 12), ${width}` : width;
+}
+
+// A body photo, cropped to the shape the placeholder asks for: PAD is its
+// height as a percentage of its width, and without it the usual 3:2. The
+// opening photo is the page's largest paint, so it alone is not lazy.
+function responsiveImage(media, paddingTop, sizes, opening) {
   if (!media?.image_urls) return '';
 
   const url = size => `${STATICS_HOST}${media.image_urls[size]}`;
-  return `<div class="responsive-image" role="img" style="` +
-    (paddingTop ? `padding-top: ${paddingTop}%;` : '') +
-    `--img-mobile: url('${url('mobile')}');` +
-    `--img-tablet: url('${url('tablet')}');` +
-    `--img-desktop: url('${url('desktop')}');` +
-    `--img-desktop-hd: url('${url('desktop_hd')}');` +
-    `"></div>`;
+  return `<img class="responsive-image" src="${url('desktop')}"` +
+    ` srcset="${url('mobile')} 480w, ${url('tablet')} 640w, ${url('desktop')} 1120w, ${url('desktop_hd')} 1920w"` +
+    ` sizes="${sizes}" alt=""` +
+    (opening ? ' fetchpriority="high"' : ' loading="lazy"') +
+    (paddingTop ? ` style="aspect-ratio: 100 / ${paddingTop};"` : '') +
+    '>';
 }
 
 function traditionBody(article, galleryMedia, locale) {
@@ -51,8 +69,13 @@ function traditionBody(article, galleryMedia, locale) {
     return null;
   }
 
-  return html.replace(IMAGE_PLACEHOLDER, (_, padding, index) =>
-    responsiveImage(galleryMedia[Number(index) - 1], padding));
+  let first = true;
+  return html.replace(IMAGE_PLACEHOLDER, (match, padding, index, offset) => {
+    const opening = first;
+    first = false;
+    return responsiveImage(galleryMedia[Number(index) - 1], padding,
+      opening ? '100vw' : imageSizes(html.slice(0, offset)), opening);
+  });
 }
 
 function hydrate(articles, categoryMap, locale) {

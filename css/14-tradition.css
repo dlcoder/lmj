@@ -164,10 +164,11 @@
     --opening-height: 100svh;
   }
 
-  /* Important over the inline padding an [img:PAD:N] placeholder writes
+  /* Important over the inline shape an [img:PAD:N] placeholder writes
      (66% on La zapatería). */
   .artile-tradition__container > .responsive-image:first-child {
-    padding-top: var(--opening-height) !important;
+    aspect-ratio: auto !important;
+    height: var(--opening-height);
   }
 
   /* The intro covers the whole photo and sets its text at the foot, with
