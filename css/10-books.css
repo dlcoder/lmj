@@ -1,0 +1,106 @@
+/* Books block (home) */
+
+/* The neighbours bring their own margins: the localities above and the
+   footer below each leave 2rem. */
+.home-books {
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  text-align: center;
+}
+
+.home-books--container {
+  margin: 0 auto;
+  max-width: 900px;
+}
+
+.home-books--title {
+  color: var(--color-primary);
+  font-size: var(--step-4);
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.home-books--lead {
+  margin: 0 auto 2rem;
+  max-width: 44rem;
+  color: var(--color-grey-600);
+}
+
+.home-books--list {
+  display: grid;
+  gap: 2.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.home-books--item a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.home-books--cover {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.home-books--caption {
+  display: block;
+  margin-top: 0.75rem;
+  font-weight: bold;
+  color: var(--color-primary);
+}
+
+/* The caption underlines on hover, as the article cards' titles do. */
+.home-books--item a:hover .home-books--caption,
+.home-books--item a:focus-visible .home-books--caption {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+/* Speaker Deck's script sets the deck's width in pixels, measured once and
+   on resize, and a bad measurement left it wider than the column. The
+   column sizes it instead; its own full screen mode is left alone. */
+.speakerdeck-embed-wrapper iframe:not([style*="position: fixed"]) {
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 4 / 3;
+}
+
+/* Books index page */
+
+.books-index {
+  display: grid;
+  gap: 3rem;
+  list-style: none;
+  margin: 3rem 0;
+  padding: 0;
+}
+
+.books-index--item a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.books-index--banner {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.books-index--title {
+  color: var(--color-primary);
+  font-size: var(--step-2);
+  margin: 1rem 0 0.5rem;
+}
+
+.books-index--summary {
+  margin: 0;
+  color: var(--color-grey-600);
+}
+

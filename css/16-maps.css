@@ -1,0 +1,61 @@
+/* Maps
+   OpenStreetMap's tiles carry far more colour and labelling than the flat
+   basemap this design was built around, which drowned the purple overlays.
+   Washing them out restores the quiet backdrop they need. */
+
+/* Leaflet stacks its panes and controls up to z-index 1000, the fixed
+   header's own, so a map further down the page painted its zoom buttons
+   over the open header menu. Each map keeps its layers to itself. */
+.leaflet-container {
+  isolation: isolate;
+}
+
+/* The zoom buttons and the popup's close button are links, and the site's
+   a:hover, loaded after Leaflet's stylesheet, underlined their symbols. */
+.leaflet-bar a:hover,
+.leaflet-container a.leaflet-popup-close-button:hover {
+  text-decoration: none;
+}
+
+/* Leaflet writes the zoom symbols as text in a monospace font, whose + and
+   − sit a few pixels low and right, by a different amount on each system.
+   Drawn as two bars instead, they are centred exactly; the link keeps its
+   accessible name. */
+.leaflet-bar a.leaflet-control-zoom-in,
+.leaflet-bar a.leaflet-control-zoom-out {
+  position: relative;
+  text-indent: 0;
+}
+
+.leaflet-control-zoom-in span,
+.leaflet-control-zoom-out span {
+  visibility: hidden;
+}
+
+.leaflet-control-zoom-in::before,
+.leaflet-control-zoom-in::after,
+.leaflet-control-zoom-out::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 2px;
+  background-color: currentColor;
+  transform: translate(-50%, -50%);
+}
+
+.leaflet-control-zoom-in::after {
+  width: 2px;
+  height: 12px;
+}
+
+.leaflet-tile-pane {
+  filter: grayscale(1) contrast(0.55) brightness(1.22);
+}
+
+.leaflet-container .leaflet-control-attribution {
+  background: rgba(255, 255, 255, 0.8);
+  font-size: 0.6875rem;
+}
+

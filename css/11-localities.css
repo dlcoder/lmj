@@ -1,0 +1,93 @@
+/* Localities Section */
+
+.localities-section {
+  background-color: var(--color-primary-60);
+  /* The wide side padding only from the desktop up: on a phone it left the
+     list a column 130px wide. */
+  padding: 3rem 2rem;
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 1280px) {
+  .localities-section {
+    padding: 3rem 8rem;
+  }
+}
+
+.localities-container {
+  margin: 0 auto;
+  max-width: 1920px;
+  position: relative;
+  z-index: 2;
+}
+
+.localities-title {
+  color: var(--color-white);
+  font-size: var(--step-4);
+  font-weight: bold;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* Two columns even on a phone: one ran 97 names, some 3,000px, down the
+   screen. A long name wraps within its column. */
+.localities-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem 1rem;
+  margin-bottom: 0;
+  text-align: left;
+}
+
+@media (min-width: 768px) {
+  .localities-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .localities-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.locality-item {
+  line-height: 1.25;
+}
+
+@media (max-width: 479px) {
+  .localities-list .locality-link {
+    font-size: 0.875rem;
+  }
+}
+
+.locality-link {
+  color: var(--color-white);
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.locality-link:hover {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.localities-map-container {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.localities-map {
+  height: 100%;
+}
+
+#localities-map .leaflet-control-container {
+  display: none;
+}
+

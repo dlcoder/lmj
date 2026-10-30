@@ -69,6 +69,7 @@ npm run build-icons  # re-render the icons in img/ after changing img/favicon.sv
 │   ├── explorer.njk                  # Map of every article, filtered by locality and category
 │   ├── articles_index.njk            # Writes `/{locale}/articles.json`
 │   ├── search_index.njk              # Writes `/{locale}/search.json`
+│   ├── styles.11ty.js                # Joins css/*.css into `/css/styles.css`
 │   ├── redirect.njk                  # One meta-refresh page per old Rails URL
 │   └── pages/                        # Hand-written static pages (one per locale)
 ├── _includes/
@@ -84,7 +85,7 @@ npm run build-icons  # re-render the icons in img/ after changing img/favicon.sv
 │       ├── home-books.njk            # Home block for the two books
 │       ├── footer.njk                # Colophon and site map
 │       └── pagination.njk
-├── css/styles.css                    # Passthrough-copied to _site/css/
+├── css/                              # The stylesheet in numbered parts, joined in that order into /css/styles.css
 ├── img/                              # Icons; favicon.svg is the source, the rest is rendered
 ├── js/                               # Passthrough-copied to _site/js/
 │   ├── hamburger-menu.js
@@ -121,7 +122,8 @@ npm run build-icons  # re-render the icons in img/ after changing img/favicon.sv
 - **Shortcodes:**
   - `featured_image(article, size)` — URL of the featured photo (`featured: true` and `type: "Photo"`)
   - `static_image(path)` — absolute URL of a bucket asset
-- **Passthrough copy:** `css`, `js`, `img`, `img/favicon.ico` to the root, and the Leaflet and markercluster dist files to `/vendor/`
+- **Stylesheet:** one file per part of the site in `css/`, numbered, joined by `src/styles.11ty.js` into the single `/css/styles.css` the layout links. The numbers are the cascade's order: some rules win only because they come later, so move a part only together with what it overrides
+- **Passthrough copy:** `js`, `img`, `img/favicon.ico` to the root, and the Leaflet and markercluster dist files to `/vendor/`
 - **Typefaces:** the old site's, Merriweather for the text and Lato for headings, menus and metadata (`--font-serif`, `--font-sans`). Pinned `@fontsource` packages; only the Latin `woff2` of the weights the stylesheet declares are copied to `/vendor/fonts/`, and the layout preloads the two most used
 - **Ignored paths:** every `*.md` at the root (the site has no Markdown pages), `content`. Anything in `.gitignore` (`node_modules`, `_site`) is ignored by Eleventy on its own — no need to repeat it
 

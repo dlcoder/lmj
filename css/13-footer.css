@@ -1,0 +1,167 @@
+/* Footer */
+
+.footer {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  padding: 3rem 2rem 2rem;
+  margin-top: 2rem;
+}
+
+.footer-container {
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+.footer a {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.footer a:hover {
+  color: var(--color-white);
+}
+
+.footer-sitemap {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  padding-bottom: 2rem;
+}
+
+.footer-sitemap--title {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0 0 0.75rem;
+}
+
+.footer-sitemap--list li {
+  padding: 0.1875rem 0;
+  font-size: 0.9375rem;
+}
+
+.footer-colophon {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.footer-languages {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.9375rem;
+}
+
+.footer-languages--item__current span {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.footer-social {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-social svg {
+  width: 20px;
+  height: 20px;
+  fill: rgba(255, 255, 255, 0.85);
+  display: block;
+}
+
+.footer-social a:hover svg {
+  fill: var(--color-white);
+}
+
+.footer-social--name {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.footer-social--email {
+  font-size: 0.9375rem;
+}
+
+.footer-credits {
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.footer-credits--byline {
+  color: rgba(255, 255, 255, 0.78);
+  margin-bottom: 0.5rem;
+}
+
+/* Links inside a sentence need more than a change of shade to be found. */
+.footer-credits--byline a {
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.5);
+  text-underline-offset: 2px;
+}
+
+.footer-credits--legal {
+  display: flex;
+  gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .team {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-sitemap {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .footer-sitemap {
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .footer-colophon {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .footer-credits {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .footer-credits--byline {
+    margin-bottom: 0;
+  }
+}
+
+@media (min-width: 1120px) {
+  .team {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+}
+
+/* The footer sits inside the deck's last slide, which scrolls on its own, so
+   it needs no top margin there. It also has to reach the edges: the slide is
+   inside the padded main container, which would otherwise leave a strip of
+   page either side of it and below. */
+.slides--slide__extra .footer {
+  margin-top: 0;
+  margin-left: calc(-1 * var(--container-padding, 0px));
+  margin-right: calc(-1 * var(--container-padding, 0px));
+  margin-bottom: calc(-1 * var(--container-padding, 0px));
+}
+

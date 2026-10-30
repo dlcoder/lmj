@@ -1,0 +1,28 @@
+/* Responsive Images */
+
+.responsive-image {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  padding-top: 66.5625%;
+  background-image: var(--img-mobile);
+}
+
+@media (min-width: 480px) {
+  .responsive-image {
+    background-image: var(--img-tablet);
+  }
+}
+
+@media (min-width: 640px) {
+  .responsive-image {
+    background-image: var(--img-desktop);
+  }
+}
+
+@media (min-width: 1120px) {
+  .responsive-image {
+    background-image: var(--img-desktop-hd);
+  }
+}
+

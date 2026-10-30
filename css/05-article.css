@@ -1,0 +1,331 @@
+/* Article Page */
+
+/* Below the slide-deck breakpoint the article is an ordinary stacked page,
+   the text and the gallery photos one after another on the width of the
+   header's content. Everything here is overridden from 1280px up. */
+
+
+
+.slides--slide + .slides--slide {
+  margin-top: 1.5rem;
+}
+
+/* Below the deck the photos and videos follow one another down the page;
+   a short rule between each two keeps them from running together. */
+@media (max-width: 1279px) {
+  .slides--slide:has(> .article-gallery--media) + .slides--slide:has(> .article-gallery--media)::before {
+    content: '';
+    display: block;
+    width: 3rem;
+    height: 2px;
+    margin: 0.5rem auto 2rem;
+    background-color: var(--color-primary-60);
+  }
+}
+
+.article-gallery--media .article-gallery--photo {
+  border-radius: 4px;
+  /* Stacked reading order below the deck: the photo keeps the shape the
+     old background-image gave it. */
+  aspect-ratio: 3 / 2;
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+}
+
+.article-gallery--video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 4px;
+  background-color: var(--color-black);
+}
+
+@media (min-width: 1280px) {
+  body.article-page {
+    background-color: var(--color-black);
+    overflow: hidden;
+  }
+
+  body.article-page .main-container {
+    --container-padding: 0px;
+    padding: 0;
+    max-width: none;
+  }
+}
+
+@media (min-width: 1280px) {
+  .article {
+    position: relative;
+  }
+}
+
+.article-header {
+  border-bottom: 1px solid var(--color-grey-200);
+  margin-bottom: 2rem;
+  padding-bottom: 0.5rem;
+  width: 100%;
+}
+
+/* Below the deck, where the title is not over the photo, it gets the same
+   band as every other page's title. */
+@media (max-width: 1279px) {
+  .article-header {
+    margin-top: calc(-1 * 6rem);
+    padding: calc(var(--header-height) + 1.5rem) 0 1.5rem;
+    border-bottom: 0;
+    background-color: var(--color-primary-tint);
+    box-shadow: 0 0 0 100vmax var(--color-primary-tint);
+    clip-path: inset(0 -100vmax);
+  }
+}
+
+.article-title {
+  font-size: var(--step-5);
+  font-weight: bold;
+  color: var(--color-primary);
+  margin-bottom: 0;
+  text-transform: uppercase;
+}
+
+@media (min-width: 1280px) {
+  .article-title {
+    color: var(--color-grey-300);
+  }
+}
+
+/* The date, municipality and comarca in a row, each under a small label,
+   wrapping onto a second row where they do not fit. */
+.article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 2.5rem;
+  margin: 1rem 0 0;
+  font-size: 0.95rem;
+  color: var(--color-grey-700);
+}
+
+/* In the opening the facts sit above the title. */
+.article-header .article-meta {
+  margin: 0 0 1rem;
+}
+
+.article-meta--item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.article-meta dt {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.article-meta dd {
+  margin: 0;
+}
+
+.article-body {
+  margin-bottom: 4rem;
+  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+}
+
+@media (min-width: 1280px) {
+  .article-body {
+    color: var(--color-grey-300);
+    margin-bottom: 0;
+  }
+}
+
+.article-body {
+  width: 100%;
+}
+
+.article-body li {
+  margin-bottom: 1.5rem;
+}
+
+.article-body li:last-child {
+  margin-bottom: 0;
+}
+
+@media (min-width: 1280px) {
+  .slides--container {
+    display: grid;
+    grid-template-columns: 1fr;
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .slides--container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .slides--slide,
+  .slides--slide + .slides--slide {
+    grid-column: 1;
+    height: 100vh;
+    scroll-snap-align: start;
+    /* Stop at every photo: a hard flick should not fly past several. */
+    scroll-snap-stop: always;
+    width: 100%;
+    margin-top: 0;
+  }
+
+  /* The intro is a slide of its own, over the article's featured photo, so
+     every slide is a real scroll-snap stop and the browser can do the
+     scrolling itself. */
+  .article-gallery {
+    height: 100%;
+    width: 100%;
+    /* The scrim rides on the photo so both reach the edges. Putting it on
+       the intro instead left the sides unshaded on screens wider than the
+       1920px the intro is capped at. It is darkest at the bottom and still
+       shades the top, which the facts and the title reach on a long intro. */
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.65) 55%, rgba(0, 0, 0, 0.4) 100%),
+      var(--intro-desktop-hd);
+    background-size: cover;
+    background-position: center center;
+  }
+
+  .article-gallery--intro {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    /* The text starts where the logo does: the header's 2rem gutter inside
+       its 1920px container. The right side keeps the measure the text had
+       when it was centred between two 15rem gutters. */
+    padding: 0 28rem 4rem 2rem;
+    box-sizing: border-box;
+    max-width: calc(1920px + 4rem);
+    margin: 0 auto;
+    transition: opacity 0.3s ease;
+  }
+
+  .article-gallery--media {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .article-gallery--media .article-gallery--photo {
+    /* On the deck the slide is the viewport: the photo is as tall as it is
+       allowed and shown whole rather than cropped. Its box takes the
+       photo's own shape, so the rounded corners are the photo's; the 3:2
+       of the attributes holds the place until the file arrives. Only on a
+       window narrower than the photo does contain letterbox it. */
+    height: 90vh;
+    width: auto;
+    max-width: min(100%, 1920px);
+    aspect-ratio: auto 1920 / 1278;
+    object-fit: contain;
+  }
+
+  /* As large as the slide allows while staying 16:9. */
+  .article-gallery--media .article-gallery--video {
+    width: min(100%, 1920px, 90vh * 16 / 9);
+  }
+
+  .article-header {
+    border-bottom: none;
+    margin-bottom: 0.75rem;
+    color: var(--color-white);
+  }
+
+  /* The intro aims at the lower half of the window, leaving the top to the
+     photo, so its type is a step smaller than a page's. */
+  .article-title {
+    color: var(--color-white) !important;
+    font-size: 2.75rem;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .article-body {
+    color: var(--color-white) !important;
+    font-size: 1rem;
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  }
+
+  .article-gallery--intro .article-body li {
+    margin-bottom: 0.75rem;
+  }
+
+  .article-gallery--intro .article-body li:last-child {
+    margin-bottom: 0;
+  }
+
+  /* The page's colours are lost on the photo. */
+  .article-gallery--intro .article-meta {
+    font-size: 0.85rem;
+    color: var(--color-white);
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  }
+
+  .article-gallery--intro .article-meta dt {
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  /* Slide navigation dots */
+  .slides-nav {
+    position: fixed;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    /* Room for the current dot's ring, clear of its neighbours. */
+    gap: 1.25rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .slides-nav.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .slides-nav-dot {
+    width: 10px;
+    height: 10px;
+    padding: 0;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    appearance: none;
+  }
+
+  .slides-nav-dot:focus-visible {
+    outline: 2px solid var(--color-white);
+    outline-offset: 3px;
+  }
+
+  .slides-nav-dot:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+    transform: scale(1.2);
+  }
+
+  /* The current slide's dot wears the same ring as keyboard focus. */
+  .slides-nav-dot.active {
+    background-color: var(--color-white);
+    outline: 2px solid var(--color-white);
+    outline-offset: 3px;
+    transform: scale(1.3);
+  }
+}
+

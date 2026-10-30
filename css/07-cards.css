@@ -1,0 +1,203 @@
+/* Article Grid */
+
+.article-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 480px) {
+  .article-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 640px) {
+  .article-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1120px) {
+  .article-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.article-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.article-card--link {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+}
+
+.article-card--link:hover {
+  text-decoration: none;
+}
+
+.article-card--title,
+.article-card--link:hover {
+  color: var(--color-primary);
+}
+
+/* The title underlines on hover, as any other link does. */
+.article-card--link:hover .article-card--title,
+.article-card--link:focus-visible .article-card--title {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.article-card--image {
+  aspect-ratio: 4 / 3;
+  display: block;
+  width: 100%;
+  /* Or the height attribute pins the card to the photo's own height. */
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+  /* The same corners as the category tiles and the gallery photos. */
+  border-radius: 4px;
+}
+
+.article-card--content {
+  padding: 0.5rem 0 1rem;
+}
+
+.article-card--title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 0 0 0.25rem 0;
+  line-height: 1.3;
+}
+
+/* Date and places share one line, the date first. */
+.article-card--date,
+.article-card--location {
+  font-size: 0.85rem;
+  color: var(--color-grey-500);
+}
+
+.article-card--location::before {
+  content: " · ";
+}
+
+/* The home's category tiles: a mosaic rather than a grid, the first tile
+   large and two more wide, each photo full bleed with its number on top and
+   its name and count over the bottom. The spans add up to whole rows at
+   every column count, and dense packing fills the gaps the wide tiles
+   leave. */
+#home-categories {
+  grid-auto-rows: 180px;
+  grid-auto-flow: dense;
+  gap: 0.75rem;
+}
+
+@media (min-width: 480px) {
+  #home-categories > :first-child {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+
+  #home-categories > :nth-child(6),
+  #home-categories > :nth-child(11) {
+    grid-column: span 2;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1119px) {
+  #home-categories > :nth-child(11) {
+    grid-column: auto;
+  }
+}
+
+@media (min-width: 1120px) {
+  #home-categories {
+    grid-auto-rows: 220px;
+  }
+}
+
+/* Isolated so the rounded clip holds while the photo scales inside it. */
+#home-categories .article-card--link {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  isolation: isolate;
+}
+
+#home-categories .article-card--image {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  aspect-ratio: auto;
+  transition: transform 0.6s ease;
+}
+
+#home-categories .article-card--link:hover .article-card--image {
+  transform: scale(1.06);
+}
+
+#home-categories .article-card--content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem;
+  /* The section centres its heading; the tiles read from the left. */
+  text-align: left;
+  color: var(--color-white);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2) 60%, rgba(0, 0, 0, 0.1));
+}
+
+/* A purple veil over the photo while it is pointed at. Plain translucency:
+   a blend mode over the zooming photo flickered while it animated. */
+#home-categories .article-card--content::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-primary);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#home-categories .article-card--link:hover .article-card--content::before,
+#home-categories .article-card--link:focus-visible .article-card--content::before {
+  opacity: 0.45;
+}
+
+#home-categories .article-card--content > * {
+  position: relative;
+}
+
+#home-categories .category-tile--index,
+#home-categories .category-tile--count {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+#home-categories .article-card--title {
+  margin: auto 0 0.35rem;
+  font-size: clamp(1.1rem, 1rem + 0.6vw, 1.5rem);
+  line-height: 1.1;
+  text-transform: uppercase;
+  text-wrap: balance;
+  color: var(--color-white);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+}
+
+@media (min-width: 480px) {
+  #home-categories > :first-child .article-card--title {
+    font-size: clamp(1.75rem, 1rem + 2.5vw, 3rem);
+  }
+}
+

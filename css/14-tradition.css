@@ -1,0 +1,248 @@
+/* Tradition articles
+   Long-form reading pages, not the slide deck the place articles use. The
+   body HTML comes from the old site and carries its own title, metadata and
+   a twelve column grid, so the grid classes it expects are rebuilt here with
+   CSS Grid rather than the float system the original used. */
+
+/* The page runs the full width of the window, so the opening and the other
+   full-width photos fill it however wide it is; the text keeps its own
+   reading width. */
+.tradition-page .main-container {
+  --container-padding: 0px;
+  max-width: none;
+  padding: 0;
+}
+
+.wrapper,
+.wrapper-full {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 2rem;
+}
+
+.wrapper {
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.wrapper-full {
+  column-gap: 0;
+}
+
+/* The original grid let any child without a span class fill the row, so the
+   same default has to be explicit here. The span rules below override it. */
+.wrapper > *,
+.wrapper-full > * {
+  grid-column: span 12;
+}
+
+.span-12 { grid-column: span 12; }
+
+@media (min-width: 640px) {
+  .span-tablet-4 { grid-column: span 4; }
+  .span-tablet-5 { grid-column: span 5; }
+  .span-tablet-6 { grid-column: span 6; }
+  .span-tablet-7 { grid-column: span 7; }
+  .span-tablet-8 { grid-column: span 8; }
+}
+
+/* The intro is pulled up over the opening photo, fading into it. */
+.article-tradition__intro {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  padding: 1rem 0 2.5rem;
+}
+
+.article-tradition__title {
+  color: var(--color-white);
+  text-transform: uppercase;
+  font-size: var(--step-6);
+  margin-bottom: 0;
+}
+
+.article-tradition__metadata {
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  font-weight: 300;
+  line-height: 1;
+}
+
+/* The lead paragraph, a step up from the body text and in its serif,
+   though the intro around it is set in Lato. */
+.article-tradition__intro p {
+  font-family: var(--font-serif);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+  line-height: 1.55;
+}
+
+.article-tradition__body {
+  color: var(--color-grey-700);
+  font-weight: 300;
+  margin-top: 2rem;
+}
+
+.article-tradition__body .responsive-image {
+  margin-bottom: 1rem;
+}
+
+.article-tradition__gallery .responsive-image {
+  margin-bottom: 0;
+}
+
+.article-tradition__highlight {
+  font-size: clamp(1.0625rem, 0.9rem + 0.7vw, 1.5rem);
+  font-style: italic;
+  text-align: center;
+  font-weight: 300;
+}
+
+.article-tradition__quote {
+  font-size: clamp(1.25rem, 0.9rem + 1.6vw, 2.5rem);
+  font-style: italic;
+  text-align: center;
+  font-weight: 300;
+  margin: 3rem 0;
+}
+
+.article-tradition__quote::before {
+  content: "«";
+  color: var(--color-grey-400);
+}
+
+.article-tradition__quote::after {
+  content: "»";
+  color: var(--color-grey-400);
+}
+
+.article-tradition__question {
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--color-grey-800);
+}
+
+.article-tradition__border {
+  border-top: 1px solid var(--color-grey-200);
+  border-bottom: 1px solid var(--color-grey-300);
+}
+
+.article-tradition__separator {
+  margin: 1rem 0;
+}
+
+.article-tradition__full-image-with-text,
+.article-tradition__closing {
+  position: relative;
+}
+
+.article-tradition__closing-text,
+.article-tradition__full-image-with-text-text {
+  background-color: var(--color-grey-800);
+  color: var(--color-white);
+  padding-top: 1rem;
+}
+
+/* These sit over a photo, so their text has to beat the global paragraph
+   colour rather than inherit it. */
+.article-tradition__closing-text p,
+.article-tradition__full-image-with-text-text p,
+.article-tradition__full-image-with-text-text strong {
+  color: var(--color-white);
+}
+
+/* The closing photo ends the page, so it keeps none of the body photos'
+   bottom margin, which showed as a grey strip under the overlay. */
+.article-tradition__body .article-tradition__closing .responsive-image {
+  margin-bottom: 0;
+}
+
+@media (min-width: 640px) {
+  /* The opening photo fills the window, cropped to it, whatever its
+     shape. */
+  .artile-tradition__container {
+    --opening-height: 100svh;
+  }
+
+  /* Important over the inline padding an [img:PAD:N] placeholder writes
+     (66% on La zapatería). */
+  .artile-tradition__container > .responsive-image:first-child {
+    padding-top: var(--opening-height) !important;
+  }
+
+  /* The intro covers the whole photo and sets its text at the foot, with
+     air beneath it. The gradient spans the photo; a long intro runs on
+     below it, and there it is plain black, where the gradient's last, not
+     quite opaque stretch showed the white page as a grey strip. */
+  .article-tradition__intro {
+    background:
+      linear-gradient(to bottom, transparent 0%, transparent 15%, rgba(0, 0, 0, 0.6) 45%, rgba(0, 0, 0, 0.9) 75%, #000 100%) top / 100% var(--opening-height) no-repeat,
+      linear-gradient(#000, #000) 0 var(--opening-height) / 100% 100% no-repeat;
+    margin-top: calc(-1 * var(--opening-height));
+    /* Matching the pull-up makes the intro end exactly where the opening
+       photo does. The original computed this in JavaScript. */
+    min-height: var(--opening-height);
+    box-sizing: border-box;
+    /* The top padding only tells when the text outgrows the photo: it then
+       runs on below rather than up under the fixed header. */
+    padding: calc(var(--header-height) + 2rem) 0 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .article-tradition__metadata {
+    font-size: 1rem;
+  }
+
+  .article-tradition__body {
+    margin-top: 4rem;
+  }
+
+  .article-tradition__separator {
+    margin: 4rem 0;
+  }
+
+  .article-tradition__full-image-with-text-text {
+    background: linear-gradient(to bottom, rgba(17, 17, 17, 1) 0%, rgba(17, 17, 17, 1) 50%, rgba(17, 17, 17, 0.6) 80%, transparent 100%);
+    color: var(--color-white);
+    padding-top: 4rem;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+  }
+
+  .article-tradition__full-image-with-text-image {
+    padding-top: 10rem;
+  }
+
+  .article-tradition__closing-text {
+    background-color: rgba(0, 0, 0, 0.5);
+    bottom: 0;
+    font-size: 1.5rem;
+    padding-top: 10rem;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}
+
+@media (min-width: 1120px) {
+  .article-tradition__metadata {
+    font-size: 1.125rem;
+  }
+
+  .article-tradition__body .responsive-image {
+    margin-bottom: 2rem;
+  }
+
+  .article-tradition__quote {
+    margin: 6rem 0;
+  }
+
+  .article-tradition__closing-text {
+    padding-top: 15rem;
+  }
+}
+

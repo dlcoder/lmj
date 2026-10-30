@@ -69,8 +69,9 @@ export default function (eleventyConfig) {
   eleventyConfig.ignores.add("content");
   // The data files import it, so the dev server rebuilds when it changes.
   eleventyConfig.addWatchTarget("lib/");
+  // src/styles.11ty.js joins the parts of the stylesheet.
+  eleventyConfig.addWatchTarget("css/");
 
-  eleventyConfig.addPassthroughCopy("css");
   eleventyConfig.addPassthroughCopy("js");
   eleventyConfig.addPassthroughCopy("img");
   // Browsers ask for it at the root whether or not a page links it.

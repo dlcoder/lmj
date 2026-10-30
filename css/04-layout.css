@@ -1,0 +1,114 @@
+/* Main Container */
+
+.main-container {
+  --container-padding: 2rem;
+  margin: 0 auto;
+  max-width: 1920px;
+  padding: var(--container-padding);
+  padding-top: 6rem;
+}
+
+/* Home Page */
+
+body.home-page {
+  .main-container {
+    max-width: none;
+    padding: 0;
+    /* The carousel starts below the fixed header, not behind it, which hid
+       the top of every photo and set the arrows off its visible centre. */
+    padding-top: var(--header-height);
+  }
+}
+
+.categories-section {
+  margin: 0 auto 2rem;
+  max-width: 1920px;
+  padding: 0 2rem 2rem;
+  text-align: center;
+}
+
+.categories-section--head {
+  margin-bottom: 1rem;
+  padding-top: 3rem;
+}
+
+@media (min-width: 768px) {
+  .categories-section {
+    margin: 0 auto 4rem;
+  }
+}
+
+.categories-section-title {
+  color: var(--color-primary);
+  font-size: var(--step-4);
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+/* The search on the home page, under the categories heading. Its results
+   replace the tiles, as ordinary article cards. */
+
+.home-search {
+  max-width: 36rem;
+  margin: 0 auto 1rem;
+}
+
+.home-search--input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.85rem 1rem 0.85rem 3rem;
+  font: inherit;
+  /* 16px on a phone, the least iOS takes without zooming into the field. */
+  font-size: clamp(1rem, 0.9rem + 0.4vw, 1.1rem);
+  color: var(--color-grey-800);
+  border: 2px solid var(--color-primary-60);
+  border-radius: 2rem;
+  background: var(--color-white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23423780' stroke-width='2.5' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='6.5'/%3E%3Cpath d='M15.5 15.5 21 21'/%3E%3C/svg%3E") no-repeat 1.1rem center / 1.25rem;
+}
+
+.home-search--input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-60);
+}
+
+.home-search--status {
+  min-height: 1.6em;
+  margin: 0;
+  color: var(--color-grey-600);
+}
+
+.home-search--results {
+  text-align: left;
+}
+
+/* Pages */
+
+/* Titles sit on a light purple band the width of the window. It runs up
+   behind the fixed header so it starts right at its edge, and its padding
+   counts the header's height in, so the text has as much room above as
+   below; the shadow carries it past the content's column. */
+.page-header {
+  margin: calc(-1 * 6rem) 0 2rem;
+  padding: calc(var(--header-height) + 1.5rem) 0 1.5rem;
+  background-color: var(--color-primary-tint);
+  box-shadow: 0 0 0 100vmax var(--color-primary-tint);
+  clip-path: inset(0 -100vmax);
+}
+
+.page-title {
+  font-size: var(--step-4);
+  font-weight: bold;
+  color: var(--color-primary);
+}
+
+.page-header > :last-child {
+  margin-bottom: 0;
+}
+
+/* What the title belongs to: the region of a municipality. */
+.page-title--context {
+  margin: -0.5rem 0 0;
+  font-size: var(--step-1);
+}
+
