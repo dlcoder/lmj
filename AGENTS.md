@@ -114,7 +114,7 @@ npm run build-icons  # re-render the icons in img/ after changing img/favicon.sv
 ## Key Configuration (`.eleventy.js`)
 
 - **Leaflet** is a pinned dependency, copied out of `node_modules` into `/vendor/` at build time and loaded only on the pages that need it (`includeLeaflet`); `leaflet.markercluster` is a second flag (`includeMarkerCluster`), for the maps that plot articles — Jaén alone has 43 of them
-- **Static assets host:** `https://lmjstatic.deliriumcoder.com` (`STATICS_HOST` constant)
+- **Static assets host:** `https://files.lugaresmiticosdejaen.com` (`STATICS_HOST` constant)
 - **Global data:** `env`, `timestamp` (CSS/JS cache busting), `staticsHost`, `siteUrl`
 - **Analytics:** Umami Cloud, cookieless, loaded by the layout only when `ELEVENTY_ENV` is `production` (the deploy build), so local builds and the checks send nothing. The cookies pages say so
 - **Structured data:** articles carry a JSON-LD `Article` about a `TouristAttraction`, with `GeoCoordinates` only where the article publishes them (`setGeo` filter); each home page a `WebSite`
@@ -279,7 +279,7 @@ The domain is written twice: in the `CNAME` file, which `SITE_URL` reads for can
   - **Reachable during a block** (tested from Spain, 2026): ImageKit, CloudFront, Bunny, Gumlet, Cloudinary and Fastly. Only Cloudflare was filtered.
   - **Ruled out:** anything on Cloudflare (R2, Images, Pages), which is where the blocks hit; Vercel, blocked too; Backblaze B2, whose free egress goes through Cloudflare; Scaleway, whose free tier is now a three-month trial; Cloudinary, whose storage and bandwidth share one small allowance; GitHub Pages, with no room for 2.18 GB of variants.
   - **Recommended:** ImageKit's free plan with automatic format (`f-auto`), which gives WebP/AVIF with nothing generated ahead, and the site's image traffic fits its free plan. S3 + CloudFront is the fallback with far more room, at the cost of generating the formats in advance and choosing them with a CloudFront Function. One good response from ImageKit during a block does not prove it stays out of the filtered ranges: test it more than once.
-  - **Migrating:** either rewrite the image URLs in the JSON, or point `lmjstatic.deliriumcoder.com` at the new host, which is simpler but keeps the intermediate domain. A host that transforms on the fly needs only the 2,068 `original` files, and the derived sizes could go; keep a local copy of those originals before deleting anything, as they are the nearest thing to masters the project has. They are not true masters: the archive is capped at 1920 px wide, so no host can serve larger.
+  - **Migrating:** the site reads its assets from `files.lugaresmiticosdejaen.com`, a domain of its own, so moving host is pointing that name at the new one; the image paths in the JSON stay as they are. A host that transforms on the fly needs only the 2,068 `original` files, and the derived sizes could go; keep a local copy of those originals before deleting anything, as they are the nearest thing to masters the project has. They are not true masters: the archive is capped at 1920 px wide, so no host can serve larger.
 
 The most relevant items when touching templates:
 

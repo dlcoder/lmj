@@ -33,7 +33,7 @@ All content is static JSON under `_data/raw/`, exported from the MySQL database 
 
 The `_data/*.js` layer hydrates that JSON (full localities and categories on every article) and builds the paginated collections consumed by the templates in `src/`.
 
-**Images are not in the repo**: they are served from `https://lmjstatic.deliriumcoder.com` in 13 pre-generated sizes, and the templates build the URLs with the `featured_image` and `static_image` shortcodes.
+**Images are not in the repo**: they are served from `https://files.lugaresmiticosdejaen.com` in 13 pre-generated sizes, and the templates build the URLs with the `featured_image` and `static_image` shortcodes.
 
 ## Deployment
 
