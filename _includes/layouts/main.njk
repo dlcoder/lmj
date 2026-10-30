@@ -141,7 +141,7 @@
 </head>
 
 <body class="{% if bodyClass %}{{ bodyClass }}{% endif %}">
-  <div id="header" class="header">
+  <header id="header" class="header">
     <div class="header-container">
       <div class="header-logo">
         <h1 class="header-logo--title">
@@ -199,11 +199,11 @@
         <a href="/{{ locale }}/{{ i18n[locale].pages.books }}">{{ i18n[locale].nav.books }}</a>
       </nav>
     </div>
-  </div>
+  </header>
 
-  <div class="main-container">
+  <main class="main-container">
     {{ content | safe }}
-  </div>
+  </main>
 
   {#- Place articles carry the footer inside their last slide, because the
       deck takes over scrolling and anything after it cannot be reached. -#}
