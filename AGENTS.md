@@ -89,6 +89,7 @@ npm run build-icons  # re-render the icons in img/ after changing img/favicon.sv
 │   ├── hamburger-menu.js
 │   ├── header-menu.js                # The Discover Jaén dropdown (click, Escape, mobile accordion)
 │   ├── article-slides.js             # Keyboard and dots for the article deck
+│   ├── map.js                        # What the four maps share: tiles, outlines, article index, popup, framing
 │   ├── article-map.js                # Leaflet map in the article closing block
 │   ├── tradition-header.js           # Gives a Tradition article its header band back past the opening
 │   ├── latest-articles.js            # Home carousel

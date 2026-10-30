@@ -93,6 +93,7 @@
   {%- if includeLeaflet -%}
   <link rel="stylesheet" href="/vendor/leaflet/leaflet.css?v={{ vendor.leaflet }}">
   <script src="/vendor/leaflet/leaflet.js?v={{ vendor.leaflet }}" defer></script>
+  <script src="/js/map.js?v={{ timestamp }}" defer></script>
   {%- endif -%}
   {#- Only the maps that plot articles need the clusters: 43 of them land on
       Jaén alone, most inside the old town. It is what the original used. -#}
