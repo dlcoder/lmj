@@ -197,7 +197,7 @@ Every paginated HTML template sets `addAllPagesToCollections: true`: without it 
 - `id` — stable across locales, and the **only** way to pair an article with its translation: 84 articles have a different slug in each language
 - `translated_by` — only on the 57 English articles Marina Nieto Tirado translated while the project ran; the copyright pages list them. The other 107 were machine-translated in 2026
 - `legacy_slug` — only on the 68 English articles that got a slug of their own when they were translated in 2026; the Spanish slug they were published under until then. `redirects.js` sends both the Rails URLs and the old ones here to the new slug
-- Content and metadata (`title`, `summary`, `sentences`, `published_at`, `hashtag`, `type`, `translated`, geolocation)
+- Content and metadata (`title`, `summary`, `sentences`, `published_at`, `type`, `translated`, geolocation)
 - `summary` and `sentences` are plain text, HTML entities already decoded during hydration
 - `body` — only for `Tradition` articles: the HTML from `content/`, with its `[img::N]` placeholders resolved to real images
 - `type`: `Place` (161) or `Tradition` (3; the body lives in `content/`)
