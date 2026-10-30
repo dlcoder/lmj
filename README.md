@@ -20,8 +20,12 @@ npm run serve     # http://localhost:8080
 |---|---|
 | `npm run build` | builds the site into `_site/` |
 | `npm run serve` | dev server with hot reload |
-| `npm run clean` | removes `_site/` and `.cache/` |
+| `npm run clean` | removes `_site/` |
+| `npm run validate` | checks `_data/raw/` for broken references and gaps |
+| `npm run check-site` | builds and checks canonicals, hreflang pairs, structured data, sitemap and redirects |
+| `npm run check-pages` | builds and asserts the layout of the built pages in a browser |
 | `npm run check-links` | builds and checks internal links |
+| `npm run build-icons` | re-renders the icons in `img/` after changing `img/favicon.svg` |
 
 ## Where the data comes from
 

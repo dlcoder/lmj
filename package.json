@@ -11,7 +11,7 @@
   "scripts": {
     "build": "eleventy",
     "serve": "eleventy --serve",
-    "clean": "rm -rf _site .cache",
+    "clean": "rm -rf _site",
     "validate": "node scripts/validate-data.mjs",
     "check-links": "npm run build && node scripts/check-links.mjs",
     "check-site": "npm run build && node scripts/check-site.mjs",

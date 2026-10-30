@@ -22,7 +22,7 @@ A bilingual (Spanish/English) static website about mythical and legendary places
 npm ci               # install dependencies (honours package-lock.json)
 npm run build        # build the site into _site/
 npm run serve        # dev server with hot reload
-npm run clean        # remove _site/ and .cache/
+npm run clean        # remove _site/
 npm run validate     # check _data/raw/ for broken references and gaps
 npm run check-links  # build and validate internal links with linkinator
 npm run check-site   # build and check canonicals, hreflang pairs, JSON-LD, sitemap and redirects
