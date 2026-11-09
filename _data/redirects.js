@@ -3,6 +3,8 @@ import { en_categories_raw, es_categories_raw } from '../lib/base.js';
 import * as articles from './articles.js';
 import i18n from './i18n.js';
 import localities_list from './localities_list.js';
+import regions_list from './regions_list.js';
+import { PAGE_SIZE } from '../lib/base.js';
 
 // Every URL the Rails app served that this site serves somewhere else, with
 // where it lives now. GitHub Pages has no server-side redirects, so each one
@@ -20,6 +22,18 @@ const prefixes = {
 };
 
 const categories = { es: es_categories_raw, en: en_categories_raw };
+
+// Region slugs this site used until the comarcas followed the official list,
+// in October 2026, with the regions each one became. La Loma y Las Villas was
+// split in two, so it goes to the regions index. Their pages were linked with
+// a trailing slash, so these redirects are written as directory indexes.
+const formerRegions = {
+  'area-metropolitana-de-jaen': ['comarca-metropolitana-de-jaen'],
+  'alto-guadalquivir': ['sierra-de-cazorla'],
+  'campina': ['campina-de-jaen'],
+  'la-loma-y-las-villas': ['la-loma', 'las-villas'],
+  'sierra-norte': ['sierra-morena']
+};
 
 // Slugs some articles had before they were renamed, from the Rails app's
 // friendly_id_slugs table, by article id. The old app kept answering to them
@@ -87,6 +101,13 @@ function forLocale(locale) {
       withArticles.has(locality.slug) ? `/${locale}/localities/${locality.slug}/` : `/${locale}/localities/`);
   }
 
+  for (const [slug, became] of Object.entries(formerRegions)) {
+    const to = became.length === 1 ? `/${locale}/regions/${became[0]}/` : `/${locale}/regions/`;
+    const count = regions_list.filter(r => became.includes(r.slug)).reduce((n, r) => n + r.articleCount, 0);
+    add(`/${locale}/regions/${slug}/`, to);
+    for (let page = 2; page <= Math.ceil(count / PAGE_SIZE); page++) add(`/${locale}/regions/${slug}/page/${page}/`, to);
+  }
+
   // The static pages that were renamed or folded into another.
   const old = locale === 'es'
     ? { 'libro': pages.book1, 'libro-1': pages.book1, 'libro-2': pages.book2, 'el-equipo': pages.project, 'medios': pages.project }
@@ -100,6 +121,12 @@ function forLocale(locale) {
 export default [
   ...forLocale('es'),
   ...forLocale('en'),
+  // The site before the Rails app published its articles under /reportajes,
+  // with the slugs they still have, and links to them still turn up.
+  ...articles.es.map(article => ({ from: `/reportajes/${article.slug}`, to: `/es/articles/${article.slug}`, locale: 'es' })),
+  { from: '/portada', to: '/es/', locale: 'es' },
+  { from: '/colaboradores', to: `/es/${i18n.es.pages.project}`, locale: 'es' },
+  { from: '/es/tienda/product/lugares-miticos-de-jaen-vol-2-ebook', to: `/es/${i18n.es.pages.book2}`, locale: 'es' },
   // The two shortcuts the old routes.rb kept for the second book.
   { from: '/libro2', to: `/es/${i18n.es.pages.book2}`, locale: 'es' },
   { from: '/libro-2', to: `/es/${i18n.es.pages.book2}`, locale: 'es' }
