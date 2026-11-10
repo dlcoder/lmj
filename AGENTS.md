@@ -13,7 +13,7 @@ A bilingual (Spanish/English) static website about mythical and legendary places
 | Static Site Generator | Eleventy 3.1.8 (version pinned exactly) |
 | Templating | Nunjucks (`.njk`) |
 | Language | ES Modules (`"type": "module"`) |
-| Node | defined in `.nvmrc` (v26.12.1); the workflow reads it from there |
+| Node | defined in `.nvmrc` (v26.13.0); the workflow reads it from there |
 | Deployment | GitHub Actions → GitHub Pages |
 
 ## Commands
